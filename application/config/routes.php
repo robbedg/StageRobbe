@@ -57,6 +57,8 @@ $route['items/location/(:any)'] = 'items/bylocation/$1';
 $route['items/create'] = 'items/create';
 $route['items/(:any)'] = 'items/view/$1';
 
+$route['itemtypes/create'] = 'itemtypes/create';
+
 $route['news/create'] = 'news/create';
 $route['news'] = 'news';
 $route['news/(:any)'] = 'news/view/$1';

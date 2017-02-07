@@ -27,4 +27,15 @@ class Itemtypes_model extends CI_Model
 
         return $item->row_array();
     }
+
+    public function set_itemtype($id = FALSE)
+    {
+        $this->load->helper('url');
+
+        $data = array(
+            'name' => $this->input->post('name')
+        );
+
+        return $this->db->insert('itemtypes', $data);
+    }
 }

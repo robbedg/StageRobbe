@@ -1,5 +1,4 @@
 <h2><?php echo $title; ?></h2>
-<?php var_dump($locations); ?>
 <p>
     <?php echo validation_errors(); ?>
 </p>
@@ -19,5 +18,6 @@
 
 <p>
     <a href="<?php echo site_url('locations/create'); ?>">New Location</a><br />
-    <a href="<?php echo site_url('items/create'); ?>">New Item</a>
+    <a href="<?php echo site_url('items/create'); ?>">New Item</a><br />
+    <a href="<?php echo site_url('itemtypes/create'); ?>">New Itemtype</a>
 </p>
