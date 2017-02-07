@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>CodeIgniter Tutorial</title>
+    <title>Inventaris</title>
 </head>
 <body>
     <h1><?php echo $title; ?></h1>

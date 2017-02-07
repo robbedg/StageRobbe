@@ -1,9 +1,18 @@
-<h2><?php
-/**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 6/02/2017
- * Time: 12:44
- */
-echo('Hello world!');
-?></h2>
+<h2><?php echo $title; ?></h2>
+<?php var_dump($locations); ?>
+<p>
+    <?php echo validation_errors(); ?>
+</p>
+
+<?php echo form_open(); ?>
+
+<label for="location">Location</label>
+<select name="location">
+    <?php foreach ($locations as $location): ?>
+    <option value="<?php echo $location['id']; ?>"><?php echo $location['name']; ?></option>
+    <?php endforeach; ?>
+</select>
+
+<input type="submit" name="submit" value="Select location" />
+
+</form>
