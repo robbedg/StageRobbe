@@ -16,3 +16,8 @@
 <input type="submit" name="submit" value="Select location" />
 
 </form>
+
+<p>
+    <a href="<?php echo site_url('locations/create'); ?>">New Location</a><br />
+    <a href="<?php echo site_url('items/create'); ?>">New Item</a>
+</p>

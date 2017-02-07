@@ -25,4 +25,24 @@ class Locations extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    public function create() {
+        //helper & library for form
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        $data['title'] = 'New Location';
+
+        $this->form_validation->set_rules('name', 'Name', 'required');
+
+        if ($this->form_validation->run() === FALSE)
+        {
+            $this->load->view('templates/header', $data);
+            $this->load->view('locations/create', $data);
+            $this->load->view('templates/footer', $data);
+        }
+        else {
+            $this->location_model->set_location();
+            redirect('home');
+        }
+    }
 }

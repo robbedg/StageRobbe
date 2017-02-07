@@ -46,4 +46,15 @@ class Item_model extends CI_Model
 
         return $items->result_array();
     }
+
+    public function set_item(){
+        $this->load->helper('url');
+
+        $data = array(
+            'itemtype_id' => $this->input->post('itemtype'),
+            'location_id' => $this->input->post('location')
+        );
+
+        return $this->db->insert('items', $data);
+    }
 }
