@@ -19,6 +19,7 @@ class Item_model extends CI_Model
         $this->db->from('items');
         $this->db->join('itemtypes', 'items.itemtype_id = itemtypes.id', 'left outer');
         $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
+        $this->db->order_by('itemtypes.name', 'asc');
 
         if ($id === FALSE){
 
@@ -41,6 +42,7 @@ class Item_model extends CI_Model
         $this->db->join('itemtypes', 'items.itemtype_id = itemtypes.id', 'left outer');
         $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
         $this->db->where('locations.id', $id);
+        $this->db->order_by('itemtypes.name', 'asc');
 
         $items = $this->db->get();
 

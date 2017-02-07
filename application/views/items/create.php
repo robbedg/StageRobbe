@@ -1,7 +1,7 @@
 <h2><?php echo $title; ?></h2>
 <?php echo validation_errors(); ?>
 
-<?php echo form_open('items/create'); ?>
+<?php echo form_open(); ?>
 
 <label for="itemtype">Itemtype</label>
 <select name="itemtype">

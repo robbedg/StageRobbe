@@ -3,16 +3,20 @@
     <?php echo validation_errors(); ?>
 </p>
 
-<?php echo form_open(); ?>
+<?php echo form_open('/pages/view', array('class'=>'form-horizontal')); ?>
 
+<div class="form-group">
 <label for="location">Location</label>
 <select name="location">
     <?php foreach ($locations as $location): ?>
     <option value="<?php echo $location['id']; ?>"><?php echo $location['name']; ?></option>
     <?php endforeach; ?>
 </select>
+</div>
 
-<input type="submit" name="submit" value="Select location" />
+<div class="form-group">
+    <input type="submit" name="submit" value="Select location" />
+</div>
 
 </form>
 
