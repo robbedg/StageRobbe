@@ -6,7 +6,6 @@ html {
 }
 
 #wrapper {
-
 	max-width: 150rem;
 	padding-left: 5rem;
 	padding-right: 5rem;
@@ -43,10 +42,16 @@ tbody > tr:hover {
 	cursor: pointer;
 }
 
+#buttons {
+	position: relative;
+	float: right;
+	display: inline-block;
+	margin-top: -4.8rem;
+}
+
 #datacontainer {
 	position: relative;
 }
-
 
 #labels {
 	position: relative;
@@ -59,7 +64,6 @@ tbody > tr:hover {
 	position: relative;
 	display: inline-block;
 	width: 50%;
-	float: right;
 }
 
 /**
