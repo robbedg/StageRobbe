@@ -1,12 +1,12 @@
 <h2><?php echo $title; ?></h2>
 
 <table class="table table-striped table-hover ">
-    <thread>
+    <thead>
         <tr>
             <th>#</th>
             <th>Location</th>
         </tr>
-    </thread>
+    </thead>
     <tbody>
         <?php foreach ($locations as $location): ?>
             <tr class="clickable-row" data-href="<?php echo site_url('items/location/'.$location['id']); ?>">
