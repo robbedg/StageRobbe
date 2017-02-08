@@ -73,7 +73,10 @@ class Item_model extends CI_Model
     }
 
     //remove item
-    public function remove_item() {
+    public function remove_item($id = FALSE) {
 
+        //query
+        $this->db->where('id', $id);
+        $this->db->delete('items');
     }
 }

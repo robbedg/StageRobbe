@@ -84,4 +84,16 @@ class Items extends CI_Controller
             redirect('home');
         }
     }
+
+    //deleting item
+    public function remove($id = NULL) {
+
+        //when no id provided give 404
+        if (empty($id)) {
+            show_404();
+        }
+
+        $this->item_model->remove_item($id);
+        redirect('home');
+    }
 }
