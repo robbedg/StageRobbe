@@ -13,6 +13,20 @@ html {
 	margin: 0 auto;
 }
 
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
 /**
  * HEADER
  **/
@@ -27,6 +41,25 @@ h1 {
  **/
 tbody > tr:hover {
 	cursor: pointer;
+}
+
+#datacontainer {
+	position: relative;
+}
+
+
+#labels {
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	float: left;
+}
+
+#data {
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	float: right;
 }
 
 /**

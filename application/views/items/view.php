@@ -1,9 +1,11 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 6/02/2017
- * Time: 16:01
- */
-echo '<h2>'.$title.'</h2>';
-var_dump($item);
+<h2><?php echo $item['itemtype']; ?></h2>
+<div class="jumbotron clearfix" id="datacontainer">
+    <div id="labels">
+        <p>ID:</p><br />
+        <p>Location:</p>
+    </div>
+    <div id="data">
+        <p><?php echo $item['id']; ?></p><br />
+        <p><?php echo $item['location']; ?></p>
+    </div>
+</div>
