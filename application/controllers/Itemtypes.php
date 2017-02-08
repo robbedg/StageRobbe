@@ -11,6 +11,7 @@ class Itemtypes extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->helper('url');
         $this->load->model('itemtypes_model');
     }
 
@@ -26,7 +27,7 @@ class Itemtypes extends CI_Controller
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/header', $data);
-            $this->load->view('itemtypes/create');
+            $this->load->view('itemtypes/create', $data);
             $this->load->view('templates/footer');
         }
         else {

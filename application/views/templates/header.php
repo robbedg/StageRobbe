@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo site_url('/pages/view'); ?>">Inventory</a>
+            <a class="navbar-brand" href="<?php echo site_url('home'); ?>">Inventory</a>
         </div>
 </nav>
 <body>

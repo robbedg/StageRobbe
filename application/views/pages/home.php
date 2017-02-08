@@ -1,4 +1,9 @@
 <h2><?php echo $title; ?></h2>
+<div id="buttons">
+    <a class="btn btn-primary" href="<?php echo site_url('locations/create'); ?>">New Location</a>
+    <a class="btn btn-primary" href="<?php echo site_url('items/create'); ?>">New Item</a>
+    <a class="btn btn-primary" href="<?php echo site_url('itemtypes/create'); ?>">New Itemtype</a>
+</div>
 
 <table class="table table-striped table-hover ">
     <thead>
@@ -16,9 +21,3 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-
-<p>
-    <a href="<?php echo site_url('locations/create'); ?>">New Location</a><br />
-    <a href="<?php echo site_url('items/create'); ?>">New Item</a><br />
-    <a href="<?php echo site_url('itemtypes/create'); ?>">New Itemtype</a>
-</p>
