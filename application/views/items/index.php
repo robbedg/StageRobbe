@@ -11,8 +11,8 @@
     </thead>
     <tbody>
     <?php foreach ($items as $item): ?>
-        <tr class="clickable-row" data-href="<?php echo site_url('items/'.$item['id']); ?>">
-            <td><?php echo $item['id'] ?></td>
+        <tr class="clickable-row" data-href="<?php echo site_url('items/detail/'.$item['location_id'].'/'.$item['itemtype_id']); ?>">
+            <td><?php echo $item['count'] ?></td>
             <td><?php echo $item['itemtype'] ?></td>
             <td><?php echo $item['location'] ?></td>
         </tr>

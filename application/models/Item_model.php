@@ -39,11 +39,29 @@ class Item_model extends CI_Model
     public function get_item_by_location($id = FALSE)
     {
         //query
-        $this->db->select('items.id, itemtypes.name AS itemtype, locations.name AS location');
+        $this->db->select('locations.id AS location_id, itemtypes.id AS itemtype_id, itemtypes.name AS itemtype, locations.name AS location, count(itemtypes.name) AS count');
         $this->db->from('items');
         $this->db->join('itemtypes', 'items.itemtype_id = itemtypes.id', 'left outer');
         $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
         $this->db->where('locations.id', $id);
+        $this->db->group_by('itemtypes.name');
+        $this->db->order_by('itemtypes.name', 'asc');
+
+        $items = $this->db->get();
+
+        return $items->result_array();
+    }
+
+    //give items of catagory in location
+    public function get_item_by_catagory($locationid = FALSE, $itemtypeid =FALSE) {
+        //list($locationid, $itemtypeid) = explode('/', $data);
+        //query
+        $this->db->select('items.id AS item_id, itemtypes.name AS itemtype, locations.name AS location');
+        $this->db->from('items');
+        $this->db->join('itemtypes', 'items.itemtype_id = itemtypes.id', 'left outer');
+        $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
+        $this->db->where('locations.id', $locationid);
+        $this->db->where('itemtypes.id', $itemtypeid);
         $this->db->order_by('itemtypes.name', 'asc');
 
         $items = $this->db->get();

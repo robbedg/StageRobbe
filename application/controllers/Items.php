@@ -14,6 +14,7 @@ class Items extends CI_Controller
         $this->load->model('location_model');
         $this->load->model('itemtypes_model');
         $this->load->helper('url_helper');
+        $this->output->enable_profiler(TRUE);
     }
 
     //List of Items
@@ -45,8 +46,18 @@ class Items extends CI_Controller
         $data['item'] = $this->item_model->get_item($id);
         $data['title'] = $data['item']['itemtype'];
 
-        $this->load-> view('templates/header', $data);
+        $this->load->view('templates/header', $data);
         $this->load->view('items/view', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    public function detail($locationid, $itemtypeid)
+    {
+        $data['items'] = $this->item_model->get_item_by_catagory($locationid, $itemtypeid);
+        $data['title'] = 'Items';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('items/detail', $data);
         $this->load->view('templates/footer', $data);
     }
 
