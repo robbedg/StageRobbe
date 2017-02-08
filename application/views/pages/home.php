@@ -1,24 +1,21 @@
 <h2><?php echo $title; ?></h2>
-<p>
-    <?php echo validation_errors(); ?>
-</p>
 
-<?php echo form_open('/pages/view', array('class'=>'form-horizontal')); ?>
-
-<div class="form-group">
-<label for="location">Location</label>
-<select name="location">
-    <?php foreach ($locations as $location): ?>
-    <option value="<?php echo $location['id']; ?>"><?php echo $location['name']; ?></option>
-    <?php endforeach; ?>
-</select>
-</div>
-
-<div class="form-group">
-    <input type="submit" name="submit" value="Select location" />
-</div>
-
-</form>
+<table class="table table-striped table-hover ">
+    <thread>
+        <tr>
+            <th>#</th>
+            <th>Location</th>
+        </tr>
+    </thread>
+    <tbody>
+        <?php foreach ($locations as $location): ?>
+            <tr class="clickable-row" data-href="<?php echo site_url('items/location/'.$location['id']); ?>">
+                <td><?php echo $location['id'] ?></td>
+                <td><?php echo $location['name'] ?></td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
 
 <p>
     <a href="<?php echo site_url('locations/create'); ?>">New Location</a><br />
