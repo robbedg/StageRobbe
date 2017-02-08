@@ -15,6 +15,7 @@ class Itemtypes extends CI_Controller
         $this->load->model('itemtypes_model');
     }
 
+    //Create new Itemtype
     public function create() {
         //helper & library for form
         $this->load->helper('form');

@@ -25,6 +25,7 @@ class Locations extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    //Create new locations
     public function create() {
         //helper & library for form
         $this->load->helper('form');

@@ -51,6 +51,7 @@ class Items extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
+    //all objects in defined category
     public function detail($locationid, $itemtypeid)
     {
         $data['items'] = $this->item_model->get_item_by_catagory($locationid, $itemtypeid);

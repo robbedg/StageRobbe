@@ -8,11 +8,12 @@
 <table class="table table-striped table-hover ">
     <thead>
         <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Location</th>
         </tr>
     </thead>
     <tbody>
+        <!--Loop all locatons-->
         <?php foreach ($locations as $location): ?>
             <tr class="clickable-row" data-href="<?php echo site_url('items/location/'.$location['id']); ?>">
                 <td><?php echo $location['id'] ?></td>
