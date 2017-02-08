@@ -54,22 +54,33 @@ class Items extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function create() {
+    //creating/updating item
+    public function create($id = NULL) {
         //helper & library for form
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['title'] = 'New Item';
+        if (!empty($id)) {
+            $data['title'] = 'Edit Item';
+            $data['item'] = $this->item_model->get_item($id);
+        } else {
+            $data['title'] = 'New Item';
+            $data['item'] = array();
+        }
+
+        //data for form
         $data['locations'] = $this->location_model->get_location();
         $data['itemtypes'] = $this->itemtypes_model->get_itemtype();
 
+        //rules for form
         $this->form_validation->set_rules('itemtype', 'Itemtype', 'required');
         $this->form_validation->set_rules('location', 'Location', 'required');
 
+        //validation
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/header', $data);
-            $this->load->view('items/create');
+            $this->load->view('items/create', $data);
             $this->load->view('templates/footer');
         }
         else {

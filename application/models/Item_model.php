@@ -12,6 +12,7 @@ class Item_model extends CI_Model
         $this->load->database();
     }
 
+    //get item(s)
     public function get_item($id = FALSE)
     {
         //query
@@ -34,6 +35,7 @@ class Item_model extends CI_Model
         return $item->row_array();
     }
 
+    //Give items on location
     public function get_item_by_location($id = FALSE)
     {
         //query
@@ -49,6 +51,7 @@ class Item_model extends CI_Model
         return $items->result_array();
     }
 
+    //Update or create new item
     public function set_item(){
         $this->load->helper('url');
 
@@ -56,6 +59,15 @@ class Item_model extends CI_Model
             'itemtype_id' => $this->input->post('itemtype'),
             'location_id' => $this->input->post('location')
         );
+
+        //add id for update
+        $id = $this->input->post('id');
+
+        if (!empty($id)) {
+            $this->db->set($data);
+            $this->db->where('id', $id);
+            return $this->db->update('items');
+        }
 
         return $this->db->insert('items', $data);
     }
