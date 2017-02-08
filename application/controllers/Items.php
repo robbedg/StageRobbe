@@ -31,12 +31,8 @@ class Items extends CI_Controller
     public function bylocation($id = NULL)
     {
         $data['items'] = $this->item_model->get_item_by_location($id);
-
-        if (empty($data['items'])) {
-            show_404();
-        }
-
-        $data['title'] = array_values(array_slice($data['items'], -1))[0]['location'];
+        //page title
+        $data['title'] = $this->location_model->get_location($id)['name'];
 
         $this->load->view('templates/header', $data);
         $this->load->view('items/index', $data);

@@ -1,5 +1,6 @@
 <h2>Items</h2>
 
+<?php if (!empty($items)): ?>
 <table class="table table-striped table-hover ">
     <thead>
         <tr>
@@ -18,3 +19,10 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+<?php else: ?>
+<div class="alert alert-danger">
+    <p>
+        There are no items in this location.
+    </p>
+</div>
+<?php endif; ?>
