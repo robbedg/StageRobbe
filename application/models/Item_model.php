@@ -71,4 +71,9 @@ class Item_model extends CI_Model
 
         return $this->db->insert('items', $data);
     }
+
+    //remove item
+    public function remove_item() {
+
+    }
 }
