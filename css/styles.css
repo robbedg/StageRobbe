@@ -1,82 +1,95 @@
 /**
  * GLOBAL
  **/
-html {
+ html {
 	font-size: 62.5%;
-}
+ }
 
-#wrapper {
+ #wrapper {
 	max-width: 150rem;
 	padding-left: 5rem;
 	padding-right: 5rem;
 	margin: 0 auto;
-}
+ }
 
-.clearfix:after {
+ .clearfix:after {
      visibility: hidden;
      display: block;
      font-size: 0;
      content: " ";
      clear: both;
      height: 0;
-     }
-.clearfix { display: inline-block; }
-/* start commented backslash hack \*/
-* html .clearfix { height: 1%; }
-.clearfix { display: block; }
-/* close commented backslash hack */
+ }
+ .clearfix { display: inline-block; }
+ /* start commented backslash hack \*/
+ * html .clearfix { height: 1%; }
+ .clearfix { display: block; }
+ /* close commented backslash hack */
 
 /**
  * HEADER
  **/
-h1 {
+ h1 {
 	visibility: hidden;
 	position: absolute;
 	left: -999999rem;
-}
+ }
+
+/**
+ * BREADCRUMB
+ **/
+ .breadcrumb {
+ 	margin-top: 2rem;
+ }
 
 /**
  * CONTENT
  **/
-tbody > tr:hover {
-	cursor: pointer;
-}
+ #finalResult {
+ 	border-style: solid;
+ 	border-width: 0.2rem;
+ 	border-color: #cccccc;
+ }
 
-#buttons {
+ tbody > tr:hover {
+ 	cursor: pointer;
+ }
+
+ #buttons {
 	position: relative;
 	float: right;
 	display: inline-block;
 	margin-top: -4.8rem;
-}
+ }
 
-#datacontainer {
+ #datacontainer {
 	position: relative;
-}
+ }
 
-#labels {
+ #labels {
 	position: relative;
 	display: inline-block;
 	width: 50%;
 	float: left;
-}
+ }
 
-#data {
+ #data {
 	position: relative;
 	display: inline-block;
 	width: 50%;
-}
+ }
 
-.modal-body p {
+ .modal-body p {
 	text-align: center;
-}
+ }
 
 /**
  *FOOTER
  **/
-footer {
+ footer {
 	max-width: 150rem;
 	padding-left: 5rem;
 	padding-right: 5rem;
 	margin: 0 auto;
 	background-color: #f9f9f9;
-}
+ }

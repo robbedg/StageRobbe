@@ -34,4 +34,13 @@ class Location_model extends CI_Model
 
         return $this->db->insert('locations', $data);
     }
+
+    public function search_location($query = FALSE) {
+        $this->db->select('name');
+        $this->db->from('locations');
+        $this->db->like('name', $query);
+        $result = $this->db->get();
+        return $result->result_array();
+    }
+
 }

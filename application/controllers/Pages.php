@@ -33,6 +33,7 @@ class Pages extends CI_Controller {
         //Data for form
         $data['locations'] = $this->location_model->get_location();
         $data['title'] = 'Home';
+        $data['scripts'][] = site_url('../js/searchscript.js');
 
 
         if ($this->form_validation->run() === FALSE)
