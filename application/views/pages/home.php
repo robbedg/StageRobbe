@@ -9,7 +9,7 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Location</th>
+            <th>Name</th>
         </tr>
     </thead>
     <tbody>

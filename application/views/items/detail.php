@@ -1,3 +1,9 @@
+<ul class="breadcrumb">
+    <li><a href="<?php echo site_url('home'); ?>">Home</a></li>
+    <li><a href="<?php echo site_url('/items/location/'.$location['id']); ?>"><?php echo $location['name']; ?></a></li>
+    <li class="active"><?php echo $title; ?></li>
+</ul>
+
 <h2>Items</h2>
 
 <?php if (!empty($items)): ?>

@@ -44,7 +44,7 @@ class Items extends CI_Controller
     public function view($id = NULL)
     {
         $data['item'] = $this->item_model->get_item($id);
-        $data['title'] = $data['item']['itemtype'];
+        $data['title'] = $data['item']['itemtype'].': '.$data['item']['id'];
 
         $this->load->view('templates/header', $data);
         $this->load->view('items/view', $data);
@@ -55,7 +55,9 @@ class Items extends CI_Controller
     public function detail($locationid, $itemtypeid)
     {
         $data['items'] = $this->item_model->get_item_by_catagory($locationid, $itemtypeid);
-        $data['title'] = 'Items';
+        $data['location'] = $this->location_model->get_location($locationid);
+        $data['itemtype'] = $this->itemtypes_model->get_itemtype($itemtypeid);
+        $data['title'] = $data['itemtype']['name'].' collection';
 
         $this->load->view('templates/header', $data);
         $this->load->view('items/detail', $data);

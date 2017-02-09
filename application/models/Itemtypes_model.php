@@ -22,8 +22,7 @@ class Itemtypes_model extends CI_Model
             return $itemtypes->result_array();
         }
 
-        $this->db->where('items.id', $id);
-        $item = $this->db->get_where('itemtypes', array('id'=>$id));
+        $item = $this->db->get_where('itemtypes', array('itemtypes.id'=>$id));
 
         return $item->row_array();
     }

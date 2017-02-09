@@ -1,3 +1,11 @@
+<!-- breadcrum -->
+<ul class="breadcrumb">
+    <li><a href="<?php echo site_url('home'); ?>">Home</a></li>
+    <li><a href="<?php echo site_url('/items/location/'.$item['location_id']); ?>"><?php echo $item['location']; ?></a></li>
+    <li><a href="<?php echo site_url('/items/detail/'.$item['location_id'].'/'.$item['itemtype_id']); ?>"><?php echo $item['itemtype'].' collection'; ?></a></li>
+    <li class="active"><?php echo $title; ?></li>
+</ul>
+
 <h2><?php echo $item['itemtype']; ?></h2>
 <div id="buttons">
     <a href="<?php echo site_url('/items/create/'.$item['id']); ?>" class="btn btn-primary">Edit</a>

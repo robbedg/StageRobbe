@@ -16,7 +16,7 @@ class Item_model extends CI_Model
     public function get_item($id = FALSE)
     {
         //query
-        $this->db->select('items.id, itemtypes.name AS itemtype, locations.name AS location');
+        $this->db->select('items.id AS id, itemtypes.name AS itemtype, itemtypes.id AS itemtype_id, locations.name AS location, locations.id AS location_id');
         $this->db->from('items');
         $this->db->join('itemtypes', 'items.itemtype_id = itemtypes.id', 'left outer');
         $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
