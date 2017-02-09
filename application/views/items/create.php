@@ -3,8 +3,9 @@
 <?php echo form_open(); ?>
 
 <!-- select itemtype -->
-<label for="itemtype">Itemtype</label>
-<select name="itemtype">
+<div class="form-group">
+<label for="itemtype" class="control-label">Itemtype</label>
+<select name="itemtype" class="form-control" id="select">
     <!-- setting values -->
     <?php foreach ($itemtypes as $itemtype): ?>
     <option
@@ -20,11 +21,13 @@
         <?php echo $itemtype['name']; ?>
     </option>
     <?php endforeach; ?>
-</select><br />
+</select>
+</div>
 
 <!-- select location -->
-<label for="location">Location</label>
-<select name="location">
+<div class="form-group">
+<label for="location" class="control-label">Location</label>
+<select name="location" class="form-control" id="select">
     <!-- setting values -->
     <?php foreach ($locations as $location): ?>
     <option
@@ -39,7 +42,18 @@
     >
         <?php echo $location['name']; ?></option>
     <?php endforeach; ?>
-</select><br />
+</select>
+</div>
+
+<!-- extra fields -->
+<div class="form-group" id="extra">
+
+</div>
+
+<!-- add extra -->
+<div class="form-group" id="extra-button">
+<button type="button" class="btn btn-primary btn-sm">+</button>
+</div>
 
 <!-- hidden field for id-->
 <input type="hidden"
@@ -51,6 +65,9 @@
         ?>"
 />
 
-<input type="submit" name="submit" value="Submit" />
+<!-- submit -->
+<div class="form-group">
+<button type="submit" class="btn btn-primary">Submit</button>
+</div>
 
 </form>

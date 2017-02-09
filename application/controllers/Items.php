@@ -83,6 +83,7 @@ class Items extends CI_Controller
         //data for form
         $data['locations'] = $this->location_model->get_location();
         $data['itemtypes'] = $this->itemtypes_model->get_itemtype();
+        $data['scripts'][] = site_url('../js/ItemFormScripts.js');
 
         //rules for form
         $this->form_validation->set_rules('itemtype', 'Itemtype', 'required');
