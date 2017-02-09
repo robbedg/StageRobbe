@@ -45,12 +45,19 @@
 /**
  * CONTENT
  **/
+
+ /** SEARCH **/
  #finalResult {
  	border-style: solid;
- 	border-width: 0.2rem;
+ 	border-width: 0.1rem;
  	border-color: #cccccc;
  }
 
+ #finalResult li {
+ 	
+ }
+
+ /** TABLE **/
  tbody > tr:hover {
  	cursor: pointer;
  }

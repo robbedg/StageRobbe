@@ -9,12 +9,7 @@
 
 <!-- searchbar -->
 <div id="searchform">
-    <input class="form-control search" type="text" name="search" id="focusedInput" />
-    <ul id="finalResult"></ul>
-    <select class="form-control type" id="select">
-        <option>location</option>
-        <option>items</option>
-    </select>
+    <input class="form-control search" type="text" name="search" id="focusedInput" placeholder="Search..." />
 </div>
 
 <!--table -->
@@ -28,7 +23,7 @@
     <tbody>
         <!--Loop all locatons-->
         <?php foreach ($locations as $location): ?>
-            <tr class="clickable-row" data-href="<?php echo site_url('items/location/'.$location['id']); ?>">
+            <tr id="row_<?php echo $location['name']; ?>" class="clickable-row" data-href="<?php echo site_url('items/location/'.$location['id']); ?>">
                 <td><?php echo $location['id'] ?></td>
                 <td><?php echo $location['name'] ?></td>
             </tr>

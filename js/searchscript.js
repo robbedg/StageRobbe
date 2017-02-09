@@ -1,46 +1,36 @@
 $(document).ready(function(){
-
-    var url = window.location.protocol + "//" + 
-        window.location.host +
-        window.location.pathname +
-        "/search";
+	var $rows=[];
+	$(".table > tbody > tr").each(function () {
+		var $id = $(this).attr('id');
+		var $index = $id.indexOf('_') + 1;
+		var $name = $id.substr($index);
+		$rows.push({name: $name, item: $(this)});
+	});
 
     $(".search").keyup(function(){
-        if($(".search").val().length>=3){
+		try {
+			var $search = $('.search').val();
+			$.each($rows, function ($i, $val) {
 
-        var data = {search: $(".search").val(), type: $(".type").val()};
+				if (!$val.name.toLowerCase().match($search.toLowerCase())) {
+					$val.item.remove();
+				}
+				else {
+					$('.table > tbody').append($val.item);
 
-        $.ajax({
-            dataType: "json",
-            type: "post",
-            url: url,
-            cache: false,               
-            data: data,
-            success: function(response){
-                $('#finalResult').html("");
-                var obj = response;
-                if(obj.length>0){
-                    try{
-                        var items=[];   
-                        $.each(obj, function(i,val){                                            
-                            items.push($('<li/>').text(val.name));
-                        }); 
-                        $('#finalResult').append.apply($('#finalResult'), items);
-                    }catch(e) {     
-                        alert('Exception while request..');
-                    }       
-                }else{
-                    //nothing 
-                }       
+				}
+			});
+		} catch(e) {
+			console.log(e);
+		}
 
-            },
-            error: function(e){
-                console.log(e);                     
-            }
-        });
-        }else {
-            $('#finalResult').empty(); //empty
-        }
-    return false;
+		var $url = window.location.href;
+		var $index = $url.indexOf('.php');
+		$url = $url.substring(0, $index);
+		$index = $url.lastIndexOf('/');
+		$url = $url.substring(0, $index) +'/js/scripts.js';
+		//reload script
+		$.getScript($url);
     });
+
 });

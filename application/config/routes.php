@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 //search routes
-$route['home/search'] = 'search';
+$route['search'] = 'search';
 
 //location routes
 $route['locations'] = 'locations';

@@ -4,6 +4,11 @@
 </ul>
 <h2>Items</h2>
 
+<!-- searchbar -->
+<div id="searchform">
+    <input class="form-control search" type="text" name="search" id="focusedInput" placeholder="Search..." />
+</div>
+
 <?php if (!empty($items)): ?>
 <table class="table table-striped table-hover ">
     <thead>
@@ -15,7 +20,7 @@
     </thead>
     <tbody>
     <?php foreach ($items as $item): ?>
-        <tr class="clickable-row" data-href="<?php echo site_url('items/detail/'.$item['location_id'].'/'.$item['itemtype_id']); ?>">
+        <tr id="row_<?php echo $item['itemtype'] ?>" class="clickable-row" data-href="<?php echo site_url('items/detail/'.$item['location_id'].'/'.$item['itemtype_id']); ?>">
             <td><?php echo $item['count'] ?></td>
             <td><?php echo $item['itemtype'] ?></td>
             <td><?php echo $item['location'] ?></td>

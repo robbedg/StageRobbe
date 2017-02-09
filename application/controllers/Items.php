@@ -22,6 +22,7 @@ class Items extends CI_Controller
     {
         $data['items'] = $this->item_model->get_item();
         $data['title'] = 'All items';
+        $data['scripts'][] = site_url('../js/searchscript.js');
 
         $this->load->view('templates/header', $data);
         $this->load->view('items/index', $data);
@@ -34,6 +35,7 @@ class Items extends CI_Controller
         $data['items'] = $this->item_model->get_item_by_location($id);
         //page title
         $data['title'] = $this->location_model->get_location($id)['name'];
+        $data['scripts'][] = site_url('../js/searchscript.js');
 
         $this->load->view('templates/header', $data);
         $this->load->view('items/index', $data);
