@@ -14,11 +14,17 @@
 <div class="jumbotron clearfix" id="datacontainer">
     <div id="labels">
         <p>ID:</p><br />
-        <p>Location:</p>
+        <p>Location:</p><br />
+        <?php foreach (array_keys($item['attributes']) as $attributekey): ?>
+        <p><?php echo $attributekey; ?>:</p><br />
+        <?php endforeach; ?>
     </div>
     <div id="data">
         <p><?php echo $item['id']; ?></p><br />
-        <p><?php echo $item['location']; ?></p>
+        <p><?php echo $item['location']; ?></p><br />
+        <?php foreach (array_values($item['attributes']) as $attributevalue): ?>
+            <p><?php echo $attributevalue; ?></p><br />
+        <?php endforeach; ?>
     </div>
 </div>
 

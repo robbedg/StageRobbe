@@ -16,23 +16,26 @@ class Item_model extends CI_Model
     public function get_item($id = FALSE)
     {
         //query
-        $this->db->select('items.id AS id, itemtypes.name AS itemtype, itemtypes.id AS itemtype_id, locations.name AS location, locations.id AS location_id');
         $this->db->from('items');
         $this->db->join('itemtypes', 'items.itemtype_id = itemtypes.id', 'left outer');
         $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
         $this->db->order_by('itemtypes.name', 'asc');
 
         if ($id === FALSE){
-
+            $this->db->select('items.id AS id, itemtypes.name AS itemtype, itemtypes.id AS itemtype_id, locations.name AS location, locations.id AS location_id');
             $items = $this->db->get();
 
             return $items->result_array();
         }
 
+        $this->db->select('items.id AS id, itemtypes.name AS itemtype, itemtypes.id AS itemtype_id, locations.name AS location, locations.id AS location_id, items.attributes AS attributes');
         $this->db->where('items.id', $id);
         $item = $this->db->get();
+        $item = $item->row_array();
 
-        return $item->row_array();
+        $item['attributes'] = json_decode($item['attributes'], true);
+
+        return $item;
     }
 
     //Give items on location

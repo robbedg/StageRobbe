@@ -50,8 +50,15 @@
 
 </div>
 
-<!-- add extra -->
+<!-- user added fields -->
 <div class="form-group" id="extra-button-append">
+<?php foreach (array_keys($item['attributes']) as $attribute): ?>
+    <div class="form-group" id="extra_<?php echo $attribute; ?>">
+        <input type="text" id="focused-input" class="form-control" name="label_<?php echo $attribute; ?>" value="<?php echo $attribute; ?>" />
+        <input type="text" id="focused-input" class="form-control" name="value_<?php echo $attribute; ?>" value="<?php echo $item['attributes'][$attribute]; ?>" />
+        <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?php echo $attribute; ?>">-</button>
+    </div>
+<?php endforeach; ?>
 <button type="button" class="btn btn-primary btn-sm">+</button>
 </div>
 
