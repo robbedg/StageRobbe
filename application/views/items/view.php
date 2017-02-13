@@ -15,6 +15,7 @@
     <div id="labels">
         <p>ID:</p><br />
         <p>Location:</p><br />
+        <p>Created on:</p><br />
         <?php foreach (array_keys($item['attributes']) as $attributekey): ?>
         <p><?php echo $attributekey; ?>:</p><br />
         <?php endforeach; ?>
@@ -22,6 +23,7 @@
     <div id="data">
         <p><?php echo $item['id']; ?></p><br />
         <p><?php echo $item['location']; ?></p><br />
+        <p><?php echo $item['created_on']; ?></p>
         <?php foreach (array_values($item['attributes']) as $attributevalue): ?>
             <p><?php echo $attributevalue; ?></p><br />
         <?php endforeach; ?>

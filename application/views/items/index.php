@@ -9,6 +9,7 @@
     <input class="form-control search" type="text" name="search" id="focusedInput" placeholder="Search..." />
 </div>
 
+<!-- table -->
 <?php if (!empty($items)): ?>
 <table class="table table-striped table-hover ">
     <thead>
@@ -29,6 +30,7 @@
     </tbody>
 </table>
 <?php else: ?>
+<!-- Warning -->
 <div class="alert alert-danger">
     <p>
         There are no items in this location.

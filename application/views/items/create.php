@@ -47,6 +47,7 @@
 
 <!-- extra fields -->
 <div class="form-group" id="extra">
+    <?php if (!empty($item['attributes'])): ?>
     <?php foreach (array_keys($item['attributes']) as $attribute): ?>
     <div class="form-group" id="extra_<?php echo $attribute; ?>">
         <label class="control-label">Attribute</label><br />
@@ -55,6 +56,7 @@
         <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?php echo $attribute; ?>">Remove</button>
     </div>
     <?php endforeach; ?>
+    <?php endif; ?>
 </div>
 
 <!-- add field -->
