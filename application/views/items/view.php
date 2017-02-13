@@ -11,21 +11,21 @@
     <a href="<?php echo site_url('/items/create/'.$item['id']); ?>" class="btn btn-primary">Edit</a>
     <a id="delete" class="btn btn-danger">Delete</a>
 </div>
-<div class="jumbotron clearfix" id="datacontainer">
+<div class="clearfix" id="datacontainer">
     <div id="labels">
-        <p>ID:</p><br />
-        <p>Location:</p><br />
-        <p>Created on:</p><br />
+        <p>ID:</p>
+        <p>Location:</p>
+        <p>Created on:</p>
         <?php foreach (array_keys($item['attributes']) as $attributekey): ?>
-        <p><?php echo $attributekey; ?>:</p><br />
+        <p><?php echo $attributekey; ?>:</p>
         <?php endforeach; ?>
     </div>
     <div id="data">
-        <p><?php echo $item['id']; ?></p><br />
-        <p><?php echo $item['location']; ?></p><br />
+        <p><?php echo $item['id']; ?></p>
+        <p><?php echo $item['location']; ?></p>
         <p><?php echo $item['created_on']; ?></p>
         <?php foreach (array_values($item['attributes']) as $attributevalue): ?>
-            <p><?php echo $attributevalue; ?></p><br />
+            <p><?php echo $attributevalue; ?></p>
         <?php endforeach; ?>
     </div>
 </div>
