@@ -57,6 +57,10 @@
  	width: calc((100% - 8.0rem) * 0.5);
  }
 
+ #extra > div > input.new-form {
+ 	margin-right: 0.56rem;
+ }
+
 /**
  * CONTENT
  **/

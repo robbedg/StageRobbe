@@ -19,6 +19,7 @@ class Item_model extends CI_Model
         $this->db->from('items');
         $this->db->join('itemtypes', 'items.itemtype_id = itemtypes.id', 'left outer');
         $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
+        $this->db->where('items.visible', 1);
         $this->db->order_by('itemtypes.name', 'asc');
 
         if ($id === FALSE){
@@ -47,6 +48,7 @@ class Item_model extends CI_Model
         $this->db->join('itemtypes', 'items.itemtype_id = itemtypes.id', 'left outer');
         $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
         $this->db->where('locations.id', $id);
+        $this->db->where('items.visible', 1);
         $this->db->group_by('itemtypes.name');
         $this->db->order_by('itemtypes.name', 'asc');
 
@@ -65,6 +67,7 @@ class Item_model extends CI_Model
         $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
         $this->db->where('locations.id', $locationid);
         $this->db->where('itemtypes.id', $itemtypeid);
+        $this->db->where('items.visible', 1);
         $this->db->order_by('itemtypes.name', 'asc');
 
         $items = $this->db->get();
@@ -108,7 +111,8 @@ class Item_model extends CI_Model
     public function remove_item($id = FALSE) {
 
         //query
+        $this->db->set('visible', 0);
         $this->db->where('id', $id);
-        $this->db->delete('items');
+        $this->db->update('items');
     }
 }

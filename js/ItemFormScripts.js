@@ -20,13 +20,13 @@ $(document).ready(function($) {
 
 		$("<input type='text' placeholder='Label...' />")
 			.attr('id', 'focused-input')
-			.attr('class', 'form-control')
+			.attr('class', 'form-control new-form')
 			.attr('name', 'label_' + $i)
 			.appendTo("#extra_" + $i);
 
 		$("<input type='text' placeholder='Value...' />")
 			.attr('id', 'focused-input')
-			.attr('class', 'form-control')
+			.attr('class', 'form-control new-form')
 			.attr('name', 'value_'+$i)
 			.appendTo("#extra_" + $i);
 
