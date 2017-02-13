@@ -51,7 +51,7 @@
 </div>
 
 <!-- add extra -->
-<div class="form-group" id="extra-button">
+<div class="form-group" id="extra-button-append">
 <button type="button" class="btn btn-primary btn-sm">+</button>
 </div>
 
