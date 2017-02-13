@@ -18,13 +18,13 @@ $(document).ready(function($) {
 
 		$("<br />").appendTo("#extra_" + $i);
 
-		$("<input type='text' placeholder='Label...' />")
+		$("<input type='text' placeholder='Label...' required />")
 			.attr('id', 'focused-input')
 			.attr('class', 'form-control new-form')
 			.attr('name', 'label_' + $i)
 			.appendTo("#extra_" + $i);
 
-		$("<input type='text' placeholder='Value...' />")
+		$("<input type='text' placeholder='Value...' required />")
 			.attr('id', 'focused-input')
 			.attr('class', 'form-control new-form')
 			.attr('name', 'value_'+$i)
@@ -44,5 +44,10 @@ $(document).ready(function($) {
 		$url = $url.substring(0, $index) +'/js/RemoveItem.js';
 		//reload script
 		$.getScript($url);
+	});
+
+	$("#submit").click(function ($event) {
+		$("form").validate();
+
 	});
 });

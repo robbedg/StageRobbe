@@ -51,8 +51,8 @@
     <?php foreach (array_keys($item['attributes']) as $attribute): ?>
     <div class="form-group" id="extra_<?php echo $attribute; ?>">
         <label class="control-label">Attribute</label><br />
-        <input type="text" id="focused-input" class="form-control" name="label_<?php echo $attribute; ?>" value="<?php echo $attribute; ?>" />
-        <input type="text" id="focused-input" class="form-control" name="value_<?php echo $attribute; ?>" value="<?php echo $item['attributes'][$attribute]; ?>" />
+        <input type="text" id="focused-input" class="form-control" name="label_<?php echo $attribute; ?>" value="<?php echo $attribute; ?>" required />
+        <input type="text" id="focused-input" class="form-control" name="value_<?php echo $attribute; ?>" value="<?php echo $item['attributes'][$attribute]; ?>" required />
         <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?php echo $attribute; ?>">Remove</button>
     </div>
     <?php endforeach; ?>
@@ -76,7 +76,7 @@
 
 <!-- submit -->
 <div class="form-group">
-<button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary" id="submit">Submit</button>
 </div>
 
 </form>
