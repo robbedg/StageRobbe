@@ -20,7 +20,7 @@ $(document).ready(function($) {
 		$("<input type='text' value='' placeholder='Value...' />")
 			.attr('id', 'focused-input')
 			.attr('class', 'form-control')
-			.attr('name', 'value'+$i)
+			.attr('name', 'value_'+$i)
 			.appendTo("#extra_" + $i);
 
 		$("<button type='button' />")

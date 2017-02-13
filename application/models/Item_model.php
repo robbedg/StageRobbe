@@ -73,21 +73,32 @@ class Item_model extends CI_Model
     public function set_item(){
         $this->load->helper('url');
 
-        $data = array(
-            'itemtype_id' => $this->input->post('itemtype'),
-            'location_id' => $this->input->post('location')
-        );
+        $data = $this->input->post();
 
-        //add id for update
-        $id = $this->input->post('id');
+        //get attributes set by user
+        $attributes = Array();
+        foreach (array_keys($data) as $key) {
+            if (strpos($key, 'label') !== false) {
+                $id = substr($key, strpos($key, '_') + 1);
 
-        if (!empty($id)) {
-            $this->db->set($data);
-            $this->db->where('id', $id);
+                $label = $data[$key];
+                $value = $data['value_' . $id];
+
+                $attributes[$label] = $value;
+            }
+        }
+
+        $this->db->set('itemtype_id', $data['itemtype']);
+        $this->db->set('location_id', $data['location']);
+        $this->db->set('attributes', json_encode($attributes));
+
+        if (!empty($data['id'])) {
+            $this->db->where('id', $data['id']);
             return $this->db->update('items');
         }
 
-        return $this->db->insert('items', $data);
+
+        return $this->db->insert('items');
     }
 
     //remove item
