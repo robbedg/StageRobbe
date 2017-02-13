@@ -2,7 +2,7 @@
 <head>
     <link rel="stylesheet" href="<?php echo site_url('../css/styles.css'); ?>">
     <link rel="stylesheet" href="<?php echo site_url('../css/bootstrap.min.css'); ?>">
-    <title>Inventaris</title>
+    <title>Inventory</title>
 </head>
 <nav class="navbar-inverse">
     <div class="container-fluid">

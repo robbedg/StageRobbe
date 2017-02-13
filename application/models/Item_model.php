@@ -54,7 +54,7 @@ class Item_model extends CI_Model
 
     //give items of catagory in location
     public function get_item_by_catagory($locationid = FALSE, $itemtypeid =FALSE) {
-        //list($locationid, $itemtypeid) = explode('/', $data);
+
         //query
         $this->db->select('items.id AS item_id, itemtypes.name AS itemtype, locations.name AS location');
         $this->db->from('items');

@@ -43,19 +43,14 @@
  }
 
 /**
- * CONTENT
+ * FORMS
  **/
 
- /** SEARCH **/
- #finalResult {
- 	border-style: solid;
- 	border-width: 0.1rem;
- 	border-color: #cccccc;
- }
+ 
 
- #finalResult li {
- 	
- }
+/**
+ * CONTENT
+ **/
 
  /** TABLE **/
  tbody > tr:hover {
