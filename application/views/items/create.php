@@ -47,18 +47,18 @@
 
 <!-- extra fields -->
 <div class="form-group" id="extra">
-
-</div>
-
-<!-- user added fields -->
-<div class="form-group" id="extra-button-append">
-<?php foreach (array_keys($item['attributes']) as $attribute): ?>
+    <?php foreach (array_keys($item['attributes']) as $attribute): ?>
     <div class="form-group" id="extra_<?php echo $attribute; ?>">
+        <label class="control-label">Attribute</label><br />
         <input type="text" id="focused-input" class="form-control" name="label_<?php echo $attribute; ?>" value="<?php echo $attribute; ?>" />
         <input type="text" id="focused-input" class="form-control" name="value_<?php echo $attribute; ?>" value="<?php echo $item['attributes'][$attribute]; ?>" />
-        <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?php echo $attribute; ?>">-</button>
+        <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?php echo $attribute; ?>">Remove</button>
     </div>
-<?php endforeach; ?>
+    <?php endforeach; ?>
+</div>
+
+<!-- add field -->
+<div class="form-group" id="extra-button-append">
 <button type="button" class="btn btn-primary btn-sm">+</button>
 </div>
 

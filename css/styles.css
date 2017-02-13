@@ -46,7 +46,16 @@
  * FORMS
  **/
 
- 
+ #extra > div {
+ 	position: relative;
+ }
+
+ #extra > div > input {
+ 	display: inline-block;
+ 	position: relative;
+ 	margin-right: 0.2rem;
+ 	width: calc((100% - 8.0rem) * 0.5);
+ }
 
 /**
  * CONTENT

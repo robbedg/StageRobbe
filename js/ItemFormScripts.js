@@ -11,13 +11,20 @@ $(document).ready(function($) {
 
 		$("<div class='form-group' id='extra_" + $i +"' />").appendTo("#extra");
 
-		$("<input type='text' value='' placeholder='Label...' />")
-			.attr('id', 'focused-input')
-			.attr('class', 'form-control')
-			.attr('name', 'label_'+$i)
+		$("<label />")
+			.attr('class', 'control-label')
+			.append('Attribute')
 			.appendTo("#extra_" + $i);
 
-		$("<input type='text' value='' placeholder='Value...' />")
+		$("<br />").appendTo("#extra_" + $i);
+
+		$("<input type='text' placeholder='Label...' />")
+			.attr('id', 'focused-input')
+			.attr('class', 'form-control')
+			.attr('name', 'label_' + $i)
+			.appendTo("#extra_" + $i);
+
+		$("<input type='text' placeholder='Value...' />")
 			.attr('id', 'focused-input')
 			.attr('class', 'form-control')
 			.attr('name', 'value_'+$i)
@@ -26,7 +33,7 @@ $(document).ready(function($) {
 		$("<button type='button' />")
 			.attr('id', 'extra-button-remove_' + $i)
 			.attr('class', 'extra-button-remove btn btn-danger btn-sm')
-			.append('-')
+			.append('Remove')
 			.appendTo("#extra_" +$i);
 
 		//reload script
