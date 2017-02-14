@@ -2,6 +2,30 @@
  * Created by Robbe on 9/02/2017.
  */
 $(document).ready(function($) {
+
+	/**
+	 * No double values
+	 */
+	jQuery.validator.addMethod("unique", function($value, $element, $params) {
+		var $prefix = $params;
+		var $selector = jQuery.validator.format("[name !='{0}'][name^='{1}'][unique='{1}']", $element.name, $prefix);
+		var $matches = new Array();
+		$($selector).each(function($index, $item) {
+			if ($value == $($item).val()) {
+				$matches.push($item);
+			}
+		});
+		return $matches.length == 0;
+	}, "Value is not unique.");
+
+	jQuery.validator.classRuleSettings.unique = {
+		unique: true
+	};
+
+	/**
+	 * add fields
+	 * @type {number}
+	 */
 	var $i=0;
 
 	$("#extra-button-append button").click(function ($event) {
@@ -18,7 +42,7 @@ $(document).ready(function($) {
 
 		$("<br />").appendTo("#extra_" + $i);
 
-		$("<input type='text' placeholder='Label...' required />")
+		$("<input type='text' placeholder='Label...' required unique='label_' />")
 			.attr('id', 'focused-input')
 			.attr('class', 'form-control new-form')
 			.attr('name', 'label_' + $i)
@@ -46,8 +70,17 @@ $(document).ready(function($) {
 		$.getScript($url);
 	});
 
-	$("#submit").click(function ($event) {
-		$("form").validate();
-
-	});
+	/**
+	 * validate form
+	 */
+	 $("#submit").click(function ($event) {
+		 $("#form").validate({
+			 errorPlacement: function ($error, $element) {
+				 console.log($element);
+				 console.log($error);
+				 console.log()
+				 $error.insertBefore($element);
+			 }
+		 });
+	 });
 });

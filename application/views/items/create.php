@@ -1,6 +1,11 @@
 <h2><?php echo $title; ?></h2>
-<?php echo validation_errors(); ?>
-<?php echo form_open(); ?>
+<div class="alert alert-dismissable alert-danger" id="errordiv">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <?php echo validation_errors(); ?>
+</div>
+
+<!-- open form -->
+<?php echo form_open('/items/create/', array('id' => 'form')); ?>
 
 <!-- select itemtype -->
 <div class="form-group">
@@ -51,7 +56,7 @@
     <?php foreach (array_keys($item['attributes']) as $attribute): ?>
     <div class="form-group" id="extra_<?php echo $attribute; ?>">
         <label class="control-label">Attribute</label><br />
-        <input type="text" id="focused-input" class="form-control" name="label_<?php echo $attribute; ?>" value="<?php echo $attribute; ?>" required />
+        <input type="text" id="focused-input" class="form-control" name="label_<?php echo $attribute; ?>" value="<?php echo $attribute; ?>" required unique="label_" />
         <input type="text" id="focused-input" class="form-control" name="value_<?php echo $attribute; ?>" value="<?php echo $item['attributes'][$attribute]; ?>" required />
         <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?php echo $attribute; ?>">Remove</button>
     </div>
@@ -76,7 +81,7 @@
 
 <!-- submit -->
 <div class="form-group">
-<button type="submit" class="btn btn-primary" id="submit">Submit</button>
+    <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
 </div>
 
 </form>

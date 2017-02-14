@@ -61,6 +61,12 @@
  	margin-right: 0.56rem;
  }
 
+ label.error {
+ 	position: relative;
+ 	width: 100%;
+ 	color: #ff0000;
+ }
+
 /**
  * CONTENT
  **/
