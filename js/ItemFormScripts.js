@@ -74,11 +74,22 @@ $(document).ready(function($) {
 	 * validate form
 	 */
 	 $("#submit").click(function ($event) {
+	 	 //$("#form").valid();
 		 $("#form").validate({
 			 showErrors: function($errorMap, $errorList) {
-			 	$(".error").remove();
+			 	$("label.error").remove();
+
+			 	$("input.error").each(function ($index, $element) {
+			 		console.log($element);
+					$class = $($element).attr('class');
+					$class = $class.replace(' error','');
+					$($element).attr('class', $class);
+				});
+
 				$errorList.forEach(function ($element) {
 					$('<label />').attr('class', 'error').html($element['message']).insertBefore($element['element']);
+					$origClass = $($element['element']).attr('class');
+					$($element['element']).attr('class', $origClass + " error");
 				});
 			 }
 		 });

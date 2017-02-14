@@ -62,8 +62,10 @@
  }
 
  label.error {
- 	position: relative;
- 	width: 100%;
+ 	float: right;
+ 	position: absolute;
+ 	top: -2rem;
+ 	/*width: 100%;*/
  	color: #ff0000;
  }
 

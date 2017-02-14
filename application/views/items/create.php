@@ -1,8 +1,10 @@
 <h2><?php echo $title; ?></h2>
+<?php if (!empty(validation_errors())): ?>
 <div class="alert alert-dismissable alert-danger" id="errordiv">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <?php echo validation_errors(); ?>
 </div>
+<?php endif; ?>
 
 <!-- open form -->
 <?php echo form_open('/items/create/', array('id' => 'form')); ?>
