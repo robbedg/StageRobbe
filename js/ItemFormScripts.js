@@ -75,12 +75,13 @@ $(document).ready(function($) {
 	 */
 	 $("#submit").click(function ($event) {
 		 $("#form").validate({
-			 errorPlacement: function ($error, $element) {
-				 console.log($element);
-				 console.log($error);
-				 console.log()
-				 $error.insertBefore($element);
+			 showErrors: function($errorMap, $errorList) {
+			 	$(".error").remove();
+				$errorList.forEach(function ($element) {
+					$('<label />').attr('class', 'error').html($element['message']).insertBefore($element['element']);
+				});
 			 }
 		 });
+
 	 });
 });
