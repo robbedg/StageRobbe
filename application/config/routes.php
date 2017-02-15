@@ -49,6 +49,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
+$route['upload'] = 'upload';
+$route['upload/do_upload'] = 'upload/do_upload';
+
 //search routes
 $route['search'] = 'search';
 
