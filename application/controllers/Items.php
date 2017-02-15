@@ -84,9 +84,13 @@ class Items extends CI_Controller
         $data['locations'] = $this->location_model->get_location();
         $data['itemtypes'] = $this->itemtypes_model->get_itemtype();
         $data['scripts'][] = 'https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js';
+        $data['scripts'][] = site_url('../dropzone/dropzone.min.js');
+        $data['scripts'][] = site_url('../js/Upload.js');
         $data['scripts'][] = site_url('../js/ItemFormScripts.js');
         $data['scripts'][] = site_url('../js/RemoveItem.js');
         $data['styles'][] = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css';
+        $data['styles'][] = site_url('../dropzone/basic.min.css');
+        $data['styles'][] = site_url('../dropzone/dropzone.min.css');
 
         //rules for form
         $this->form_validation->set_rules('itemtype', 'Itemtype', 'required');

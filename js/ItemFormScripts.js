@@ -77,7 +77,7 @@ $(document).ready(function($) {
 	 	 //$("#form").valid();
 		 $("#form").validate({
 			 showErrors: function($errorMap, $errorList) {
-			 	$("label.error").remove();
+			 	$("span.error").remove();
 
 			 	$("input.error").each(function ($index, $element) {
 			 		console.log($element);
@@ -87,7 +87,7 @@ $(document).ready(function($) {
 				});
 
 				$errorList.forEach(function ($element) {
-					$('<label />').attr('class', 'error').html($element['message']).insertBefore($element['element']);
+					$('<span />').attr('class', 'error').html($element['message']).insertAfter($element['element']);
 					$origClass = $($element['element']).attr('class');
 					$($element['element']).attr('class', $origClass + " error");
 				});

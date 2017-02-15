@@ -8,8 +8,11 @@ $(document).ready(function(){
 		paramName: 'file',
 		maxFilesize: 2,
 		maxFiles: 1,
+		addRemoveLinks: true,
+		acceptedFiles: 'image/*',
+		dictDefaultMessage: 'Drop image here to upload.<br/>Or click to browse.',
 		success: function($file, $response) {
-			document.write($response);
+			//document.write($response);
 		}
 	});
 

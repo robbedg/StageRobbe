@@ -61,13 +61,25 @@
  	margin-right: 0.56rem;
  }
 
- label.error {
- 	float: right;
+ span.error {
+ 	display: inline-block;
  	position: absolute;
- 	top: -2rem;
- 	/*width: 100%;*/
+ 	top: -0.1rem;
+ 	transform: translateX(calc(-100% - 0.6rem));
+ 	overflow: hidden;
+ 	white-space: nowrap;
  	color: #ff0000;
  }
+
+/**
+ * DROPZONE
+ **/
+
+form#dropzone {
+ 	border-radius: 4px;
+ 	border-style: dashed;
+ }
+
 
 /**
  * CONTENT

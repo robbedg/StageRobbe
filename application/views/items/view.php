@@ -9,7 +9,7 @@
 <h2><?php echo $item['itemtype']; ?></h2>
 <div id="buttons">
     <a href="<?php echo site_url('/items/create/'.$item['id']); ?>" class="btn btn-primary">Edit</a>
-    <a id="delete" class="btn btn-danger">Delete</a>
+    <a id="buttonmodal" class="btn btn-danger">Delete</a>
 </div>
 <div class="clearfix" id="datacontainer">
     <div id="labels">

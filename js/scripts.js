@@ -3,7 +3,7 @@ $(document).ready(function($) {
         window.document.location = $(this).data("href");
     });
 
-    $("#delete").click(function() {
+    $("#buttonmodal").click(function() {
     	$(".modal").modal('toggle');
     	$(".modal").modal('show');
     });

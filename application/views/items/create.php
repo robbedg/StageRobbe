@@ -5,7 +5,9 @@
     <?php echo validation_errors(); ?>
 </div>
 <?php endif; ?>
-
+<div id="buttons">
+    <a id="buttonmodal" class="btn btn-primary">Picture</a>
+</div>
 <!-- open form -->
 <?php echo form_open('/items/create/', array('id' => 'form')); ?>
 
@@ -87,3 +89,21 @@
 </div>
 
 </form>
+
+<!-- Add image -->
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Upload image</h4>
+            </div>
+            <div class="modal-body">
+                <?php echo form_open_multipart('upload/do_upload', Array('id' => 'dropzone', 'class' => 'dropzone needsclick dz-clickable')); ?>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
