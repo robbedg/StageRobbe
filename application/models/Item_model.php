@@ -36,6 +36,16 @@ class Item_model extends CI_Model
 
         $item['attributes'] = json_decode($item['attributes'], true);
 
+        //Get picture
+        $picture = glob('./uploads/'.$id.'*');
+        if (!empty($picture)) {
+            $picture = '.'.$picture[0];
+            $item['image'] = $picture;
+        }
+        else {
+            $item['image'] = NULL;
+        }
+
         return $item;
     }
 
@@ -80,11 +90,13 @@ class Item_model extends CI_Model
         $this->load->helper('url');
 
         $data = $this->input->post();
-        var_dump($data);
+
         //get attributes set by user
         $attributes = Array();
-        foreach ($data['label'] as $index => $label) {
-            $attributes[$label] = $data['value'][$index];
+        if (!empty($data['label'])) {
+            foreach ($data['label'] as $index => $label) {
+                $attributes[$label] = $data['value'][$index];
+            }
         }
 
         $this->db->set('itemtype_id', $data['itemtype']);
@@ -93,11 +105,12 @@ class Item_model extends CI_Model
 
         if (!empty($data['id'])) {
             $this->db->where('id', $data['id']);
-            return $this->db->update('items');
+            $this->db->update('items');
+            return $data['id'];
         }
 
-
-        return $this->db->insert('items');
+        $this->db->insert('items');
+        return $this->db->insert_id();
     }
 
     //remove item

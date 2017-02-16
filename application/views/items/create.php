@@ -6,7 +6,11 @@
 </div>
 <?php endif; ?>
 <div id="buttons">
-    <a id="buttonmodal" class="btn btn-primary">Picture</a>
+    <?php if (!empty($item)): ?>
+        <button type="button" id="buttonmodal" class="btn btn-primary">Picture</button>
+    <?php else: ?>
+        <button type="button" id="buttonmodal" class="btn btn-primary disabled" data-toggle="tooltip" data-placement="bottom" title="Item must be created first." data-original-title="">Picture</button>
+    <?php endif; ?>
 </div>
 <!-- open form -->
 <?php echo form_open('/items/create/', array('id' => 'form')); ?>
@@ -86,12 +90,16 @@
 />
 
 <!-- submit -->
-<div class="form-group">
-    <input type="submit" class="btn btn-primary" id="submit" value="Submit" />
+<div class="form-group" id="buttonsbottom">
+    <a href="<?php echo (empty($item) ? site_url('home') : site_url('items/view/'.$item['id'])); ?>" class="btn btn-default">
+        <?php echo (empty($item) ? 'Cancel' : 'Back'); ?>
+    </a>
+    <input type="submit" class="btn btn-primary" id="submit" value="<?php echo (empty($item) ? 'Create' : 'Save'); ?>" />
 </div>
 
 </form>
 
+<?php if (!empty($item)): ?>
 <!-- Add image -->
 <div class="modal">
     <div class="modal-dialog">
@@ -102,15 +110,6 @@
             </div>
             <div class="modal-body">
                 <?php echo form_open_multipart('upload/do_upload/'.$item['id'], Array('id' => 'dropzone', 'class' => 'dropzone needsclick dz-clickable')); ?>
-                    <!-- hidden field for id-->
-                    <input type="hidden"
-                       name="id"
-                       value="<?php
-                       if (!empty($item)) {
-                           echo $item['id'];
-                       }
-                       ?>"
-                    />
                 </form>
             </div>
             <div class="modal-footer">
@@ -119,3 +118,4 @@
         </div>
     </div>
 </div>
+<?php endif; ?>

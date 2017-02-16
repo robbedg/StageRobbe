@@ -12,6 +12,9 @@
     <a id="buttonmodal" class="btn btn-danger">Delete</a>
 </div>
 <div class="clearfix" id="datacontainer">
+    <div id="image">
+        <img src="<?php echo site_url($item['image']); ?>" alt="item picture">
+    </div>
     <div id="labels">
         <p>ID:</p>
         <p>Location:</p>

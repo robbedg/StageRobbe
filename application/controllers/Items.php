@@ -83,11 +83,13 @@ class Items extends CI_Controller
         //data for form
         $data['locations'] = $this->location_model->get_location();
         $data['itemtypes'] = $this->itemtypes_model->get_itemtype();
+
         $data['scripts'][] = site_url('../jquery.validation/jquery.validate.min.js');
         $data['scripts'][] = site_url('../dropzone/dropzone.min.js');
         $data['scripts'][] = site_url('../js/Upload.js');
         $data['scripts'][] = site_url('../js/ItemFormScripts.js');
         $data['scripts'][] = site_url('../js/RemoveItem.js');
+
         $data['styles'][] = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css';
         $data['styles'][] = site_url('../dropzone/basic.min.css');
         $data['styles'][] = site_url('../dropzone/dropzone.min.css');
@@ -95,8 +97,8 @@ class Items extends CI_Controller
         //rules for form
         $this->form_validation->set_rules('itemtype', 'Itemtype', 'required|trim|htmlspecialchars|encode_php_tags');
         $this->form_validation->set_rules('location', 'Location', 'required|trim|htmlspecialchars|encode_php_tags');
-        $this->form_validation->set_rules('label[]', 'Label', 'required|trim|htmlspecialchars|encode_php_tags');
-        $this->form_validation->set_rules('value[]', 'Value', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('label[]', 'Label', 'trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('value[]', 'Value', 'trim|htmlspecialchars|encode_php_tags');
 
         //validation
         if ($this->form_validation->run() === FALSE)
@@ -106,8 +108,8 @@ class Items extends CI_Controller
             $this->load->view('templates/footer');
         }
         else {
-            $this->item_model->set_item();
-            redirect('home');
+            $id  = $this->item_model->set_item();
+            redirect('items/create/'.$id);
         }
     }
 

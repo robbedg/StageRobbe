@@ -7,5 +7,8 @@ $(document).ready(function($) {
     	$(".modal").modal('toggle');
     	$(".modal").modal('show');
     });
-    
+
+	$(function () {
+		$('[data-toggle="tooltip"]').tooltip()
+	})
 });
