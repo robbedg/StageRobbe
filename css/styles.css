@@ -90,7 +90,7 @@ form#dropzone {
  **/
 
  /** TABLE **/
- tbody > tr:hover {
+ #listingpage tbody > tr:hover {
  	cursor: pointer;
  }
 
@@ -116,7 +116,9 @@ form#dropzone {
  	padding: 1.5rem;
  	position: relative;
  	display: inline-block;
- 	width: calc(33.33% - 1rem);
+ 	width: calc(33.33% - 1.5rem);
+ 	height: 100%;
+ 	float: left;
  }
 
  #image > img {
@@ -124,18 +126,11 @@ form#dropzone {
  	width: 100%;
  }
 
- #labels {
- 	padding: 1.5rem;
-	position: relative;
-	display: inline-block;
-	width: calc(33.33% - 1rem);
- }
-
  #data {
  	padding: 1.5rem;
 	position: relative;
 	display: inline-block;
-	width: calc(33.33% - 1rem);
+	width: calc(66.66% - 1.5rem);
  }
 
  .modal-body p {

@@ -11,25 +11,43 @@
     <a href="<?php echo site_url('/items/create/'.$item['id']); ?>" class="btn btn-primary">Edit</a>
     <a id="buttonmodal" class="btn btn-danger">Delete</a>
 </div>
-<div class="clearfix" id="datacontainer">
+<div id="datacontainer">
     <div id="image">
         <img src="<?php echo site_url($item['image']); ?>" alt="item picture">
     </div>
-    <div id="labels">
-        <p>ID:</p>
-        <p>Location:</p>
-        <p>Created on:</p>
-        <?php foreach (array_keys($item['attributes']) as $attributekey): ?>
-        <p><?php echo $attributekey; ?>:</p>
-        <?php endforeach; ?>
-    </div>
     <div id="data">
-        <p><?php echo $item['id']; ?></p>
-        <p><?php echo $item['location']; ?></p>
-        <p><?php echo $item['created_on']; ?></p>
-        <?php foreach (array_values($item['attributes']) as $attributevalue): ?>
-            <p><?php echo $attributevalue; ?></p>
-        <?php endforeach; ?>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td><?php echo $item['id']; ?></td>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td><?php echo $item['location']; ?></td>
+                </tr>
+                <tr>
+                    <td>Itemtype:</td>
+                    <td><?php echo $item['itemtype']; ?></td>
+                </tr>
+                <tr>
+                    <td>Created on:</td>
+                    <td><?php echo $item['created_on']; ?></td>
+                </tr>
+                <?php foreach (array_keys($item['attributes']) as $attributekey): ?>
+                <tr>
+                    <td><?php echo $attributekey; ?>:</td>
+                    <td><?php echo $item['attributes'][$attributekey]; ?></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 </div>
 
