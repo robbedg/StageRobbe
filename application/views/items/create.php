@@ -101,7 +101,17 @@
                 <h4 class="modal-title">Upload image</h4>
             </div>
             <div class="modal-body">
-                <?php echo form_open_multipart('upload/do_upload', Array('id' => 'dropzone', 'class' => 'dropzone needsclick dz-clickable')); ?>
+                <?php echo form_open_multipart('upload/do_upload/'.$item['id'], Array('id' => 'dropzone', 'class' => 'dropzone needsclick dz-clickable')); ?>
+                    <!-- hidden field for id-->
+                    <input type="hidden"
+                       name="id"
+                       value="<?php
+                       if (!empty($item)) {
+                           echo $item['id'];
+                       }
+                       ?>"
+                    />
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -27,7 +27,7 @@ class Upload extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    public function do_upload() {
+    public function do_upload($id) {
 
         $data['title'] = 'upload';
         $data['scripts'][] = site_url('../dropzone/dropzone.min.js');
@@ -40,8 +40,17 @@ class Upload extends CI_Controller
         $config['max_size']             = 100;
         $config['max_width']            = 1024;
         $config['max_height']           = 768;
-        $config['encrypt_name']         = TRUE;
+        //$config['encrypt_name']         = TRUE;
+        $config['file_name']            = $id;
+        $config['overwrite']            = TRUE;
 
+        //delete old image
+        $files = glob('./uploads/'.$id.'*');
+        foreach ($files as $file) {
+            unlink($file);
+        }
+
+        //upload new image
         $this->load->library('upload', $config);
 
         if ( ! $this->upload->do_upload('file'))

@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['upload'] = 'upload';
 $route['upload/do_upload'] = 'upload/do_upload';
+$route['upload/do_upload/(:any)'] = 'upload/do_upload/$1';
 
 //search routes
 $route['search'] = 'search';
