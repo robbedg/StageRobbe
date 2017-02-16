@@ -23,7 +23,7 @@ class Itemtypes extends CI_Controller
 
         $data['title'] = 'New Itemtype';
 
-        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('name', 'Name', 'required|trim|htmlspecialchars|encode_php_tags');
 
         if ($this->form_validation->run() === FALSE)
         {

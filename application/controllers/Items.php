@@ -83,7 +83,7 @@ class Items extends CI_Controller
         //data for form
         $data['locations'] = $this->location_model->get_location();
         $data['itemtypes'] = $this->itemtypes_model->get_itemtype();
-        $data['scripts'][] = 'https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js';
+        $data['scripts'][] = site_url('../jquery.validation/jquery.validate.min.js');
         $data['scripts'][] = site_url('../dropzone/dropzone.min.js');
         $data['scripts'][] = site_url('../js/Upload.js');
         $data['scripts'][] = site_url('../js/ItemFormScripts.js');
@@ -93,8 +93,10 @@ class Items extends CI_Controller
         $data['styles'][] = site_url('../dropzone/dropzone.min.css');
 
         //rules for form
-        $this->form_validation->set_rules('itemtype', 'Itemtype', 'required');
-        $this->form_validation->set_rules('location', 'Location', 'required');
+        $this->form_validation->set_rules('itemtype', 'Itemtype', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('location', 'Location', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('label[]', 'Label', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('value[]', 'Value', 'required|trim|htmlspecialchars|encode_php_tags');
 
         //validation
         if ($this->form_validation->run() === FALSE)

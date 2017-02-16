@@ -58,11 +58,13 @@
 <div class="form-group" id="extra">
     <?php if (!empty($item['attributes'])): ?>
     <?php foreach (array_keys($item['attributes']) as $attribute): ?>
-    <div class="form-group" id="extra_<?php echo $attribute; ?>">
+
+    <?php $identifier = uniqid(); ?>
+    <div class="form-group" id="extra_<?php echo $identifier; ?>">
         <label class="control-label">Attribute</label><br />
-        <input type="text" id="focused-input" class="form-control" name="label_<?php echo $attribute; ?>" value="<?php echo $attribute; ?>" required unique="label_" />
-        <input type="text" id="focused-input" class="form-control" name="value_<?php echo $attribute; ?>" value="<?php echo $item['attributes'][$attribute]; ?>" required />
-        <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?php echo $attribute; ?>">Remove</button>
+        <input type="text" id="focused-input" class="form-control" name="label[]" value="<?php echo $attribute; ?>" required unique="true" identifier="<?php echo $identifier; ?>" />
+        <input type="text" id="focused-input" class="form-control" name="value[]" value="<?php echo $item['attributes'][$attribute]; ?>" required />
+        <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?php echo $identifier; ?>">Remove</button>
     </div>
     <?php endforeach; ?>
     <?php endif; ?>

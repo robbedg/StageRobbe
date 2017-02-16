@@ -8,7 +8,7 @@ $(document).ready(function($) {
 	 */
 	jQuery.validator.addMethod("unique", function($value, $element, $params) {
 		var $prefix = $params;
-		var $selector = jQuery.validator.format("[name !='{0}'][name^='{1}'][unique='{1}']", $element.name, $prefix);
+		var $selector = jQuery.validator.format("[identifier!='{0}'][unique='{1}']", $($element).attr('identifier'), $prefix);
 		var $matches = new Array();
 		$($selector).each(function($index, $item) {
 			if ($value == $($item).val()) {
@@ -42,16 +42,17 @@ $(document).ready(function($) {
 
 		$("<br />").appendTo("#extra_" + $i);
 
-		$("<input type='text' placeholder='Label...' required unique='label_' />")
+		$("<input type='text' placeholder='Label...' unique='true' />")
 			.attr('id', 'focused-input')
 			.attr('class', 'form-control new-form')
-			.attr('name', 'label_' + $i)
+			.attr('name', 'label[]')
+			.attr('identifier', $i)
 			.appendTo("#extra_" + $i);
 
-		$("<input type='text' placeholder='Value...' required />")
+		$("<input type='text' placeholder='Value...' />")
 			.attr('id', 'focused-input')
 			.attr('class', 'form-control new-form')
-			.attr('name', 'value_'+$i)
+			.attr('name', 'value[]')
 			.appendTo("#extra_" + $i);
 
 		$("<button type='button' />")
@@ -76,11 +77,14 @@ $(document).ready(function($) {
 	 $("#submit").click(function ($event) {
 	 	 //$("#form").valid();
 		 $("#form").validate({
+			 rules: {
+		 		"label[]": "required",
+				"value[]": "required"
+			 },
 			 showErrors: function($errorMap, $errorList) {
 			 	$("span.error").remove();
 
 			 	$("input.error").each(function ($index, $element) {
-			 		console.log($element);
 					$class = $($element).attr('class');
 					$class = $class.replace(' error','');
 					$($element).attr('class', $class);

@@ -80,18 +80,11 @@ class Item_model extends CI_Model
         $this->load->helper('url');
 
         $data = $this->input->post();
-
+        var_dump($data);
         //get attributes set by user
         $attributes = Array();
-        foreach (array_keys($data) as $key) {
-            if (strpos($key, 'label') !== false) {
-                $id = substr($key, strpos($key, '_') + 1);
-
-                $label = $data[$key];
-                $value = $data['value_' . $id];
-
-                $attributes[$label] = $value;
-            }
+        foreach ($data['label'] as $index => $label) {
+            $attributes[$label] = $data['value'][$index];
         }
 
         $this->db->set('itemtype_id', $data['itemtype']);
