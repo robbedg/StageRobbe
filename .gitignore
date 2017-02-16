@@ -28,3 +28,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /js/.idea/js.iml
 /js/.idea/modules.xml
 /js/.idea/workspace.xml
+
+# Upload files
+/uploads/*
