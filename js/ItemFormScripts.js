@@ -75,7 +75,6 @@ $(document).ready(function($) {
 	 * validate form
 	 */
 	 $("#submit").click(function ($event) {
-	 	 //$("#form").valid();
 		 $("#form").validate({
 			 rules: {
 		 		"label[]": "required",

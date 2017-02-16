@@ -14,19 +14,6 @@ class Upload extends CI_Controller
         $this->load->helper(array('form', 'url'));
     }
 
-    public function index()
-    {
-        $data['title'] = 'upload';
-        $data['scripts'][] = site_url('../dropzone/dropzone.min.js');
-        $data['scripts'][] = site_url('../js/Upload.js');
-        $data['styles'][] = site_url('../dropzone/basic.min.css');
-        $data['styles'][] = site_url('../dropzone/dropzone.min.css');
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('upload/upload_form', array('error' => ' '));
-        $this->load->view('templates/footer', $data);
-    }
-
     public function do_upload($id) {
 
         $data['title'] = 'upload';
@@ -56,20 +43,11 @@ class Upload extends CI_Controller
         if ( ! $this->upload->do_upload('file'))
         {
             $error = array('error' => $this->upload->display_errors());
-            var_dump($error);
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('upload/upload_form', $error);
-            $this->load->view('templates/footer', $data);
+            return $error;
         }
         else
         {
-            $data = array('upload_data' => $this->upload->data());
-            $data['title'] = 'upload';
-
-            $this->load->view('templates/header', $data);
-            $this->load->view('upload/success', $data);
-            $this->load->view('templates/footer', $data);
+            return 'success';
         }
     }
 

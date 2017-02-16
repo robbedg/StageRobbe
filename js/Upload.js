@@ -12,7 +12,9 @@ $(document).ready(function(){
 		acceptedFiles: 'image/*',
 		dictDefaultMessage: 'Drop image here to upload.<br/>Or click to browse.',
 		success: function($file, $response) {
-			//document.write($response);
+			this.removeFile($file);
+			$(".modal").modal('toggle');
+			$(".modal").modal('hide');
 		}
 	});
 
