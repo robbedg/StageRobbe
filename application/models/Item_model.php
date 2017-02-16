@@ -115,7 +115,11 @@ class Item_model extends CI_Model
 
     //remove item
     public function remove_item($id = FALSE) {
-
+        //delete old image
+        $files = glob('./uploads/'.$id.'*');
+        foreach ($files as $file) {
+            unlink($file);
+        }
         //query
         $this->db->set('visible', 0);
         $this->db->where('id', $id);

@@ -11,7 +11,7 @@
 
 <!-- table -->
 <?php if (!empty($items)): ?>
-<table class="table table-striped table-hover ">
+<table class="table table-striped table-hover " id="listingpage">
     <thead>
         <tr>
             <th>#</th>

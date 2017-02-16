@@ -11,10 +11,14 @@
     <a href="<?php echo site_url('/items/create/'.$item['id']); ?>" class="btn btn-primary">Edit</a>
     <a id="buttonmodal" class="btn btn-danger">Delete</a>
 </div>
-<div id="datacontainer">
+<div id="datacontainer" class="clearfix">
+    <?php if (!empty($item['image'])): ?>
     <div id="image">
         <img src="<?php echo site_url($item['image']); ?>" alt="item picture">
     </div>
+    <?php else: ?>
+        <style> #data { width: 100%;  } </style>
+    <?php endif; ?>
     <div id="data">
         <table class="table table-striped table-hover">
             <thead>

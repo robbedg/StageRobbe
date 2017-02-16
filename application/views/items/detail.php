@@ -7,7 +7,7 @@
 <h2>Items</h2>
 
 <?php if (!empty($items)): ?>
-    <table class="table table-striped table-hover ">
+    <table class="table table-striped table-hover " id="listingpage">
         <thead>
         <tr>
             <th>ID</th>

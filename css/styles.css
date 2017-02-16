@@ -116,8 +116,7 @@ form#dropzone {
  	padding: 1.5rem;
  	position: relative;
  	display: inline-block;
- 	width: calc(33.33% - 1.5rem);
- 	height: 100%;
+ 	width: 33.33%;
  	float: left;
  }
 
@@ -130,7 +129,7 @@ form#dropzone {
  	padding: 1.5rem;
 	position: relative;
 	display: inline-block;
-	width: calc(66.66% - 1.5rem);
+	width: 66.66%;
  }
 
  .modal-body p {
