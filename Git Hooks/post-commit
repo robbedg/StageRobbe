@@ -1,0 +1,6 @@
+#!/bin/sh
+
+LASTCOMMIT=`git rev-parse HEAD`
+
+git add -A
+git commit -m "AUTO: Added Latest sql-dump for $LASTCOMMIT"

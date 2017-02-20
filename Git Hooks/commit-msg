@@ -1,0 +1,13 @@
+#!/bin/bash
+DUMPURL=http://127.0.0.1/sql-dump.php
+MESSAGE=`head -n 10 $1`
+FILENAME=MySQL/SQL_Dump.sql
+
+if [[ "$MESSAGE" == *#sql* ]]
+then
+    echo "Found #sql in $MESSAGE, will dump db to [$FILENAME] and add to commit."
+    echo.>$FILENAME
+    curl $DUMPURL > $FILENAME
+else
+    echo "#sql not found in $MESSAGE, will not touch db."
+fi
