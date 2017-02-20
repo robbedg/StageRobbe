@@ -113,7 +113,7 @@ class Items extends CI_Controller
             $row['search'] = $item['item_id'];
             //set data
             $row['ID'] = $item['item_id'];
-            $row['Created on'] = $item['created_on'];
+            $row['Created on'] = (new DateTime($item['created_on']))->format('d/m/Y H:i');
             $row['Category'] = $item['category'];
             $row['Location'] = $item['location'];
             //add row to rows

@@ -37,5 +37,5 @@
         </div>
 </nav>
 <body>
-    <h1><?php echo $title; ?></h1>
+    <h1>Inventaris</h1>
     <section id="wrapper">
