@@ -30,7 +30,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="<?php echo site_url('items/create'); ?>">New Item</a></li>
                         <li><a href="<?php echo site_url('locations/create'); ?>">New Location</a></li>
-                        <li><a href="<?php echo site_url('categories/create'); ?>">New Itemtype</a></li>
+                        <li><a href="<?php echo site_url('categories/create'); ?>">New Category</a></li>
                     </ul>
                 </li>
             </ul>

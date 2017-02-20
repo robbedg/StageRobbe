@@ -32,7 +32,7 @@ class Categories extends CI_Controller
             $this->load->view('templates/footer');
         }
         else {
-            $this->itemtypes_model->set_category();
+            $this->categories_model->set_category();
             redirect('home');
         }
     }
