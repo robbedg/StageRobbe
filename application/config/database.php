@@ -75,11 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-    //'hostname' => '127.0.0.1:3306',
-	'hostname' => '192.168.2.205:3306',
-	'username' => 'admin',
-	'password' => 'Azerty123',
-	'database' => 'stage_db',
+	'hostname' => '127.0.0.1:3306',
+	'username' => '<username>',
+	'password' => '<password>',
+	'database' => '<database name>',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
