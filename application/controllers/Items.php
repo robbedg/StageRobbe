@@ -22,7 +22,7 @@ class Items extends CI_Controller
     {
         $data['items'] = $this->item_model->get_item();
         $data['title'] = 'All items';
-        $data['scripts'][] = site_url('../js/searchscript.js');
+        $data['scripts'][] = base_url('js/searchscript.js');
 
         $this->load->view('templates/header', $data);
         $this->load->view('items/index', $data);
@@ -40,7 +40,7 @@ class Items extends CI_Controller
         $data['title'] = $location;
 
         //scripts
-        $data['scripts'][] = site_url('../js/searchscript.js');
+        $data['scripts'][] = base_url('js/searchscript.js');
 
         //set breadcrum
         $home['href'] = site_url('home');
@@ -86,7 +86,7 @@ class Items extends CI_Controller
         $data['title'] = $category['name'];
 
         //set scripts
-        $data['scripts'][] = site_url('../js/searchscript.js');
+        $data['scripts'][] = base_url('js/searchscript.js');
 
         //set breadcrum
         $home['href'] = site_url('home');
@@ -154,15 +154,15 @@ class Items extends CI_Controller
         $data['locations'] = $this->location_model->get_location();
         $data['categories'] = $this->categories_model->get_category();
 
-        $data['scripts'][] = site_url('../jquery.validation/jquery.validate.min.js');
-        $data['scripts'][] = site_url('../dropzone/dropzone.min.js');
-        $data['scripts'][] = site_url('../js/Upload.js');
-        $data['scripts'][] = site_url('../js/ItemFormScripts.js');
-        $data['scripts'][] = site_url('../js/RemoveItem.js');
+        $data['scripts'][] = base_url('jquery.validation/jquery.validate.min.js');
+        $data['scripts'][] = base_url('dropzone/dropzone.min.js');
+        $data['scripts'][] = base_url('js/Upload.js');
+        $data['scripts'][] = base_url('js/ItemFormScripts.js');
+        $data['scripts'][] = base_url('js/RemoveItem.js');
 
         $data['styles'][] = 'https://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css';
-        $data['styles'][] = site_url('../dropzone/basic.min.css');
-        $data['styles'][] = site_url('../dropzone/dropzone.min.css');
+        $data['styles'][] = base_url('dropzone/basic.min.css');
+        $data['styles'][] = base_url('dropzone/dropzone.min.css');
 
         //rules for form
         $this->form_validation->set_rules('category', 'Category', 'required|trim|htmlspecialchars|encode_php_tags');

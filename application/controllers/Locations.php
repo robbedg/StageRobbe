@@ -27,7 +27,7 @@ class Locations extends CI_Controller
         $data['head'][] = 'Amount Of Items';
 
         //set scripts
-        $data['scripts'][] = site_url('../js/searchscript.js');
+        $data['scripts'][] = base_url('js/searchscript.js');
 
         //set rows
         $query = $this->location_model->get_location();

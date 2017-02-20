@@ -17,10 +17,10 @@ class Upload extends CI_Controller
     public function do_upload($id) {
 
         $data['title'] = 'upload';
-        $data['scripts'][] = site_url('../dropzone/dropzone.min.js');
-        $data['scripts'][] = site_url('../js/Upload.js');
-        $data['styles'][] = site_url('../dropzone/basic.min.css');
-        $data['styles'][] = site_url('../dropzone/dropzone.min.css');
+        $data['scripts'][] = base_url('dropzone/dropzone.min.js');
+        $data['scripts'][] = base_url('js/Upload.js');
+        $data['styles'][] = base_url('dropzone/basic.min.css');
+        $data['styles'][] = base_url('dropzone/dropzone.min.css');
 
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'gif|jpg|png';

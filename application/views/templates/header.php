@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="<?php echo $style; ?>">
     <?php endforeach; ?>
     <?php endif; ?>
-    <link rel="stylesheet" href="<?php echo site_url('../css/styles.css'); ?>">
-    <link rel="stylesheet" href="<?php echo site_url('../css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?=base_url('css/styles.css'); ?>">
+    <link rel="stylesheet" href="<?=base_url('css/bootstrap.min.css'); ?>">
     <title>Inventory</title>
 </head>
 <nav class="navbar-inverse">
