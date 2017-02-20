@@ -1,28 +1,28 @@
-DROP TABLE items;
+DROP TABLE categories;
 
-CREATE TABLE `items` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `itemtype_id` int(11) NOT NULL,
-  `location_id` int(11) NOT NULL,
-  `attributes` json DEFAULT NULL,
-  `visible` bit(1) NOT NULL DEFAULT b'1',
-  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `itemType_id_idx` (`itemtype_id`),
-  KEY `location_id_idx` (`location_id`),
-  CONSTRAINT `itemtype_id` FOREIGN KEY (`itemtype_id`) REFERENCES `itemtypes` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `location_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
-
-DROP TABLE itemtypes;
-
-CREATE TABLE `itemtypes` (
+CREATE TABLE `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+DROP TABLE items;
+
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL,
+  `location_id` int(11) NOT NULL,
+  `attributes` json DEFAULT NULL,
+  `visible` bit(1) NOT NULL DEFAULT b'1',
+  `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `itemType_id_idx` (`category_id`),
+  KEY `location_id_idx` (`location_id`),
+  CONSTRAINT `itemtype_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `location_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 DROP TABLE locations;
 
