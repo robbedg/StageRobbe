@@ -32,13 +32,96 @@ class Items extends CI_Controller
     //List of items in specified location
     public function bylocation($id = NULL)
     {
-        $data['items'] = $this->item_model->get_item_by_location($id);
-        //page title
-        $data['title'] = $this->location_model->get_location($id)['name'];
+        //get items
+        $query = $this->item_model->get_item_by_location($id);
+        $location = $this->location_model->get_location($id)['name'];
+
+        //set title
+        $data['title'] = $location;
+
+        //scripts
         $data['scripts'][] = site_url('../js/searchscript.js');
 
+        //set breadcrum
+        $home['href'] = site_url('home');
+        $home['name'] = 'Home';
+
+        $data['breadcrum']['items'][] = $home;
+        $data['breadcrum']['active'] = $data['title'];
+
+        //set header
+        $data['head'][] = '#';
+        $data['head'][] = 'Category';
+        $data['head'][] = 'Location';
+
+        foreach ($query as $category) {
+            //set link
+            $row['href'] = site_url('items/detail/'.$category['location_id'].'/'.$category['itemtype_id']);
+            //set searchable string
+            $row['search'] = $category['itemtype'];
+            //set data
+            $row['#'] = $category['count'];
+            $row['Category'] = $category['itemtype'];
+            $row['Location'] = $category['location'];
+
+            //add to rows
+            $data['rows'][] = $row;
+        }
+
+
         $this->load->view('templates/header', $data);
-        $this->load->view('items/index', $data);
+        $this->load->view('pages/index', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //all objects in defined category
+    public function detail($locationid, $itemtypeid)
+    {
+        //get items
+        $query = $data['items'] = $this->item_model->get_item_by_catagory($locationid, $itemtypeid);
+        $location = $this->location_model->get_location($locationid);
+        $category = $this->itemtypes_model->get_itemtype($itemtypeid);
+
+        //set title
+        $data['title'] = $category['name'];
+
+        //set scripts
+        $data['scripts'][] = site_url('../js/searchscript.js');
+
+        //set breadcrum
+        $home['href'] = site_url('home');
+        $home['name'] = 'Home';
+        $data['breadcrum']['items'][] = $home;
+
+        $bread_location['href'] = site_url('items/location/'.$locationid);
+        $bread_location['name'] = $location['name'];
+        $data['breadcrum']['items'][] = $bread_location;
+
+        $data['breadcrum']['active'] = $category['name'].' collection';
+
+        //set header
+        $data['head'][] = 'ID';
+        $data['head'][] = 'Created on';
+        $data['head'][] = 'Category';
+        $data['head'][] = 'Location';
+
+        //set rows
+        foreach ($query as $item) {
+            //row link
+            $row['href'] = site_url('items/view/'.$item['item_id']);
+            //set searchable string
+            $row['search'] = $item['item_id'];
+            //set data
+            $row['ID'] = $item['item_id'];
+            $row['Created on'] = $item['created_on'];
+            $row['Category'] = $item['itemtype'];
+            $row['Location'] = $item['location'];
+            //add row to rows
+            $data['rows'][] = $row;
+        }
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/index', $data);
         $this->load->view('templates/footer', $data);
     }
 
@@ -50,19 +133,6 @@ class Items extends CI_Controller
 
         $this->load->view('templates/header', $data);
         $this->load->view('items/view', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
-    //all objects in defined category
-    public function detail($locationid, $itemtypeid)
-    {
-        $data['items'] = $this->item_model->get_item_by_catagory($locationid, $itemtypeid);
-        $data['location'] = $this->location_model->get_location($locationid);
-        $data['itemtype'] = $this->itemtypes_model->get_itemtype($itemtypeid);
-        $data['title'] = $data['itemtype']['name'].' collection';
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('items/detail', $data);
         $this->load->view('templates/footer', $data);
     }
 

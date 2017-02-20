@@ -1,9 +1,7 @@
 $(document).ready(function(){
 	var $rows=[];
 	$(".table > tbody > tr").each(function () {
-		var $id = $(this).attr('id');
-		var $index = $id.indexOf('_') + 1;
-		var $name = $id.substr($index);
+		var $name = $(this).attr('search');
 		$rows.push({name: $name, item: $(this)});
 	});
 

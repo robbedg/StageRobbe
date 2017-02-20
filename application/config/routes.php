@@ -74,5 +74,5 @@ $route['items/(:any)'] = 'items/view/$1';
 $route['itemtypes/create'] = 'itemtypes/create';
 
 //default routes
-$route['default_controller'] = 'pages/view';
-$route['(:any)'] = 'pages/view/$1';
+$route['default_controller'] = 'locations';
+$route['(:any)'] = 'locations';

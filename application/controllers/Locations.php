@@ -17,11 +17,34 @@ class Locations extends CI_Controller
     //List of locations.
     public function index()
     {
-        $data['locations'] = $this->location_model->get_location();
+        //set title
         $data['title'] = 'Locations';
 
+        //set table head
+        $data['head'][] = 'ID';
+        $data['head'][] = 'Name';
+
+        //set scripts
+        $data['scripts'][] = site_url('../js/searchscript.js');
+
+        //set rows
+        $query = $this->location_model->get_location();
+
+        foreach ($query as $location) {
+            //url for row
+            $row['href'] = site_url('items/location/'.$location['id']);
+            //searchable data
+            $row['search'] = $location['name'];
+            //data for table (eg 'head']
+            $row['ID'] = $location['id'];
+            $row['Name'] = $location['name'];
+
+            //insert row
+            $data['rows'][] = $row;
+        }
+
         $this->load->view('templates/header', $data);
-        $this->load->view('locations/index', $data);
+        $this->load->view('pages/index', $data);
         $this->load->view('templates/footer', $data);
     }
 
