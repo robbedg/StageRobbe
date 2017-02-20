@@ -8,7 +8,7 @@
 <?php endif; ?>
 
 <!-- give name -->
-<?php echo form_open('itemtypes/create'); ?>
+<?php echo form_open('categories/create'); ?>
 <div class="form-group">
     <label class="control-label" for="name">Name</label>
     <input type="input" name="name" class="form-control" id="focusedInput" placeholder="Name..." />

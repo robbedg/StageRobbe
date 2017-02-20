@@ -28,7 +28,7 @@
     </tr>
     </thead>
     <tbody>
-    <!--Loop all locatons-->
+    <!--Loop all locations-->
     <?php foreach ($rows as $row): ?>
         <tr id="row_<?php echo uniqid(); ?>" class="clickable-row" data-href="<?php echo $row['href']; ?>" search="<?php echo $row['search']; ?>">
             <?php foreach ($head as $label): ?>

@@ -6,28 +6,28 @@
  * Time: 14:35
  */
 
-class Itemtypes_model extends CI_Model
+class Categories_model extends CI_Model
 {
     public function __construct()
     {
         $this->load->database();
     }
 
-    public function get_itemtype($id = FALSE)
+    public function get_category($id = FALSE)
     {
         if ($id === FALSE){
 
-            $itemtypes = $this->db->get('itemtypes');
+            $category = $this->db->get('categories');
 
-            return $itemtypes->result_array();
+            return $category->result_array();
         }
 
-        $item = $this->db->get_where('itemtypes', array('itemtypes.id'=>$id));
+        $item = $this->db->get_where('categories', array('categories.id'=>$id));
 
         return $item->row_array();
     }
 
-    public function set_itemtype($id = FALSE)
+    public function set_category($id = FALSE)
     {
         $this->load->helper('url');
 
@@ -35,6 +35,6 @@ class Itemtypes_model extends CI_Model
             'name' => $this->input->post('name')
         );
 
-        return $this->db->insert('itemtypes', $data);
+        return $this->db->insert('categories', $data);
     }
 }

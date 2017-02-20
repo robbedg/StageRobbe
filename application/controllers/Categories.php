@@ -6,13 +6,13 @@
  * Time: 15:16
  */
 
-class Itemtypes extends CI_Controller
+class Categories extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('itemtypes_model');
+        $this->load->model('categories_model');
     }
 
     //Create new Itemtype
@@ -21,18 +21,18 @@ class Itemtypes extends CI_Controller
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['title'] = 'New Itemtype';
+        $data['title'] = 'New Category';
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim|htmlspecialchars|encode_php_tags');
 
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/header', $data);
-            $this->load->view('itemtypes/create', $data);
+            $this->load->view('categories/create', $data);
             $this->load->view('templates/footer');
         }
         else {
-            $this->itemtypes_model->set_itemtype();
+            $this->itemtypes_model->set_category();
             redirect('home');
         }
     }

@@ -2,11 +2,11 @@
 <ul class="breadcrumb">
     <li><a href="<?php echo site_url('home'); ?>">Home</a></li>
     <li><a href="<?php echo site_url('/items/location/'.$item['location_id']); ?>"><?php echo $item['location']; ?></a></li>
-    <li><a href="<?php echo site_url('/items/detail/'.$item['location_id'].'/'.$item['itemtype_id']); ?>"><?php echo $item['itemtype'].' collection'; ?></a></li>
+    <li><a href="<?php echo site_url('/items/detail/'.$item['location_id'].'/'.$item['category_id']); ?>"><?php echo $item['category'].' collection'; ?></a></li>
     <li class="active"><?php echo $title; ?></li>
 </ul>
 
-<h2><?php echo $item['itemtype']; ?></h2>
+<h2><?php echo $item['category']; ?></h2>
 <div id="buttons">
     <a href="<?php echo site_url('/items/create/'.$item['id']); ?>" class="btn btn-primary">Edit</a>
     <a id="buttonmodal" class="btn btn-danger">Delete</a>
@@ -37,8 +37,8 @@
                     <td><?php echo $item['location']; ?></td>
                 </tr>
                 <tr>
-                    <td>Itemtype:</td>
-                    <td><?php echo $item['itemtype']; ?></td>
+                    <td>Category:</td>
+                    <td><?php echo $item['category']; ?></td>
                 </tr>
                 <tr>
                     <td>Created on:</td>

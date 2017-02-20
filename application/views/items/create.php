@@ -17,21 +17,21 @@
 
 <!-- select itemtype -->
 <div class="form-group">
-<label for="itemtype" class="control-label">Itemtype</label>
-<select name="itemtype" class="form-control" id="select">
+<label for="category" class="control-label">Category</label>
+<select name="category" class="form-control" id="select">
     <!-- setting values -->
-    <?php foreach ($itemtypes as $itemtype): ?>
+    <?php foreach ($categories as $category): ?>
     <option
-            value="<?php echo $itemtype['id']; ?>"
+            value="<?php echo $category['id']; ?>"
             <?php
                 if (!empty($item)) {
-                    if ($item['itemtype'] === $itemtype['name']) {
+                    if ($item['category'] === $category['name']) {
                         echo 'selected="selected"';
                     }
                 }
             ?>
     >
-        <?php echo $itemtype['name']; ?>
+        <?php echo $category['name']; ?>
     </option>
     <?php endforeach; ?>
 </select>

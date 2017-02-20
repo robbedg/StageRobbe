@@ -12,7 +12,7 @@ class Items extends CI_Controller
         parent::__construct();
         $this->load->model('item_model');
         $this->load->model('location_model');
-        $this->load->model('itemtypes_model');
+        $this->load->model('categories_model');
         $this->load->helper('url_helper');
         $this->output->enable_profiler(TRUE);
     }
@@ -56,12 +56,12 @@ class Items extends CI_Controller
 
         foreach ($query as $category) {
             //set link
-            $row['href'] = site_url('items/detail/'.$category['location_id'].'/'.$category['itemtype_id']);
+            $row['href'] = site_url('items/detail/'.$category['location_id'].'/'.$category['category_id']);
             //set searchable string
-            $row['search'] = $category['itemtype'];
+            $row['search'] = $category['category'];
             //set data
             $row['#'] = $category['count'];
-            $row['Category'] = $category['itemtype'];
+            $row['Category'] = $category['category'];
             $row['Location'] = $category['location'];
 
             //add to rows
@@ -75,12 +75,12 @@ class Items extends CI_Controller
     }
 
     //all objects in defined category
-    public function detail($locationid, $itemtypeid)
+    public function detail($locationid, $categoryid)
     {
         //get items
-        $query = $data['items'] = $this->item_model->get_item_by_catagory($locationid, $itemtypeid);
+        $query = $data['items'] = $this->item_model->get_item_by_catagory($locationid, $categoryid);
         $location = $this->location_model->get_location($locationid);
-        $category = $this->itemtypes_model->get_itemtype($itemtypeid);
+        $category = $this->categories_model->get_category($categoryid);
 
         //set title
         $data['title'] = $category['name'];
@@ -114,7 +114,7 @@ class Items extends CI_Controller
             //set data
             $row['ID'] = $item['item_id'];
             $row['Created on'] = $item['created_on'];
-            $row['Category'] = $item['itemtype'];
+            $row['Category'] = $item['category'];
             $row['Location'] = $item['location'];
             //add row to rows
             $data['rows'][] = $row;
@@ -129,7 +129,7 @@ class Items extends CI_Controller
     public function view($id = NULL)
     {
         $data['item'] = $this->item_model->get_item($id);
-        $data['title'] = $data['item']['itemtype'].': '.$data['item']['id'];
+        $data['title'] = $data['item']['category'].': '.$data['item']['id'];
 
         $this->load->view('templates/header', $data);
         $this->load->view('items/view', $data);
@@ -152,7 +152,7 @@ class Items extends CI_Controller
 
         //data for form
         $data['locations'] = $this->location_model->get_location();
-        $data['itemtypes'] = $this->itemtypes_model->get_itemtype();
+        $data['categories'] = $this->categories_model->get_category();
 
         $data['scripts'][] = site_url('../jquery.validation/jquery.validate.min.js');
         $data['scripts'][] = site_url('../dropzone/dropzone.min.js');
@@ -165,7 +165,7 @@ class Items extends CI_Controller
         $data['styles'][] = site_url('../dropzone/dropzone.min.css');
 
         //rules for form
-        $this->form_validation->set_rules('itemtype', 'Itemtype', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('category', 'Category', 'required|trim|htmlspecialchars|encode_php_tags');
         $this->form_validation->set_rules('location', 'Location', 'required|trim|htmlspecialchars|encode_php_tags');
         $this->form_validation->set_rules('label[]', 'Label', 'trim|htmlspecialchars|encode_php_tags');
         $this->form_validation->set_rules('value[]', 'Value', 'trim|htmlspecialchars|encode_php_tags');
