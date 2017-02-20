@@ -11,6 +11,8 @@
 <!-- Title -->
 <h2><?php echo $title; ?></h2>
 
+<?php if (!empty($rows)): ?>
+
 <!-- searchbar -->
 <div id="searchform">
     <input class="form-control search" type="text" name="search" id="focusedInput" placeholder="Search..." />
@@ -36,3 +38,12 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+
+<?php else: ?>
+
+<!-- if no data available show message -->
+<div class="alert alert-danger">
+    <p>No items available.</p>
+</div>
+
+<?php endif; ?>
