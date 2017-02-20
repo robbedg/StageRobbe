@@ -12,6 +12,7 @@ class Locations extends CI_Controller
         parent::__construct();
         $this->load->model('location_model');
         $this->load->helper('url_helper');
+        $this->output->enable_profiler(TRUE);
     }
 
     //List of locations.
@@ -23,6 +24,7 @@ class Locations extends CI_Controller
         //set table head
         $data['head'][] = 'ID';
         $data['head'][] = 'Name';
+        $data['head'][] = 'Amount Of Items';
 
         //set scripts
         $data['scripts'][] = site_url('../js/searchscript.js');
@@ -38,6 +40,7 @@ class Locations extends CI_Controller
             //data for table (eg 'head']
             $row['ID'] = $location['id'];
             $row['Name'] = $location['name'];
+            $row['Amount Of Items'] = $location['item_count'];
 
             //insert row
             $data['rows'][] = $row;

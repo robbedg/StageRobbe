@@ -16,7 +16,12 @@ class Location_model extends CI_Model
     {
         if ($id === FALSE)
         {
-            $query = $this->db->get('locations');
+            $this->db->select('locations.id AS id, locations.name as name, COUNT(items.id) AS item_count');
+            $this->db->from('locations');
+            $this->db->join('items', 'items.location_id = locations.id', 'left outer');
+            $this->db->group_by('locations.id');
+            $this->db->order_by('locations.name', 'asc');
+            $query = $this->db->get();
             return $query->result_array();
         }
 
