@@ -1,10 +1,23 @@
-<h2><?php echo $title; ?></h2>
+<!-- Validation errors -->
 <?php if (!empty(validation_errors())): ?>
 <div class="alert alert-dismissable alert-danger" id="errordiv">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     <?php echo validation_errors(); ?>
 </div>
 <?php endif; ?>
+
+<!-- Upload success message -->
+<div class="alert alert-dismissible alert-success hidden" id="successdiv">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p>
+        Upload successful.
+    </p>
+</div>
+
+<!-- title -->
+<h2><?php echo $title; ?></h2>
+
+<!-- Button picture -->
 <div id="buttons">
     <?php if (!empty($item)): ?>
         <button type="button" id="buttonmodal" class="btn btn-primary">Picture</button>

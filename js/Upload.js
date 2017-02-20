@@ -15,6 +15,8 @@ $(document).ready(function(){
 			this.removeFile($file);
 			$(".modal").modal('toggle');
 			$(".modal").modal('hide');
+			$("#successdiv").removeClass('hidden');
+			setTimeout("$('#successdiv').addClass('hidden');", 3000);
 		}
 	});
 

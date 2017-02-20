@@ -1,4 +1,3 @@
-<h2><?php echo $title; ?></h2>
 <!-- validation errors -->
 <?php if (!empty(validation_errors())): ?>
 <div class="alert alert-dismissable alert-danger">
@@ -6,6 +5,9 @@
     <?php echo validation_errors(); ?>
 </div>
 <?php endif; ?>
+
+<!-- Title -->
+<h2><?php echo $title; ?></h2>
 
 <!-- give name -->
 <?php echo form_open('categories/create'); ?>
