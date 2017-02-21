@@ -65,7 +65,7 @@
     <input type="hidden" name="item_id" value="<?php echo $item['id']; ?>">
     <div class="form-group">
         <div>
-            <textarea class="form-control" rows="3" id="textArea" name="comment" placeholder="Write comment..."></textarea>
+            <textarea class="form-control" id="textArea" name="comment" placeholder="Write comment..."></textarea>
             <span class="help-block" id="count">1024</span>
         </div>
     </div>

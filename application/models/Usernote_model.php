@@ -29,7 +29,7 @@ class Usernote_model extends CI_Model
 
         $data = array(
             'username' => $this->input->post('username'),
-            'text' => $this->input->post('comment'),
+            'text' => nl2br($this->input->post('comment')),
             'item_id' => $this->input->post('item_id')
         );
 

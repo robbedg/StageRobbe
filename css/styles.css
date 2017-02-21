@@ -188,6 +188,7 @@ form#dropzone {
  	overflow: hidden;
  	resize: none;
  	padding: 1rem;
+ 	height: 98px; /*JavaScript !*/
  }
 
  /** MESSAGE **/
