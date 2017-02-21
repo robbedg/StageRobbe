@@ -204,6 +204,7 @@ class Items extends CI_Controller
         }
         else {
             $id  = $this->item_model->set_item();
+            redirect('items/create/'.$id);
         }
     }
 
