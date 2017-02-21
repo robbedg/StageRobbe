@@ -165,9 +165,32 @@ form#dropzone {
  #usernotes .date {
  	float: right;
  }
+
+ .button button {
+ 	float: right;
+ }
+
+ span.help-block{
+ 	position: absolute;
+ 	margin-bottom: 0rem;
+ }
+
+
+ form {
+ 	padding: 1.5rem;
+ 	padding-bottom: 0rem;
+ 	margin-bottom: 0rem;
+ }
+
+ form textarea.form-control {
+ 	border-radius: 20px 20px 0px 20px;
+ 	border-width: 1px;
+ }
+
  /** MESSAGE **/
  .modal-body p {
 	text-align: center;
+	border-radius: 0px 20px 20px 20px;
  }
 
 /**

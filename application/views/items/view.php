@@ -56,9 +56,27 @@
 </div>
 
 <!-- usernotes -->
-<?php if (!empty($usernotes)): ?>
 <div id="usernotes" class="clearfix">
     <h3>Comments</h3>
+
+    <!-- new note -->
+    <?php echo form_open('local'); ?>
+    <div class="form-group">
+        <div>
+            <textarea class="form-control" rows="3" id="textArea" name="comment" placeholder="Write comment..."></textarea>
+            <span class="help-block" id="count">1024</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="button clearfix">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+
+    <?php echo form_close(); ?>
+
+    <!-- existing usernotes -->
+    <?php if (!empty($usernotes)): ?>
     <?php foreach ($usernotes as $usernote): ?>
     <div id="<?php echo uniqid(); ?>" class="note">
         <strong class="username"><?php echo $usernote['username']; ?></strong>
@@ -70,11 +88,11 @@
         <p>
             <?php echo $usernote['text']; ?>
         </p>
-        <span class="date"><?php echo (new DateTime($item['created_on']))->format('d/m/Y H:i'); ?></span>
+        <span class="date"><?php echo (new DateTime($usernote['created_on']))->format('d/m/Y H:i'); ?></span>
     </div>
     <?php endforeach; ?>
+    <?php endif; ?>
 </div>
-<?php endif; ?>
 
 <!--dialog delete-->
 <div class="modal">

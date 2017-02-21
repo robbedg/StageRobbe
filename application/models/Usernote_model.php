@@ -15,9 +15,10 @@ class Usernote_model extends CI_Model
 
     public function get_usernotes_by_item($id = FALSE)
     {
-        $this->db->select('username, text');
+        $this->db->select('username, text, created_on');
         $this->db->from('usernotes');
         $this->db->where('item_id', $id);
+        $this->db->order_by('created_on', 'desc');
         $query = $this->db->get();
 
         return $query->result_array();

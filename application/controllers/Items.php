@@ -129,11 +129,20 @@ class Items extends CI_Controller
     //Detailed view of one item
     public function view($id = NULL)
     {
+        //libraries
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+
+        //load scripts
+        $data['scripts'][] = base_url('js/CountScript.js');
+
+        //collect data
         $data['item'] = $this->item_model->get_item($id);
         $data['usernotes'] = $this->usernote_model->get_usernotes_by_item($id);
 
         $data['title'] = $data['item']['category'].': '.$data['item']['id'];
 
+        //load view
         $this->load->view('templates/header', $data);
         $this->load->view('items/view', $data);
         $this->load->view('templates/footer', $data);
