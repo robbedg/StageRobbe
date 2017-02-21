@@ -6,7 +6,7 @@ $(document).ready(function(){
 
 	$("#dropzone").dropzone({
 		paramName: 'file',
-		maxFilesize: 2, //MB
+		maxFilesize: 0.5, //MB
 		maxFiles: 1,
 		addRemoveLinks: true,
 		acceptedFiles: 'image/*',

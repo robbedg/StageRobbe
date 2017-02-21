@@ -23,10 +23,10 @@ class Upload extends CI_Controller
         $data['styles'][] = base_url('dropzone/dropzone.min.css');
 
         $config['upload_path']          = './uploads/';
-        $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 500; //KB
+        //$config['max_width']            = 1024;
+        //$config['max_height']           = 768;
         //$config['encrypt_name']         = TRUE;
         $config['file_name']            = $id;
         $config['overwrite']            = TRUE;
