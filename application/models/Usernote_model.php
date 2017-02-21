@@ -15,7 +15,7 @@ class Usernote_model extends CI_Model
 
     public function get_usernotes_by_item($id = FALSE)
     {
-        $this->db->select('username, text, created_on');
+        $this->db->select('id, username, text, created_on');
         $this->db->from('usernotes');
         $this->db->where('item_id', $id);
         $this->db->order_by('created_on', 'desc');
@@ -34,5 +34,10 @@ class Usernote_model extends CI_Model
         );
 
         return $this->db->insert('usernotes', $data);
+    }
+
+    public function remove_usernote($id) {
+        $this->db->where('id', $id);
+        return $this->db->delete('usernotes');
     }
 }

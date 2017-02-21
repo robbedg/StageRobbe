@@ -83,9 +83,7 @@
     <div id="<?php echo uniqid(); ?>" class="note">
         <strong class="username"><?php echo $usernote['username']; ?></strong>
         <span class="links">
-            <a href="#">Edit</a>
-            -
-            <a href="#">Delete</a>
+            <a href="<?= site_url('usernotes/remove/'.$item['id'].'/'.$usernote['id']); ?>">Delete</a>
         </span>
         <p>
             <?php echo $usernote['text']; ?>

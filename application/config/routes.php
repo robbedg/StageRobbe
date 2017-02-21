@@ -73,6 +73,9 @@ $route['items/(:any)'] = 'items/view/$1';
 //itemtype routes
 $route['category/create'] = 'category/create';
 
+//usernote routes
+$route['usernotes/remove/(:any)'] = 'usernotes/remove/$1';
+
 //default routes
 $route['default_controller'] = 'locations';
 $route['(:any)'] = 'locations';
