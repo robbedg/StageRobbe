@@ -23,7 +23,7 @@ class Categories extends CI_Controller
 
         $data['title'] = 'New Category';
 
-        $this->form_validation->set_rules('name', 'Name', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('name', 'Name', 'required|trim|htmlspecialchars|encode_php_tags|max_length[45]');
 
         if ($this->form_validation->run() === FALSE)
         {

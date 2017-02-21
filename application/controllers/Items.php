@@ -143,9 +143,9 @@ class Items extends CI_Controller
         $data['title'] = $data['item']['category'].': '.$data['item']['id'];
 
         //validation rules
-        $this->form_validation->set_rules('username', 'Username', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('username', 'Username', 'required|trim|htmlspecialchars|encode_php_tags|max_length[45]');
         $this->form_validation->set_rules('item_id', 'Item ID', 'required|trim|htmlspecialchars|encode_php_tags');
-        $this->form_validation->set_rules('comment', 'Text', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('comment', 'Text', 'required|trim|htmlspecialchars|encode_php_tags|max_length[1024]');
 
         if ($this->form_validation->run() === FALSE)
         {
