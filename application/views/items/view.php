@@ -60,7 +60,9 @@
     <h3>Comments</h3>
 
     <!-- new note -->
-    <?php echo form_open('local'); ?>
+    <?php echo form_open('items/view/'.$item['id']); ?>
+    <input type="hidden" name="username" value="TestUser">
+    <input type="hidden" name="item_id" value="<?php echo $item['id']; ?>">
     <div class="form-group">
         <div>
             <textarea class="form-control" rows="3" id="textArea" name="comment" placeholder="Write comment..."></textarea>

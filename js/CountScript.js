@@ -14,4 +14,10 @@ $(document).ready(function($) {
 		$current = $(this).val().length;
 		$("#count").text($length - $current);
 	});
+
+	//expand area
+	$('textarea').on('input', function() {
+		$(this).outerHeight(100).outerHeight(this.scrollHeight);
+	});
+	$('textarea').trigger('input');
 });

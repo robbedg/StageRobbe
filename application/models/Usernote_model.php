@@ -23,4 +23,16 @@ class Usernote_model extends CI_Model
 
         return $query->result_array();
     }
+
+    public function set_usernote() {
+        $this->load->helper('url');
+
+        $data = array(
+            'username' => $this->input->post('username'),
+            'text' => $this->input->post('comment'),
+            'item_id' => $this->input->post('item_id')
+        );
+
+        return $this->db->insert('usernotes', $data);
+    }
 }

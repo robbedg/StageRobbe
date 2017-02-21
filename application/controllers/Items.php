@@ -129,7 +129,7 @@ class Items extends CI_Controller
     //Detailed view of one item
     public function view($id = NULL)
     {
-        //libraries
+        //helper & library for form
         $this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -142,10 +142,23 @@ class Items extends CI_Controller
 
         $data['title'] = $data['item']['category'].': '.$data['item']['id'];
 
-        //load view
-        $this->load->view('templates/header', $data);
-        $this->load->view('items/view', $data);
-        $this->load->view('templates/footer', $data);
+        //validation rules
+        $this->form_validation->set_rules('username', 'Username', 'required');
+        $this->form_validation->set_rules('item_id', 'Item ID', 'required');
+        $this->form_validation->set_rules('comment', 'Text', 'required');
+        
+        if ($this->form_validation->run() === FALSE)
+        {
+            //load view
+            $this->load->view('templates/header', $data);
+            $this->load->view('items/view', $data);
+            $this->load->view('templates/footer', $data);
+        }
+        else
+        {
+            $this->usernote_model->set_usernote();
+            redirect('items/view/'.$id);
+        }
     }
 
     //creating/updating item
@@ -191,7 +204,6 @@ class Items extends CI_Controller
         }
         else {
             $id  = $this->item_model->set_item();
-            redirect('items/create/'.$id);
         }
     }
 
