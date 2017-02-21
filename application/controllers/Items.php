@@ -13,6 +13,7 @@ class Items extends CI_Controller
         $this->load->model('item_model');
         $this->load->model('location_model');
         $this->load->model('categories_model');
+        $this->load->model('usernote_model');
         $this->load->helper('url_helper');
         $this->output->enable_profiler(TRUE);
     }
@@ -129,6 +130,8 @@ class Items extends CI_Controller
     public function view($id = NULL)
     {
         $data['item'] = $this->item_model->get_item($id);
+        $data['usernotes'] = $this->usernote_model->get_usernotes_by_item($id);
+
         $data['title'] = $data['item']['category'].': '.$data['item']['id'];
 
         $this->load->view('templates/header', $data);
