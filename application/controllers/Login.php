@@ -33,9 +33,10 @@ class Login extends CI_Controller
             );
 
             //get internal id
-            $userid = $this->user_model->set_user($userdata);
+            $userinfo = $this->user_model->set_user($userdata);
             //add to userdata
-            $userdata['id'] = $userid;
+            $userdata['id'] = $userinfo['id'];
+            $userdata['role'] = $userinfo['role_id'];
             $userdata['logged_in'] = TRUE;
 
             $this->session->set_userdata($userdata);

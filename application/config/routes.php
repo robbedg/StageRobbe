@@ -52,6 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //login
 $route['login'] = 'login';
 
+//admin
+$route['admin'] = 'admin';
+
 //upload
 $route['upload'] = 'upload';
 $route['upload/do_upload'] = 'upload/do_upload';
