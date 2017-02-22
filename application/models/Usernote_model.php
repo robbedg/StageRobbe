@@ -11,12 +11,15 @@ class Usernote_model extends CI_Model
     public function __construct()
     {
         $this->load->database();
+        $this->load->helper('url');
+        $this->load->library('session');
     }
 
     public function get_usernotes_by_item($id = FALSE)
     {
-        $this->db->select('id, username, text, created_on');
+        $this->db->select('usernotes.id AS id, firstname, lastname, text, created_on, users.id AS user_id');
         $this->db->from('usernotes');
+        $this->db->join('users', 'users.id = usernotes.user_id', 'inner');
         $this->db->where('item_id', $id);
         $this->db->order_by('created_on', 'desc');
         $query = $this->db->get();
@@ -25,10 +28,9 @@ class Usernote_model extends CI_Model
     }
 
     public function set_usernote() {
-        $this->load->helper('url');
 
         $data = array(
-            'username' => $this->input->post('username'),
+            'user_id' => $this->session->userdata('id'),
             'text' => nl2br($this->input->post('comment')),
             'item_id' => $this->input->post('item_id')
         );
@@ -36,8 +38,19 @@ class Usernote_model extends CI_Model
         return $this->db->insert('usernotes', $data);
     }
 
+    //Delete note when authorized.
     public function remove_usernote($id) {
+        $this->db->select('user_id');
         $this->db->where('id', $id);
-        return $this->db->delete('usernotes');
+        $query = $this->db->get('usernotes');
+        $userid = (string)$query->row_array()['user_id'];
+
+        if ($userid === $this->session->userdata('id')) {
+            $this->db->flush_cache();
+            $this->db->where('id', $id);
+            return $this->db->delete('usernotes');
+        } else {
+            show_error('Not authorized.');
+        }
     }
 }

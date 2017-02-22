@@ -61,7 +61,6 @@
 
     <!-- new note -->
     <?php echo form_open('items/view/'.$item['id']); ?>
-    <input type="hidden" name="username" value="TestUser">
     <input type="hidden" name="item_id" value="<?php echo $item['id']; ?>">
     <div class="form-group">
         <div>
@@ -81,10 +80,15 @@
     <?php if (!empty($usernotes)): ?>
     <?php foreach ($usernotes as $usernote): ?>
     <div id="<?php echo uniqid(); ?>" class="note">
-        <strong class="username"><?php echo $usernote['username']; ?></strong>
+        <strong class="username"><?php echo $usernote['firstname'].' '.$usernote['lastname']; ?></strong>
+
+        <!-- only user can delete comment -->
+        <?php if ($_SESSION['id'] === $usernote['user_id']): ?>
         <span class="links">
             <a href="<?= site_url('usernotes/remove/'.$item['id'].'/'.$usernote['id']); ?>">Delete</a>
         </span>
+        <?php endif; ?>
+
         <p>
             <?php echo $usernote['text']; ?>
         </p>

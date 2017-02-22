@@ -40,7 +40,7 @@
             <!-- Right -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#"><?php echo $_SERVER['USER_FIRSTNAME'].' '.$_SERVER['USER_LASTNAME'];?></a>
+                    <a href="#"><?php echo $_SESSION['firstname'].' '.$_SESSION['lastname'];?></a>
                 </li>
             </ul>
 

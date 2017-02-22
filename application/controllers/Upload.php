@@ -12,6 +12,9 @@ class Upload extends CI_Controller
     {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
+        $this->load->helper('sessioncheck_helper');
+
+        session_check($this);
     }
 
     public function do_upload($id) {

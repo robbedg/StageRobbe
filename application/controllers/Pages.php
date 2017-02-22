@@ -13,6 +13,9 @@ class Pages extends CI_Controller {
         parent::__construct();
         $this->load->model('location_model');
         $this->load->helper('url_helper');
+        $this->load->helper('sessioncheck_helper');
+
+        session_check($this);
     }
 
 

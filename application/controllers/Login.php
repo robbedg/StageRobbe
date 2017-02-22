@@ -14,7 +14,6 @@ class Login extends CI_Controller
         $this->load->library('session');
         $this->load->model('user_model');
         $this->load->helper('url_helper');
-        $this->output->enable_profiler(TRUE);
     }
 
     public function index()
@@ -41,6 +40,8 @@ class Login extends CI_Controller
 
             $this->session->set_userdata($userdata);
             redirect('home');
+        } else {
+            show_error('You are not logged in.');
         }
     }
 }

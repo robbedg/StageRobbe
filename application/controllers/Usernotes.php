@@ -13,6 +13,9 @@ class Usernotes extends CI_Controller
         parent::__construct();
         $this->load->model('usernote_model');
         $this->load->helper('url_helper');
+        $this->load->helper('sessioncheck_helper');
+
+        session_check($this);
     }
 
     //deleting usernote
