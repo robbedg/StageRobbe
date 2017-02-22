@@ -80,7 +80,7 @@
     <?php if (!empty($usernotes)): ?>
     <?php foreach ($usernotes as $usernote): ?>
     <div id="<?php echo uniqid(); ?>" class="note">
-        <strong class="username"><?php echo $usernote['firstname'].' '.$usernote['lastname']; ?></strong>
+        <strong class="username"><?php echo strtoupper($usernote['firstname']).' '.strtoupper($usernote['lastname']); ?></strong>
 
         <!-- only user can delete comment -->
         <?php if ($_SESSION['id'] === $usernote['user_id']): ?>
