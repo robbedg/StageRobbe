@@ -12,12 +12,16 @@ class Locations extends CI_Controller
         parent::__construct();
         $this->load->model('location_model');
         $this->load->helper('url_helper');
+        $this->load->helper('sessioncheck_helper');
         $this->output->enable_profiler(TRUE);
     }
 
     //List of locations.
     public function index()
     {
+        //check session
+        session_check($this);
+
         //set title
         $data['title'] = 'Locations';
 

@@ -1,5 +1,6 @@
 <html lang="en">
 <head>
+    <link rel="shortcut icon" type="image/ico" href="<?=base_url('favicon.ico').'?'.time(); ?>"/>
     <?php if (!empty($styles)): ?>
     <?php foreach ($styles as $style): ?>
     <link rel="stylesheet" href="<?php echo $style; ?>">
@@ -13,7 +14,7 @@
     <div class="container-fluid">
         <!-- mobile menu -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -23,8 +24,9 @@
         </div>
 
         <!-- menu items -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-            <ul class="nav navbar-nav navbar-right">
+        <div class="collapse navbar-collapse" id="navbar-collapse-1">
+            <!-- Left -->
+            <ul class="nav navbar-nav navbar-left">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">New <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -34,6 +36,14 @@
                     </ul>
                 </li>
             </ul>
+
+            <!-- Right -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#"><?php echo $_SERVER['USER_FIRSTNAME'].' '.$_SERVER['USER_LASTNAME'];?></a>
+                </li>
+            </ul>
+
         </div>
 </nav>
 <body>
