@@ -35,6 +35,7 @@ function dump_tables($host,$user,$pass,$name,$tables = '*')
         $tables[] = 'locations';
         $tables[] = 'categories';
         $tables[] = 'items';
+        $tables[] = 'roles';
         $tables[] = 'users';
         $tables[] = 'usernotes';
     }
@@ -44,11 +45,17 @@ function dump_tables($host,$user,$pass,$name,$tables = '*')
     {
         $result = $mysqli->query('SELECT * FROM '.$table);
         $num_fields = $result->field_count;
-        $return.= 'DROP TABLE '.$table.';';
+        $return.= 'DROP TABLE IF EXISTS '.$table.';';
         $result2 = $mysqli->query('SHOW CREATE TABLE '.$table);
         $row2 = $result2->fetch_row();
         $return.= "\n\n".$row2[1].";\n\n";
     }
     
+    $return.= "INSERT INTO `roles` (`id`, `name`) VALUES
+    (1, 'Viewer'),
+    (2, 'Editor'),
+    (3, 'Manager'),
+    (4, 'Administrator');";
+        
     return $return;
 }

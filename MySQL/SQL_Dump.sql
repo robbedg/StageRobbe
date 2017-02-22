@@ -1,3 +1,4 @@
+
 DROP TABLE IF EXISTS locations;
 
 CREATE TABLE `locations` (
@@ -70,3 +71,8 @@ CREATE TABLE `usernotes` (
   CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
+INSERT INTO `roles` (`id`, `name`) VALUES
+    (1, 'Viewer'),
+    (2, 'Editor'),
+    (3, 'Manager'),
+    (4, 'Administrator');
