@@ -1,5 +1,5 @@
 <?php
-echo dump_tables('127.0.0.1:3306','<user>','<password>','<database name>');
+echo dump_tables('192.168.2.205:3306','admin','Azerty123','stage_db');
 
 function dump_tables($host,$user,$pass,$name,$tables = '*')
 {
@@ -35,6 +35,7 @@ function dump_tables($host,$user,$pass,$name,$tables = '*')
         $tables[] = 'locations';
         $tables[] = 'categories';
         $tables[] = 'items';
+        $tables[] = 'users';
         $tables[] = 'usernotes';
     }
     
