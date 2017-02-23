@@ -7,17 +7,16 @@
 
         <!-- search -->
         <div id="search">
-            <input class="form-control" id="search" type="text" placeholder="Search...">
+            <input class="form-control" id="searchbox" type="text" placeholder="Search...">
         </div>
 
         <!-- filter options -->
         <div id="filter">
             <ul class="nav nav-pills">
-                <li class="active"><a href="#">All <span class="badge">42</span></a></li>
-                <li><a href="#">Viewers <span class="badge">1</span></a></li>
-                <li><a href="#">Editors <span class="badge">3</span></a></li>
-                <li><a href="#">Managers <span class="badge">3</span></a></li>
-                <li><a href="#">Administrators <span class="badge">3</span></a></li>
+                <li class="active"><a class="filterlist" href="#" data="0">All <span class="badge"><?=count($users); ?></span></a></li>
+                <?php foreach ($roles as $role): ?>
+                <li><a class="filterlist" href="#" data="<?=$role['id']; ?>"><?=$role['name']; ?> <span class="badge"><?=$role['count']; ?></span></a></li>
+                <?php endforeach; ?>
             </ul>
         </div>
 
@@ -25,7 +24,7 @@
         <div id="userselect">
             <ul>
                 <?php foreach ($users as $user): ?>
-                    <li>
+                    <li class="users" search="<?=$user['firstname'].$user['lastname']; ?>" data="<?=$user['role_id']; ?>">
                         <?php $id = uniqid(); ?>
                         <input type="radio" value="<?php echo $user['id']; ?>" name="user" id="<?php echo $id; ?>"/>
                         <label for="<?php echo $id; ?>">
@@ -60,13 +59,11 @@
 
         <!-- role selection -->
         <div id="roleselect">
-            <label for="select" class="control-label">Assign New Role</label>
-            <select class="form-control" id="select" disabled="disabled">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <label for="selectRole" class="control-label">Assign New Role</label>
+            <select class="form-control" id="selectRole" disabled="disabled" name="role">
+                <?php foreach ($roles as $role): ?>
+                <option value="<?=$role['id']; ?>"><?=$role['name']; ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
     </div>

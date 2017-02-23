@@ -39,6 +39,7 @@ class User_model extends CI_Model
         $this->db->join('roles', 'roles.id = users.role_id', 'inner');
 
         if (empty($id)) {
+            $this->db->order_by('users.lastname', 'ASC');
             $query = $this->db->get();
             return $query->result_array();
         }

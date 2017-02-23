@@ -12,6 +12,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user_model');
+        $this->load->model('role_model');
         $this->load->helper('url');
         $this->load->helper('sessioncheck_helper');
 
@@ -23,10 +24,14 @@ class Admin extends CI_Controller
     public function index() {
         //set title
         $data['title'] = 'Admin panel';
+        //set scripts
+        $data['scripts'][] = base_url('js/Admin-Users.js');
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
         //give users
         $data['users'] = $this->user_model->get_user();
+        //give roles
+        $data['roles'] = $this->role_model->get_role();
 
         $this->load->view('templates/header', $data);
         $this->load->view('admin/index', $data);

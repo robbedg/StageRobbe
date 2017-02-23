@@ -5,7 +5,7 @@ $(document).ready(function(){
 		$rows.push({name: $name, item: $(this)});
 	});
 
-    $(".search").keyup(function(){
+  $(".search").keyup(function(){
 		try {
 			var $search = $('.search').val();
 			$.each($rows, function ($i, $val) {
