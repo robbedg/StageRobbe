@@ -36,7 +36,7 @@ class Login extends CI_Controller
             $userinfo = $this->user_model->set_user($userdata);
             //add to userdata
             $userdata['id'] = $userinfo['id'];
-            $userdata['role'] = $userinfo['role_id'];
+            $userdata['role_id'] = $userinfo['role_id'];
             $userdata['logged_in'] = TRUE;
 
             $this->session->set_userdata($userdata);

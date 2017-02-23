@@ -34,8 +34,9 @@ class User_model extends CI_Model
     //get_user(s)
     public function get_user($id = FALSE)
     {
-        $this->db->select('id, firstname, lastname', 'role_id');
+        $this->db->select('users.id AS id, firstname, lastname, role_id, roles.name AS role');
         $this->db->from('users');
+        $this->db->join('roles', 'roles.id = users.role_id', 'inner');
 
         if (empty($id)) {
             $query = $this->db->get();

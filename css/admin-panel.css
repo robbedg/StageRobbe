@@ -1,0 +1,102 @@
+#myTabContent {
+	border-style: solid;
+	border-color: #dddddd;
+	border-width: 1px;
+	border-top-width: 0px;
+	border-radius: 0px 0px 4px 4px;
+	padding: 1.5rem;
+}
+/**
+ * LEFT
+ **/
+
+ #left {
+ 	width: calc(50% - 3px - 0.5rem);
+ 	display: inline-block;
+ }
+
+/**
+ * SEARCH
+ **/
+
+ #search {
+ 	margin-bottom: 1rem;
+ }
+
+/**
+ * FILTER
+ **/
+
+ #filter {
+ 	margin-bottom: 1rem;
+ }
+
+ #filter li {
+ 	margin: 0rem;
+ }
+ 
+/**
+ * USERSELECT
+ **/
+ #userselect {
+ 	border-style: solid;
+ 	border-color: #dddddd;
+ 	border-width: 1px;
+ 	border-radius: 4px;
+ 	height: 30rem;
+ 	overflow-y: scroll;
+ }
+
+ #userselect ul {
+ 	padding: 0rem;
+ 	list-style: none;
+ 	margin: 0rem;
+ }
+
+ #userselect li input {
+ 	visibility: hidden;
+ 	display: block;
+ 	position: absolute;
+ 	margin: 0rem;
+ }
+
+ #userselect li label {
+ 	font-weight: normal;
+ 	cursor: pointer;
+ 	width: 100%;
+ 	margin: 0rem;
+ 	padding: 0.5rem;
+ 	border-radius: 4px;
+ }
+
+ #userselect li label span {
+ 	float: right;
+ }
+
+ #userselect li input:hover + label {
+ 	background-color: #f5f5f5;
+ }
+
+ #userselect li input:checked + label {
+ 	background-color: #66afe9;
+ 	color: #fff;
+ }
+
+/**
+ * RIGHT
+ */
+
+ #right {
+ 	width: calc(50% - 1px - 0.5rem);
+ 	display: inline-block;
+ 	float: right;
+ }
+
+/**
+ * ROLE SELECT
+ **/
+
+ #roleselect {
+ 	
+ }
+
