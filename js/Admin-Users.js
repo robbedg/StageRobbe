@@ -3,11 +3,15 @@
  */
 $(document).ready(function($) {
 
-  /** At page load **/
+  /**
+   * At page load
+   **/
 
+  //all users available, users currently displayed on screen.
   var $allusers = [];
   var $currentuser = [];
 
+  //Grabs all users from page.
   $(".users").each(function() {
     var $name = $(this).attr('search');
 		$allusers.push({name: $name, user: $(this)});
@@ -15,9 +19,11 @@ $(document).ready(function($) {
 
   $currentusers = $allusers.slice();
 
-  /** Events **/
+  /**
+   * Events
+   **/
 
- //Search
+ /** Search **/
   $("#searchbox").keyup(function(){
     try {
       var $search = $("#searchbox").val();
@@ -25,10 +31,10 @@ $(document).ready(function($) {
 
         //make all lowercase & delete all spaces
         if (!$val.name.toLowerCase().replace(/ /g,'').match($search.toLowerCase().replace(/ /g,''))) {
-          $val.user.remove();
+          $val.user.hide();
         }
         else {
-          $('#userselect > ul').append($val.user);
+          $val.user.show();
         }
       });
     } catch(e) {
@@ -36,7 +42,7 @@ $(document).ready(function($) {
     }
   });
 
-  //Filter
+  /** Filter **/
   $(".filterlist").click(function($event) {
     /* Act on the event */
     //prevent default
@@ -48,25 +54,25 @@ $(document).ready(function($) {
 
     //filter out correct roles
     try {
+
+      //remove or add user where appropriate
       $.each($allusers, function($i, $val) {
-        if ($filter.attr('data').match('0')) {
+        if ($filter.attr('data-id').match('0')) {
 
           $currentusers = $allusers.slice();
-          $("#userselect > ul").append($val.user);
+          $val.user.show();
 
-        } else if (!($val.user.attr('data').match($filter.attr('data')))) {
+        } else if (!($val.user.attr('data-id').match($filter.attr('data-id')))) {
 
           var $x = $currentusers.indexOf($val);
 
           //if in array, remove
           if ($x !== -1) {
 
-            $val.user.remove();
+            $val.user.hide();
             $currentusers.splice($x, 1);
 
           }
-
-
         } else {
 
           var $x = $currentusers.indexOf($val);
@@ -74,15 +80,51 @@ $(document).ready(function($) {
           //if not already in array, push
           if ($x === -1) {
             $currentusers.push($val);
-            $("#userselect > ul").append($val.user)
+            $val.user.show();
           }
-
         }
       });
 
+      //set button active / not-active
+      $("#filter li").each(function() {
+        $(this).removeClass('active');
+      });
+
+      $filter.parent().addClass('active');
+
+      //log error(s)
     } catch ($e) {
       console.log($e);
     }
   });
 
+  /** User clicked **/
+  $(".users input").click(function($event) {
+    //get clicked user
+    var $user = $(this);
+
+    //activate role selector
+    $("#roleselect select").removeAttr('disabled');
+
+    //set selected role.
+    try {
+      $("#roleselect select option").each(function() {
+        if ($(this).val() === $user.parent().attr('data-id')) {
+          $(this).attr('selected', 'selected');
+        } else {
+          $(this).removeAttr('selected');
+        }
+      });
+    } catch ($e) {
+      console.log($e);
+    }
+
+    //set firstname
+    $("#firstname input").removeAttr('disabled');
+    $("#firstname input").val($user.parent().attr('data-firstname'));
+
+    //set lastname
+    $("#lastname input").removeAttr('disabled');
+    $("#lastname input").val($user.parent().attr('data-lastname'));
+  });
 });

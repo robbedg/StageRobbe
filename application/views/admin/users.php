@@ -13,9 +13,9 @@
         <!-- filter options -->
         <div id="filter">
             <ul class="nav nav-pills">
-                <li class="active"><a class="filterlist" href="#" data="0">All <span class="badge"><?=count($users); ?></span></a></li>
+                <li class="active"><a class="filterlist" href="#" data-id="0">All <span class="badge"><?=count($users); ?></span></a></li>
                 <?php foreach ($roles as $role): ?>
-                <li><a class="filterlist" href="#" data="<?=$role['id']; ?>"><?=$role['name']; ?> <span class="badge"><?=$role['count']; ?></span></a></li>
+                <li><a class="filterlist" href="#" data-id="<?=$role['id']; ?>"><?=$role['name']; ?> <span class="badge"><?=$role['count']; ?></span></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -24,10 +24,10 @@
         <div id="userselect">
             <ul>
                 <?php foreach ($users as $user): ?>
-                    <li class="users" search="<?=$user['firstname'].$user['lastname']; ?>" data="<?=$user['role_id']; ?>">
+                    <li class="users" search="<?=$user['firstname'].$user['lastname']; ?>" data-id="<?=$user['role_id']; ?>" data-firstname="<?=$user['firstname']; ?>" data-lastname="<?=$user['lastname']; ?>">
                         <?php $id = uniqid(); ?>
-                        <input type="radio" value="<?php echo $user['id']; ?>" name="user" id="<?php echo $id; ?>"/>
-                        <label for="<?php echo $id; ?>">
+                        <input type="radio" value="<?=$user['id']; ?>" name="user" id="<?=$id; ?>"/>
+                        <label for="<?=$id; ?>">
                             <?php echo $user['lastname'].' '.$user['firstname']; ?>
                             <?php switch($user['role_id']):
                                 case 1: ?>
@@ -56,7 +56,16 @@
 
     <!-- Right -->
     <div id="right">
-
+        <!-- edit first name -->
+        <div id="firstname">
+            <label for="editFirstname" class="control-label">First name:</label>
+            <input id="editFirstname" type="text" class="form-control" name="firstname" disabled="disabled">
+        </div>
+        <!-- edit last name -->
+        <div id="lastname">
+            <label for="editLastname" class="control-label">Last name:</label>
+            <input id="editLastname" type="text" class="form-control" name="lastname" disabled="disabled">
+        </div>
         <!-- role selection -->
         <div id="roleselect">
             <label for="selectRole" class="control-label">Assign New Role</label>
