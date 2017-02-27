@@ -119,6 +119,9 @@ $(document).ready(function($) {
       console.log($e);
     }
 
+    //set hidden field id
+    $("#userid input").val($user.val());
+
     //set firstname
     $("#firstname input").removeAttr('disabled');
     $("#firstname input").val($user.parent().attr('data-firstname'));
@@ -126,5 +129,8 @@ $(document).ready(function($) {
     //set lastname
     $("#lastname input").removeAttr('disabled');
     $("#lastname input").val($user.parent().attr('data-lastname'));
+
+    //activate button
+    $("#submit button").removeAttr('disabled');
   });
 });

@@ -56,25 +56,42 @@
 
     <!-- Right -->
     <div id="right">
-        <!-- edit first name -->
-        <div id="firstname">
-            <label for="editFirstname" class="control-label">First name:</label>
-            <input id="editFirstname" type="text" class="form-control" name="firstname" disabled="disabled">
-        </div>
-        <!-- edit last name -->
-        <div id="lastname">
-            <label for="editLastname" class="control-label">Last name:</label>
-            <input id="editLastname" type="text" class="form-control" name="lastname" disabled="disabled">
-        </div>
-        <!-- role selection -->
-        <div id="roleselect">
-            <label for="selectRole" class="control-label">Assign New Role</label>
-            <select class="form-control" id="selectRole" disabled="disabled" name="role">
-                <?php foreach ($roles as $role): ?>
-                <option value="<?=$role['id']; ?>"><?=$role['name']; ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+
+        <!-- open form -->
+        <?=form_open('/admin/updateuser', array('id' => 'form')); ?>
+
+            <!-- hidden field with userid -->
+            <div id="userid">
+                <input type="hidden" name="userid">
+            </div>
+
+            <!-- edit first name -->
+            <div id="firstname">
+                <label for="editFirstname" class="control-label">First name:</label>
+                <input id="editFirstname" type="text" class="form-control" name="firstname" disabled="disabled">
+            </div>
+
+            <!-- edit last name -->
+            <div id="lastname">
+                <label for="editLastname" class="control-label">Last name:</label>
+                <input id="editLastname" type="text" class="form-control" name="lastname" disabled="disabled">
+            </div>
+
+            <!-- role selection -->
+            <div id="roleselect">
+                <label for="selectRole" class="control-label">Assign New Role</label>
+                <select class="form-control" id="selectRole" disabled="disabled" name="role">
+                    <?php foreach ($roles as $role): ?>
+                    <option value="<?=$role['id']; ?>"><?=$role['name']; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <!-- submit button -->
+            <div id="submit">
+                <button type="submit" class="btn btn-primary" disabled="disabled">Save</button>
+            </div>
+        <?=form_close(); ?>
     </div>
 
 </div>

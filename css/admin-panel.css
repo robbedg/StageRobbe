@@ -92,6 +92,10 @@
  	float: right;
  }
 
+ #form {
+ 	padding: 0rem;
+ }
+
 /**
  * ROLE SELECT
  **/

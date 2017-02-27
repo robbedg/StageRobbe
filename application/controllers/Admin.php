@@ -14,6 +14,7 @@ class Admin extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('role_model');
         $this->load->helper('url');
+        $this->load->helper('form');
         $this->load->helper('sessioncheck_helper');
 
         session_check($this);
@@ -37,5 +38,9 @@ class Admin extends CI_Controller
         $this->load->view('admin/index', $data);
         $this->load->view('admin/users', $data);
         $this->load->view('templates/footer');
+    }
+
+    public function updateuser($id = NULL) {
+
     }
 }
