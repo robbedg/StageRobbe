@@ -13,9 +13,9 @@ class Categories extends CI_Controller
         parent::__construct();
         $this->load->model('categories_model');
         $this->load->helper('url');
-        $this->load->helper('sessioncheck_helper');
+        $this->load->helper('authorizationcheck_helper');
 
-        session_check($this);
+        authorization_check($this);
     }
 
     //Create new Itemtype

@@ -8,10 +8,20 @@
  */
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-function session_check($object)
+function authorization_check($object, $role = FALSE)
 {
     $object->load->library('session');
     if ($object->session->userdata('logged_in') === TRUE) {
+        //check role
+        if (!empty($role)) {
+            if ($role <= $object->session->userdata('role_id')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //if everything checks out return true
         return true;
     } else {
         redirect('login');

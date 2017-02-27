@@ -1,4 +1,4 @@
-#myTabContent {
+#tabs {
 	border-style: solid;
 	border-color: #dddddd;
 	border-width: 1px;
@@ -11,7 +11,7 @@
  **/
 
  #left {
- 	width: calc(50% - 3px - 0.5rem);
+ 	width: calc(50% - 3px - 1rem);
  	display: inline-block;
  }
 
@@ -87,20 +87,31 @@
  */
 
  #right {
- 	width: calc(50% - 1px - 0.5rem);
+ 	width: calc(50% - 1px - 1rem);
  	display: inline-block;
  	float: right;
  }
 
  #form {
+ 	margin-top: 10rem;
  	padding: 0rem;
+
  }
 
 /**
- * ROLE SELECT
+ * fields
  **/
 
+ #lastname {
+ 	margin-top: 2rem;
+ }
+
  #roleselect {
- 	
+ 	margin-top: 2rem;
+ }
+
+ #submit {
+ 	margin-top: 2rem;
+ 	float: right;
  }
 

@@ -15,10 +15,11 @@ class Admin extends CI_Controller
         $this->load->model('role_model');
         $this->load->helper('url');
         $this->load->helper('form');
-        $this->load->helper('sessioncheck_helper');
+        $this->load->helper('authorizationcheck_helper');
         $this->load->library('form_validation');
 
-        session_check($this);
+        $authorized = authorization_check($this, 3);
+        if (!$authorized) show_error('You are not authorized to visit this page');
 
         $this->output->enable_profiler(TRUE);
     }
@@ -43,7 +44,15 @@ class Admin extends CI_Controller
 
 
 
-        if ($this->form_validation->run() === TRUE) {
+        if ($this->form_validation->run() === FALSE) {
+            //load views
+            $this->load->view('templates/header', $data);
+            $this->load->view('admin/index', $data);
+            $this->load->view('admin/users', $data);
+            $this->load->view('admin/deleted_items', $data);
+            $this->load->view('admin/end', $data);
+            $this->load->view('templates/footer');
+        } else {
             $user = array(
                 'id' => $this->input->post('userid'),
                 'firstname' => $this->input->post('firstname'),
@@ -53,12 +62,7 @@ class Admin extends CI_Controller
 
             $this->user_model->update_user($user);
 
+            redirect('admin');
         }
-
-        //load views
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/index', $data);
-        $this->load->view('admin/users', $data);
-        $this->load->view('templates/footer');
     }
 }

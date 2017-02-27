@@ -35,7 +35,7 @@
                         <li><a href="<?php echo site_url('categories/create'); ?>">New Category</a></li>
                     </ul>
                 </li>
-                <?php if ($_SESSION['role_id'] > 2): ?>
+                <?php if (authorization_check($this, 3)): ?>
                 <li>
                     <a href="<?=site_url('admin'); ?>">Admin panel</a>
                 </li>
