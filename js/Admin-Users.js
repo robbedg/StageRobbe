@@ -57,32 +57,29 @@ $(document).ready(function($) {
         } else if (!($val.user.attr('data').match($filter.attr('data')))) {
 
           var $x = $currentusers.indexOf($val);
-          console.log($x);
+
           //if in array, remove
           if ($x !== -1) {
 
-            $($val.user).remove();
-            $currentusers.splice($x);
+            $val.user.remove();
+            $currentusers.splice($x, 1);
+
           }
-          console.log("no match");
+
 
         } else {
-          console.log("match");
 
           var $x = $currentusers.indexOf($val);
-          console.log($x);
+
           //if not already in array, push
           if ($x === -1) {
             $currentusers.push($val);
             $("#userselect > ul").append($val.user)
           }
 
-
-
         }
       });
-      console.log($currentusers);
-      console.log($allusers);
+
     } catch ($e) {
       console.log($e);
     }
