@@ -58,7 +58,7 @@
     <div id="right">
 
         <!-- open form -->
-        <?=form_open('/admin/updateuser', array('id' => 'form')); ?>
+        <?=form_open('admin', array('id' => 'form')); ?>
 
             <!-- hidden field with userid -->
             <div id="userid">

@@ -47,4 +47,18 @@ class User_model extends CI_Model
         $query = $this->db->get();
         return $query->row_array();
     }
+
+    //update user
+    public function update_user($user)
+    {
+        if (!empty($user)) {
+            $this->db->set('firstname', $user['firstname']);
+            $this->db->set('lastname', $user['lastname']);
+            $this->db->set('role_id', $user['role_id']);
+            $this->db->where('id', $user['id']);
+            $this->db->update('users');
+        } else {
+            show_error('No user specified');
+        }
+    }
 }

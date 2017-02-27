@@ -16,6 +16,7 @@ class Admin extends CI_Controller
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('sessioncheck_helper');
+        $this->load->library('form_validation');
 
         session_check($this);
 
@@ -34,13 +35,30 @@ class Admin extends CI_Controller
         //give roles
         $data['roles'] = $this->role_model->get_role();
 
+        //validation rules
+        $this->form_validation->set_rules('userid', 'User ID', 'required|trim|htmlspecialchars|encode_php_tags');
+        $this->form_validation->set_rules('firstname', 'First name', 'required|trim|htmlspecialchars|encode_php_tags|max_length[45]');
+        $this->form_validation->set_rules('lastname', 'Last name', 'required|trim|htmlspecialchars|encode_php_tags|max_length[45]');
+        $this->form_validation->set_rules('role', 'Role', 'required|trim|htmlspecialchars|encode_php_tags');
+
+
+
+        if ($this->form_validation->run() === TRUE) {
+            $user = array(
+                'id' => $this->input->post('userid'),
+                'firstname' => $this->input->post('firstname'),
+                'lastname' => $this->input->post('lastname'),
+                'role_id' => $this->input->post('role')
+            );
+
+            $this->user_model->update_user($user);
+
+        }
+
+        //load views
         $this->load->view('templates/header', $data);
         $this->load->view('admin/index', $data);
         $this->load->view('admin/users', $data);
         $this->load->view('templates/footer');
-    }
-
-    public function updateuser($id = NULL) {
-
     }
 }
