@@ -15,7 +15,7 @@
 
 <!-- searchbar -->
 <div id="searchform">
-    <input class="form-control search" type="text" name="search" id="focusedInput" placeholder="Search..." />
+    <input class="form-control search" type="text" name="search" id="search" placeholder="Search..." />
 </div>
 
 <!--table -->
@@ -38,6 +38,13 @@
     <?php endforeach; ?>
     </tbody>
 </table>
+
+<!-- Paging -->
+    <ul class="pagination">
+        <li><a href="#" id="previous">&laquo;</a></li>
+        <li class="active" id="page_1"><a href="#">1</a></li>
+        <li><a href="#" id="next">&raquo;</a></li>
+    </ul>
 
 <?php else: ?>
 

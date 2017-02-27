@@ -30,8 +30,13 @@ class Locations extends CI_Controller
         $data['head'][] = 'Name';
         $data['head'][] = 'Amount Of Items';
 
+        //set styles
+        $data['styles'][] = 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css';
+
         //set scripts
-        $data['scripts'][] = base_url('js/searchscript.js');
+        $data['scripts'][] = 'https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js';
+        $data['scripts'][] = base_url('js/Tables.js');
+        //$data['scripts'][] = base_url('js/searchscript.js');
 
         //set rows
         $query = $this->location_model->get_location();
