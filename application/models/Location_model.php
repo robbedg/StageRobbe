@@ -12,7 +12,7 @@ class Location_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_location($id = false)
+    public function get_location($id = FALSE)
     {
         if ($id === FALSE)
         {
@@ -29,17 +29,32 @@ class Location_model extends CI_Model
         return $query->row_array();
     }
 
-    public function set_location()
+    //create or update a location
+    public function set_location($id = FALSE)
     {
         $this->load->helper('url');
 
+        //get ifo from post
         $data = array(
             'name' => $this->input->post('name')
         );
 
-        return $this->db->insert('locations', $data);
+        if (empty($id)) {
+            return $this->db->insert('locations', $data);
+        } else {
+            $this->db->where('id', $id);
+            return $this->db->update('locations', $data);
+        }
+
     }
 
+    //delete a location
+    public function delete_location($id) {
+        $this->db->where('id', $id);
+        return $this->db->delete('locations');
+    }
+
+    //search for location BETA
     public function search_location($query = FALSE) {
         $this->db->select('name, id');
         $this->db->from('locations');

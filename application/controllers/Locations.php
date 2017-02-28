@@ -81,4 +81,25 @@ class Locations extends CI_Controller
             redirect('home');
         }
     }
+
+    //update a location
+    public function update($id = NULL)
+    {
+        if (empty($id)) {
+            show_404();
+        } else {
+            return $this->location_model->set_location($id);
+        }
+    }
+
+    //remove a location
+    public function delete($id = NULL)
+    {
+        //if empty show 404
+        if (empty($id)) {
+            show_404();
+        } else {
+            $this->location_model->delete_location($id);
+        }
+    }
 }

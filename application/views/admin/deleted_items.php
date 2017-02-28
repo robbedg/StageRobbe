@@ -1,5 +1,5 @@
 <div class="tab-pane fade" id="deleted-items">
-    <div id="table">
+    <div id="table-deleted-items">
         <table class="table table-striped table-hover" id="table-deleted">
             <thead>
                 <tr>
