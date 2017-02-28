@@ -3,10 +3,9 @@
  */
 $(document).ready(function($) {
 
-  /**
-   * At page load
-   **/
-
+/**
+ * USERS
+ **/
   //all users available, users currently displayed on screen.
   var $allusers = [];
   var $currentuser = [];
@@ -133,4 +132,20 @@ $(document).ready(function($) {
     //activate button
     $("#submit button").removeAttr('disabled');
   });
+
+/**
+ * DELETED ITEMS
+ **/
+
+ $('#table-deleted').DataTable({
+   'paging': false,
+   'searching': false,
+   'info': false,
+   'columnDefs' : [
+     {
+       'targets' : [ 4 ],
+       'orderable' : false
+     }
+   ]
+ });
 });

@@ -122,3 +122,7 @@
  .align-right {
  	text-align: right;
  }
+
+ #table-deleted {
+ 	border-bottom: 0rem;
+ }

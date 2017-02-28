@@ -1,12 +1,13 @@
 <div class="tab-pane fade" id="deleted-items">
     <div id="table">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover" id="table-deleted">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Location</th>
                     <th>Category</th>
                     <th>Created on</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

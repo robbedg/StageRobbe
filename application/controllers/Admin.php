@@ -28,7 +28,12 @@ class Admin extends CI_Controller
     public function index() {
         //set title
         $data['title'] = 'Admin panel';
+
+        //set styles
+        $data['styles'][] = 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css';
+
         //set scripts
+        $data['scripts'][] = 'https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js';
         $data['scripts'][] = base_url('js/Admin-Users.js');
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
