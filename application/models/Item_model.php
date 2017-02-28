@@ -125,4 +125,16 @@ class Item_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('items');
     }
+
+    public function get_deleted_items() {
+        $this->db->select('items.id AS id, locations.name AS location, categories.name AS category, items.created_on AS created_on');
+        $this->db->from('items');
+        $this->db->join('locations', 'locations.id = items.location_id', 'right outer');
+        $this->db->join('categories', 'categories.id = items.category_id', 'right outer');
+        $this->db->where('items.visible', 0);
+
+        $data = $this->db->get();
+
+        return $data->result_array();
+    }
 }

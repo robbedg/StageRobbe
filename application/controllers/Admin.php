@@ -11,6 +11,7 @@ class Admin extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('item_model');
         $this->load->model('user_model');
         $this->load->model('role_model');
         $this->load->helper('url');
@@ -31,10 +32,14 @@ class Admin extends CI_Controller
         $data['scripts'][] = base_url('js/Admin-Users.js');
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
+
+        //Data from DB.
         //give users
         $data['users'] = $this->user_model->get_user();
         //give roles
         $data['roles'] = $this->role_model->get_role();
+        //give delted items
+        $data['deleted_items'] = $this->item_model->get_deleted_items();
 
         //validation rules
         $this->form_validation->set_rules('userid', 'User ID', 'required|trim|htmlspecialchars|encode_php_tags');

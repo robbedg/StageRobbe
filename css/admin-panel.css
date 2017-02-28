@@ -115,3 +115,10 @@
  	float: right;
  }
 
+/**
+ * DELETED ITEMS
+ **/
+
+ .align-right {
+ 	text-align: right;
+ }
