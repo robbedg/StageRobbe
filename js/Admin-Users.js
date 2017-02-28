@@ -136,7 +136,7 @@ $(document).ready(function($) {
 /**
  * DELETED ITEMS
  **/
-
+//DataTable
  $('#table-deleted').DataTable({
    'paging': false,
    'searching': false,
@@ -148,4 +148,28 @@ $(document).ready(function($) {
      }
    ]
  });
+
+//restore
+  $("table tbody tr td a").click(function($event) {
+    $event.preventDefault();
+
+    var $item = $(this);
+
+    if ($item.attr('data-function').match('restore')) {
+      $.ajax({
+        url: '/index.php/items/restore/' + $item.attr('data-id'),
+        type: 'GET'
+      })
+      .done(function() {
+        console.log("success");
+      })
+      .fail(function() {
+        console.log("error");
+      })
+      .always(function() {
+        console.log("complete");
+      });
+
+    }
+  });
 });

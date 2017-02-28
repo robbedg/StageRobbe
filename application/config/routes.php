@@ -69,6 +69,7 @@ $route['locations/create'] = 'locations/create';
 
 //item routes
 $route['items'] = 'items';
+$route['items/restore/(:any)'] = 'items/restore/$1';
 $route['items/location/(:any)'] = 'items/bylocation/$1';
 $route['items/create'] = 'items/create';
 $route['items/create/(:any)'] = 'items/create/$1';

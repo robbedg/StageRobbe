@@ -18,8 +18,8 @@
                     <td><?=$item['category']; ?></td>
                     <td><?=(new DateTime($item['created_on']))->format('d/m/Y H:i'); ?></td>
                     <td class="align-right">
-                        <a href="#" class="btn btn-success btn-xs">Restore</a>
-                        <a href="#" class="btn btn-danger btn-xs">Delete</a>
+                        <a href="#" data-id="<?=$item['id']; ?>" data-function="restore" class="btn btn-success btn-xs">Restore</a>
+                        <a href="#" data-id="<?=$item['id']; ?>" data-function="delete" class="btn btn-danger btn-xs">Delete</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>

@@ -126,6 +126,7 @@ class Item_model extends CI_Model
         $this->db->update('items');
     }
 
+    //return all invisible items.
     public function get_deleted_items() {
         $this->db->select('items.id AS id, locations.name AS location, categories.name AS category, items.created_on AS created_on');
         $this->db->from('items');
@@ -136,5 +137,16 @@ class Item_model extends CI_Model
         $data = $this->db->get();
 
         return $data->result_array();
+    }
+
+    //restore invisible item
+    public function restore_item($id = FALSE)
+    {
+        $data = array(
+            'visible' => 1
+        );
+
+        $this->db->where('id', $id);
+        return $this->db->update('items', $data);
     }
 }

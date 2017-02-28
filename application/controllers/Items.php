@@ -222,4 +222,14 @@ class Items extends CI_Controller
         $this->item_model->remove_item($id);
         redirect('home');
     }
+
+    //restoring item
+    public function  restore($id = NULL)
+    {
+        if (empty($id)) {
+            show_404();
+        }
+
+        $this->item_model->restore_item($id);
+    }
 }
