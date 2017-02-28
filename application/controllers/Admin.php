@@ -15,6 +15,7 @@ class Admin extends CI_Controller
         $this->load->model('user_model');
         $this->load->model('role_model');
         $this->load->model('location_model');
+        $this->load->model('categories_model');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('authorizationcheck_helper');
@@ -48,6 +49,8 @@ class Admin extends CI_Controller
         $data['deleted_items'] = $this->item_model->get_deleted_items();
         //give locations
         $data['locations'] = $this->location_model->get_location();
+        //give categories
+        $data['categories'] = $this->categories_model->get_category();
 
         //validation rules
         $this->form_validation->set_rules('userid', 'User ID', 'required|trim|htmlspecialchars|encode_php_tags');
@@ -64,6 +67,7 @@ class Admin extends CI_Controller
             $this->load->view('admin/users', $data);
             $this->load->view('admin/deleted_items', $data);
             $this->load->view('admin/locations', $data);
+            $this->load->view('admin/categories', $data);
             $this->load->view('admin/end', $data);
             $this->load->view('templates/footer');
         } else {

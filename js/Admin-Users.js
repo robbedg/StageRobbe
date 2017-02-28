@@ -209,9 +209,54 @@ $(document).ready(function($) {
 
        });
       //remove
-     } else if (true) {
+    } else if ($item.attr('data-function').match('delete')) {
        $.ajax({
          url: '/index.php/locations/delete/' + $item.attr('data-id'),
+         type: 'GET'
+       })
+       .done(function() {
+         $item.parent().parent().remove();
+       });
+     }
+   });
+/**
+  * CATEGORIES
+  **/
+
+  //DataTable
+   $("#table-categories").DataTable({
+     'paging' : false,
+     'searching' : false,
+     'info' : false,
+     'columnDefs' : [
+       {
+         'targets' : [ 2 ],
+         'orderable' : false
+       }
+     ]
+   });
+
+   //Save & delete
+   $("#table-categories tbody tr td a").click(function($event) {
+     //prevent default
+     $event.preventDefault();
+
+     var $item = $(this);
+
+     //Save
+     if ($item.attr('data-function').match('save')) {
+       $.ajax({
+         url: '/index.php/categories/update/' + $item.attr('data-id'),
+         type: 'POST',
+         data: {'name' : $("#" + $item.attr('identifier')).val()}
+       })
+       .done(function() {
+
+       });
+      //remove
+     } else if ($item.attr('data-function').match('delete')) {
+       $.ajax({
+         url: '/index.php/categories/delete/' + $item.attr('data-id'),
          type: 'GET'
        })
        .done(function() {

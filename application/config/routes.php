@@ -80,8 +80,10 @@ $route['items/remove/(:any)'] = 'items/remove/$1';
 $route['items/detail/(:num)/(:num)'] = 'items/detail/$1/$2';
 $route['items/(:any)'] = 'items/view/$1';
 
-//itemtype routes
-$route['category/create'] = 'category/create';
+//category routes
+$route['categories/create'] = 'categories/create';
+$route['categories/update/(:any)'] = 'categories/update/$1';
+$route['categories/delete/(:any)'] = 'categories/delete/$1';
 
 //usernote routes
 $route['usernotes/remove/(:any)'] = 'usernotes/remove/$1';

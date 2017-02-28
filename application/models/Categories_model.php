@@ -31,10 +31,22 @@ class Categories_model extends CI_Model
     {
         $this->load->helper('url');
 
+        //get ifo from post
         $data = array(
             'name' => $this->input->post('name')
         );
 
-        return $this->db->insert('categories', $data);
+        if (empty($id)) {
+            return $this->db->insert('categories', $data);
+        } else {
+            $this->db->where('id', $id);
+            return $this->db->update('categories', $data);
+        }
+    }
+
+    //delete a category
+    public function delete_category($id = FALSE) {
+        $this->db->where('id', $id);
+        return $this->db->delete('categories');
     }
 }

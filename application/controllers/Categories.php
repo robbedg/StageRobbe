@@ -39,4 +39,25 @@ class Categories extends CI_Controller
             redirect('home');
         }
     }
+
+    //update a category
+    public function update($id = NULL)
+    {
+        if (empty($id)) {
+            show_404();
+        } else {
+            return $this->categories_model->set_category($id);
+        }
+    }
+
+    //remove a location
+    public function delete($id = NULL)
+    {
+        //if empty show 404
+        if (empty($id)) {
+            show_404();
+        } else {
+            $this->categories_model->delete_category($id);
+        }
+    }
 }
