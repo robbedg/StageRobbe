@@ -149,4 +149,11 @@ class Item_model extends CI_Model
         $this->db->where('id', $id);
         return $this->db->update('items', $data);
     }
+
+    //permanently delete item
+    public function delete_item($id = FALSE)
+    {
+        $this->db->where('id', $id);
+        return $this->db->delete('items');
+    }
 }

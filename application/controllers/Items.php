@@ -232,4 +232,14 @@ class Items extends CI_Controller
 
         $this->item_model->restore_item($id);
     }
+
+    //permenantly deleting item
+    public function delete($id = NULL)
+    {
+        if (empty($id)) {
+            show_404();
+        }
+
+        $this->item_model->delete_item($id);
+    }
 }

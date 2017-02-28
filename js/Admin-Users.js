@@ -161,15 +161,16 @@ $(document).ready(function($) {
         type: 'GET'
       })
       .done(function() {
-        console.log("success");
+        $item.parent().parent().remove();
       })
-      .fail(function() {
-        console.log("error");
+    } else if ($item.attr('data-function').match('delete')) {
+      $.ajax({
+        url: '/index.php/items/delete/' + $item.attr('data-id'),
+        type: 'GET'
       })
-      .always(function() {
-        console.log("complete");
-      });
-
+      .done(function() {
+        $item.parent().parent().remove();
+      })
     }
   });
 });
