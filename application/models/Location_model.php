@@ -12,21 +12,40 @@ class Location_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_location($id = FALSE)
-    {
-        if ($id === FALSE)
-        {
-            $this->db->select('locations.id AS id, locations.name as name, COUNT(items.id) AS item_count');
-            $this->db->from('locations');
-            $this->db->join('items', 'items.location_id = locations.id', 'left outer');
-            $this->db->group_by('locations.id');
-            $this->db->order_by('locations.name', 'asc');
-            $query = $this->db->get();
-            return $query->result_array();
+    public function get_location($id = FALSE, $limit = FALSE, $offset = FALSE, $sorton = FALSE)
+
+    {   $this->db->select('locations.id AS id, locations.name as name, COUNT(items.id) AS item_count');
+        $this->db->from('locations');
+        $this->db->join('items', 'items.location_id = locations.id', 'left outer');
+        $this->db->group_by('locations.id');
+
+        //return 1 if ID is set
+        if ($id !== FALSE) {
+            $this->db->where('locations.id', $id);
         }
 
-        $query = $this->db->get_where('locations', array('id'=>$id));
-        return $query->row_array();
+        //set limit if set
+        if ($limit !== FALSE) {
+            //if offset is included
+            if($offset !== FALSE) {
+                $this->db->limit($limit, $offset);
+            } else {
+                $this->db->limit($limit);
+            }
+        }
+
+        //if sort is included
+        if ($sorton !== FALSE) {
+            $this->db->order_by('locations'.$sorton['column'], $sorton['order']);
+        }
+
+
+        //return result
+        if ($id !== FALSE) {
+            return $this->db->get()->row_array();
+        }
+
+        return $this->db->get()->result_array();
     }
 
     //create or update a location

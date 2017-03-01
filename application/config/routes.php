@@ -66,6 +66,7 @@ $route['search'] = 'search';
 //location routes
 $route['locations'] = 'locations';
 $route['locations/create'] = 'locations/create';
+$route['locations/get'] = 'locations/get';
 $route['locations/update/(:any)'] = 'locations/update/$1';
 $route['locations/delete/(:any)'] = 'locations/delete/$1';
 

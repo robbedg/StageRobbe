@@ -11,7 +11,7 @@
 <!-- Title -->
 <h2><?php echo $title; ?></h2>
 
-<?php if (!empty($rows)): ?>
+<?php //if (!empty($rows)): ?>
 
 <!-- searchbar -->
 <div id="searchform">
@@ -28,14 +28,7 @@
     </tr>
     </thead>
     <tbody>
-    <!--Loop all locations-->
-    <?php foreach ($rows as $row): ?>
-        <tr id="row_<?php echo uniqid(); ?>" class="clickable-row" data-href="<?php echo $row['href']; ?>" search="<?php echo $row['search']; ?>">
-            <?php foreach ($head as $label): ?>
-                <td><?php echo $row[$label]; ?></td>
-            <?php endforeach; ?>
-        </tr>
-    <?php endforeach; ?>
+    <!--ajax -->
     </tbody>
 </table>
 
@@ -46,11 +39,11 @@
         <li><a href="#" id="next">&raquo;</a></li>
     </ul>
 
-<?php else: ?>
+<?php //else: ?>
 
 <!-- if no data available show message -->
 <div class="alert alert-danger">
     <p>No items available.</p>
 </div>
 
-<?php endif; ?>
+<?php //endif; ?>

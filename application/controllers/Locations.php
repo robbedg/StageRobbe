@@ -16,7 +16,6 @@ class Locations extends CI_Controller
 
         authorization_check($this);
 
-        $this->output->enable_profiler(TRUE);
     }
 
     //List of locations.
@@ -38,22 +37,7 @@ class Locations extends CI_Controller
         $data['scripts'][] = base_url('js/Tables.js');
         //$data['scripts'][] = base_url('js/searchscript.js');
 
-        //set rows
-        $query = $this->location_model->get_location();
 
-        foreach ($query as $location) {
-            //url for row
-            $row['href'] = site_url('items/location/'.$location['id']);
-            //searchable data
-            $row['search'] = $location['name'];
-            //data for table (eg 'head']
-            $row['ID'] = $location['id'];
-            $row['Name'] = $location['name'];
-            $row['Amount Of Items'] = $location['item_count'];
-
-            //insert row
-            $data['rows'][] = $row;
-        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('pages/index', $data);
@@ -80,6 +64,29 @@ class Locations extends CI_Controller
             $this->location_model->set_location();
             redirect('home');
         }
+    }
+
+    //get data
+    public function get() {
+        $input = implode($this->input->post());
+        $input = json_decode($input, true);
+
+        $queries = $this->location_model->get_location(false, $input['limit'], $input['offset']);
+
+        $items = array();
+
+        foreach ($queries as $query) {
+            $output = array(
+                'ID' => $query['id'],
+                'Name' => $query['name'],
+                'Amount Of Items' => $query['item_count']
+            );
+            $items[] = $output;
+        }
+
+        $data = array('data' => $items);
+
+        echo json_encode($data);
     }
 
     //update a location
