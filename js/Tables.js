@@ -32,9 +32,42 @@ $(document).ready(function(){
       });
     }
 
+    //add pages
+    function loadpager() {
+      //delete
+      $(".pagination li").each(function($index, $el) {
+        if($el.hasAttribute('added')) {
+          $el.remove();
+        }
+      });
+
+      //add
+      for (var $i = 1; $i < $totalpages; $i++) {
+        $("#page_" + $i)
+          .after($('<li id="page_' + ($i + 1) + '"/>').attr('added', 'added').append($('<a class="clickable-page" href=# />').append($i + 1)));
+      }
+
+      //click on page number.
+      $(".clickable-page").click(function($event) {
+        $event.preventDefault();
+        var $clicked = $(this);
+
+        //non active
+        $(".clickable-page").each(function($index, $el) {
+          $($el).removeClass('active');
+        });
+
+        //active
+        $clicked.addClass('active');
+
+        //new items
+        $data.offset = (parseInt($clicked.text()) - 1) * $data.limit;
+        callDB();
+      });
+    }
+
     //load DB
     function callDB() {
-
 
       //ajax call
       $.ajax({
@@ -62,6 +95,7 @@ $(document).ready(function(){
               .append($('<td />').append($el['Amount Of Items'])));
           clickablerow();
           calculatepages($response.count);
+          loadpager();
         });
       })
       .fail(function() {
@@ -98,4 +132,6 @@ $(document).ready(function(){
         callDB();
       }
     });
+
+
 });

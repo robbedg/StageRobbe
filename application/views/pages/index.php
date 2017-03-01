@@ -34,9 +34,9 @@
 
 <!-- Paging -->
     <ul class="pagination">
-        <li><a href="#" id="previous">&laquo;</a></li>
-        <li class="active" id="page_1"><a href="#">1</a></li>
-        <li><a href="#" id="next">&raquo;</a></li>
+        <li><a class="basic" href="#" id="previous">&laquo;</a></li>
+        <li class="active" id="page_1"><a class="clickable-page" href="#">1</a></li>
+        <li><a class="basic" href="#" id="next">&raquo;</a></li>
     </ul>
 
 <?php //else: ?>
