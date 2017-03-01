@@ -30,12 +30,10 @@ class Locations extends CI_Controller
         $data['head'][] = 'Name';
         $data['head'][] = 'Amount Of Items';
 
+        $data['count'] = $this->location_model->count_locations();
 
         //set scripts
         $data['scripts'][] = base_url('js/Tables.js');
-        //$data['scripts'][] = base_url('js/searchscript.js');
-
-
 
         $this->load->view('templates/header', $data);
         $this->load->view('pages/index', $data);

@@ -73,18 +73,16 @@ class Location_model extends CI_Model
     }
 
     //delete a location
-    public function delete_location($id) {
+    public function delete_location($id)
+    {
         $this->db->where('id', $id);
         return $this->db->delete('locations');
     }
 
-    //search for location BETA
-    public function search_location($query = FALSE) {
-        $this->db->select('name, id');
-        $this->db->from('locations');
-        $this->db->like('name', $query);
-        $result = $this->db->get();
-        return $result->result_array();
+    //count location
+    public function count_locations()
+    {
+        return $this->db->count_all('locations');
     }
 
 }

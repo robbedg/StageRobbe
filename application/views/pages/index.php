@@ -31,7 +31,8 @@
     <!--ajax -->
     </tbody>
 </table>
-
+<!-- count -->
+<input type="hidden" id="count" value="<?=$count; ?>">
 <!-- Paging -->
     <ul class="pagination">
         <li><a href="#" id="previous">&laquo;</a></li>

@@ -1,12 +1,19 @@
 "use strict";
 $(document).ready(function(){
 
-    var $page = 1;
-
+    //data
     var $data = new Object();
     $data.search = '';
     $data.limit = 10;
     $data.offset = 0;
+
+    //current page
+    var $page = 1;
+    
+    //total pages
+    var $totalpages = Math.floor($("#count").val() / $data.limit);
+    //maybe extra page
+    if (($("#count").val() % $data.limit) !== 0) $totalpages++;
 
     //call db first
     callDB();
@@ -57,5 +64,15 @@ $(document).ready(function(){
     $("#search").keyup(function($event) {
       $data.search = $(this).val();
       callDB();
+    });
+
+    //paging
+    $("#next").click(function($event) {
+      $event.preventDefault();
+      if ($page < $totalpages) {
+        $data.offset += $data.limit;
+        $page++;
+        callDB();
+      }
     });
 });
