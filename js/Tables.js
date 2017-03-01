@@ -1,23 +1,31 @@
 "use strict";
 $(document).ready(function(){
+    //search length
+    var $minlength = 1;
 
     //data
     var $data = new Object();
-    $data.search = '';
+    $data.search = null;
     $data.limit = 10;
     $data.offset = 0;
 
     //current page
     var $page = 1;
-    
-    //total pages
-    var $totalpages = Math.floor($("#count").val() / $data.limit);
-    //maybe extra page
-    if (($("#count").val() % $data.limit) !== 0) $totalpages++;
+    //total amount of pages
+    var $totalpages;
 
     //call db first
     callDB();
 
+    //calculatepages
+    function calculatepages($resultcount) {
+      //total pages
+      $totalpages = Math.floor($resultcount / $data.limit);
+      //maybe extra page
+      if (($resultcount % $data.limit) !== 0) $totalpages++;
+    }
+
+    //make rows clickable
     function clickablerow() {
       $(".clickable-row").click(function() {
           window.document.location = $(this).attr("href");
@@ -53,6 +61,7 @@ $(document).ready(function(){
               .append($('<td />').append($el['Name']))
               .append($('<td />').append($el['Amount Of Items'])));
           clickablerow();
+          calculatepages($response.count);
         });
       })
       .fail(function() {
@@ -62,8 +71,13 @@ $(document).ready(function(){
 
     //search
     $("#search").keyup(function($event) {
-      $data.search = $(this).val();
-      callDB();
+      if ($("#search").val().length >= $minlength) {
+        $data.search = $(this).val();
+        callDB();
+      } else {
+        $data.search = null;
+        callDB();
+      }
     });
 
     //paging
@@ -72,6 +86,15 @@ $(document).ready(function(){
       if ($page < $totalpages) {
         $data.offset += $data.limit;
         $page++;
+        callDB();
+      }
+    });
+
+    $("#previous").click(function($event) {
+      $event.preventDefault();
+      if ($page > 1) {
+        $data.offset -= $data.limit;
+        $page--;
         callDB();
       }
     });

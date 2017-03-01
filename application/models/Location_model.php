@@ -15,23 +15,13 @@ class Location_model extends CI_Model
     public function get_location($id = FALSE, $limit = FALSE, $offset = FALSE, $sorton = FALSE, $search = FALSE)
 
     {   $this->db->select('locations.id AS id, locations.name as name, COUNT(items.id) AS item_count');
-        $this->db->from('locations');
+        //$this->db->from('locations');
         $this->db->join('items', 'items.location_id = locations.id', 'left outer');
         $this->db->group_by('locations.id');
 
         //return 1 if ID is set
         if ($id !== FALSE) {
             $this->db->where('locations.id', $id);
-        }
-
-        //set limit if set
-        if ($limit !== FALSE) {
-            //if offset is included
-            if($offset !== FALSE) {
-                $this->db->limit($limit, $offset);
-            } else {
-                $this->db->limit($limit);
-            }
         }
 
         //if sort is included
@@ -45,12 +35,29 @@ class Location_model extends CI_Model
             $this->db->or_like('locations.name', $search);
         }
 
-        //return result
-        if ($id !== FALSE) {
-            return $this->db->get()->row_array();
+        $count = $this->db->count_all_results('locations', false);
+
+        //set limit if set
+        if ($limit !== FALSE) {
+            //if offset is included
+            if($offset !== FALSE) {
+                $this->db->limit($limit, $offset);
+            } else {
+                $this->db->limit($limit);
+            }
         }
 
-        return $this->db->get()->result_array();
+        //return result
+        if ($id !== FALSE) {
+            $data['data'] = $this->db->get()->row_array();
+            $data['count'] = $count;
+            return $data;
+        }
+
+        $data['data'] = $this->db->get()->result_array();
+        $data['count'] = $count;
+
+        return $data;
     }
 
     //create or update a location
@@ -77,12 +84,6 @@ class Location_model extends CI_Model
     {
         $this->db->where('id', $id);
         return $this->db->delete('locations');
-    }
-
-    //count location
-    public function count_locations()
-    {
-        return $this->db->count_all('locations');
     }
 
 }

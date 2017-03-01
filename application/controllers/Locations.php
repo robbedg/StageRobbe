@@ -30,8 +30,6 @@ class Locations extends CI_Controller
         $data['head'][] = 'Name';
         $data['head'][] = 'Amount Of Items';
 
-        $data['count'] = $this->location_model->count_locations();
-
         //set scripts
         $data['scripts'][] = base_url('js/Tables.js');
 
@@ -71,7 +69,7 @@ class Locations extends CI_Controller
 
         $items = array();
 
-        foreach ($queries as $query) {
+        foreach ($queries['data'] as $query) {
             $output = array(
                 'ID' => $query['id'],
                 'Name' => $query['name'],
@@ -80,7 +78,10 @@ class Locations extends CI_Controller
             $items[] = $output;
         }
 
-        $data = array('data' => $items);
+        $data = array(
+            'data' => $items,
+            'count' => $queries['count']
+        );
         header('application/json');
         echo json_encode($data);
     }
