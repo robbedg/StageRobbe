@@ -54,11 +54,11 @@ $(document).ready(function(){
 
         //non active
         $(".clickable-page").each(function($index, $el) {
-          $($el).removeClass('active');
+          $($el).parent().removeClass('active');
         });
 
         //active
-        $clicked.addClass('active');
+        $clicked.parent().addClass('active');
 
         //new items
         $data.offset = (parseInt($clicked.text()) - 1) * $data.limit;
