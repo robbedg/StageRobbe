@@ -16,6 +16,7 @@ class Locations extends CI_Controller
 
         authorization_check($this);
 
+        //$this->output->enable_profiler(TRUE);
     }
 
     //List of locations.
@@ -29,11 +30,8 @@ class Locations extends CI_Controller
         $data['head'][] = 'Name';
         $data['head'][] = 'Amount Of Items';
 
-        //set styles
-        $data['styles'][] = 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css';
 
         //set scripts
-        $data['scripts'][] = 'https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js';
         $data['scripts'][] = base_url('js/Tables.js');
         //$data['scripts'][] = base_url('js/searchscript.js');
 
@@ -68,8 +66,8 @@ class Locations extends CI_Controller
 
     //get data
     public function get() {
-        $input = implode($this->input->post());
-        $input = json_decode($input, true);
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        $input = json_decode($stream_clean, true);
 
         $queries = $this->location_model->get_location(false, $input['limit'], $input['offset']);
 
@@ -85,7 +83,7 @@ class Locations extends CI_Controller
         }
 
         $data = array('data' => $items);
-
+        header('application/json');
         echo json_encode($data);
     }
 
