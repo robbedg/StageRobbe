@@ -12,7 +12,7 @@ class Location_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_location($id = FALSE, $limit = FALSE, $offset = FALSE, $sorton = FALSE)
+    public function get_location($id = FALSE, $limit = FALSE, $offset = FALSE, $sorton = FALSE, $search = FALSE)
 
     {   $this->db->select('locations.id AS id, locations.name as name, COUNT(items.id) AS item_count');
         $this->db->from('locations');
@@ -39,6 +39,11 @@ class Location_model extends CI_Model
             $this->db->order_by('locations'.$sorton['column'], $sorton['order']);
         }
 
+        //if user wants search
+        if (($search !== FALSE) && ($id === FALSE)) {
+            $this->db->like('locations.id', $search);
+            $this->db->or_like('locations.name', $search);
+        }
 
         //return result
         if ($id !== FALSE) {

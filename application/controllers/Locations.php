@@ -69,7 +69,7 @@ class Locations extends CI_Controller
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
 
-        $queries = $this->location_model->get_location(false, $input['limit'], $input['offset']);
+        $queries = $this->location_model->get_location(false, $input['limit'], $input['offset'], false, $input['search']);
 
         $items = array();
 

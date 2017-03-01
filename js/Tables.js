@@ -1,10 +1,14 @@
 "use strict";
 $(document).ready(function(){
 
+    var $page = 1;
+
     var $data = new Object();
+    $data.search = '';
     $data.limit = 10;
     $data.offset = 0;
-    console.log(JSON.stringify($data));
+
+    //call db first
     callDB();
 
     function clickablerow() {
@@ -13,9 +17,11 @@ $(document).ready(function(){
       });
     }
 
-    //fill db
+    //load DB
     function callDB() {
 
+
+      //ajax call
       $.ajax({
         url: '/index.php/locations/get',
         type: 'POST',
@@ -24,9 +30,15 @@ $(document).ready(function(){
         data: JSON.stringify($data)
       })
       .done(function($response) {
+
+        //empty table
+        $("#listingpage tbody tr").each(function($index, $el) {
+          $el.remove();
+        });
+
         //get locations
         var $locations = $response.data;
-
+        //fill db
         $($locations).each(function($index, $el) {
           $("#listingpage tbody").
             append($('<tr class="clickable-row" href="/index.php/items/location/' + $el['ID'] + '"/>')
@@ -35,31 +47,15 @@ $(document).ready(function(){
               .append($('<td />').append($el['Amount Of Items'])));
           clickablerow();
         });
-
-
-        console.log("success");
       })
       .fail(function() {
         console.log("error");
-      })
-      .always(function() {
-        console.log("complete");
       });
     }
 
-    /**
-
-    var $table = $('#listingpage').DataTable({
-      'ajax': {
-        'url' : '/index.php/locations/get',
-        'dataType' : 'JSON',
-        'type' : 'POST',
-        'data' : JSON.stringify($data)
-      },
-      'columns' : [
-        {'data' : 'ID'},
-        {'data' : 'Name'},
-        {'data' : 'Amount Of Items'}
-      ]
-    });*/
+    //search
+    $("#search").keyup(function($event) {
+      $data.search = $(this).val();
+      callDB();
+    });
 });
