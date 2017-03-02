@@ -1,8 +1,8 @@
 <!-- breadcrum -->
 <ul class="breadcrumb">
     <li><a href="<?=site_url('home'); ?>">Home</a></li>
-    <li><a href="<?=site_url('/locations/'.$item['data']['location_id']); ?>"><?=$item['data']['location']; ?></a></li>
-    <li><a href="<?=site_url('/categories/'.$item['data']['location_id'].'/'.$item['data']['category_id']); ?>"><?=$item['data']['category'].' collection'; ?></a></li>
+    <li><a href="<?=site_url('/categories/'.$item['data']['location_id']); ?>"><?=$item['data']['location']; ?></a></li>
+    <li><a href="<?=site_url('/items/'.$item['data']['location_id'].'/'.$item['data']['category_id']); ?>"><?=$item['data']['category'].' collection'; ?></a></li>
     <li class="active"><?php echo $title; ?></li>
 </ul>
 

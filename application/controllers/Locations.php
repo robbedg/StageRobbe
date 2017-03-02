@@ -85,8 +85,11 @@ class Locations extends CI_Controller
             'data' => $items,
             'count' => $queries['count']
         );
-        header('application/json');
-        echo json_encode($data);
+
+        //output
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($data));
     }
 
     //update a location
