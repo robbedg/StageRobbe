@@ -10,6 +10,8 @@ $(document).ready(function(){
     $data.offset = 0;
     //use db names
     $data.sorton = {'column' : 'id', 'order' : 'asc'};
+    //give location id
+    $data.location_id = $("#location_id").val();
 
     //check for user preferences
     checkLocalStorage();
@@ -26,7 +28,7 @@ $(document).ready(function(){
 
     //retrieve localStorage
     function checkLocalStorage() {
-      var $pref = localStorage.getItem('locations');
+      var $pref = localStorage.getItem('categories');
       if ($pref !== null) {
         var $prefdata = JSON.parse($pref);
         if ($prefdata.limit !== null) $data.limit = $prefdata.limit;
@@ -50,7 +52,7 @@ $(document).ready(function(){
 
     //save preferences locally
     function setLocalStorage() {
-      localStorage.setItem('locations', JSON.stringify({'limit' : $data.limit, 'sorton' : $data.sorton}));
+      localStorage.setItem('categories', JSON.stringify({'limit' : $data.limit, 'sorton' : $data.sorton}));
     }
 
     //calculatepages
@@ -123,7 +125,7 @@ $(document).ready(function(){
 
       //ajax call
       $.ajax({
-        url: '/index.php/locations/get',
+        url: '/index.php/categories/get',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -141,9 +143,9 @@ $(document).ready(function(){
         //fill db
         $($locations).each(function($index, $el) {
           $("#listingpage tbody").
-            append($('<tr class="clickable-row" href="/index.php/items/location/' + $el['ID'] + '"/>')
-              .append($('<td />').append($el['ID']))
-              .append($('<td />').append($el['Name']))
+            append($('<tr class="clickable-row" href="/index.php/items/' + $data.location_id + '/' + $el['Category ID'] + '"/>')
+              .append($('<td />').append($el['Category ID']))
+              .append($('<td />').append($el['Category']))
               .append($('<td />').append($el['Amount Of Items'])));
           clickablerow();
           calculatepages($response.count);

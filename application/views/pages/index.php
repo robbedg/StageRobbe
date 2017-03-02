@@ -11,6 +11,13 @@
 <!-- Title -->
 <h2><?=$title; ?></h2>
 
+<!-- hidden fields -->
+<?php if (!empty($hiddenfields)): ?>
+<?php foreach ($hiddenfields as $field): ?>
+    <input type="hidden" id="<?=$field['id']; ?>" value="<?=$field['value']; ?>" />
+<?php endforeach; ?>
+<?php endif; ?>
+
 <?php //if (!empty($rows)): ?>
 
 <!-- searchbar -->

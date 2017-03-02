@@ -22,68 +22,11 @@ class Items extends CI_Controller
         $this->output->enable_profiler(TRUE);
     }
 
-    //List of Items
-    public function index()
-    {
-        $data['items'] = $this->item_model->get_item();
-        $data['title'] = 'All items';
-        $data['scripts'][] = base_url('js/searchscript.js');
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('items/index', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
-    //List of items in specified location
-    public function bylocation($id = NULL)
-    {
-        //get items
-        $query = $this->item_model->get_item_by_location($id);
-        $location = $this->location_model->get_location($id)['data']['name'];
-
-        //set title
-        $data['title'] = $location;
-
-        //scripts
-        $data['scripts'][] = base_url('js/searchscript.js');
-
-        //set breadcrum
-        $home['href'] = site_url('home');
-        $home['name'] = 'Home';
-
-        $data['breadcrum']['items'][] = $home;
-        $data['breadcrum']['active'] = $data['title'];
-
-        //set header
-        $data['head'][] = '#';
-        $data['head'][] = 'Category';
-        $data['head'][] = 'Location';
-
-        foreach ($query as $category) {
-            //set link
-            $row['href'] = site_url('items/detail/'.$category['location_id'].'/'.$category['category_id']);
-            //set searchable string
-            $row['search'] = $category['category'];
-            //set data
-            $row['#'] = $category['count'];
-            $row['Category'] = $category['category'];
-            $row['Location'] = $category['location'];
-
-            //add to rows
-            $data['rows'][] = $row;
-        }
-
-
-        $this->load->view('templates/header', $data);
-        $this->load->view('pages/index', $data);
-        $this->load->view('templates/footer', $data);
-    }
-
     //all objects in defined category
     public function detail($locationid, $categoryid)
     {
         //get items
-        $query = $data['items'] = $this->item_model->get_item_by_catagory($locationid, $categoryid);
+        $query = $data['items'] = $this->item_model->get_item_by_category($locationid, $categoryid);
         $location = $this->location_model->get_location($locationid);
         $category = $this->categories_model->get_category($categoryid);
 

@@ -49,42 +49,6 @@ class Item_model extends CI_Model
         return $item;
     }
 
-    //Give items on location
-    public function get_item_by_location($id = FALSE)
-    {
-        //query
-        $this->db->select('locations.id AS location_id, categories.id AS category_id, categories.name AS category, locations.name AS location, count(categories.name) AS count');
-        $this->db->from('items');
-        $this->db->join('categories', 'items.category_id = categories.id', 'left outer');
-        $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
-        $this->db->where('locations.id', $id);
-        $this->db->where('items.visible', 1);
-        $this->db->group_by('categories.name');
-        $this->db->order_by('categories.name', 'asc');
-
-        $items = $this->db->get();
-
-        return $items->result_array();
-    }
-
-    //give items of catagory in location
-    public function get_item_by_catagory($locationid = FALSE, $categoryid = FALSE) {
-
-        //query
-        $this->db->select('items.id AS item_id, categories.name AS category, locations.name AS location, items.created_on AS created_on');
-        $this->db->from('items');
-        $this->db->join('categories', 'items.category_id = categories.id', 'left outer');
-        $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
-        $this->db->where('locations.id', $locationid);
-        $this->db->where('categories.id', $categoryid);
-        $this->db->where('items.visible', 1);
-        $this->db->order_by('categories.name', 'asc');
-
-        $items = $this->db->get();
-
-        return $items->result_array();
-    }
-
     //Update or create new item
     public function set_item(){
         $this->load->helper('url');

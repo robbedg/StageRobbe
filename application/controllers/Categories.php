@@ -12,10 +12,49 @@ class Categories extends CI_Controller
     {
         parent::__construct();
         $this->load->model('categories_model');
+        $this->load->model('location_model');
         $this->load->helper('url');
         $this->load->helper('authorizationcheck_helper');
 
         authorization_check($this);
+    }
+
+    public function index($id = NULL) {
+
+        if (empty($id)) {
+            show_404();
+        }
+
+        $location = $this->location_model->get_location($id)['data']['name'];
+
+        //set title
+        $data['title'] = $location;
+
+        //scripts
+        $data['scripts'][] = base_url('js/CategoriesTable.js');
+
+        //set breadcrum
+        $home['href'] = site_url('home');
+        $home['name'] = 'Home';
+
+        $data['breadcrum']['items'][] = $home;
+        $data['breadcrum']['active'] = $data['title'];
+
+        //set header
+        $data['head'][0]['name'] = 'Category ID';
+        $data['head'][0]['db'] = 'id';
+        $data['head'][1]['name'] = 'Category';
+        $data['head'][1]['db'] = 'name';
+        $data['head'][2]['name'] = 'Amount Of Items';
+        $data['head'][2]['db'] = 'item_count';
+
+        //set hiddenfield
+        $data['hiddenfields'][0]['id'] = 'location_id';
+        $data['hiddenfields'][0]['value'] = $id;
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/index', $data);
+        $this->load->view('templates/footer', $data);
     }
 
     //Create new Itemtype
@@ -38,6 +77,33 @@ class Categories extends CI_Controller
             $this->categories_model->set_category();
             redirect('home');
         }
+    }
+
+    //handle requests for locations
+    public function get()
+    {
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        $input = json_decode($stream_clean, true);
+
+        $queries = $this->categories_model->get_category(false, $input['location_id'], $input['limit'], $input['offset'], $input['sorton'], $input['search']);
+
+        $items = array();
+
+        foreach ($queries['data'] as $query) {
+            $output = array(
+                'Category ID' => $query['id'],
+                'Category' => $query['name'],
+                'Amount Of Items' => $query['item_count']
+            );
+            $items[] = $output;
+        }
+
+        $data = array(
+            'data' => $items,
+            'count' => $queries['count']
+        );
+        header('application/json');
+        echo json_encode($data);
     }
 
     //update a category

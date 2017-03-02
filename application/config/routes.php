@@ -74,7 +74,6 @@ $route['locations/delete/(:any)'] = 'locations/delete/$1';
 $route['items'] = 'items';
 $route['items/restore/(:any)'] = 'items/restore/$1';
 $route['items/delete/(:any)'] = 'items/delete/$1';
-$route['items/location/(:any)'] = 'items/bylocation/$1';
 $route['items/create'] = 'items/create';
 $route['items/create/(:any)'] = 'items/create/$1';
 $route['items/remove/(:any)'] = 'items/remove/$1';
@@ -82,9 +81,11 @@ $route['items/detail/(:num)/(:num)'] = 'items/detail/$1/$2';
 $route['items/(:any)'] = 'items/view/$1';
 
 //category routes
+$route['categories/get'] = 'categories/get';
 $route['categories/create'] = 'categories/create';
 $route['categories/update/(:any)'] = 'categories/update/$1';
 $route['categories/delete/(:any)'] = 'categories/delete/$1';
+$route['categories/(:any)'] = 'categories/index/$1';
 
 //usernote routes
 $route['usernotes/remove/(:any)'] = 'usernotes/remove/$1';
