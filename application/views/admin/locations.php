@@ -9,7 +9,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($locations as $location): ?>
+                <?php foreach ($locations['data'] as $location): ?>
                 <?php $id = uniqid(); ?>
                 <tr>
                     <td><?=$location['id']; ?></td>
