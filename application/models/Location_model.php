@@ -15,7 +15,6 @@ class Location_model extends CI_Model
     public function get_location($id = FALSE, $limit = FALSE, $offset = FALSE, $sorton = FALSE, $search = FALSE)
 
     {   $this->db->select('locations.id AS id, locations.name as name, COUNT(items.id) AS item_count');
-        //$this->db->from('locations');
         $this->db->join('items', 'items.location_id = locations.id', 'left outer');
         $this->db->group_by('locations.id');
 
@@ -26,7 +25,7 @@ class Location_model extends CI_Model
 
         //if sort is included
         if ($sorton !== FALSE) {
-            $this->db->order_by('locations'.$sorton['column'], $sorton['order']);
+            $this->db->order_by($sorton['column'], $sorton['order']);
         }
 
         //if user wants search

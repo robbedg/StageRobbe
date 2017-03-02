@@ -39,7 +39,7 @@ class Items extends CI_Controller
     {
         //get items
         $query = $this->item_model->get_item_by_location($id);
-        $location = $this->location_model->get_location($id)['name'];
+        $location = $this->location_model->get_location($id)['data']['name'];
 
         //set title
         $data['title'] = $location;

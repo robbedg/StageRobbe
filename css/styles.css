@@ -90,6 +90,30 @@
  **/
 
  /** TABLE **/
+
+ #searchform {
+ 	display: inline-block;
+ 	width: calc(100% - 27.8rem);
+ 	float: left;
+ }
+
+ #sort {
+ 	display: inline-block;
+ 	width: 20rem;
+ 	float: left;
+ 	margin-left: 4px;
+ }
+
+ #amount {
+ 	display: inline-block;
+ 	width: 7rem;
+ 	float: right;
+ }
+
+ #listingpage {
+ 	margin-top: 2rem;
+ }
+
  #listingpage tbody > tr:hover {
  	cursor: pointer;
  }
@@ -104,6 +128,16 @@
  #previous:focus, #next:focus {
  	background-color: #fff;
  }
+
+ #pagination {
+ 	text-align: center;
+ }
+
+ ul.pagination {
+ 	display: inline-block;
+ 	margin-top: 0rem;
+ }
+
 
  /** ITEM VIEW **/
  #datacontainer {

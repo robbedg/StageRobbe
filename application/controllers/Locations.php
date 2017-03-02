@@ -26,9 +26,12 @@ class Locations extends CI_Controller
         $data['title'] = 'Locations';
 
         //set table head
-        $data['head'][] = 'ID';
-        $data['head'][] = 'Name';
-        $data['head'][] = 'Amount Of Items';
+        $data['head'][0]['name'] = 'ID';
+        $data['head'][0]['db'] = 'id';
+        $data['head'][1]['name'] = 'Name';
+        $data['head'][1]['db'] = 'name';
+        $data['head'][2]['name'] = 'Amount Of Items';
+        $data['head'][2]['db'] = 'item_count';
 
         //set scripts
         $data['scripts'][] = base_url('js/Tables.js');
@@ -65,7 +68,7 @@ class Locations extends CI_Controller
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
 
-        $queries = $this->location_model->get_location(false, $input['limit'], $input['offset'], false, $input['search']);
+        $queries = $this->location_model->get_location(false, $input['limit'], $input['offset'], $input['sorton'], $input['search']);
 
         $items = array();
 

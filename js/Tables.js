@@ -3,11 +3,13 @@ $(document).ready(function(){
     //search length
     var $minlength = 1;
 
-    //data
+    //data with starting values
     var $data = new Object();
     $data.search = null;
-    $data.limit = 10;
+    $data.limit = 20;
     $data.offset = 0;
+    //use db names
+    $data.sorton = {'column' : 'id', 'order' : 'asc'};
 
     //current page
     var $page = 1;
@@ -22,7 +24,7 @@ $(document).ready(function(){
       //total pages
       $totalpages = Math.floor($resultcount / $data.limit);
       //maybe extra page
-      if (($resultcount % $data.limit) !== 0) $totalpages++;
+      if ((($resultcount % $data.limit) !== 0) && ($resultcount !== 0)) $totalpages++;
     }
 
     //make rows clickable
@@ -43,14 +45,15 @@ $(document).ready(function(){
 
       //add
       for (var $i = 1; $i < $totalpages; $i++) {
+
         $("#page_" + $i)
           .after($('<li class id="page_' + ($i + 1) + '"/>').attr('added', 'added').append($('<a class="clickable-page" href=# />').append($i + 1)));
       }
 
       $(".clickable-page").each(function($index, $el) {
-        
+
         //set active
-        if ($($el).text().match($page)) {
+        if (parseInt($($el).text()) === $page) {
           $($el).parent().addClass('active');
           //set non-active
         } else {
@@ -122,6 +125,10 @@ $(document).ready(function(){
     //search
     $("#search").keyup(function($event) {
       if ($("#search").val().length >= $minlength) {
+        //reset pages
+        $page = 1;
+        $data.offset = 0;
+
         $data.search = $(this).val();
         callDB();
       } else {
@@ -148,5 +155,30 @@ $(document).ready(function(){
         callDB();
       }
     });
+
+    /**
+     * SORTING
+     **/
+     $("#sortinput").change(function($event) {
+       var $selected = $("#sortinput option:selected");
+       $data.sorton = {'column' : $selected.val(), 'order' : $selected.attr('order')};
+       $data.offset = 0;
+       $page = 1;
+
+       callDB();
+     });
+
+     /**
+      * LIMIT
+      **/
+      $("#amountselect").change(function(event) {
+        if (parseInt($(this).val()) > 0) {
+          $data.limit = parseInt($(this).val());
+          $data.offset = 0;
+          $page = 1;
+
+          callDB();
+        }
+      });
 
 });
