@@ -44,25 +44,40 @@ $(document).ready(function(){
       //add
       for (var $i = 1; $i < $totalpages; $i++) {
         $("#page_" + $i)
-          .after($('<li id="page_' + ($i + 1) + '"/>').attr('added', 'added').append($('<a class="clickable-page" href=# />').append($i + 1)));
+          .after($('<li class id="page_' + ($i + 1) + '"/>').attr('added', 'added').append($('<a class="clickable-page" href=# />').append($i + 1)));
       }
 
+      $(".clickable-page").each(function($index, $el) {
+        
+        //set active
+        if ($($el).text().match($page)) {
+          $($el).parent().addClass('active');
+          //set non-active
+        } else {
+          $($el).parent().removeClass('active');
+        }
+      });
+    }
+
+    //attatch events to pagingbuttons
+    function pagingbuttons() {
       //click on page number.
       $(".clickable-page").click(function($event) {
         $event.preventDefault();
         var $clicked = $(this);
 
-        //non active
-        $(".clickable-page").each(function($index, $el) {
-          $($el).parent().removeClass('active');
-        });
-
-        //active
-        $clicked.parent().addClass('active');
-
+        //get old values
+        var $oldoffset = $data.offset;
+        var $oldlimit = $data.limit;
         //new items
         $data.offset = (parseInt($clicked.text()) - 1) * $data.limit;
-        callDB();
+        //set page
+        $page = parseInt($clicked.text());
+
+        //call DB if offset or limit is different
+        if (($oldoffset !== $data.offset) || ($oldlimit !== $data.limit)) {
+          callDB();
+        }
       });
     }
 
@@ -96,6 +111,7 @@ $(document).ready(function(){
           clickablerow();
           calculatepages($response.count);
           loadpager();
+          pagingbuttons();
         });
       })
       .fail(function() {
@@ -132,6 +148,5 @@ $(document).ready(function(){
         callDB();
       }
     });
-
 
 });

@@ -101,6 +101,10 @@
 	margin-top: -4.8rem;
  }
 
+ #previous:focus, #next:focus {
+ 	background-color: #fff;
+ }
+
  /** ITEM VIEW **/
  #datacontainer {
 	position: relative;
