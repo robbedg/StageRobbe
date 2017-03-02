@@ -11,6 +11,11 @@ $(document).ready(function(){
     //use db names
     $data.sorton = {'column' : 'id', 'order' : 'asc'};
 
+    //check for user preferences
+    checkLocalStorage();
+    //and set the values on the page
+    setValues();
+
     //current page
     var $page = 1;
     //total amount of pages
@@ -18,6 +23,35 @@ $(document).ready(function(){
 
     //call db first
     callDB();
+
+    //retrieve localStorage
+    function checkLocalStorage() {
+      var $pref = localStorage.getItem('locations');
+      if ($pref !== null) {
+        var $prefdata = JSON.parse($pref);
+        if ($prefdata.limit !== null) $data.limit = $prefdata.limit;
+        if ($prefdata.sorton !== null) $data.sorton = $prefdata.sorton;
+      }
+    }
+
+    //set standard values
+    function setValues() {
+      //set limit
+      $("#amountselect").val($data.limit);
+      //set sort
+      $("#sortinput option").each(function($index, $el) {
+        if (($($el).val().match($data.sorton.column)) && ($($el).attr('order').match($data.sorton.order))) {
+          $($el).attr('selected', 'selected');
+        } else {
+          $($el).removeAttr('selected');
+        }
+      });
+    }
+
+    //save preferences locally
+    function setLocalStorage() {
+      localStorage.setItem('locations', JSON.stringify({'limit' : $data.limit, 'sorton' : $data.sorton}));
+    }
 
     //calculatepages
     function calculatepages($resultcount) {
@@ -164,7 +198,9 @@ $(document).ready(function(){
        $data.sorton = {'column' : $selected.val(), 'order' : $selected.attr('order')};
        $data.offset = 0;
        $page = 1;
-
+       //save preferences
+       setLocalStorage();
+       //call to DB
        callDB();
      });
 
@@ -176,7 +212,9 @@ $(document).ready(function(){
           $data.limit = parseInt($(this).val());
           $data.offset = 0;
           $page = 1;
-
+          //save preferences
+          setLocalStorage();
+          //call to DB
           callDB();
         }
       });
