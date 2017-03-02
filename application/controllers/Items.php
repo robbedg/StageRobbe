@@ -16,57 +16,52 @@ class Items extends CI_Controller
         $this->load->model('usernote_model');
         $this->load->helper('url_helper');
         $this->load->helper('authorizationcheck_helper');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
 
         authorization_check($this);
 
-        $this->output->enable_profiler(TRUE);
+        //$this->output->enable_profiler(TRUE);
     }
 
-    //all objects in defined category
-    public function detail($locationid, $categoryid)
-    {
-        //get items
-        $query = $data['items'] = $this->item_model->get_item_by_category($locationid, $categoryid);
+    //show items in category & location
+    public function index($locationid = NULL, $categoryid = NULL) {
+        //show 404 without parameters
+        if ((empty($locationid)) || (empty($categoryid))) {
+            show_404();
+        }
+
         $location = $this->location_model->get_location($locationid);
         $category = $this->categories_model->get_category($categoryid);
 
         //set title
-        $data['title'] = $category['name'];
+        $data['title'] = $category['data']['name'].' collection';
 
         //set scripts
-        $data['scripts'][] = base_url('js/searchscript.js');
+        $data['scripts'][] = base_url('js/ItemsTable.js');
 
         //set breadcrum
         $home['href'] = site_url('home');
         $home['name'] = 'Home';
         $data['breadcrum']['items'][] = $home;
 
-        $bread_location['href'] = site_url('items/location/'.$locationid);
-        $bread_location['name'] = $location['name'];
+        $bread_location['href'] = site_url('categories/'.$locationid);
+        $bread_location['name'] = $location['data']['name'];
         $data['breadcrum']['items'][] = $bread_location;
 
-        $data['breadcrum']['active'] = $category['name'].' collection';
+        $data['breadcrum']['active'] = $category['data']['name'].' collection';
 
         //set header
-        $data['head'][] = 'ID';
-        $data['head'][] = 'Created on';
-        $data['head'][] = 'Category';
-        $data['head'][] = 'Location';
+        $data['head'][0]['name'] = 'Item ID';
+        $data['head'][0]['db'] = 'id';
+        $data['head'][1]['name'] = 'Created On';
+        $data['head'][1]['db'] = 'created_on';
 
-        //set rows
-        foreach ($query as $item) {
-            //row link
-            $row['href'] = site_url('items/view/'.$item['item_id']);
-            //set searchable string
-            $row['search'] = $item['item_id'];
-            //set data
-            $row['ID'] = $item['item_id'];
-            $row['Created on'] = (new DateTime($item['created_on']))->format('d/m/Y H:i');
-            $row['Category'] = $item['category'];
-            $row['Location'] = $item['location'];
-            //add row to rows
-            $data['rows'][] = $row;
-        }
+        //set hiddenfield
+        $data['hiddenfields'][0]['id'] = 'location_id';
+        $data['hiddenfields'][0]['value'] = $locationid;
+        $data['hiddenfields'][1]['id'] = 'category_id';
+        $data['hiddenfields'][1]['value'] = $categoryid;
 
         $this->load->view('templates/header', $data);
         $this->load->view('pages/index', $data);
@@ -76,9 +71,10 @@ class Items extends CI_Controller
     //Detailed view of one item
     public function view($id = NULL)
     {
-        //helper & library for form
-        $this->load->helper('form');
-        $this->load->library('form_validation');
+        //when no id specified
+        if (empty($id)) {
+            show_404();
+        }
 
         //load scripts
         $data['scripts'][] = base_url('js/CountScript.js');
@@ -87,7 +83,7 @@ class Items extends CI_Controller
         $data['item'] = $this->item_model->get_item($id);
         $data['usernotes'] = $this->usernote_model->get_usernotes_by_item($id);
 
-        $data['title'] = $data['item']['category'].': '.$data['item']['id'];
+        $data['title'] = $data['item']['data']['category'].': '.$data['item']['data']['id'];
 
         //validation rules
         $this->form_validation->set_rules('item_id', 'Item ID', 'required|trim|htmlspecialchars|encode_php_tags');
@@ -152,6 +148,32 @@ class Items extends CI_Controller
             $id  = $this->item_model->set_item();
             redirect('items/create/'.$id);
         }
+    }
+
+    //handle requests for items
+    public function get()
+    {
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        $input = json_decode($stream_clean, true);
+
+        $queries = $this->item_model->get_item(false, $input['location_id'], $input['category_id'], $input['limit'], $input['offset'], $input['sorton'], $input['search']);
+
+        $items = array();
+
+        foreach ($queries['data'] as $query) {
+            $output = array(
+                'Item ID' => $query['id'],
+                'Created On' => $query['created_on']
+            );
+            $items[] = $output;
+        }
+
+        $data = array(
+            'data' => $items,
+            'count' => $queries['count']
+        );
+        header('application/json');
+        echo json_encode($data);
     }
 
     //deleting item

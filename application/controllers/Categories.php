@@ -17,6 +17,8 @@ class Categories extends CI_Controller
         $this->load->helper('authorizationcheck_helper');
 
         authorization_check($this);
+
+        //$this->output->enable_profiler(TRUE);
     }
 
     public function index($id = NULL) {

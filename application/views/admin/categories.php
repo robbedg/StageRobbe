@@ -9,7 +9,7 @@
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($categories as $category): ?>
+            <?php foreach ($categories['data'] as $category): ?>
                 <?php $id = uniqid(); ?>
                 <tr>
                     <td><?=$category['id']; ?></td>

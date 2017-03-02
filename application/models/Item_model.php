@@ -10,48 +10,89 @@ class Item_model extends CI_Model
     public function __construct()
     {
         $this->load->database();
+        $this->load->helper('url');
     }
 
     //get item(s)
-    public function get_item($id = FALSE)
+    public function get_item($id = FALSE, $location_id = FALSE, $category_id = FALSE, $limit = FALSE, $offset = FALSE, $sorton = FALSE, $search = FALSE)
     {
-        //query
-        $this->db->from('items');
-        $this->db->join('categories', 'items.category_id = categories.id', 'left outer');
-        $this->db->join('locations', 'items.location_id = locations.id', 'left outer');
+        //base query
+        $this->db->select('items.id AS id, items.created_on AS created_on');
         $this->db->where('items.visible', 1);
-        $this->db->order_by('categories.name', 'asc');
 
-        if ($id === FALSE){
-            $this->db->select('items.id AS id, categories.name AS category, categories.id AS category_id, locations.name AS location, locations.id AS location_id, items.created_on AS created_on');
-            $items = $this->db->get();
-
-            return $items->result_array();
+        //if location is given
+        if ($location_id !== FALSE) {
+            $this->db->join('locations', 'locations.id = items.location_id', 'left outer');
+            $this->db->where('locations.id', $location_id);
         }
 
-        $this->db->select('items.id AS id, categories.name AS category, categories.id AS category_id, locations.name AS location, locations.id AS location_id, items.attributes AS attributes, items.created_on AS created_on');
-        $this->db->where('items.id', $id);
-        $item = $this->db->get();
-        $item = $item->row_array();
-
-        $item['attributes'] = json_decode($item['attributes'], true);
-
-        //Get picture
-        $picture = glob('./uploads/'.$id.'*');
-        if (!empty($picture)) {
-            $picture = '.'.$picture[0];
-            $item['image'] = $picture;
-        }
-        else {
-            $item['image'] = NULL;
+        //if category is given
+        if ($category_id !== FALSE) {
+            $this->db->join('categories', 'categories.id = items.category_id', 'left outer');
+            $this->db->where('categories.id', $category_id);
         }
 
-        return $item;
+        //return 1 if ID is set
+        if ($id !== FALSE) {
+            if ($location_id === FALSE) $this->db->join('locations', 'locations.id = items.location_id', 'left outer');
+            if ($category_id === FALSE) $this->db->join('categories', 'categories.id = items.category_id', 'left outer');
+            $this->db->select('items.attributes AS attributes');
+            $this->db->select('locations.name AS location, locations.id AS location_id');
+            $this->db->select('categories.name AS category, categories.id AS category_id');
+            $this->db->where('items.id', $id);
+        }
+
+        //if sort is included
+        if ($sorton !== FALSE) {
+            $this->db->order_by($sorton['column'], $sorton['order']);
+        }
+
+        //if user wants search
+        if (($search !== FALSE) && ($id === FALSE)) {
+            $this->db->or_like('items.id', $search);
+            $this->db->or_like('items.created_on', $search);
+            $this->db->or_like('items.attributes', $search);
+        }
+
+        $count = $this->db->count_all_results('items', false);
+
+        //set limit if set
+        if ($limit !== FALSE) {
+            //if offset is included
+            if($offset !== FALSE) {
+                $this->db->limit($limit, $offset);
+            } else {
+                $this->db->limit($limit);
+            }
+        }
+
+        //return result
+        if ($id !== FALSE) {
+            $data['data'] = $this->db->get()->row_array();
+            $data['count'] = $count;
+
+            $data['data']['attributes'] = json_decode($data['data']['attributes'], true);
+            //Get picture
+            $picture = glob('./uploads/'.$id.'*');
+            if (!empty($picture)) {
+                $picture = '.'.$picture[0];
+                $data['data']['image'] = $picture;
+            }
+            else {
+                $data['data']['image'] = NULL;
+            }
+
+            return $data;
+        }
+
+        $data['data'] = $this->db->get()->result_array();
+        $data['count'] = $count;
+
+        return $data;
     }
 
     //Update or create new item
     public function set_item(){
-        $this->load->helper('url');
 
         $data = $this->input->post();
 

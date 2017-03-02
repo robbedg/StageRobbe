@@ -71,14 +71,14 @@ $route['locations/update/(:any)'] = 'locations/update/$1';
 $route['locations/delete/(:any)'] = 'locations/delete/$1';
 
 //item routes
-$route['items'] = 'items';
+$route['items/get'] = 'items/get';
 $route['items/restore/(:any)'] = 'items/restore/$1';
 $route['items/delete/(:any)'] = 'items/delete/$1';
 $route['items/create'] = 'items/create';
 $route['items/create/(:any)'] = 'items/create/$1';
 $route['items/remove/(:any)'] = 'items/remove/$1';
-$route['items/detail/(:num)/(:num)'] = 'items/detail/$1/$2';
-$route['items/(:any)'] = 'items/view/$1';
+$route['items/view(:any)'] = 'items/view/$1';
+$route['items/(:num)/(:num)'] = 'items/index/$1/$2';
 
 //category routes
 $route['categories/get'] = 'categories/get';

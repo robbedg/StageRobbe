@@ -37,7 +37,7 @@ class Categories_model extends CI_Model
 
         //if user wants search
         if (($search !== FALSE) && ($id === FALSE)) {
-            $this->db->like('categories.id', $search);
+            $this->db->or_like('categories.id', $search);
             $this->db->or_like('categories.name', $search);
         }
 
@@ -64,25 +64,6 @@ class Categories_model extends CI_Model
         $data['count'] = $count;
 
         return $data;
-
-
-
-
-
-
-
-
-        /** BETA */
-        if ($id === FALSE){
-
-            $category = $this->db->get('categories');
-
-            return $category->result_array();
-        }
-
-        $item = $this->db->get_where('categories', array('categories.id'=>$id));
-
-        return $item->row_array();
     }
 
     public function set_category($id = FALSE)

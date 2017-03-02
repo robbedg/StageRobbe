@@ -1,20 +1,20 @@
 <!-- breadcrum -->
 <ul class="breadcrumb">
-    <li><a href="<?php echo site_url('home'); ?>">Home</a></li>
-    <li><a href="<?php echo site_url('/items/location/'.$item['location_id']); ?>"><?php echo $item['location']; ?></a></li>
-    <li><a href="<?php echo site_url('/items/detail/'.$item['location_id'].'/'.$item['category_id']); ?>"><?php echo $item['category'].' collection'; ?></a></li>
+    <li><a href="<?=site_url('home'); ?>">Home</a></li>
+    <li><a href="<?=site_url('/locations/'.$item['data']['location_id']); ?>"><?=$item['data']['location']; ?></a></li>
+    <li><a href="<?=site_url('/categories/'.$item['data']['location_id'].'/'.$item['data']['category_id']); ?>"><?=$item['data']['category'].' collection'; ?></a></li>
     <li class="active"><?php echo $title; ?></li>
 </ul>
 
-<h2><?php echo $item['category']; ?></h2>
+<h2><?=$item['data']['category']; ?></h2>
 <div id="buttons">
-    <a href="<?php echo site_url('/items/create/'.$item['id']); ?>" class="btn btn-primary">Edit</a>
+    <a href="<?=site_url('/items/create/'.$item['data']['id']); ?>" class="btn btn-primary">Edit</a>
     <a id="buttonmodal" class="btn btn-danger">Delete</a>
 </div>
 <div id="datacontainer" class="clearfix">
-    <?php if (!empty($item['image'])): ?>
+    <?php if (!empty($item['data']['image'])): ?>
     <div id="image">
-        <img src="<?php echo site_url($item['image']); ?>" alt="item picture">
+        <img src="<?=site_url($item['data']['image']); ?>" alt="item picture">
     </div>
     <?php else: ?>
         <style> #data { width: 100%;  } </style>
@@ -30,24 +30,24 @@
             <tbody>
                 <tr>
                     <td>ID:</td>
-                    <td><?php echo $item['id']; ?></td>
+                    <td><?=$item['data']['id']; ?></td>
                 </tr>
                 <tr>
                     <td>Location:</td>
-                    <td><?php echo $item['location']; ?></td>
+                    <td><?=$item['data']['location']; ?></td>
                 </tr>
                 <tr>
                     <td>Category:</td>
-                    <td><?php echo $item['category']; ?></td>
+                    <td><?=$item['data']['category']; ?></td>
                 </tr>
                 <tr>
                     <td>Created on:</td>
-                    <td><?php echo (new DateTime($item['created_on']))->format('d/m/Y H:i'); ?></td>
+                    <td><?=(new DateTime($item['data']['created_on']))->format('d/m/Y H:i'); ?></td>
                 </tr>
-                <?php foreach (array_keys($item['attributes']) as $attributekey): ?>
+                <?php foreach (array_keys($item['data']['attributes']) as $attributekey): ?>
                 <tr>
-                    <td><?php echo $attributekey; ?>:</td>
-                    <td><?php echo $item['attributes'][$attributekey]; ?></td>
+                    <td><?=$attributekey; ?>:</td>
+                    <td><?=$item['data']['attributes'][$attributekey]; ?></td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -60,8 +60,8 @@
     <h3>Comments</h3>
 
     <!-- new note -->
-    <?php echo form_open('items/view/'.$item['id']); ?>
-    <input type="hidden" name="item_id" value="<?php echo $item['id']; ?>">
+    <?=form_open('items/view/'.$item['data']['id']); ?>
+    <input type="hidden" name="item_id" value="<?=$item['data']['id']; ?>">
     <div class="form-group">
         <div>
             <textarea class="form-control" id="textArea" name="comment" placeholder="Write comment..."></textarea>
@@ -74,25 +74,25 @@
         </div>
     </div>
 
-    <?php echo form_close(); ?>
+    <?=form_close(); ?>
 
     <!-- existing usernotes -->
     <?php if (!empty($usernotes)): ?>
     <?php foreach ($usernotes as $usernote): ?>
-    <div id="<?php echo uniqid(); ?>" class="note">
-        <strong class="username"><?php echo strtoupper($usernote['firstname']).' '.strtoupper($usernote['lastname']); ?></strong>
+    <div id="<?=uniqid(); ?>" class="note">
+        <strong class="username"><?=strtoupper($usernote['firstname']).' '.strtoupper($usernote['lastname']); ?></strong>
 
         <!-- only user can delete comment -->
         <?php if ($_SESSION['id'] === $usernote['user_id']): ?>
         <span class="links">
-            <a href="<?= site_url('usernotes/remove/'.$item['id'].'/'.$usernote['id']); ?>">Delete</a>
+            <a href="<?=site_url('usernotes/remove/'.$item['data']['id'].'/'.$usernote['id']); ?>">Delete</a>
         </span>
         <?php endif; ?>
 
         <p>
-            <?php echo $usernote['text']; ?>
+            <?=$usernote['text']; ?>
         </p>
-        <span class="date"><?php echo (new DateTime($usernote['created_on']))->format('d/m/Y H:i'); ?></span>
+        <span class="date"><?=(new DateTime($usernote['created_on']))->format('d/m/Y H:i'); ?></span>
     </div>
     <?php endforeach; ?>
     <?php endif; ?>
@@ -114,7 +114,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <a href="<?php echo site_url('/items/remove/'.$item['id']); ?>" class="btn btn-danger">Delete</a>
+                <a href="<?=site_url('/items/remove/'.$item['data']['id']); ?>" class="btn btn-danger">Delete</a>
             </div>
         </div>
     </div>
