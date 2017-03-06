@@ -90,4 +90,4 @@ $route['usernotes/remove/(:num)'] = 'usernotes/remove/$1';
 
 //default routes
 $route['default_controller'] = 'locations';
-$route['(:num)'] = 'locations';
+$route['(:any)'] = 'locations';
