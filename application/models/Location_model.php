@@ -30,8 +30,10 @@ class Location_model extends CI_Model
 
         //if user wants search
         if (($search !== FALSE) && ($id === FALSE)) {
+            $this->db->group_start();
             $this->db->like('locations.id', $search);
             $this->db->or_like('locations.name', $search);
+            $this->db->group_end();
         }
 
         $count = $this->db->count_all_results('locations', false);

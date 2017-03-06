@@ -49,9 +49,11 @@ class Item_model extends CI_Model
 
         //if user wants search
         if (($search !== FALSE) && ($id === FALSE)) {
-            $this->db->or_like('items.id', $search);
+            $this->db->group_start();
+            $this->db->like('items.id', $search);
             $this->db->or_like('items.created_on', $search);
             $this->db->or_like('items.attributes', $search);
+            $this->db->group_end();
         }
 
         $count = $this->db->count_all_results('items', false);

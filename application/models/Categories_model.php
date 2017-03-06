@@ -37,8 +37,10 @@ class Categories_model extends CI_Model
 
         //if user wants search
         if (($search !== FALSE) && ($id === FALSE)) {
-            $this->db->or_like('categories.id', $search);
+            $this->db->group_start();
+            $this->db->like('categories.id', $search);
             $this->db->or_like('categories.name', $search);
+            $this->db->group_end();
         }
 
         $count = $this->db->count_all_results('categories', false);
