@@ -50,46 +50,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 //login
-$route['login'] = 'login';
+$route['login'] = 'login/index';
 
 //admin
-$route['admin'] = 'admin';
+$route['admin'] = 'admin/index';
 
 //upload
-$route['upload'] = 'upload';
-$route['upload/do_upload'] = 'upload/do_upload';
-$route['upload/do_upload/(:any)'] = 'upload/do_upload/$1';
+$route['upload/do_upload/(:num)'] = 'upload/do_upload/$1';
 
 //search routes
 $route['search'] = 'search';
 
 //location routes
-$route['locations'] = 'locations';
 $route['locations/create'] = 'locations/create';
 $route['locations/get'] = 'locations/get';
-$route['locations/update/(:any)'] = 'locations/update/$1';
-$route['locations/delete/(:any)'] = 'locations/delete/$1';
+$route['locations/update/(:num)'] = 'locations/update/$1';
+$route['locations/delete/(:num)'] = 'locations/delete/$1';
+$route['locations'] = 'locations/index';
 
 //item routes
 $route['items/get'] = 'items/get';
-$route['items/restore/(:any)'] = 'items/restore/$1';
-$route['items/delete/(:any)'] = 'items/delete/$1';
+$route['items/restore/(:num)'] = 'items/restore/$1';
+$route['items/delete/(:num)'] = 'items/delete/$1';
 $route['items/create'] = 'items/create';
-$route['items/create/(:any)'] = 'items/create/$1';
-$route['items/remove/(:any)'] = 'items/remove/$1';
-$route['items/view(:any)'] = 'items/view/$1';
+$route['items/create/(:num)'] = 'items/create/$1';
+$route['items/remove/(:num)'] = 'items/remove/$1';
+$route['items/view(:num)'] = 'items/view/$1';
 $route['items/(:num)/(:num)'] = 'items/index/$1/$2';
 
 //category routes
 $route['categories/get'] = 'categories/get';
 $route['categories/create'] = 'categories/create';
-$route['categories/update/(:any)'] = 'categories/update/$1';
-$route['categories/delete/(:any)'] = 'categories/delete/$1';
-$route['categories/(:any)'] = 'categories/index/$1';
+$route['categories/update/(:num)'] = 'categories/update/$1';
+$route['categories/delete/(:num)'] = 'categories/delete/$1';
+$route['categories/(:num)'] = 'categories/index/$1';
 
 //usernote routes
-$route['usernotes/remove/(:any)'] = 'usernotes/remove/$1';
+$route['usernotes/remove/(:num)'] = 'usernotes/remove/$1';
 
 //default routes
 $route['default_controller'] = 'locations';
-$route['(:any)'] = 'locations';
+$route['(:num)'] = 'locations';
