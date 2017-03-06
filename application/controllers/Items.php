@@ -163,7 +163,7 @@ class Items extends CI_Controller
         foreach ($queries['data'] as $query) {
             $output = array(
                 'Item ID' => $query['id'],
-                'Created On' => $query['created_on']
+                'Created On' => (new DateTime($query['created_on']))->format('d/m/Y h:i')
             );
             $items[] = $output;
         }
