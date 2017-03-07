@@ -43,6 +43,11 @@ class Locations extends CI_Controller
 
     //Create new locations
     public function create() {
+        //check permissions
+        if (!authorization_check($this, 2)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
         //helper & library for form
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -95,6 +100,11 @@ class Locations extends CI_Controller
     //update a location
     public function update($id = NULL)
     {
+        //check permissions
+        if (!authorization_check($this, 3)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
         if (empty($id)) {
             show_404();
         } else {
@@ -105,6 +115,11 @@ class Locations extends CI_Controller
     //remove a location
     public function delete($id = NULL)
     {
+        //check permissions
+        if (!authorization_check($this, 3)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
         //if empty show 404
         if (empty($id)) {
             show_404();

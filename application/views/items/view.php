@@ -7,10 +7,16 @@
 </ul>
 
 <h2><?=$item['data']['category']; ?></h2>
+
+<!-- buttons -->
+<?php if (authorization_check($this, 2)): ?>
 <div id="buttons">
     <a href="<?=site_url('/items/create/'.$item['data']['id']); ?>" class="btn btn-primary">Edit</a>
     <a id="buttonmodal" class="btn btn-danger">Delete</a>
 </div>
+<?php endif; ?>
+
+<!-- data -->
 <div id="datacontainer" class="clearfix">
     <?php if (!empty($item['data']['image'])): ?>
     <div id="image">
@@ -83,7 +89,7 @@
         <strong class="username"><?=strtoupper($usernote['firstname']).' '.strtoupper($usernote['lastname']); ?></strong>
 
         <!-- only user can delete comment -->
-        <?php if ($_SESSION['id'] === $usernote['user_id']): ?>
+        <?php if (($_SESSION['id'] === $usernote['user_id']) || authorization_check($this, 3)): ?>
         <span class="links">
             <a href="<?=site_url('usernotes/remove/'.$item['data']['id'].'/'.$usernote['id']); ?>">Delete</a>
         </span>

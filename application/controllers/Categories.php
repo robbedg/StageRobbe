@@ -61,6 +61,11 @@ class Categories extends CI_Controller
 
     //Create new Itemtype
     public function create() {
+        //check permissions
+        if (!authorization_check($this, 2)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
         //helper & library for form
         $this->load->helper('form');
         $this->load->library('form_validation');

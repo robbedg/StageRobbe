@@ -105,6 +105,11 @@ class Items extends CI_Controller
 
     //creating/updating item
     public function create($id = NULL) {
+
+        if (!authorization_check($this, 2)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
         //helper & library for form
         $this->load->helper('form');
         $this->load->library('form_validation');

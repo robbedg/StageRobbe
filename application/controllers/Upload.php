@@ -14,7 +14,9 @@ class Upload extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->helper('authorizationcheck_helper');
 
-        authorization_check($this);
+        if(!authorization_check($this, 2)) {
+            show_error('You are not authorize t perform this action.');
+        }
     }
 
     public function do_upload($id) {

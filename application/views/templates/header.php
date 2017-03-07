@@ -27,6 +27,8 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <!-- Left -->
             <ul class="nav navbar-nav navbar-left">
+            <!-- create object link -->
+            <?php if (authorization_check($this, 2)): ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">New <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -35,6 +37,8 @@
                         <li><a href="<?php echo site_url('categories/create'); ?>">New Category</a></li>
                     </ul>
                 </li>
+                <?php endif; ?>
+                <!-- admin panel link -->
                 <?php if (authorization_check($this, 3)): ?>
                 <li>
                     <a href="<?=site_url('admin'); ?>">Admin panel</a>

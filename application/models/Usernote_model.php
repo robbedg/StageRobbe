@@ -12,6 +12,7 @@ class Usernote_model extends CI_Model
     {
         $this->load->database();
         $this->load->helper('url');
+        $this->load->helper('authorizationcheck_helper');
         $this->load->library('session');
     }
 
@@ -45,7 +46,7 @@ class Usernote_model extends CI_Model
         $query = $this->db->get('usernotes');
         $userid = (string)$query->row_array()['user_id'];
 
-        if ($userid === $this->session->userdata('id')) {
+        if (($userid === $this->session->userdata('id')) || authorization_check($this, 3)) {
             $this->db->flush_cache();
             $this->db->where('id', $id);
             return $this->db->delete('usernotes');
