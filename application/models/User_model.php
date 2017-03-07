@@ -32,20 +32,59 @@ class User_model extends CI_Model
     }
 
     //get_user(s)
-    public function get_user($id = FALSE)
+    public function get_user($data = [])
     {
         $this->db->select('users.id AS id, firstname, lastname, role_id, roles.name AS role');
-        $this->db->from('users');
         $this->db->join('roles', 'roles.id = users.role_id', 'inner');
 
-        if (empty($id)) {
-            $this->db->order_by('users.lastname', 'ASC');
-            $query = $this->db->get();
-            return $query->result_array();
+        //if id is given
+        if (!empty($data['id'])) {
+            $this->db->where('users.id', $data['id']);
         }
-        $this->db->where('id', $id);
-        $query = $this->db->get();
-        return $query->row_array();
+
+        //if role is given
+        if (!empty($data['role_id'])) {
+            $this->db->where('role_id', $data['role_id']);
+        }
+
+        //if sort is included
+        if (!empty($data['sort_on'])) {
+            $this->db->order_by($data['sort_on']['column'], $data['sort_on']['order']);
+        }
+
+        //if search is given
+        if (!empty($data['search'])) {
+            $this->db->group_start();
+            $this->db->like('users.uid', $data['search']);
+            $this->db->or_like('users.firstname', $data['search']);
+            $this->db->or_like('users.lastname', $data['search']);
+            $this->db->or_like('roles.name', $data['search']);
+            $this->db->group_end();
+        }
+
+        //count results
+        $count = $this->db->count_all_results('users', false);
+
+        //set limit if set
+        if (!empty($data['limit'])) {
+            //if offset is included
+            if($data['offset'] !== FALSE) {
+                $this->db->limit($data['limit'], $data['offset']);
+            } else {
+                $this->db->limit($data['limit']);
+            }
+        }
+
+        //return results
+        $results = [];
+        $results['count'] = $count;
+        if (!empty($data['id'])) {
+            $results['data'] = $this->db->get()->row_array();
+        } else {
+            $results['data'] = $this->db->get()->result_array();
+        }
+
+        return $results;
     }
 
     //update user

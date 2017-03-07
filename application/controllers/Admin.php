@@ -37,14 +37,13 @@ class Admin extends CI_Controller
         //set scripts
         $data['scripts'][] = 'https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js';
         $data['scripts'][] = base_url('js/Admin-Users.js');
+        $data['scripts'][] = base_url('js/AdminUsers.js');
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
 
         //Data from DB.
-        //give users
-        $data['users'] = $this->user_model->get_user();
         //give roles
-        $data['roles'] = $this->role_model->get_role();
+        $data['roles'] = $this->role_model->get_role()['data'];
         //give delted items
         $data['deleted_items'] = $this->item_model->get_deleted_items();
         //give locations

@@ -88,6 +88,12 @@ $route['categories/(:num)'] = 'categories/index/$1';
 //usernote routes
 $route['usernotes/remove/(:num)'] = 'usernotes/remove/$1';
 
+//user routes
+$route['users/get'] = 'users/get';
+
+//role routes
+$route['roles/get'] = 'roles/get';
+
 //default routes
 $route['default_controller'] = 'locations';
 $route['(:any)'] = 'locations';
