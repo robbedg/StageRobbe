@@ -114,7 +114,7 @@
  	margin-top: 2rem;
  }
 
- #listingpage tbody > tr:hover {
+ .clickable-row:hover {
  	cursor: pointer;
  }
 

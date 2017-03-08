@@ -74,8 +74,8 @@ class Item_model extends CI_Model
                 $this->db->or_like('locations.name', $data['search']);
             }
             if ($category) {
-                $this->db->or_like('category.id', $data['search']);
-                $this->db->or_like('category.name', $data['search']);
+                $this->db->or_like('categories.id', $data['search']);
+                $this->db->or_like('categories.name', $data['search']);
             }
             $this->db->group_end();
         }
@@ -144,7 +144,7 @@ class Item_model extends CI_Model
         return $this->db->insert_id();
     }
 
-    //remove item
+    //remove item (visibility = 0)
     public function remove_item($id = FALSE) {
         //delete old image
         $files = glob('./uploads/'.$id.'*');
@@ -155,19 +155,6 @@ class Item_model extends CI_Model
         $this->db->set('visible', 0);
         $this->db->where('id', $id);
         $this->db->update('items');
-    }
-
-    //return all invisible items.
-    public function get_deleted_items() {
-        $this->db->select('items.id AS id, locations.name AS location, categories.name AS category, items.created_on AS created_on');
-        $this->db->from('items');
-        $this->db->join('locations', 'locations.id = items.location_id', 'right outer');
-        $this->db->join('categories', 'categories.id = items.category_id', 'right outer');
-        $this->db->where('items.visible', 0);
-
-        $data = $this->db->get();
-
-        return $data->result_array();
     }
 
     //restore invisible item

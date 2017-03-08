@@ -9,7 +9,9 @@
 <?php endif; ?>
 
 <!-- Title -->
+<?php if (!empty($title)): ?>
 <h2><?=$title; ?></h2>
+<?php endif; ?>
 
 <!-- hidden fields -->
 <?php if (!empty($hiddenfields)): ?>
@@ -17,8 +19,6 @@
     <input type="hidden" id="<?=$field['id']; ?>" value="<?=$field['value']; ?>" />
 <?php endforeach; ?>
 <?php endif; ?>
-
-<?php //if (!empty($rows)): ?>
 
 <!-- searchbar -->
 <div id="searchform">
@@ -65,12 +65,3 @@
         <li><a class="basic" href="#" id="next">&raquo;</a></li>
     </ul>
 </div>
-
-<?php //else: ?>
-
-<!-- if no data available show message -->
-<div class="alert alert-danger">
-    <p>No items available.</p>
-</div>
-
-<?php //endif; ?>

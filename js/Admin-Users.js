@@ -128,52 +128,52 @@ $(document).ready(function($) {
 //     //set lastname
 //     $("#lastname input").removeAttr('disabled');
 //     $("#lastname input").val($user.parent().attr('data-lastname'));
-// 
+//
 //     //activate button
 //     $("#submit button").removeAttr('disabled');
 //   });
 
-/**
- * DELETED ITEMS
- **/
-//DataTable
- $('#table-deleted').DataTable({
-   'paging': false,
-   'searching': false,
-   'info': false,
-   'columnDefs' : [
-     {
-       'targets' : [ 4 ],
-       'orderable' : false
-     }
-   ]
- });
-
-//restore & delete
-  $("#table-deleted-items table tbody tr td a").click(function($event) {
-    $event.preventDefault();
-
-    var $item = $(this);
-    //restore
-    if ($item.attr('data-function').match('restore')) {
-      $.ajax({
-        url: '/index.php/items/restore/' + $item.attr('data-id'),
-        type: 'GET'
-      })
-      .done(function() {
-        $item.parent().parent().remove();
-      });
-    //Delete
-    } else if ($item.attr('data-function').match('delete')) {
-      $.ajax({
-        url: '/index.php/items/delete/' + $item.attr('data-id'),
-        type: 'GET'
-      })
-      .done(function() {
-        $item.parent().parent().remove();
-      });
-    }
-  });
+// /**
+//  * DELETED ITEMS
+//  **/
+// //DataTable
+//  $('#table-deleted').DataTable({
+//    'paging': false,
+//    'searching': false,
+//    'info': false,
+//    'columnDefs' : [
+//      {
+//        'targets' : [ 4 ],
+//        'orderable' : false
+//      }
+//    ]
+//  });
+//
+// //restore & delete
+//   $("#table-deleted-items table tbody tr td a").click(function($event) {
+//     $event.preventDefault();
+//
+//     var $item = $(this);
+//     //restore
+//     if ($item.attr('data-function').match('restore')) {
+//       $.ajax({
+//         url: '/index.php/items/restore/' + $item.attr('data-id'),
+//         type: 'GET'
+//       })
+//       .done(function() {
+//         $item.parent().parent().remove();
+//       });
+//     //Delete
+//     } else if ($item.attr('data-function').match('delete')) {
+//       $.ajax({
+//         url: '/index.php/items/delete/' + $item.attr('data-id'),
+//         type: 'GET'
+//       })
+//       .done(function() {
+//         $item.parent().parent().remove();
+//       });
+//     }
+//   });
 
 /**
  * LOCATIONS

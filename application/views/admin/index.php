@@ -7,7 +7,7 @@
 <?php endif; ?>
 
 <!-- title -->
-<h2><?php echo $title; ?></h2>
+<h2><?=$title; ?></h2>
 
 <!-- navs tabs-->
 <ul class="nav nav-tabs">
