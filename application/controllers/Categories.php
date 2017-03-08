@@ -27,7 +27,7 @@ class Categories extends CI_Controller
             show_404();
         }
 
-        $location = $this->location_model->get_location($id)['data']['name'];
+        $location = $this->location_model->get_location(array('id' => $id))['data']['name'];
 
         //set title
         $data['title'] = $location;
@@ -92,28 +92,12 @@ class Categories extends CI_Controller
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
 
-        $queries = $this->categories_model->get_category(false, $input['location_id'], $input['limit'], $input['offset'], $input['sorton'], $input['search']);
-
-        $items = array();
-
-        foreach ($queries['data'] as $query) {
-            $output = array(
-                'Category ID' => $query['id'],
-                'Category' => $query['name'],
-                'Amount Of Items' => $query['item_count']
-            );
-            $items[] = $output;
-        }
-
-        $data = array(
-            'data' => $items,
-            'count' => $queries['count']
-        );
+        $categories = $this->categories_model->get_category($input);
 
         //output
         $this->output
             ->set_content_type('application/json')
-            ->set_output(json_encode($data));
+            ->set_output(json_encode($categories));
     }
 
     //update a category

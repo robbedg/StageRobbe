@@ -13,8 +13,6 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('role_model');
-        $this->load->model('location_model');
-        $this->load->model('categories_model');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('authorizationcheck_helper');
@@ -114,13 +112,10 @@ class Admin extends CI_Controller
         //set scripts
         $data['scripts'][] = base_url('js/AdminLocations.js');
 
-        //give locations
-        $data['locations'] = $this->location_model->get_location();
-
         //active
         $data['active'] = 'locations';
 
-        /** Deleted Items **/
+        /** Locations **/
         $data['locations']['title'] = null;
         $data['locations']['head'][0]['name'] = 'Location ID';
         $data['locations']['head'][0]['db'] = 'id';
@@ -142,18 +137,22 @@ class Admin extends CI_Controller
         $data['title'] = 'Admin panel';
 
         //set styles
-        $data['styles'][] = 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css';
         $data['styles'][] = base_url('css/admin-panel.css');
 
         //set scripts
-        $data['scripts'][] = 'https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js';
-        $data['scripts'][] = base_url('js/Admin-Users.js');
-
-        //give locations
-        $data['categories'] = $this->categories_model->get_category();
+        $data['scripts'][] = base_url('js/AdminCategories.js');
 
         //active
         $data['active'] = 'categories';
+
+        /** Categories **/
+        $data['categories']['title'] = null;
+        $data['categories']['head'][0]['name'] = 'Location ID';
+        $data['categories']['head'][0]['db'] = 'id';
+        $data['categories']['head'][1]['name'] = 'Name';
+        $data['categories']['head'][1]['db'] = 'name';
+        $data['categories']['head'][2]['name'] = 'Amount Of Items';
+        $data['categories']['head'][2]['db'] = 'item_count';
 
         //load views
         $this->load->view('templates/header', $data);

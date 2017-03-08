@@ -31,8 +31,8 @@ class Items extends CI_Controller
             show_404();
         }
 
-        $location = $this->location_model->get_location($locationid);
-        $category = $this->categories_model->get_category($categoryid);
+        $location = $this->location_model->get_location(array('id' => $locationid));
+        $category = $this->categories_model->get_category(array('id' => $categoryid));
 
         //set title
         $data['title'] = $category['data']['name'].' collection';

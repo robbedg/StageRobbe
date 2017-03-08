@@ -27,7 +27,7 @@ $(document).ready(function(){
 
     //retrieve localStorage
     function checkLocalStorage() {
-      var $pref = localStorage.getItem('admin-locations');
+      var $pref = localStorage.getItem('admin-categories');
       if ($pref !== null) {
         var $prefdata = JSON.parse($pref);
         if ($prefdata.limit !== null) $data.limit = $prefdata.limit;
@@ -51,7 +51,7 @@ $(document).ready(function(){
 
     //save preferences locally
     function setLocalStorage() {
-      localStorage.setItem('admin-locations', JSON.stringify({'limit' : $data.limit, 'sort_on' : $data.sort_on}));
+      localStorage.setItem('admin-categories', JSON.stringify({'limit' : $data.limit, 'sort_on' : $data.sort_on}));
     }
 
     //calculatepages
@@ -117,7 +117,7 @@ $(document).ready(function(){
 
       //ajax call
       $.ajax({
-        url: '/index.php/locations/get',
+        url: '/index.php/categories/get',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
@@ -131,9 +131,9 @@ $(document).ready(function(){
         });
 
         //get locations
-        var $locations = $response.data;
+        var $categories = $response.data;
         //fill db
-        $($locations).each(function($index, $el) {
+        $($categories).each(function($index, $el) {
           $("#listingpage tbody").
             append($('<tr />')
               .append($('<td />').append($el['id']))
@@ -226,7 +226,7 @@ $(document).ready(function(){
        * SAVE & DELETE
        **/
        function save_delete() {
-         $("#locations table tbody tr td a").click(function($event) {
+         $("#categories table tbody tr td a").click(function($event) {
           //prevent default
           $event.preventDefault();
 
@@ -235,7 +235,7 @@ $(document).ready(function(){
           //Save
           if ($item.attr('data-function').match('save')) {
             $.ajax({
-              url: '/index.php/locations/update/' + $item.attr('data-id'),
+              url: '/index.php/categories/update/' + $item.attr('data-id'),
               type: 'POST',
               data: {'name' : $("#" + $item.attr('identifier')).val()}
             })
@@ -245,7 +245,7 @@ $(document).ready(function(){
            //remove
          } else if ($item.attr('data-function').match('delete')) {
             $.ajax({
-              url: '/index.php/locations/delete/' + $item.attr('data-id'),
+              url: '/index.php/categories/delete/' + $item.attr('data-id'),
               type: 'GET'
             })
             .done(function() {

@@ -9,7 +9,7 @@ $(document).ready(function(){
     $data.limit = 20;
     $data.offset = 0;
     //use db names
-    $data.sorton = {'column' : 'id', 'order' : 'asc'};
+    $data.sort_on = {'column' : 'id', 'order' : 'asc'};
     //give location id
     $data.location_id = $("#location_id").val();
 
@@ -32,7 +32,7 @@ $(document).ready(function(){
       if ($pref !== null) {
         var $prefdata = JSON.parse($pref);
         if ($prefdata.limit !== null) $data.limit = $prefdata.limit;
-        if ($prefdata.sorton !== null) $data.sorton = $prefdata.sorton;
+        if ($prefdata.sort_on !== null) $data.sort_on = $prefdata.sort_on;
       }
     }
 
@@ -42,7 +42,7 @@ $(document).ready(function(){
       $("#amountselect").val($data.limit);
       //set sort
       $("#sortinput option").each(function($index, $el) {
-        if (($($el).val().match($data.sorton.column)) && ($($el).attr('order').match($data.sorton.order))) {
+        if (($($el).val().match($data.sort_on.column)) && ($($el).attr('order').match($data.sort_on.order))) {
           $($el).attr('selected', 'selected');
         } else {
           $($el).removeAttr('selected');
@@ -52,7 +52,7 @@ $(document).ready(function(){
 
     //save preferences locally
     function setLocalStorage() {
-      localStorage.setItem('categories', JSON.stringify({'limit' : $data.limit, 'sorton' : $data.sorton}));
+      localStorage.setItem('categories', JSON.stringify({'limit' : $data.limit, 'sort_on' : $data.sort_on}));
     }
 
     //calculatepages
@@ -139,19 +139,19 @@ $(document).ready(function(){
         });
 
         //get locations
-        var $locations = $response.data;
+        var $categories = $response.data;
         //fill db
-        $($locations).each(function($index, $el) {
+        $($categories).each(function($index, $el) {
           $("#listingpage tbody").
-            append($('<tr class="clickable-row" href="/index.php/items/' + $data.location_id + '/' + $el['Category ID'] + '"/>')
-              .append($('<td />').append($el['Category ID']))
-              .append($('<td />').append($el['Category']))
-              .append($('<td />').append($el['Amount Of Items'])));
+            append($('<tr class="clickable-row" href="/index.php/items/' + $data.location_id + '/' + $el['id'] + '"/>')
+              .append($('<td />').append($el['id']))
+              .append($('<td />').append($el['name']))
+              .append($('<td />').append($el['item_count'])));
         });
         calculatepages($response.count);
       })
-      .fail(function() {
-        console.log("error");
+      .fail(function($error) {
+        console.log($error.responseText);
       })
       .always(function() {
         clickablerow();
@@ -199,7 +199,7 @@ $(document).ready(function(){
      **/
      $("#sortinput").change(function($event) {
        var $selected = $("#sortinput option:selected");
-       $data.sorton = {'column' : $selected.val(), 'order' : $selected.attr('order')};
+       $data.sort_on = {'column' : $selected.val(), 'order' : $selected.attr('order')};
        $data.offset = 0;
        $page = 1;
        //save preferences

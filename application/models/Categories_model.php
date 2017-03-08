@@ -13,59 +13,59 @@ class Categories_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_category($id = FALSE, $location_id = FALSE, $limit = FALSE, $offset = FALSE, $sorton = FALSE, $search = FALSE)
+    public function get_category($data = [])
     {
         $this->db->select('categories.id AS id, categories.name as name, COUNT(items.id) AS item_count');
         $this->db->join('items', 'items.category_id = categories.id', 'left outer');
         $this->db->group_by('categories.id');
 
         //if location is given
-        if ($location_id !== FALSE) {
+        if (!empty($data['location_id'])) {
             $this->db->join('locations', 'locations.id = items.location_id', 'left outer');
-            $this->db->where('locations.id', $location_id);
+            $this->db->where('locations.id', $data['location_id']);
         }
 
         //return 1 if ID is set
-        if ($id !== FALSE) {
-            $this->db->where('categories.id', $id);
+        if (!empty($data['id'])) {
+            $this->db->where('categories.id', $data['id']);
         }
 
         //if sort is included
-        if ($sorton !== FALSE) {
-            $this->db->order_by($sorton['column'], $sorton['order']);
+        if (!empty($data['sort_on'])) {
+            $this->db->order_by($data['sort_on']['column'], $data['sort_on']['order']);
         }
 
         //if user wants search
-        if (($search !== FALSE) && ($id === FALSE)) {
+        if ((!empty($data['search'])) && (empty($data['id']))) {
             $this->db->group_start();
-            $this->db->like('categories.id', $search);
-            $this->db->or_like('categories.name', $search);
+            $this->db->like('categories.id', $data['search']);
+            $this->db->or_like('categories.name', $data['search']);
             $this->db->group_end();
         }
 
         $count = $this->db->count_all_results('categories', false);
 
         //set limit if set
-        if ($limit !== FALSE) {
+        if (!empty($data['limit'])) {
             //if offset is included
-            if($offset !== FALSE) {
-                $this->db->limit($limit, $offset);
+            if(!empty($data['offset'])) {
+                $this->db->limit($data['limit'], $data['offset']);
             } else {
-                $this->db->limit($limit);
+                $this->db->limit($data['limit']);
             }
         }
 
         //return result
-        if ($id !== FALSE) {
-            $data['data'] = $this->db->get()->row_array();
-            $data['count'] = $count;
-            return $data;
+        if (!empty($data['id'])) {
+            $result['data'] = $this->db->get()->row_array();
+            $result['count'] = $count;
+            return $result;
         }
 
-        $data['data'] = $this->db->get()->result_array();
-        $data['count'] = $count;
+        $result['data'] = $this->db->get()->result_array();
+        $result['count'] = $count;
 
-        return $data;
+        return $result;
     }
 
     public function set_category($id = FALSE)
