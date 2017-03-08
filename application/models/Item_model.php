@@ -64,7 +64,7 @@ class Item_model extends CI_Model
         }
 
         //if user wants search
-        if ((!empty($data['search'])) && (!empty($data['id']))) {
+        if ((!empty($data['search'])) && (empty($data['id']))) {
             $this->db->group_start();
             $this->db->like('items.id', $data['search']);
             $this->db->or_like('items.created_on', $data['search']);
