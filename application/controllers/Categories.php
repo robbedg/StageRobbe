@@ -59,7 +59,7 @@ class Categories extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    //Create new Itemtype
+    //Create new Category
     public function create() {
         //check permissions
         if (!authorization_check($this, 2)) {
@@ -103,6 +103,11 @@ class Categories extends CI_Controller
     //update a category
     public function update($id = NULL)
     {
+        //authorization check
+        if (!authorization_check($this, 3)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
         if (empty($id)) {
             show_404();
         } else {
@@ -113,6 +118,11 @@ class Categories extends CI_Controller
     //remove a location
     public function delete($id = NULL)
     {
+        //authorization check
+        if (!authorization_check($this, 3)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
         //if empty show 404
         if (empty($id)) {
             show_404();

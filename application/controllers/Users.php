@@ -18,7 +18,7 @@ class Users extends CI_Controller
         authorization_check($this);
     }
 
-    //handle requests for items
+    //handle requests for users
     public function get()
     {
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
@@ -27,7 +27,7 @@ class Users extends CI_Controller
         $data = array(
             'role_id' => $input['role_id'],
             'search' => $input['search'],
-            'order_on' => array('column' => 'lastname', 'order' => 'ASC'),
+            'sort_on' => array('column' => 'lastname', 'order' => 'ASC'),
             'limit' => 10,
             'offset' => 0
         );

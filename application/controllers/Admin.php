@@ -17,6 +17,7 @@ class Admin extends CI_Controller
         $this->load->helper('form');
         $this->load->helper('authorizationcheck_helper');
         $this->load->library('form_validation');
+        $this->load->library('session');
 
         $authorized = authorization_check($this, 3);
         if (!$authorized) show_error('You are not authorized to visit this page');
@@ -64,7 +65,11 @@ class Admin extends CI_Controller
                 'role_id' => $this->input->post('role')
             );
 
-            $this->user_model->update_user($user);
+            if ((intval($_SESSION['role_id']) > intval($user['role_id'])) || (intval($_SESSION['role_id']) === 4)) {
+                $this->user_model->update_user($user);
+            } else {
+                show_error("You are not authorized to do this action.");
+            }
 
             redirect('admin');
         }

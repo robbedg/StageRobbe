@@ -55,7 +55,9 @@
                 <label for="selectRole" class="control-label">Assign New Role</label>
                 <select class="form-control" id="selectRole" disabled="disabled" name="role">
                     <?php foreach ($roles as $role): ?>
-                    <option value="<?=$role['id']; ?>"><?=$role['name']; ?></option>
+                        <?php if ((intval($role['id']) < intval($_SESSION['role_id'])) || (intval($_SESSION['role_id']) === 4)): ?>
+                            <option value="<?=$role['id']; ?>"><?=$role['name']; ?></option>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                 </select>
             </div>

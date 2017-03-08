@@ -175,6 +175,10 @@ class Items extends CI_Controller
 
     //deleting item
     public function remove($id = NULL) {
+        //authorization check
+        if (!authorization_check($this, 2)) {
+            show_error('You are not authorized to perform this action.');
+        }
 
         //when no id provided give 404
         if (empty($id)) {
@@ -188,6 +192,12 @@ class Items extends CI_Controller
     //restoring item
     public function  restore($id = NULL)
     {
+        //authorization check
+        if (!authorization_check($this, 3)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
+        //check if not empty
         if (empty($id)) {
             show_404();
         }
@@ -198,6 +208,11 @@ class Items extends CI_Controller
     //permenantly deleting item
     public function delete($id = NULL)
     {
+        //authorization check
+        if (!authorization_check($this, 3)) {
+            show_error('You are not authorized to perform this action.');
+        }
+
         if (empty($id)) {
             show_404();
         }
