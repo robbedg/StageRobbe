@@ -145,14 +145,16 @@ $(document).ready(function(){
               .append($('<td />').append($el['ID']))
               .append($('<td />').append($el['Name']))
               .append($('<td />').append($el['Amount Of Items'])));
-          clickablerow();
-          calculatepages($response.count);
-          loadpager();
-          pagingbuttons();
         });
+        calculatepages($response.count);
       })
       .fail(function() {
         console.log("error");
+      })
+      .always(function() {
+        clickablerow();
+        loadpager();
+        pagingbuttons();
       });
     }
 

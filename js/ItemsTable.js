@@ -148,14 +148,16 @@ $(document).ready(function(){
             append($('<tr class="clickable-row" href="/index.php/items/view/' + $el['id'] + '"/>')
               .append($('<td />').append($el['id']))
               .append($('<td />').append($el['created_on'])));
-          clickablerow();
-          calculatepages($response.count);
-          loadpager();
-          pagingbuttons();
         });
+        calculatepages($response.count);
       })
       .fail(function() {
         console.log("error");
+      })
+      .always(function() {
+        clickablerow();
+        loadpager();
+        pagingbuttons();
       });
     }
 
