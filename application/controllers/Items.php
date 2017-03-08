@@ -80,7 +80,7 @@ class Items extends CI_Controller
         $data['scripts'][] = base_url('js/CountScript.js');
 
         //collect data
-        $data['item'] = $this->item_model->get_item($id);
+        $data['item'] = $this->item_model->get_item(array('id' => $id, 'location' => TRUE, 'category' => TRUE));
         $data['usernotes'] = $this->usernote_model->get_usernotes_by_item($id);
 
         $data['title'] = $data['item']['data']['category'].': '.$data['item']['data']['id'];
@@ -116,7 +116,7 @@ class Items extends CI_Controller
 
         if (!empty($id)) {
             $data['title'] = 'Edit Item';
-            $data['item'] = $this->item_model->get_item($id);
+            $data['item'] = $this->item_model->get_item(array('id' => $id));
         } else {
             $data['title'] = 'New Item';
             $data['item'] = array();
@@ -161,27 +161,16 @@ class Items extends CI_Controller
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
 
-        $queries = $this->item_model->get_item(false, $input['location_id'], $input['category_id'], $input['limit'], $input['offset'], $input['sorton'], $input['search']);
+        $items = $this->item_model->get_item($input);
 
-        $items = array();
-
-        foreach ($queries['data'] as $query) {
-            $output = array(
-                'Item ID' => $query['id'],
-                'Created On' => (new DateTime($query['created_on']))->format('d/m/Y h:i')
-            );
-            $items[] = $output;
+        foreach ($items['data'] as $key => $item) {
+            $items['data'][$key]['created_on'] = (new DateTime($item['created_on']))->format('d/m/Y h:i');
         }
-
-        $data = array(
-            'data' => $items,
-            'count' => $queries['count']
-        );
 
         //output
         $this->output
             ->set_content_type('application/json')
-            ->set_output(json_encode($data));
+            ->set_output(json_encode($items));
     }
 
     //deleting item
