@@ -54,6 +54,9 @@ $route['login'] = 'login/index';
 
 //admin
 $route['admin'] = 'admin/index';
+$route['admin/deleted-items'] = 'admin/deleted_items';
+$route['admin/locations'] = 'admin/locations';
+$route['admin/categories'] = 'admin/categories';
 
 //upload
 $route['upload/do_upload/(:num)'] = 'upload/do_upload/$1';

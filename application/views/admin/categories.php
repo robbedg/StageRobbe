@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="categories">
+<div id="categories">
     <div id="categories-cont">
         <table class="table table-striped table-hover" id="table-categories">
             <thead>

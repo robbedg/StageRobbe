@@ -124,6 +124,7 @@ $("#searchusers").keyup(function($event) {
   }
 });
 
+
 //filter
 $(".filterlist").click(function($event) {
   /* Act on the event */
@@ -133,10 +134,10 @@ $(".filterlist").click(function($event) {
 
   //set inactive
   $(".filterlist").each(function($index, $el) {
-    $($el).removeClass('active');
+    $($el).parent().removeClass('active');
   });
   //set active
-  $filter.addClass('active');
+  $filter.parent().addClass('active');
 
   //if not all selected
   if ($filter.parent().attr('id') !== 'all') {

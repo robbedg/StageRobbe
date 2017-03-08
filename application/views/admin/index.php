@@ -9,12 +9,12 @@
 <!-- title -->
 <h2><?=$title; ?></h2>
 
-<!-- navs tabs-->
+<!-- nav tabs-->
 <ul class="nav nav-tabs">
-    <li class="active"><a href="#users" data-toggle="tab">Users</a></li>
-    <li class=""><a href="#deleted-items" data-toggle="tab">Deleted items</a></li>
-    <li class=""><a href="#locations" data-toggle="tab">Locations</a></li>
-    <li class=""><a href="#categories" data-toggle="tab">Categories</a></li>
+    <li class="<?php if ($active === 'users') echo 'active'; ?>"><a href="<?=site_url('admin'); ?>">Users</a></li>
+    <li class="<?php if ($active === 'deleted-items') echo 'active'; ?>"><a href="<?=site_url('admin/deleted-items'); ?>">Deleted items</a></li>
+    <li class="<?php if ($active === 'locations') echo 'active'; ?>"><a href="<?=site_url('admin/locations'); ?>">Locations</a></li>
+    <li class="<?php if ($active === 'categories') echo 'active'; ?>"><a href="<?=site_url('admin/categories'); ?>">Categories</a></li>
 </ul>
 
 <div id="tabs" class="tab-content">

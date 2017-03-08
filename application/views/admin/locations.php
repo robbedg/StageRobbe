@@ -1,4 +1,4 @@
-<div class="tab-pane fade" id="locations">
+<div id="locations">
     <div id="locations-cont">
         <table class="table table-striped table-hover" id="table-locations">
             <thead>
