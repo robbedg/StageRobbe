@@ -12,53 +12,53 @@ class Location_model extends CI_Model
         $this->load->database();
     }
 
-    public function get_location($id = FALSE, $limit = FALSE, $offset = FALSE, $sorton = FALSE, $search = FALSE)
+    public function get_location($data = [])
     {
         $this->db->select('locations.id AS id, locations.name as name, COUNT(items.id) AS item_count');
         $this->db->join('items', 'items.location_id = locations.id', 'left outer');
         $this->db->group_by('locations.id');
 
         //return 1 if ID is set
-        if ($id !== FALSE) {
-            $this->db->where('locations.id', $id);
+        if (!empty($data['id'])) {
+            $this->db->where('locations.id', $data['id']);
         }
 
         //if sort is included
-        if ($sorton !== FALSE) {
-            $this->db->order_by($sorton['column'], $sorton['order']);
+        if (!empty($data['sort_on'])) {
+            $this->db->order_by($data['sort_on']['column'], $data['sort_on']['order']);
         }
 
         //if user wants search
-        if (($search !== FALSE) && ($id === FALSE)) {
+        if ((!empty($data['search'])) && (empty($data['id']))) {
             $this->db->group_start();
-            $this->db->like('locations.id', $search);
-            $this->db->or_like('locations.name', $search);
+            $this->db->like('locations.id', $data['search']);
+            $this->db->or_like('locations.name', $data['search']);
             $this->db->group_end();
         }
 
         $count = $this->db->count_all_results('locations', false);
 
         //set limit if set
-        if ($limit !== FALSE) {
+        if (!empty($data['limit'])) {
             //if offset is included
-            if($offset !== FALSE) {
-                $this->db->limit($limit, $offset);
+            if(!empty($data['offset'])) {
+                $this->db->limit($data['limit'], $data['offset']);
             } else {
-                $this->db->limit($limit);
+                $this->db->limit($data['limit']);
             }
         }
 
         //return result
-        if ($id !== FALSE) {
-            $data['data'] = $this->db->get()->row_array();
-            $data['count'] = $count;
-            return $data;
+        if (!empty($data['id'])) {
+            $result['data'] = $this->db->get()->row_array();
+            $result['count'] = $count;
+            return $result;
         }
 
-        $data['data'] = $this->db->get()->result_array();
-        $data['count'] = $count;
+        $result['data'] = $this->db->get()->result_array();
+        $result['count'] = $count;
 
-        return $data;
+        return $result;
     }
 
     //create or update a location

@@ -8,6 +8,7 @@ $(document).ready(function(){
     $data.search = null;
     $data.limit = 20;
     $data.offset = 0;
+
     //use db names
     $data.sort_on = {'column' : 'id', 'order' : 'asc'};
 
@@ -26,7 +27,7 @@ $(document).ready(function(){
 
     //retrieve localStorage
     function checkLocalStorage() {
-      var $pref = localStorage.getItem('locations');
+      var $pref = localStorage.getItem('admin-locations');
       if ($pref !== null) {
         var $prefdata = JSON.parse($pref);
         if ($prefdata.limit !== null) $data.limit = $prefdata.limit;
@@ -50,7 +51,7 @@ $(document).ready(function(){
 
     //save preferences locally
     function setLocalStorage() {
-      localStorage.setItem('locations', JSON.stringify({'limit' : $data.limit, 'sort_on' : $data.sort_on}));
+      localStorage.setItem('admin-locations', JSON.stringify({'limit' : $data.limit, 'sort_on' : $data.sort_on}));
     }
 
     //calculatepages
@@ -59,13 +60,6 @@ $(document).ready(function(){
       $totalpages = Math.floor($resultcount / $data.limit);
       //maybe extra page
       if ((($resultcount % $data.limit) !== 0) && ($resultcount !== 0)) $totalpages++;
-    }
-
-    //make rows clickable
-    function clickablerow() {
-      $(".clickable-row").click(function() {
-          window.document.location = $(this).attr("href");
-      });
     }
 
     //add pages
@@ -137,14 +131,21 @@ $(document).ready(function(){
         });
 
         //get locations
-        var $locations = $response.data;
+        var $items = $response.data;
         //fill db
-        $($locations).each(function($index, $el) {
+        $($items).each(function($index, $el) {
           $("#listingpage tbody").
-            append($('<tr class="clickable-row" href="/index.php/categories/' + $el['id'] + '"/>')
+            append($('<tr />')
               .append($('<td />').append($el['id']))
-              .append($('<td />').append($el['name']))
-              .append($('<td />').append($el['item_count'])));
+              .append($('<td />').append($('<input type="text" class="form-control input-sm" />').val($el['name']).attr('id', $index)))
+              .append($('<td />').append($el['item_count']))
+              .append($('<td />')
+                .append($('<a href="#" data-function="save" />').addClass('btn btn-primary btn-sm').text('Save').attr('data-id', $el['id']).attr('identifier', $index))
+                .append(' ')
+                .append($('<a href="#" data-function="delete" />').addClass('btn btn-danger btn-sm').text('Delete').attr('data-id', $el['id']).attr('identifier', $index))
+                .addClass('align-right')
+              )
+            );
         });
         calculatepages($response.count);
       })
@@ -152,7 +153,7 @@ $(document).ready(function(){
         console.log("error");
       })
       .always(function() {
-        clickablerow();
+        save_delete();
         loadpager();
         pagingbuttons();
       });
@@ -221,4 +222,36 @@ $(document).ready(function(){
         }
       });
 
+      /**
+       * SAVE & DELETE
+       **/
+       function save_delete() {
+         $("#locations table tbody tr td a").click(function($event) {
+          //prevent default
+          $event.preventDefault();
+
+          var $item = $(this);
+
+          //Save
+          if ($item.attr('data-function').match('save')) {
+            $.ajax({
+              url: '/index.php/locations/update/' + $item.attr('data-id'),
+              type: 'POST',
+              data: {'name' : $("#" + $item.attr('identifier')).val()}
+            })
+            .done(function() {
+                callDB();
+            });
+           //remove
+         } else if ($item.attr('data-function').match('delete')) {
+            $.ajax({
+              url: '/index.php/locations/delete/' + $item.attr('data-id'),
+              type: 'GET'
+            })
+            .done(function() {
+              callDB();
+            });
+          }
+         });
+       }
 });

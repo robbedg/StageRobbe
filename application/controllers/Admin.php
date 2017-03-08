@@ -109,18 +109,25 @@ class Admin extends CI_Controller
         $data['title'] = 'Admin panel';
 
         //set styles
-        $data['styles'][] = 'https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css';
         $data['styles'][] = base_url('css/admin-panel.css');
 
         //set scripts
-        $data['scripts'][] = 'https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js';
-        $data['scripts'][] = base_url('js/Admin-Users.js');
+        $data['scripts'][] = base_url('js/AdminLocations.js');
 
         //give locations
         $data['locations'] = $this->location_model->get_location();
 
         //active
         $data['active'] = 'locations';
+
+        /** Deleted Items **/
+        $data['locations']['title'] = null;
+        $data['locations']['head'][0]['name'] = 'Location ID';
+        $data['locations']['head'][0]['db'] = 'id';
+        $data['locations']['head'][1]['name'] = 'Name';
+        $data['locations']['head'][1]['db'] = 'name';
+        $data['locations']['head'][2]['name'] = 'Amount Of Items';
+        $data['locations']['head'][2]['db'] = 'item_count';
 
         //load views
         $this->load->view('templates/header', $data);

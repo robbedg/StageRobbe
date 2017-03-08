@@ -73,28 +73,12 @@ class Locations extends CI_Controller
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
 
-        $queries = $this->location_model->get_location(false, $input['limit'], $input['offset'], $input['sorton'], $input['search']);
-
-        $items = array();
-
-        foreach ($queries['data'] as $query) {
-            $output = array(
-                'ID' => $query['id'],
-                'Name' => $query['name'],
-                'Amount Of Items' => $query['item_count']
-            );
-            $items[] = $output;
-        }
-
-        $data = array(
-            'data' => $items,
-            'count' => $queries['count']
-        );
+        $locations = $this->location_model->get_location($input);
 
         //output
         $this->output
             ->set_content_type('application/json')
-            ->set_output(json_encode($data));
+            ->set_output(json_encode($locations));
     }
 
     //update a location
