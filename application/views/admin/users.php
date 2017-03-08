@@ -1,8 +1,6 @@
 <div class="tab-pane fade active in" id="users">
-
-    <!-- left -->
-    <div id="left">
-
+    <!-- top -->
+    <div id="top">
         <!-- search -->
         <div id="searchusersbox">
             <input class="form-control" id="searchusers" type="text" placeholder="Search...">
@@ -13,11 +11,14 @@
             <ul class="nav nav-pills">
                 <li id="all" class="active"><a class="filterlist" href="#">All <span class="badge"></span></a></li>
                 <?php foreach ($roles as $role): ?>
-                <li><a class="filterlist" href="#" data-id="<?=$role['id']; ?>"><?=$role['name']; ?> <span class="badge"></span></a></li>
+                    <li><a class="filterlist" href="#" data-id="<?=$role['id']; ?>"><?=$role['name']; ?> <span class="badge"></span></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
+    </div>
 
+    <!-- left -->
+    <div id="left">
         <!-- user selection -->
         <div id="userselect">
             <ul>
