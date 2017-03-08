@@ -38,7 +38,7 @@ class Items extends CI_Controller
         $data['title'] = $category['data']['name'].' collection';
 
         //set scripts
-        $data['scripts'][] = base_url('js/ItemsTable.js');
+        $data['scripts'][] = base_url('js/tables/ItemsTable.js');
 
         //set breadcrum
         $home['href'] = site_url('home');
