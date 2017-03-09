@@ -97,6 +97,9 @@ $route['users/get'] = 'users/get';
 //role routes
 $route['roles/get'] = 'roles/get';
 
+//loan routes
+$route['loans/get'] = 'loans/get';
+
 //default routes
 $route['default_controller'] = 'locations';
 $route['(:any)'] = 'locations';
