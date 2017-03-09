@@ -14,6 +14,7 @@ class loan_model extends CI_Model
         $this->load->helper('url');
     }
 
+    //get loans
     public function get_loan($data = []) {
         $this->db->select('loans.id AS id, loans.item_id AS item_id, loans.user_id AS user_id, from, until, note');
 
@@ -97,4 +98,8 @@ class loan_model extends CI_Model
         return $result;
     }
 
+    //set loan
+    public function set_loan($data){
+        $this->db->insert($data, 'loans');
+    }
 }

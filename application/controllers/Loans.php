@@ -19,6 +19,7 @@ class Loans extends CI_Controller
         //$this->output->enable_profiler(TRUE);
     }
 
+    //get loans
     public function get() {
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
@@ -44,4 +45,31 @@ class Loans extends CI_Controller
             ->set_output(json_encode($items));
     }
 
+    //new loan
+    public function set() {
+        //get info
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        $input = json_decode($stream_clean, true);
+
+        $output = [];
+
+        set_error_handler(function() {});
+        try {
+
+            if ($_SESSION['id'] === $input['user_id']) {
+                $this->loan_model->set_loan($input);
+                $output['success'] = TRUE;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception $error) {
+            $output['error'] = "The request is not valid.";
+        }
+        restore_error_handler();
+
+        //output
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($output));
+    }
 }
