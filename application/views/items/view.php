@@ -61,6 +61,38 @@
     </div>
 </div>
 
+<!-- Loan -->
+<div id="loan" class="clearfix">
+    <h3>Loan</h3>
+
+    <!-- from -->
+    <div class="input-group date" id ="datetimepicker_from">
+        <label for="from" class="control-label">From:</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="from" />
+            <span class="input-group-addon">
+                <span class="fa fa-calendar"></span>
+            </span>
+        </div>
+    </div>
+
+    <!-- until -->
+    <div class="input-group date" id ="datetimepicker_until">
+        <label for="until" class="control-label">Until:</label>
+        <div class="input-group">
+            <input type="text" class="form-control" />
+            <span class="input-group-addon">
+                <span class="fa fa-calendar"></span>
+            </span>
+        </div>
+    </div>
+
+    <!-- button -->
+    <div id="loan_button">
+        <a href="#" class="btn btn-primary">Loan</a>
+    </div>
+</div>
+
 <!-- usernotes -->
 <div id="usernotes" class="clearfix">
     <h3>Comments</h3>

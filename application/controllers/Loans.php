@@ -25,12 +25,17 @@ class Loans extends CI_Controller
 
         $items = $this->loan_model->get_loan($input);
 
-        foreach ($items['data'] as $key => $item) {
-            $items['data'][$key]['from'] = (new DateTime($item['from']))->format('d/m/Y h:i');
-            $items['data'][$key]['until'] = (new DateTime($item['until']))->format('d/m/Y h:i');
-            if (!empty($items['data'][$key]['item_created_on'])) {
-                $items['data'][$key]['item_created_on'] = (new DateTime($item['item_created_on']))->format('d/m/Y h:i');
+        if (empty($input['id'])) {
+            foreach ($items['data'] as $key => $item) {
+
+                $items['data'][$key]['from'] = (new DateTime($item['from']))->format('d/m/Y h:i');
+                $items['data'][$key]['until'] = (new DateTime($item['until']))->format('d/m/Y h:i');
+                if (!empty($items['data'][$key]['item_created_on'])) {
+                    $items['data'][$key]['item_created_on'] = (new DateTime($item['item_created_on']))->format('d/m/Y h:i');
+                }
             }
+        } else {
+            $items['data']['from'] = (new DateTime($items['data']['from']))->format('d/m/Y h:i');
         }
 
         //output

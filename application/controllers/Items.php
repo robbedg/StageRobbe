@@ -76,7 +76,14 @@ class Items extends CI_Controller
             show_404();
         }
 
+        //load styles
+        $data['styles'][] = base_url('font-awesome/css/font-awesome.min.css');
+        $data['styles'][] = base_url('css/bootstrap-datetimepicker.min.css');
+
         //load scripts
+        $data['scripts'][] = base_url('js/moment/moment-with-locales.min.js');
+        $data['scripts'][] = base_url('js/bootstrap-datetimepicker.min.js');
+        $data['scripts'][] = base_url('js/ItemViewDateTimePicker.js');
         $data['scripts'][] = base_url('js/CountScript.js');
 
         //collect data
