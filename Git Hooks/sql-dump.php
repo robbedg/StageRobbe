@@ -1,5 +1,5 @@
 <?php
-echo dump_tables('192.168.2.205:3306','admin','Azerty123','stage_db');
+echo dump_tables('<ip-address>:3306','<username>','<password>','stage_db');
 
 function dump_tables($host,$user,$pass,$name,$tables = '*')
 {
@@ -38,6 +38,7 @@ function dump_tables($host,$user,$pass,$name,$tables = '*')
         $tables[] = 'roles';
         $tables[] = 'users';
         $tables[] = 'usernotes';
+        $tables[] = 'loans';
     }
     
     $return = '';
