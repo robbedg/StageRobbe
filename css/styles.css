@@ -201,6 +201,22 @@
  	float: right;
  }
 
+ /** AVAILABILITY **/
+ #availability {
+ 	background-color: #f5f5f5;
+ 	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	padding-top: 0.8rem;
+	padding-bottom: 0.8rem;
+	border-radius: 4px;
+	margin-bottom: 1rem;
+ }
+
+ #availability-table {
+ 	margin: 1rem;
+ 	width: calc(100% - 2rem);
+ }
+
  /** USERNOTES **/
 
  #usernotes {

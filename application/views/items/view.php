@@ -93,6 +93,24 @@
     </div>
 </div>
 
+<!-- availability -->
+<div id="availability" class="clearfix">
+    <h3>Availability</h3>
+    <table class="table table-striped table-hover" id="availability-table">
+        <thead>
+            <tr>
+                <th>UID:</th>
+                <th>Name:</th>
+                <th>From:</th>
+                <th>Until:</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--AJAX data-->
+        </tbody>
+    </table>
+</div>
+
 <!-- usernotes -->
 <div id="usernotes" class="clearfix">
     <h3>Comments</h3>
