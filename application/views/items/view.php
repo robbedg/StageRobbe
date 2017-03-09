@@ -63,7 +63,7 @@
 
 <!-- Loan -->
 <div id="loan" class="clearfix">
-    <h3>Loan</h3>
+    <h3>Use item</h3>
 
     <!-- from -->
     <div class="input-group date" id ="datetimepicker_from">
@@ -94,6 +94,7 @@
 </div>
 
 <!-- availability -->
+<?php if (intval($loans['count']) > 0): ?>
 <div id="availability" class="clearfix">
     <h3>Availability</h3>
     <table class="table table-striped table-hover" id="availability-table">
@@ -106,10 +107,18 @@
             </tr>
         </thead>
         <tbody>
-            <!--AJAX data-->
+            <?php foreach ($loans['data'] as $loan): ?>
+                <tr>
+                    <td><?=$loan['uid']; ?></td>
+                    <td><?=$loan['lastname'].' '.$loan['firstname']; ?></td>
+                    <td><?=(new DateTime($loan['from']))->format('d/m/Y h:i'); ?></td>
+                    <td><?=(new DateTime($loan['until']))->format('d/m/Y h:i'); ?></td>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
+<?php endif; ?>
 
 <!-- usernotes -->
 <div id="usernotes" class="clearfix">

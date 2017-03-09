@@ -13,6 +13,7 @@ class Items extends CI_Controller
         $this->load->model('item_model');
         $this->load->model('location_model');
         $this->load->model('categories_model');
+        $this->load->model('loan_model');
         $this->load->model('usernote_model');
         $this->load->helper('url_helper');
         $this->load->helper('authorizationcheck_helper');
@@ -88,6 +89,7 @@ class Items extends CI_Controller
 
         //collect data
         $data['item'] = $this->item_model->get_item(array('id' => $id, 'location' => TRUE, 'category' => TRUE));
+        $data['loans'] = $this->loan_model->get_loan(array('item_id' => $id, 'user' => TRUE));
         $data['usernotes'] = $this->usernote_model->get_usernotes_by_item($id);
 
         $data['title'] = $data['item']['data']['category'].': '.$data['item']['data']['id'];
