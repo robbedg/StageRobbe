@@ -28,6 +28,12 @@ class loan_model extends CI_Model
             $this->db->where('loans.item_id', $data['item_id']);
         }
 
+        //if only current
+        if (!empty($data['current']) && $data['current'] === TRUE)
+        {
+            $this->db->where('loans.until >', date('y-m-d H:i:s'));
+        }
+
         //if item needs inclusion
         $item = FALSE;
         if (!empty($data['item']) && $data['item'] === TRUE) {
