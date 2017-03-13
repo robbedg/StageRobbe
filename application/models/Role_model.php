@@ -12,6 +12,7 @@ class Role_model extends CI_Model
         $this->load->database();
     }
 
+    //get roles
     public function get_role($data = [])
     {
         $this->db->select('roles.id AS id, roles.name AS name');

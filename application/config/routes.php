@@ -99,6 +99,7 @@ $route['roles/get'] = 'roles/get';
 
 //loan routes
 $route['loans/get'] = 'loans/get';
+$route['loans/set'] = 'loans/set';
 
 //default routes
 $route['default_controller'] = 'locations';

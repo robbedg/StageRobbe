@@ -55,8 +55,7 @@ class Loans extends CI_Controller
 
         set_error_handler(function() {});
         try {
-
-            if ($_SESSION['id'] === $input['user_id']) {
+            if (intval($_SESSION['id']) === intval($input['user_id'])) {
                 $this->loan_model->set_loan($input);
                 $output['success'] = TRUE;
             } else {

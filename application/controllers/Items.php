@@ -85,6 +85,7 @@ class Items extends CI_Controller
         $data['scripts'][] = base_url('js/moment/moment-with-locales.min.js');
         $data['scripts'][] = base_url('js/bootstrap-datetimepicker.min.js');
         $data['scripts'][] = base_url('js/ItemViewDateTimePicker.js');
+        $data['scripts'][] = base_url('js/SetLoan.js');
         $data['scripts'][] = base_url('js/CountScript.js');
 
         //collect data

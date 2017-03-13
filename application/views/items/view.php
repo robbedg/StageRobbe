@@ -6,7 +6,12 @@
     <li class="active"><?php echo $title; ?></li>
 </ul>
 
+<!-- title -->
 <h2><?=$item['data']['category']; ?></h2>
+
+<!-- hidden fields -->
+<input type="hidden" id="user_id" value="<?=$_SESSION['id']; ?>">
+<input type="hidden" id="item_id" value="<?=$item['data']['id']; ?>">
 
 <!-- buttons -->
 <?php if (authorization_check($this, 2)): ?>

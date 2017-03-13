@@ -100,6 +100,6 @@ class loan_model extends CI_Model
 
     //set loan
     public function set_loan($data){
-        $this->db->insert($data, 'loans');
+        $this->db->insert('loans', $data);
     }
 }
