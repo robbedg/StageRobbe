@@ -66,6 +66,14 @@
     </div>
 </div>
 
+<!-- Loan errors -->
+<div class="alert alert-dismissible alert-danger hidden" id="loan-errors">
+    <button type="button" class="close">&times;</button>
+    <ul id="loan-error-list">
+        <!-- ajax data -->
+    </ul>
+</div>
+
 <!-- Loan -->
 <div id="loan" class="clearfix">
     <h3>Use item</h3>

@@ -14,8 +14,20 @@ $(document).ready(function() {
     $.ajax({
       url: '/index.php/loans/set',
       type: 'POST',
-      dataType: 'application/json',
+      dataType: 'json',
+      contentType: 'application/json',
       data: JSON.stringify($data)
+    })
+    .done(function($response) {
+      //remove errors
+      $("#loan-error-list").empty();
+      //set errors
+      if ($response.success === false) {
+        $("#loan-errors").removeClass('hidden');
+        $($response.errors).each(function($index, $error) {
+            $("#loan-error-list").append($('<li />').append($error));
+        });
+      }
     })
     .fail(function($error) {
       //console.log($error);
@@ -37,5 +49,12 @@ $(document).ready(function() {
 
     //send to db
     callDB();
+  });
+
+  //click dismiss errors
+  $("#loan-errors button").click(function($event) {
+    //prevent default
+    $event.preventDefault();
+    $("#loan-errors").addClass('hidden');
   });
 });

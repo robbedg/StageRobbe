@@ -77,7 +77,7 @@ class Loans extends CI_Controller
             }
         } catch (Exception $error) {
             $output['success'] = FALSE;
-            $output['error'] = "The request is not valid.";
+            $output['errors'][] = "The request is not valid.";
         }
         restore_error_handler();
 
