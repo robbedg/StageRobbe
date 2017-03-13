@@ -116,8 +116,8 @@
                 <tr>
                     <td><?=$loan['uid']; ?></td>
                     <td><?=$loan['lastname'].' '.$loan['firstname']; ?></td>
-                    <td><?=(new DateTime($loan['from']))->format('d/m/Y h:i'); ?></td>
-                    <td><?=(new DateTime($loan['until']))->format('d/m/Y h:i'); ?></td>
+                    <td><?=(new DateTime($loan['from']))->format('d/m/Y H:i'); ?></td>
+                    <td><?=(new DateTime($loan['until']))->format('d/m/Y H:i'); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

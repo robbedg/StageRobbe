@@ -174,7 +174,7 @@ class Items extends CI_Controller
         $items = $this->item_model->get_item($input);
 
         foreach ($items['data'] as $key => $item) {
-            $items['data'][$key]['created_on'] = (new DateTime($item['created_on']))->format('d/m/Y h:i');
+            $items['data'][$key]['created_on'] = (new DateTime($item['created_on']))->format('d/m/Y H:i');
         }
 
         //output

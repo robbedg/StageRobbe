@@ -17,6 +17,9 @@ class Loans extends CI_Controller
         $this->load->helper('authorizationcheck_helper');
         authorization_check($this);
 
+        //timezone = CET
+        date_default_timezone_set('CET');
+
         //$this->output->enable_profiler(TRUE);
     }
 
@@ -30,14 +33,14 @@ class Loans extends CI_Controller
         if (empty($input['id'])) {
             foreach ($items['data'] as $key => $item) {
 
-                $items['data'][$key]['from'] = (new DateTime($item['from']))->format('d/m/Y h:i');
-                $items['data'][$key]['until'] = (new DateTime($item['until']))->format('d/m/Y h:i');
+                $items['data'][$key]['from'] = (new DateTime($item['from']))->format('d/m/Y H:i');
+                $items['data'][$key]['until'] = (new DateTime($item['until']))->format('d/m/Y H:i');
                 if (!empty($items['data'][$key]['item_created_on'])) {
-                    $items['data'][$key]['item_created_on'] = (new DateTime($item['item_created_on']))->format('d/m/Y h:i');
+                    $items['data'][$key]['item_created_on'] = (new DateTime($item['item_created_on']))->format('d/m/Y H:i');
                 }
             }
         } else {
-            $items['data']['from'] = (new DateTime($items['data']['from']))->format('d/m/Y h:i');
+            $items['data']['from'] = (new DateTime($items['data']['from']))->format('d/m/Y H:i');
         }
 
         //output

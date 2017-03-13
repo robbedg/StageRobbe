@@ -12,6 +12,9 @@ class loan_model extends CI_Model
     {
         $this->load->database();
         $this->load->helper('url');
+        $this->load->helper('date');
+        //timezone = CET
+        date_default_timezone_set('CET');
     }
 
     //get loans
@@ -155,8 +158,8 @@ class loan_model extends CI_Model
 
             if (
                 !(
-                    ($from >= $endSpan && $until >= $endSpan) ||
-                    ($from <= $startSpan && $until <= $startSpan)
+                    ($from >= $endSpan && $until > $endSpan) ||
+                    ($from < $startSpan && $until <= $startSpan)
                 )
             ) {
                 $valid['errors'][] = 'Item is not available in chosen time frame.';
