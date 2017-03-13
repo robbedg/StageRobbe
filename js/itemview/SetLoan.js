@@ -27,10 +27,12 @@ $(document).ready(function() {
         $($response.errors).each(function($index, $error) {
             $("#loan-error-list").append($('<li />').append($error));
         });
+      } else {
+        $("#loan-errors").addClass('hidden');
       }
     })
-    .fail(function($error) {
-      //console.log($error);
+    .always(function() {
+        getAvailability();
     });
   }
 

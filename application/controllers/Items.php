@@ -84,9 +84,10 @@ class Items extends CI_Controller
         //load scripts
         $data['scripts'][] = base_url('js/moment/moment-with-locales.min.js');
         $data['scripts'][] = base_url('js/bootstrap-datetimepicker.min.js');
-        $data['scripts'][] = base_url('js/ItemViewDateTimePicker.js');
-        $data['scripts'][] = base_url('js/SetLoan.js');
-        $data['scripts'][] = base_url('js/CountScript.js');
+        $data['scripts'][] = base_url('js/itemview/ItemViewDateTimePicker.js');
+        $data['scripts'][] = base_url('js/itemview/ItemView.js');
+        $data['scripts'][] = base_url('js/itemview/SetLoan.js');
+        $data['scripts'][] = base_url('js/itemview/CountScript.js');
 
         //collect data
         $data['item'] = $this->item_model->get_item(array('id' => $id, 'location' => TRUE, 'category' => TRUE));

@@ -107,7 +107,6 @@
 </div>
 
 <!-- availability -->
-<?php if (intval($loans['count']) > 0): ?>
 <div id="availability" class="clearfix">
     <h3>Availability</h3>
     <table class="table table-striped table-hover" id="availability-table">
@@ -120,18 +119,10 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($loans['data'] as $loan): ?>
-                <tr>
-                    <td><?=$loan['uid']; ?></td>
-                    <td><?=$loan['lastname'].' '.$loan['firstname']; ?></td>
-                    <td><?=(new DateTime($loan['from']))->format('d/m/Y H:i'); ?></td>
-                    <td><?=(new DateTime($loan['until']))->format('d/m/Y H:i'); ?></td>
-                </tr>
-            <?php endforeach; ?>
+            <!-- AJAX data -->
         </tbody>
     </table>
 </div>
-<?php endif; ?>
 
 <!-- usernotes -->
 <div id="usernotes" class="clearfix">
