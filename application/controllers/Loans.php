@@ -54,34 +54,29 @@ class Loans extends CI_Controller
 
         $output = [];
 
-        //set date
-        $dateNow = date_create();
-        $dateFrom = date_create($input['from']);
-        $dateUntil = date_create($input['until']);
-
-        //set_error_handler(function() {});
+        set_error_handler(function() {});
         try {
             if (intval($_SESSION['id']) === intval($input['user_id'])) {
 
-                //only continue if range is not negative
-                if ($dateFrom >= $dateUntil) {
-                    throw new Exception();
-                }
+                //check if everything is valid
+                $result = $this->loan_model->check_availability($input);
 
-                //only continue if not in the past
-                if ($dateFrom < $dateNow) {
-                    throw new Exception();
+                //when fail
+                if (!$result['success']) {
+                    $output['success'] = FALSE;
+                    $output['errors'] = $result['errors'];
+                } else {
+                    $this->loan_model->set_loan($input);
+                    $output['success'] = TRUE;
                 }
-
-                $this->loan_model->set_loan($input);
-                $output['success'] = TRUE;
             } else {
                 throw new Exception();
             }
         } catch (Exception $error) {
+            $output['success'] = FALSE;
             $output['error'] = "The request is not valid.";
         }
-        //restore_error_handler();
+        restore_error_handler();
 
         //output
         $this->output

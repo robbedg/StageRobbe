@@ -108,4 +108,65 @@ class loan_model extends CI_Model
     public function set_loan($data){
         $this->db->insert('loans', $data);
     }
+
+    //check availability of item
+    public function check_availability($data = [])
+    {
+        $this->db->select('from, until');
+        $this->db->from('loans');
+        $this->db->where('item_id', $data['item_id']);
+
+        $result = $this->db->get()->result_array();
+
+        //return object
+        $valid = [];
+
+        //get dates
+        $from = date_create($data['from']);
+        $until = date_create($data['until']);
+        $now = date_create();
+
+        //check if current
+        $current = TRUE;
+        if (
+            !(
+                ($from >= $now) &&
+                ($until >= $now)
+            )
+        ) {
+            $valid['errors'][] = 'Cannot loan object in the past.';
+            $current = FALSE;
+        }
+
+        //check if order is valid
+        $order = TRUE;
+        if (
+            !($from < $until)
+        ) {
+            $valid['errors'][] = 'From needs to be before Until.';
+            $order = FALSE;
+        }
+
+        //check if no interference with existing.
+        $noClip = TRUE;
+        foreach ($result as $timespan) {
+            $startSpan = date_create($timespan['from']);
+            $endSpan = date_create($timespan['until']);
+
+            if (
+                !(
+                    ($from >= $endSpan && $until >= $endSpan) ||
+                    ($from <= $startSpan && $until <= $startSpan)
+                )
+            ) {
+                $valid['errors'][] = 'Item is not available in chosen time frame.';
+                $noClip = FALSE;
+                break;
+            }
+        }
+
+        //return result
+        $valid['success'] = ($current && $order && $noClip);
+        return $valid;
+    }
 }
