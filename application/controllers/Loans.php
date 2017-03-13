@@ -13,6 +13,7 @@ class Loans extends CI_Controller
         parent::__construct();
         $this->load->model('loan_model');
         $this->load->helper('url_helper');
+        $this->load->helper('date');
         $this->load->helper('authorizationcheck_helper');
         authorization_check($this);
 
@@ -53,9 +54,25 @@ class Loans extends CI_Controller
 
         $output = [];
 
-        set_error_handler(function() {});
+        //set date
+        $dateNow = date_create();
+        $dateFrom = date_create($input['from']);
+        $dateUntil = date_create($input['until']);
+
+        //set_error_handler(function() {});
         try {
             if (intval($_SESSION['id']) === intval($input['user_id'])) {
+
+                //only continue if range is not negative
+                if ($dateFrom >= $dateUntil) {
+                    throw new Exception();
+                }
+
+                //only continue if not in the past
+                if ($dateFrom < $dateNow) {
+                    throw new Exception();
+                }
+
                 $this->loan_model->set_loan($input);
                 $output['success'] = TRUE;
             } else {
@@ -64,7 +81,7 @@ class Loans extends CI_Controller
         } catch (Exception $error) {
             $output['error'] = "The request is not valid.";
         }
-        restore_error_handler();
+        //restore_error_handler();
 
         //output
         $this->output
