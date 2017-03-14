@@ -130,22 +130,21 @@
     <h3>Comments</h3>
 
     <!-- new note -->
-    <?=form_open('items/view/'.$item['data']['id']); ?>
-    <input type="hidden" name="item_id" value="<?=$item['data']['id']; ?>">
-    <div class="form-group">
-        <div>
-            <textarea class="form-control" id="textArea" name="comment" placeholder="Write comment..."></textarea>
-            <span class="help-block" id="count">1024</span>
+    <div id="newnote">
+        <div class="form-group">
+            <div>
+                <textarea class="form-control" id="textArea" name="comment" placeholder="Write comment..."></textarea>
+                <span class="help-block" id="count">1024</span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <div class="button clearfix">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="form-group">
+            <div class="button clearfix">
+                <button type="button" class="btn btn-primary" id="submit-new-note">Submit</button>
+            </div>
         </div>
     </div>
 
-    <?=form_close(); ?>
-
+    <!-- existing notes -->
     <div id="notes">
         <!-- existing usernotes AJAX -->
     </div>

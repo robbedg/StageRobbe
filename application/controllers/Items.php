@@ -13,12 +13,8 @@ class Items extends CI_Controller
         $this->load->model('item_model');
         $this->load->model('location_model');
         $this->load->model('categories_model');
-        $this->load->model('loan_model');
-        $this->load->model('usernote_model');
         $this->load->helper('url_helper');
         $this->load->helper('authorizationcheck_helper');
-        $this->load->helper('form');
-        $this->load->library('form_validation');
 
         authorization_check($this);
 
@@ -86,30 +82,20 @@ class Items extends CI_Controller
         $data['scripts'][] = base_url('js/bootstrap-datetimepicker.min.js');
         $data['scripts'][] = base_url('js/itemview/ItemViewDateTimePicker.js');
         $data['scripts'][] = base_url('js/itemview/ItemView.js');
+        $data['scripts'][] = base_url('js/itemview/UserNote.js');
         $data['scripts'][] = base_url('js/itemview/SetLoan.js');
-        $data['scripts'][] = base_url('js/itemview/CountScript.js');
 
         //collect data
         $data['item'] = $this->item_model->get_item(array('id' => $id, 'location' => TRUE, 'category' => TRUE));
 
         $data['title'] = $data['item']['data']['category'].': '.$data['item']['data']['id'];
 
-        //validation rules
-        $this->form_validation->set_rules('item_id', 'Item ID', 'required|trim|htmlspecialchars|encode_php_tags');
-        $this->form_validation->set_rules('comment', 'Text', 'required|trim|htmlspecialchars|encode_php_tags|max_length[1024]');
+        //load view
+        $this->load->view('templates/header', $data);
+        $this->load->view('items/view', $data);
+        $this->load->view('templates/footer', $data);
 
-        if ($this->form_validation->run() === FALSE)
-        {
-            //load view
-            $this->load->view('templates/header', $data);
-            $this->load->view('items/view', $data);
-            $this->load->view('templates/footer', $data);
-        }
-        else
-        {
-            $this->usernote_model->set_usernote();
-            redirect('items/view/'.$id);
-        }
+
     }
 
     //creating/updating item

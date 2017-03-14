@@ -23,6 +23,7 @@ class Usernotes extends CI_Controller
         //results
         $results = [];
 
+        //no errors
         set_error_handler(function() {});
         try {
             //get data from JSON
@@ -46,15 +47,60 @@ class Usernotes extends CI_Controller
             ->set_output(json_encode($results));
     }
 
+    //Create new usernote
+    public function set() {
+
+        //no errors
+        set_error_handler(function() {});
+        try {
+            //get data from JSON
+            $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+            $input = json_decode($stream_clean, true);
+
+            //User can only post under own name
+            if ($input['user_id'] !== ($_SESSION['id'])) {
+                throw new Exception();
+            }
+
+            $result['success'] = $this->usernote_model->set_usernote($input);
+
+            if (!$result['success']) {
+                throw new Exception();
+            }
+
+            $result['success'] = TRUE;
+        } catch (Exception $error) {
+            $result['success'] = FALSE;
+        }
+        //errors
+        restore_error_handler();
+
+        //output
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($result));
+    }
+
     //deleting usernote
-    public function remove($item_id = NULL, $note_id = NULL) {
+    public function remove($note_id = NULL) {
 
         //when no id provided give 404
-        if (empty($item_id) || empty($note_id)) {
+        if (empty($note_id)) {
             show_404();
         }
 
-        $this->usernote_model->remove_usernote($note_id);
-        redirect(site_url('items/view/'.$item_id));
+        $response = $this->usernote_model->remove_usernote($note_id);
+
+        $result = [];
+         if ($response === TRUE) {
+             $result['success'] = TRUE;
+         } else {
+             $result['success'] = FALSE;
+         }
+
+         //output
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($result));
     }
 }

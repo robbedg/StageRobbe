@@ -81,8 +81,35 @@ function getNotes() {
     $(".links").each(function($index, $el) {
       $el = $($el);
       if (($el.attr('data-user-id').match($user_id)) || ($role_id >= 3)) {
-        $el.append($('<a />').attr('href', '/index.php/usernotes/remove/' + $el.attr('data-item-id') + '/' + $el.attr('data-note-id')).append('Delete'))
+        $el.append($('<a class="delete-note" href="#" />').append('Delete'))
       }
+    });
+  })
+  .always(function() {
+    //load delete links
+    deleteNote();
+  })
+}
+
+//Make possible to delete Notes
+function deleteNote() {
+  //click event
+  $(".delete-note").click(function($event) {
+    //prevent default
+    $event.preventDefault();
+
+    var $note_id = $(this).parent().attr('data-note-id');
+
+    //AJAX call
+    $.ajax({
+      url: '/index.php/usernotes/remove/' + $note_id,
+      type: 'GET',
+      dataType: 'json',
+      contentType: 'application/json'
+    })
+    .always(function() {
+      //reload notes
+      getNotes();
     });
   });
 }
