@@ -20,6 +20,7 @@ class Roles extends CI_Controller
         //$this->output->enable_profiler(TRUE);
     }
 
+    //get role(s)
     public function get() {
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);

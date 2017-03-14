@@ -25,6 +25,7 @@ class Admin extends CI_Controller
         $this->output->enable_profiler(TRUE);
     }
 
+    //Page for managing users
     public function index() {
         //set title
         $data['title'] = 'Admin panel';
@@ -75,6 +76,7 @@ class Admin extends CI_Controller
         }
     }
 
+    //page for managing items
     public function deleted_items() {
         //set title
         $data['title'] = 'Admin panel';
@@ -107,6 +109,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    //page for managing locations
     public function locations() {
         //set title
         $data['title'] = 'Admin panel';
@@ -137,6 +140,7 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
+    //page for managing categories
     public function categories() {
         //set title
         $data['title'] = 'Admin panel';

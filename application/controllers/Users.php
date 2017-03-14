@@ -18,6 +18,24 @@ class Users extends CI_Controller
         authorization_check($this);
     }
 
+    //user profile page
+    public function index($id = NULL)
+    {
+        //no page when empty
+        if (empty($id)) {
+            show_404();
+        }
+
+        //Only administrator can view other peoples profiles.
+        if (!(($id === $_SESSION['id']) || (authorization_check($this, 4)))) {
+            show_error("You are not authorized to perform this action.");
+        }
+
+        $this->load->view('/templates/header');
+        $this->load->view('/users/index');
+        $this->load->view('/templates/footer');
+    }
+
     //handle requests for users
     public function get()
     {
@@ -33,7 +51,6 @@ class Users extends CI_Controller
         );
 
         $data = $this->user_model->get_user($data);
-
 
         //output
         $this->output

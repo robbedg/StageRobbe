@@ -3,7 +3,7 @@
     <link rel="shortcut icon" type="image/ico" href="<?=base_url('favicon.ico').'?'.time(); ?>"/>
     <?php if (!empty($styles)): ?>
     <?php foreach ($styles as $style): ?>
-    <link rel="stylesheet" href="<?php echo $style; ?>">
+    <link rel="stylesheet" href="<?=$style; ?>">
     <?php endforeach; ?>
     <?php endif; ?>
     <link rel="stylesheet" href="<?=base_url('css/styles.css'); ?>">
@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo site_url('home'); ?>">Inventory</a>
+            <a class="navbar-brand" href="<?=site_url('home'); ?>">Inventory</a>
         </div>
 
         <!-- menu items -->
@@ -32,9 +32,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">New <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?php echo site_url('items/create'); ?>">New Item</a></li>
-                        <li><a href="<?php echo site_url('locations/create'); ?>">New Location</a></li>
-                        <li><a href="<?php echo site_url('categories/create'); ?>">New Category</a></li>
+                        <li><a href="<?=site_url('items/create'); ?>">New Item</a></li>
+                        <li><a href="<?=site_url('locations/create'); ?>">New Location</a></li>
+                        <li><a href="<?=site_url('categories/create'); ?>">New Category</a></li>
                     </ul>
                 </li>
                 <?php endif; ?>
@@ -49,7 +49,7 @@
             <!-- Right -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="#"><?php echo $_SESSION['firstname'].' '.$_SESSION['lastname'];?></a>
+                    <a href="<?=site_url('users/'.$_SESSION['id']); ?>"><?=$_SESSION['firstname'].' '.$_SESSION['lastname'];?></a>
                 </li>
             </ul>
 

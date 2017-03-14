@@ -16,6 +16,7 @@ class Login extends CI_Controller
         $this->load->helper('url_helper');
     }
 
+    //login page
     public function index()
     {
         //If userdata is available

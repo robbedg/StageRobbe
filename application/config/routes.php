@@ -94,6 +94,7 @@ $route['usernotes/set'] = 'usernotes/set';
 $route['usernotes/remove/(:num)'] = 'usernotes/remove/$1';
 
 //user routes
+$route['users/(:num)'] = 'users/index/$1';
 $route['users/get'] = 'users/get';
 
 //role routes

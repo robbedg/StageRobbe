@@ -21,6 +21,7 @@ class Categories extends CI_Controller
         //$this->output->enable_profiler(TRUE);
     }
 
+    //page with categories
     public function index($id = NULL) {
 
         if (empty($id)) {
