@@ -125,7 +125,7 @@ class Items extends CI_Controller
 
         if (!empty($id)) {
             $data['title'] = 'Edit Item';
-            $data['item'] = $this->item_model->get_item(array('id' => $id));
+            $data['item'] = $this->item_model->get_item(array('id' => $id, 'category' => TRUE, 'location' => TRUE));
         } else {
             $data['title'] = 'New Item';
             $data['item'] = array();
