@@ -12,6 +12,7 @@
 <!-- hidden fields -->
 <input type="hidden" id="user_id" value="<?=$_SESSION['id']; ?>">
 <input type="hidden" id="item_id" value="<?=$item['data']['id']; ?>">
+<input type="hidden" id="role_id" value="<?=$_SESSION['role_id']; ?>">
 
 <!-- buttons -->
 <?php if (authorization_check($this, 2)): ?>
