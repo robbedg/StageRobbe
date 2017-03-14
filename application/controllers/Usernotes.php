@@ -18,6 +18,34 @@ class Usernotes extends CI_Controller
         authorization_check($this);
     }
 
+    //get usernote
+    public function get() {
+        //results
+        $results = [];
+
+        set_error_handler(function() {});
+        try {
+            //get data from JSON
+            $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+            $input = json_decode($stream_clean, true);
+            $results = $this->usernote_model->get_usernote($input);
+
+            if (!$results) {
+                throw new Exception();
+            }
+
+            $results['success'] = TRUE;
+        } catch (Exception $error) {
+            $results['success'] = FALSE;
+        }
+        restore_error_handler();
+
+        //output
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($results));
+    }
+
     //deleting usernote
     public function remove($item_id = NULL, $note_id = NULL) {
 

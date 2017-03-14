@@ -145,26 +145,9 @@
 
     <?=form_close(); ?>
 
-    <!-- existing usernotes -->
-    <?php if (!empty($usernotes)): ?>
-    <?php foreach ($usernotes as $usernote): ?>
-    <div id="<?=uniqid(); ?>" class="note">
-        <strong class="username"><?=strtoupper($usernote['firstname']).' '.strtoupper($usernote['lastname']); ?></strong>
-
-        <!-- only user can delete comment -->
-        <?php if (($_SESSION['id'] === $usernote['user_id']) || authorization_check($this, 3)): ?>
-        <span class="links">
-            <a href="<?=site_url('usernotes/remove/'.$item['data']['id'].'/'.$usernote['id']); ?>">Delete</a>
-        </span>
-        <?php endif; ?>
-
-        <p>
-            <?=$usernote['text']; ?>
-        </p>
-        <span class="date"><?=(new DateTime($usernote['created_on']))->format('d/m/Y H:i'); ?></span>
+    <div id="notes">
+        <!-- existing usernotes AJAX -->
     </div>
-    <?php endforeach; ?>
-    <?php endif; ?>
 </div>
 
 <!--dialog delete-->

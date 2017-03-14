@@ -91,8 +91,6 @@ class Items extends CI_Controller
 
         //collect data
         $data['item'] = $this->item_model->get_item(array('id' => $id, 'location' => TRUE, 'category' => TRUE));
-        $data['loans'] = $this->loan_model->get_loan(array('item_id' => $id, 'user' => TRUE, 'current' => TRUE, 'sort_on' => array('column' => 'until', 'order' => 'ASC')));
-        $data['usernotes'] = $this->usernote_model->get_usernotes_by_item($id);
 
         $data['title'] = $data['item']['data']['category'].': '.$data['item']['data']['id'];
 

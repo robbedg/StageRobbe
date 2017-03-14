@@ -89,6 +89,7 @@ $route['categories/delete/(:num)'] = 'categories/delete/$1';
 $route['categories/(:num)'] = 'categories/index/$1';
 
 //usernote routes
+$route['usernotes/get'] = 'usernotes/get';
 $route['usernotes/remove/(:num)'] = 'usernotes/remove/$1';
 
 //user routes
