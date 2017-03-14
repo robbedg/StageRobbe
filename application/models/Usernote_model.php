@@ -80,11 +80,8 @@ class Usernote_model extends CI_Model
         }
 
         //count results
-        try {
-            $count = $this->db->count_all_results('usernotes', false);
-        } catch (Exception $error) {
-            return FALSE;
-        }
+        $count = $this->db->count_all_results('usernotes', false);
+
 
 
         //set limit if set
