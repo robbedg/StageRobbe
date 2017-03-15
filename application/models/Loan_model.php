@@ -34,7 +34,11 @@ class loan_model extends CI_Model
         //if only current
         if (!empty($data['current']) && $data['current'] === TRUE)
         {
-            $this->db->where('loans.until >', date('y-m-d H:i:s'));
+            if (!empty($data['date_offset'])) {
+                $this->db->where('loans.until >', date_modify(new DateTime(), $data['date_offset'])->format('y-m-d H:i:s'));
+            } else {
+                $this->db->where('loans.until >', date('y-m-d H:i:s'));
+            }
         }
 
         //if item needs inclusion

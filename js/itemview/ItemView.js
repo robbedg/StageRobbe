@@ -10,6 +10,7 @@ function getAvailability() {
   $data.item_id = $("#item_id").val();
   $data.user = true;
   $data.current = true;
+  $data.date_offset = '-7 days';
   $data.sort_on = {'column': 'until', 'order': 'ASC'};
   //get response
   $.ajax({
@@ -27,8 +28,18 @@ function getAvailability() {
 
     //loans
     $($loans).each(function($index, $el) {
+      var $rowclass = '';
+      var $now = moment().utcOffset(100).toDate();
+      var $from = moment($el.from, 'DD/MM/YYYY hh:mm').utcOffset(100).toDate();
+      var $until = moment($el.until, 'DD/MM/YYYY hh:mm').utcOffset(100).toDate();
+
+      //set color
+      if (($from < $now) && ($until < $now)) $rowclass = 'warning';
+      if (($from > $now) && ($until > $now)) $rowclass = 'info';
+      if (($from <= $now) && ($until >= $now)) $rowclass = 'success';
+
       $("#availability-table tbody")
-        .append($('<tr/>')
+        .append($('<tr/>').addClass($rowclass)
           .append($('<td />').append($el['uid']))
           .append($('<td />').append($el['lastname'] + ' ' + $el['firstname']))
           .append($('<td />').append($el['from']))
