@@ -28,7 +28,7 @@ $(document).ready(function(){
 
     //retrieve localStorage
     function checkLocalStorage() {
-      var $pref = localStorage.getItem('loans');
+      var $pref = localStorage.getItem('loans-user');
       if ($pref !== null) {
         var $prefdata = JSON.parse($pref);
         if ($prefdata.limit !== null) $data.limit = $prefdata.limit;
@@ -52,7 +52,7 @@ $(document).ready(function(){
 
     //save preferences locally
     function setLocalStorage() {
-      localStorage.setItem('loans', JSON.stringify({'limit' : $data.limit, 'sort_on' : $data.sort_on}));
+      localStorage.setItem('loans-user', JSON.stringify({'limit' : $data.limit, 'sort_on' : $data.sort_on}));
     }
 
     //calculatepages
