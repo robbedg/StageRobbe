@@ -68,9 +68,9 @@ $(document).ready(function() {
           .append(
             $('<tr />').addClass($rowclass)
               .append($('<td />').append($el.id))
-              .append($('<td />').append($el.item_id))
-              .append($('<td />').append('(' + $el.location_id + ') ' + $el.location))
-              .append($('<td />').append('(' + $el.category_id + ') ' + $el.category))
+              .append($('<td />').append($('<a href="/index.php/items/view/' + $el.id + '"/>').append($el.item_id)))
+              .append($('<td />').append($('<a href="/index.php/categories/' + $el.location_id + '"/>').append($el.location)))
+              .append($('<td />').append($('<a href="/index.php/items/' + $el.location_id + '/' + $el.category_id + '"/>').append($el.category)))
               .append($('<td />').append($el.from))
               .append($('<td />').append($el.until))
           );

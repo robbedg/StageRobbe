@@ -49,8 +49,8 @@
             <tr>
                 <th>ID</th>
                 <th>Item ID</th>
-                <th>(ID) Location</th>
-                <th>(ID) Category</th>
+                <th>Location</th>
+                <th>Category</th>
                 <th>From</th>
                 <th>Until</th>
             </tr>
