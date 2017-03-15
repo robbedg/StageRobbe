@@ -41,6 +41,16 @@ class loan_model extends CI_Model
             }
         }
 
+        //if start_date
+        if (!empty($data['start_date'])) {
+            $this->db->where('loans.until >', date_modify(new DateTime($data['start_date']), $data['start_date'])->format('y-m-d H:i:s'));
+        }
+
+        //if end_date
+        if (!empty($data['end_date'])) {
+            $this->db->where('loans.from <', date_modify(new DateTime($data['end_date']), $data['end_date'])->format('y-m-d H:i:s'));
+        }
+
         //if item needs inclusion
         $item = FALSE;
         if (!empty($data['item']) && $data['item'] === TRUE) {

@@ -34,8 +34,9 @@ $(document).ready(function() {
     var $data = new Object();
     $data.user_id = $("#user_id").val();
     $data.item = true;
-    $data.limit = 10;
-    $data.sort_on = {'column': 'from', 'order': 'asc'};
+    $data.start_date = '-1 week';
+    $data.end_date = '+ 1 month';
+    $data.sort_on = {'column': 'until', 'order': 'asc'};
 
     //get info
     $.ajax({

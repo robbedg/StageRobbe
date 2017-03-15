@@ -9,8 +9,8 @@ function getAvailability() {
   var $data = new Object();
   $data.item_id = $("#item_id").val();
   $data.user = true;
-  $data.current = true;
-  $data.date_offset = '-7 days';
+  $data.start_date = '- 1 week';
+  $data.end_date = '+ 1 month';
   $data.sort_on = {'column': 'until', 'order': 'ASC'};
   //get response
   $.ajax({
