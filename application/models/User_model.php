@@ -34,7 +34,7 @@ class User_model extends CI_Model
     //get_user(s)
     public function get_user($data = [])
     {
-        $this->db->select('users.id AS id, firstname, lastname, role_id, roles.name AS role');
+        $this->db->select('users.id AS id, uid, firstname, lastname, role_id, roles.name AS role');
         $this->db->join('roles', 'roles.id = users.role_id', 'inner');
 
         //if id is given
@@ -78,11 +78,14 @@ class User_model extends CI_Model
         //return results
         $results = [];
         $results['count'] = $count;
-        if (!empty($data['id'])) {
-            $results['data'] = $this->db->get()->row_array();
-        } else {
-            $results['data'] = $this->db->get()->result_array();
-        }
+
+        $results['data'] = $this->db->get();
+
+        //check if successful
+        if (!$results['data']) return FALSE;
+
+        $results['data'] = $results['data']->result_array();
+
 
         return $results;
     }

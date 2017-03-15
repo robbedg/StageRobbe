@@ -31,30 +31,45 @@ class Users extends CI_Controller
             show_error("You are not authorized to perform this action.");
         }
 
-        $this->load->view('/templates/header');
-        $this->load->view('/users/index');
+        //set scripts
+        $data['scripts'][] = base_url('js/scripts.js');
+        $data['scripts'][] = base_url('js/moment/moment-with-locales.min.js');
+        $data['scripts'][] = base_url('js/UserProfile.js');
+
+        //set data
+        $data['user_id'] = $id;
+
+        $this->load->view('/templates/header', $data);
+        $this->load->view('/users/index', $data);
         $this->load->view('/templates/footer');
     }
 
     //handle requests for users
     public function get()
     {
-        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
-        $input = json_decode($stream_clean, true);
+        $return = [];
 
-        $data = array(
-            'role_id' => $input['role_id'],
-            'search' => $input['search'],
-            'sort_on' => array('column' => 'lastname', 'order' => 'ASC'),
-            'limit' => 10,
-            'offset' => 0
-        );
+        //no errors (PHP)
+        set_error_handler(function() {});
+        try {
+            $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+            $input = json_decode($stream_clean, true);
 
-        $data = $this->user_model->get_user($data);
+            $results = $this->user_model->get_user($input);
+
+            //break if query= false
+            if ($results === FALSE) throw new Exception();
+
+            $return = $results;
+            $return['success'] = TRUE;
+        } catch (Exception $e) {
+            $return['success'] = FALSE;
+        }
+        restore_error_handler();
 
         //output
         $this->output
             ->set_content_type('application/json')
-            ->set_output(json_encode($data));
+            ->set_output(json_encode($return));
     }
 }

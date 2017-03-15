@@ -40,8 +40,12 @@ class loan_model extends CI_Model
         //if item needs inclusion
         $item = FALSE;
         if (!empty($data['item']) && $data['item'] === TRUE) {
-            $this->db->select('items.id AS item_id, items.created_on AS item_created_on');
+            $this->db->select('items.created_on AS item_created_on');
             $this->db->join('items', 'items.id = loans.item_id', 'inner');
+            $this->db->select('locations.name AS location, locations.id AS location_id');
+            $this->db->join('locations', 'locations.id = items.location_id', 'right outer');
+            $this->db->select('categories.name AS category, categories.id AS category_id');
+            $this->db->join('categories', 'categories.id = items.category_id', 'right outer');
             $item = TRUE;
         }
 
@@ -76,6 +80,10 @@ class loan_model extends CI_Model
                 $this->db->or_like('users.firstname', $data['search']);
                 $this->db->or_like('users.lastname', $data['search']);
                 $this->db->or_like('users.uid', $data['search']);
+            }
+            if ($item) {
+                $this->db->or_like('categories.name');
+                $this->db->or_like('locations.name');
             }
             $this->db->group_end();
         }
