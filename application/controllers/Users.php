@@ -37,6 +37,7 @@ class Users extends CI_Controller
         $data['scripts'][] = base_url('js/UserProfile.js');
 
         //set data
+        $data['title'] = 'Profile';
         $data['user_id'] = $id;
 
         $this->load->view('/templates/header', $data);

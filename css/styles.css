@@ -211,6 +211,13 @@
 	border-radius: 4px;
 	margin-bottom: 1rem;
  }
+ 
+ #availability > a {
+ 	position: relative;
+	float: right;
+	display: inline-block;
+	margin-top: -4.8rem;
+ }
 
  #availability-table {
  	margin: 1rem;

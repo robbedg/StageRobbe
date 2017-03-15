@@ -96,8 +96,8 @@ class loan_model extends CI_Model
                 $this->db->or_like('users.uid', $data['search']);
             }
             if ($item) {
-                $this->db->or_like('categories.name');
-                $this->db->or_like('locations.name');
+                $this->db->or_like('categories.name', $data['search']);
+                $this->db->or_like('locations.name', $data['search']);
             }
             $this->db->group_end();
         }

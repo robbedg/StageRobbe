@@ -1,5 +1,11 @@
+<!-- breadcrum -->
+<ul class="breadcrumb">
+    <li><a href="<?=site_url('home'); ?>">Home</a></li>
+    <li class="active"><?=$title; ?></li>
+</ul>
+
 <!-- title -->
-<h2>Profile</h2>
+<h2><?=$title; ?></h2>
 
 <!-- hidden fields -->
 <input type="hidden" id="user_id" value="<?=$user_id; ?>">
@@ -37,6 +43,7 @@
 <!-- Active loans -->
 <div id="active-loans">
     <h3>Items in use</h3>
+    <a href="<?=site_url('loans/view/user/'.$user_id); ?>" class="btn btn-primary" id="view-all">View all</a>
     <table class="table table-striped table-hover">
         <thead>
             <tr>

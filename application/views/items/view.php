@@ -3,7 +3,7 @@
     <li><a href="<?=site_url('home'); ?>">Home</a></li>
     <li><a href="<?=site_url('/categories/'.$item['data']['location_id']); ?>"><?=$item['data']['location']; ?></a></li>
     <li><a href="<?=site_url('/items/'.$item['data']['location_id'].'/'.$item['data']['category_id']); ?>"><?=$item['data']['category'].' collection'; ?></a></li>
-    <li class="active"><?php echo $title; ?></li>
+    <li class="active"><?=$title; ?></li>
 </ul>
 
 <!-- title -->
@@ -110,6 +110,7 @@
 <!-- availability -->
 <div id="availability" class="clearfix">
     <h3>Availability</h3>
+    <a class="btn btn-primary" href="<?=site_url('loans/view/item/'.$item['data']['id']); ?>">View all</a>
     <table class="table table-striped table-hover" id="availability-table">
         <thead>
             <tr>

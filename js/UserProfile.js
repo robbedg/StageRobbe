@@ -4,6 +4,9 @@ $(document).ready(function() {
   getUserInfo();
   getUserLoans();
 
+  /**
+   * FUNCTIONS
+   **/
   //get user info
   function getUserInfo() {
     //set data
