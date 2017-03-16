@@ -81,6 +81,11 @@ class loan_model extends CI_Model
             $this->db->order_by($data['sort_on']['column'], $data['sort_on']['order']);
         }
 
+        //give class
+        if (!empty($data['class']) && $data['class'] === TRUE) {
+            $this->db->select('get_class(loans.from, loans.until) AS class');
+        }
+
         //if user wants search
         if ((!empty($data['search'])) && (empty($data['id']))) {
             $this->db->group_start();

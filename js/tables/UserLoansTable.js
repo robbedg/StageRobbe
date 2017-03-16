@@ -10,6 +10,7 @@ $(document).ready(function(){
     $data.offset = 0;
     $data.user_id = $("#user_id").val();
     $data.item = true;
+    $data.class = true;
     //use db names
     $data.sort_on = {'column' : 'until', 'order' : 'desc'};
 
@@ -135,17 +136,8 @@ $(document).ready(function(){
         var $loans = $response.data;
         //fill db
         $($loans).each(function($index, $el) {
-          var $rowclass = '';
-          var $now = moment().utcOffset(100).toDate();
-          var $from = moment($el.from, 'DD/MM/YYYY hh:mm').utcOffset(100).toDate();
-          var $until = moment($el.until, 'DD/MM/YYYY hh:mm').utcOffset(100).toDate();
-
-          //set color
-          if (($from < $now) && ($until < $now)) $rowclass = 'warning';
-          if (($from > $now) && ($until > $now)) $rowclass = 'info';
-          if (($from <= $now) && ($until >= $now)) $rowclass = 'success';
           $("#listingpage tbody").
-            append($('<tr />').addClass($rowclass)
+            append($('<tr />').addClass($el['class'])
               .append($('<td />').append($el['id']))
               .append($('<td />').append($('<a href="/index.php/items/view/' + $el['item_id'] + '"/>').append($el['item_id'])))
               .append($('<td />').append($('<a href="/index.php/categories/' + $el['location_id'] + '"/>').append($el['location'])))

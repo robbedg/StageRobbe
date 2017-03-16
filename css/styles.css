@@ -84,7 +84,6 @@
  	border-style: dashed;
  }
 
-
 /**
  * CONTENT
  **/
@@ -211,7 +210,7 @@
 	border-radius: 4px;
 	margin-bottom: 1rem;
  }
- 
+
  #availability > a {
  	position: relative;
 	float: right;
