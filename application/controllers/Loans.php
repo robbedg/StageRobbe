@@ -144,7 +144,7 @@ class Loans extends CI_Controller
                 //when fail
                 if (!$result['success']) {
                     $output['success'] = FALSE;
-                    $output['errors'] = $result['errors'];
+                    $output['errors'][] = 'The selected values are not valid.';
                 } else {
                     $this->loan_model->set_loan($input);
                     $output['success'] = TRUE;

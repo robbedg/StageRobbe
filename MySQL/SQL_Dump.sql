@@ -16,6 +16,67 @@ CREATE TABLE IF NOT EXISTS `categories` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+DROP PROCEDURE IF EXISTS `check_availability`;
+DELIMITER //
+CREATE DEFINER=`admin`@`%` PROCEDURE `check_availability`(
+	IN `item_id` INT,
+	IN `start_date` DATETIME,
+	IN `end_date` DATETIME
+)
+BEGIN
+	-- Declare variables
+   DECLARE success BOOL DEFAULT TRUE;
+   DECLARE now DATETIME;
+   
+   DECLARE n INT DEFAULT 0;
+	DECLARE i INT DEFAULT 0;
+	
+	DECLARE start_timespan DATETIME;
+   DECLARE end_timespan DATETIME;
+    
+	SET now = NOW();
+   
+	 -- check if in past
+   IF (NOT (start_date >= now AND end_date >= now)) THEN
+		SET success = FALSE;
+	END IF;
+    
+    -- check if not negative
+	IF (NOT (start_date < end_date)) THEN
+		SET success = FALSE;
+	END IF;
+	
+    -- check availability
+    DROP TEMPORARY TABLE IF EXISTS timespans;
+    CREATE TEMPORARY TABLE timespans AS
+		SELECT loans.from, loans.until
+        FROM loans
+        WHERE loans.item_id = item_id;
+        
+        
+   SELECT COUNT(*) FROM timespans INTO n;
+   SET i = 0;
+   
+   checkspans: WHILE i<n DO
+   	SELECT timespans.from FROM timespans LIMIT i,1 INTO start_timespan;
+   	SELECT timespans.until FROM timespans LIMIT i,1 INTO end_timespan;
+		
+		IF NOT (((start_date >= end_timespan) AND (end_date > end_timespan)) OR ((start_date < start_timespan) AND (end_date <= start_timespan))) THEN
+			SET success = FALSE;
+			LEAVE checkspans;
+		END IF;
+		
+		SET i = i + 1;
+	END WHILE;
+	
+	-- Drop table
+	DROP TEMPORARY TABLE IF EXISTS timespans;
+	
+	-- Response
+	SELECT success;   
+END//
+DELIMITER ;
+
 DROP FUNCTION IF EXISTS `format_date`;
 DELIMITER //
 CREATE DEFINER=`admin`@`%` FUNCTION `format_date`(
