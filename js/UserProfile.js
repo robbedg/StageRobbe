@@ -62,8 +62,8 @@ $(document).ready(function() {
               .append($('<td />').append($('<a href="/index.php/items/view/' + $el.item_id + '"/>').append($el.item_id)))
               .append($('<td />').append($('<a href="/index.php/categories/' + $el.location_id + '"/>').append($el.location)))
               .append($('<td />').append($('<a href="/index.php/items/' + $el.location_id + '/' + $el.category_id + '"/>').append($el.category)))
-              .append($('<td />').append($el.from))
-              .append($('<td />').append($el.until))
+              .append($('<td />').append($el.from_string))
+              .append($('<td />').append($el.until_string))
           );
       });
     });

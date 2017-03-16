@@ -141,8 +141,8 @@ $(document).ready(function(){
               .append($('<td />').append($el['id']))
               .append($('<td />').append($el['uid']))
               .append($('<td />').append($el['lastname'] + ' ' + $el['firstname']))
-              .append($('<td />').append($el['from']))
-              .append($('<td />').append($el['until']))
+              .append($('<td />').append($el['from_string']))
+              .append($('<td />').append($el['until_string']))
             );
         });
         calculatepages($response.count);

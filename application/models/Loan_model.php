@@ -19,7 +19,7 @@ class loan_model extends CI_Model
 
     //get loans
     public function get_loan($data = []) {
-        $this->db->select('loans.id AS id, loans.item_id AS item_id, loans.user_id AS user_id, from, until, note');
+        $this->db->select('loans.id AS id, loans.item_id AS item_id, loans.user_id AS user_id, format_date(loans.from) AS "from_string", loans.from, format_date(loans.until) AS "until_string", loans.until, loans.note AS note');
 
         //if id is given
         if (!empty($data['id'])) {
@@ -54,7 +54,7 @@ class loan_model extends CI_Model
         //if item needs inclusion
         $item = FALSE;
         if (!empty($data['item']) && $data['item'] === TRUE) {
-            $this->db->select('items.created_on AS item_created_on');
+            $this->db->select('format_date(items.created_on) AS item_created_on');
             $this->db->join('items', 'items.id = loans.item_id', 'inner');
             $this->db->select('locations.name AS location, locations.id AS location_id');
             $this->db->join('locations', 'locations.id = items.location_id', 'right outer');
@@ -71,7 +71,7 @@ class loan_model extends CI_Model
         //if user needs inclusion
         $user = FALSE;
         if (!empty($data['user']) && $data['user'] === TRUE) {
-            $this->db->select('users.id AS user_id, users.firstname AS firstname, users.lastname AS lastname, users.uid AS uid, users.role_id AS role_id');
+            $this->db->select('users.firstname AS firstname, users.lastname AS lastname, users.uid AS uid, users.role_id AS role_id');
             $this->db->join('users', 'users.id = loans.user_id', 'inner');
             $user = TRUE;
         }
@@ -83,7 +83,7 @@ class loan_model extends CI_Model
 
         //give class
         if (!empty($data['class']) && $data['class'] === TRUE) {
-            $this->db->select('get_class(loans.from, loans.until) AS class');
+            $this->db->select('get_class(loans.from, loans.until) AS "class"');
         }
 
         //if user wants search
@@ -92,8 +92,8 @@ class loan_model extends CI_Model
             $this->db->like('loans.id', $data['search']);
             $this->db->or_like('loans.item_id', $data['search']);
             $this->db->or_like('loans.user_id', $data['search']);
-            $this->db->or_like('loans.from', $data['search']);
-            $this->db->or_like('loans.until', $data['search']);
+            $this->db->or_like('format_date(loans.from)', $data['search']);
+            $this->db->or_like('format_date(loans.until)', $data['search']);
             $this->db->or_like('loans.note', $data['search']);
             if ($user) {
                 $this->db->or_like('users.firstname', $data['search']);
@@ -121,14 +121,11 @@ class loan_model extends CI_Model
         }
 
         //return result
-        if (!empty($data['id'])) {
-            $result['data'] = $this->db->get()->row_array();
-            $result['count'] = $count;
+        $result['data'] = $this->db->get();
 
-            return $result;
-        }
-
-        $result['data'] = $this->db->get()->result_array();
+        //check result
+        if ($result['data'] === FALSE) return FALSE;
+        $result['data'] = $result['data']->result_array();
         $result['count'] = $count;
 
         return $result;

@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                     <td>Created on:</td>
-                    <td><?=(new DateTime($item['data']['created_on']))->format('d/m/Y H:i'); ?></td>
+                    <td><?=$item['data']['created_on']; ?></td>
                 </tr>
                 <?php foreach (array_keys($item['data']['attributes']) as $attributekey): ?>
                 <tr>

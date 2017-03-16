@@ -156,16 +156,20 @@ class Items extends CI_Controller
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
 
+        $result = [];
         $items = $this->item_model->get_item($input);
 
-        foreach ($items['data'] as $key => $item) {
-            $items['data'][$key]['created_on'] = (new DateTime($item['created_on']))->format('d/m/Y H:i');
+        if ($items === FALSE) {
+            $result['success'] = FALSE;
+        } else {
+            $result = $items;
+            $result['success'] = TRUE;
         }
 
         //output
         $this->output
             ->set_content_type('application/json')
-            ->set_output(json_encode($items));
+            ->set_output(json_encode($result));
     }
 
     //deleting item

@@ -17,7 +17,7 @@ class Item_model extends CI_Model
     public function get_item($data = [])
     {
         //base query
-        $this->db->select('items.id AS id, items.created_on AS created_on');
+        $this->db->select('items.id AS id, format_date(items.created_on) AS created_on');
 
         //deleted items?
         if (!empty($data['deleted']) && $data['deleted'] === TRUE) {
@@ -67,7 +67,7 @@ class Item_model extends CI_Model
         if ((!empty($data['search'])) && (empty($data['id']))) {
             $this->db->group_start();
             $this->db->like('items.id', $data['search']);
-            $this->db->or_like('items.created_on', $data['search']);
+            $this->db->or_like('format_date(items.created_on)', $data['search']);
             $this->db->or_like('items.attributes', $data['search']);
             if ($location) {
                 $this->db->or_like('locations.id', $data['search']);
@@ -94,7 +94,12 @@ class Item_model extends CI_Model
 
         //return result
         if (!empty($data['id'])) {
-            $result['data'] = $this->db->get()->row_array();
+            $result['data'] = $this->db->get();
+
+            //check if valid
+            if ($result['data'] === FALSE) return FALSE;
+            $result['data'] = $result['data']->row_array();
+
             $result['count'] = $count;
 
             $result['data']['attributes'] = json_decode($result['data']['attributes'], true);
@@ -111,7 +116,12 @@ class Item_model extends CI_Model
             return $result;
         }
 
-        $result['data'] = $this->db->get()->result_array();
+        $result['data'] = $this->db->get();
+
+        //check if valid
+        if ($result['data'] === FALSE) return FALSE;
+        $result['data'] = $result['data']->result_array();
+
         $result['count'] = $count;
 
         return $result;
