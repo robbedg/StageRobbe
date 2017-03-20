@@ -114,6 +114,34 @@ $(document).ready(function(){
       });
     }
 
+    //load buttons (Delete & Return)
+    function loadButtons() {
+      $("table tbody tr td a").click(function($event) {
+        $event.preventDefault();
+        //set url
+        var $url = '';
+        var $id = $(this).attr('data-id');
+
+        //check function
+        if ($(this).text().match('Delete')) {
+          $url = '/index.php/loans/delete/'
+        }
+        if ($(this).text().match('Return')) {
+          $url = '/index.php/loans/close/'
+        }
+
+        $.ajax({
+          url: $url + $id,
+          type: 'GET',
+          dataType: 'json',
+          contentType: 'application/json',
+        })
+        .always(function() {
+          callDB();
+        });
+      });
+    }
+
     //load DB
     function callDB() {
 
@@ -144,6 +172,10 @@ $(document).ready(function(){
               .append($('<td />').append($('<a href="/index.php/items/' + $el['location_id'] + '/' + $el['category_id'] + '"/>').append($el['category'])))
               .append($('<td />').append($el['from_string']))
               .append($('<td />').append($el['until_string']))
+              .append($('<td />').addClass('align-right').append(
+                ($el['class'] === 'info' ? '<a href="#" class="btn btn-danger btn-xs" data-id="' + $el['id'] + '">Delete</a>' : '') +
+                ($el['class'] === 'success' ? '<a href="#" class="btn btn-success btn-xs" data-id="' + $el['id'] + '">Return</a>' : '')
+              ))
             );
         });
         calculatepages($response.count);
@@ -151,6 +183,9 @@ $(document).ready(function(){
       .always(function() {
         loadpager();
         pagingbuttons();
+        //Load buttons
+        loadButtons();
+
       });
     }
 

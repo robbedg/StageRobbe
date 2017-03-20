@@ -103,6 +103,8 @@ $route['roles/get'] = 'roles/get';
 //loan routes
 $route['loans/get'] = 'loans/get';
 $route['loans/set'] = 'loans/set';
+$route['loans/delete/(:num)'] = 'loans/delete/$1';
+$route['loans/close/(:num)'] = 'loans/close/$1';
 $route['loans/(:any)/(:num)'] = 'loans/$1/$2';
 
 //default routes

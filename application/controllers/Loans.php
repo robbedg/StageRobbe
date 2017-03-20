@@ -25,7 +25,8 @@ class Loans extends CI_Controller
     }
 
     //show detail page of loans
-    public function view($identifier = NULL, $id = NULL) {
+    public function view($identifier = NULL, $id = NULL)
+    {
 
         //check if correct data is given
         if(empty($identifier) || empty($id)) {
@@ -114,7 +115,8 @@ class Loans extends CI_Controller
     }
 
     //get loans
-    public function get() {
+    public function get()
+    {
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
 
@@ -127,7 +129,8 @@ class Loans extends CI_Controller
     }
 
     //new loan
-    public function set() {
+    public function set()
+    {
         //get info
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
@@ -162,5 +165,31 @@ class Loans extends CI_Controller
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($output));
+    }
+
+    //return loan
+    public function close($id = null)
+    {
+        //if id is not given return 404.
+        if ($id === null) show_404();
+
+        $result = $this->loan_model->close_loan($id);
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($result));
+    }
+
+    //delete loan
+    public function delete($id = NULL)
+    {
+        //if id is not given return 404.
+        if ($id === null) show_404();
+
+        $result = $this->loan_model->delete_loan($id);
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($result));
     }
 }

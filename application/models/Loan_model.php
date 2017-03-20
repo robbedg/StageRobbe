@@ -175,4 +175,107 @@ class loan_model extends CI_Model
         //return value
         return $valid;
     }
+
+    //return loaned item
+    public function return_item($id)
+    {
+        //set result
+        $result = [];
+
+        //set result
+        $result = [];
+
+        $this->db->select('id');
+        $this->db->where('id', $id);
+
+        $loanquery = $this->db->get();
+
+        if ($loanquery === FALSE) {
+            $result['success'] = FALSE;
+            $result['errors'][] = 'ID does not exist';
+            return $result;
+        }
+
+        $loan = $loanquery->row_array();
+
+        $this->db->delete('loans', array('id' => $id));
+        //query
+    }
+
+    //update loan
+    public function close_loan($id)
+    {
+        //set result
+        $result = [];
+
+        $this->db->select('id, until, from');
+        $this->db->where('id', $id);
+
+        $loanquery = $this->db->get('loans');
+
+        if ($loanquery === FALSE) {
+            $result['success'] = FALSE;
+            $result['errors'][] = 'ID does not exist';
+            return $result;
+        }
+
+        //get loan
+        $loan = $loanquery->row_array();
+
+        //check user
+        if (($_SESSION['id'] !== $id) && !($_SESSION['role_id'] >= 2)) {
+            $result['success'] = FALSE;
+            $result['errors'][] = 'You are not authorize to perform this action.';
+            return $result;
+        }
+
+        //check date
+        if (!(date_create($loan['from']) < date_create() && date_create($loan['until']) > date_create())) {
+            $result['success'] = FALSE;
+            $result['errors'][] = 'The loan is not active.';
+            return $result;
+        }
+
+        //remove loan
+        $this->db->where('id', $id);
+        $this->db->update('loans', array('until' => date_create()->format('Y-m-d H:i:s')));
+    }
+
+    //delete loan
+    public function delete_loan($id)
+    {
+        //set result
+        $result = [];
+
+        $this->db->select('id', 'until');
+        $this->db->where('id', $id);
+
+        $loanquery = $this->db->get('loans');
+
+        if ($loanquery === FALSE) {
+            $result['success'] = FALSE;
+            $result['errors'][] = 'ID does not exist';
+            return $result;
+        }
+
+        //get loan
+        $loan = $loanquery->row_array();
+
+        //check user
+        if (($_SESSION['id'] !== $id) && !($_SESSION['role_id'] >= 2)) {
+            $result['success'] = FALSE;
+            $result['errors'][] = 'You are not authorize to perform this action.';
+            return $result;
+        }
+
+        //check date
+        if (date_create($loan['from']) < date_create()) {
+            $result['success'] = FALSE;
+            $result['errors'][] = 'Loan already past or is already active';
+            return $result;
+        }
+
+        //remove loan
+        $this->db->delete('loans', array('id' => $id));
+    }
 }
