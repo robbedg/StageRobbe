@@ -18,7 +18,7 @@ class Items extends CI_Controller
 
         authorization_check($this);
 
-        //$this->output->enable_profiler(TRUE);
+        $this->output->enable_profiler(TRUE);
     }
 
     //show items in category & location

@@ -142,25 +142,37 @@ class loan_model extends CI_Model
         //return object
         $valid = [];
 
-        $query = $this->db->query("CALL check_availability(? , ?, ?)", array($data['item_id'], $data['from'], $data['until']));
+        //query
+        $this->db->select('loans.from, loans.until');
+        $this->db->where('loans.item_id', $data['item_id']);
+        $this->db->where('loans.until >=', date_format(new DateTime(), 'Y-m-d H:i:s'));
 
-        //check if query succeeded
-        if ($query === FALSE) {
-            $valid['success'] = FALSE;
-        }
+        //check if time window OK
+        $this->db->not_group_start();
+        $this->db->group_start();
+        $this->db->where('loans.until <=', $data['from']);
+        $this->db->where('loans.until <', $data['until']);
+        $this->db->group_end();
+        $this->db->or_group_start();
+        $this->db->where('loans.from >', $data['from']);
+        $this->db->where('loans.from >=', $data['until']);
+        $this->db->group_end();
+        $this->db->group_end();
 
-        //check response of DB
-        if ($query->row_array()['success'] == TRUE) {
-            $valid['success'] = TRUE;
-        } else {
-            $valid['success'] = FALSE;
-        }
+        $conflicts = $this->db->count_all_results('loans');
 
-        //free up (FIX) (stored procedure)
-        $this->db->flush_cache();
-        mysqli_next_result($this->db->conn_id);
-        $query->free_result();
+        $noconfilcts = FALSE;
+        if ($conflicts === 0) $noconfilcts = TRUE;
 
+        $correctorder = FALSE;
+        if (date_create($data['from']) < date_create($data['until'])) $correctorder = TRUE;
+
+        $current = FALSE;
+        if (date_create($data['from']) >= date_create()) $current = TRUE;
+
+        $valid['success']  = $noconfilcts && $correctorder && $current;
+
+        //return value
         return $valid;
     }
 }
