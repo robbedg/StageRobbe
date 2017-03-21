@@ -12,7 +12,7 @@ function getAvailability() {
   $data.class = true;
   $data.start_date = '- 1 week';
   $data.end_date = '+ 1 month';
-  $data.sort_on = {'column': 'until', 'order': 'ASC'};
+  $data.sort_on = {'column': 'until', 'order': 'desc'};
   //get response
   $.ajax({
     url: '/index.php/loans/get',
@@ -36,6 +36,10 @@ function getAvailability() {
           .append($('<td />').append($el['lastname'] + ' ' + $el['firstname']))
           .append($('<td />').append($el['from_string']))
           .append($('<td />').append($el['until_string']))
+          .append($('<td />').addClass('align-right').append(
+            (($el['class'] === 'info' && $el['user_id'] === $("#user_id").val()) ? '<a href="#" class="btn btn-danger btn-xs" data-id="' + $el['id'] + '">Delete</a>' : '') +
+            (($el['class'] === 'success' && $el['user_id'] === $("#user_id").val()) ? '<a href="#" class="btn btn-success btn-xs" data-id="' + $el['id'] + '">Return</a>' : '')
+          ))
         );
     });
   });

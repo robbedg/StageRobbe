@@ -40,7 +40,7 @@ $(document).ready(function() {
     $data.class = true;
     $data.start_date = '-1 week';
     $data.end_date = '+ 1 month';
-    $data.sort_on = {'column': 'until', 'order': 'asc'};
+    $data.sort_on = {'column': 'until', 'order': 'desc'};
 
     //get info
     $.ajax({
@@ -64,6 +64,10 @@ $(document).ready(function() {
               .append($('<td />').append($('<a href="/index.php/items/' + $el.location_id + '/' + $el.category_id + '"/>').append($el.category)))
               .append($('<td />').append($el.from_string))
               .append($('<td />').append($el.until_string))
+              .append($('<td />').addClass('align-right').append(
+                ($el['class'] === 'info' ? '<a href="#" class="btn btn-danger btn-xs" data-id="' + $el['id'] + '">Delete</a>' : '') +
+                ($el['class'] === 'success' ? '<a href="#" class="btn btn-success btn-xs" data-id="' + $el['id'] + '">Return</a>' : '')
+              ))
           );
       });
     });

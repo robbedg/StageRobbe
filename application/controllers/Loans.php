@@ -94,6 +94,7 @@ class Loans extends CI_Controller
 
                 //set hiddenfield
                 $data['hiddenfields'][] = array('id' => 'item_id', 'value' => $id);
+                $data['hiddenfields'][] = array('id' => 'user_id', 'value' => $_SESSION['id']);
 
                 //script
                 $data['scripts'][] = base_url('js/tables/ItemLoansTable.js');
