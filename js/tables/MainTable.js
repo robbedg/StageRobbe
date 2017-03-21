@@ -32,7 +32,6 @@ function setLocalStorage($data, $storename) {
 function calculatepages($data, $pageInfo, $resultcount) {
   //total pages
   $pageInfo.totalpages = Math.floor($resultcount / $data.limit);
-  console.log($pageInfo.totalpages);
   //maybe extra page
   if ((($resultcount % $data.limit) !== 0) && ($resultcount !== 0)) $pageInfo.totalpages++;
 
