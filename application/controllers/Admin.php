@@ -85,6 +85,7 @@ class Admin extends CI_Controller
         $data['styles'][] = base_url('css/admin-panel.css');
 
         //set scripts
+        $data['scripts'][] = base_url('js/tables/MainTable.js');
         $data['scripts'][] = base_url('js/admin/AdminDeletedItems.js');
 
         //active
@@ -118,6 +119,7 @@ class Admin extends CI_Controller
         $data['styles'][] = base_url('css/admin-panel.css');
 
         //set scripts
+        $data['scripts'][] = base_url('js/tables/MainTable.js');
         $data['scripts'][] = base_url('js/admin/AdminLocations.js');
 
         //active
@@ -149,6 +151,7 @@ class Admin extends CI_Controller
         $data['styles'][] = base_url('css/admin-panel.css');
 
         //set scripts
+        $data['scripts'][] = base_url('js/tables/MainTable.js');
         $data['scripts'][] = base_url('js/admin/AdminCategories.js');
 
         //active
