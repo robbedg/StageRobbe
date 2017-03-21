@@ -41,7 +41,7 @@ class Loans extends CI_Controller
         //header
         $data['head'][] = array('name' => 'ID', 'db' =>'id');
         //scripts
-        $data['scripts'][] = base_url('js/moment/moment-with-locales.min.js');
+        $data['scripts'][] = base_url('js/tables/MainTable.js');
 
         //correct data
         switch ($identifier) {
