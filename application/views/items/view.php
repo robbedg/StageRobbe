@@ -65,6 +65,10 @@
             </tbody>
         </table>
     </div>
+    <!-- qr code -->
+    <div id="qrcode">
+        <!-- generated qr code -->
+    </div>
 </div>
 
 <!-- Loan errors -->

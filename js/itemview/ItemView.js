@@ -121,10 +121,18 @@ function deleteNote() {
   });
 }
 
+function generateQR() {
+  var $qrCode = new QRCode("qrcode", {
+    correctLevel : QRCode.CorrectLevel.H
+  });
+  $qrCode.makeCode($("#item_id").val());
+}
+
 //Load
 $(document).ready(function() {
 
   getAvailability();
   getNotes();
+  generateQR();
 
 });
