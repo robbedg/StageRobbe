@@ -32,6 +32,10 @@
         <style> #data { width: 100%;  } </style>
     <?php endif; ?>
     <div id="data">
+        <!-- qr code -->
+        <div id="qrcode">
+            <!-- generated qr code -->
+        </div>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -65,10 +69,7 @@
             </tbody>
         </table>
     </div>
-    <!-- qr code -->
-    <div id="qrcode">
-        <!-- generated qr code -->
-    </div>
+
 </div>
 
 <!-- Loan errors -->

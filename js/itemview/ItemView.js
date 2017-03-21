@@ -123,7 +123,9 @@ function deleteNote() {
 
 function generateQR() {
   var $qrCode = new QRCode("qrcode", {
-    correctLevel : QRCode.CorrectLevel.H
+    correctLevel : QRCode.CorrectLevel.H,
+    width: 64,
+    height: 64
   });
   $qrCode.makeCode($("#item_id").val());
 }
