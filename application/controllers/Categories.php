@@ -34,6 +34,7 @@ class Categories extends CI_Controller
         $data['title'] = $location;
 
         //scripts
+        $data['scripts'][] = base_url('js/tables/MainTable.js');
         $data['scripts'][] = base_url('js/tables/CategoriesTable.js');
 
         //set breadcrum

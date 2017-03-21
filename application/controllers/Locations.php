@@ -34,6 +34,7 @@ class Locations extends CI_Controller
         $data['head'][2]['db'] = 'item_count';
 
         //set scripts
+        $data['scripts'][] = base_url('js/tables/MainTable.js');
         $data['scripts'][] = base_url('js/tables/LocationsTable.js');
 
         $this->load->view('templates/header', $data);
