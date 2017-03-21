@@ -32,7 +32,6 @@ class Users extends CI_Controller
         }
 
         //set scripts
-        $data['scripts'][] = base_url('js/scripts.js');
         $data['scripts'][] = base_url('js/moment/moment-with-locales.min.js');
         $data['scripts'][] = base_url('js/UserProfile.js');
 
