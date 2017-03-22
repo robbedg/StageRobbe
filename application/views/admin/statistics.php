@@ -1,3 +1,4 @@
 <div id="statistics">
-    <p>Lorem ipsum...</p>
+    <h3>Statistics</h3>
+    <div id="chart_div"></div>
 </div>

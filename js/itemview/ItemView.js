@@ -2,9 +2,33 @@
  * BASIC FUNCTIONS FOR ITEMS/VIEW
  **/
 "use strict";
+//load libraries
 
-//load Availability table
-function getAvailability() {
+function reDrawChart() {
+  google.charts.load("current", {packages:["timeline"], 'language': 'nl'});
+  google.charts.setOnLoadCallback(drawChart);
+}
+
+//draw chart
+function drawChart() {
+  var $container = document.getElementById('timeline');
+  var $chart = new google.visualization.Timeline($container);
+  var $dataTable = new google.visualization.DataTable();
+  //get result
+  $dataTable.addColumn({ type: 'string', id: 'ID' });
+  $dataTable.addColumn({ type: 'string', id: 'Name' });
+  $dataTable.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true}});
+  $dataTable.addColumn({ type: 'date', id: 'Start' });
+  $dataTable.addColumn({ type: 'date', id: 'End' });
+  //options
+  var $options = {
+      tooltip: {isHtml: true},
+      timeline: { showRowLabels: false },
+      avoidOverlappingGridLines: false,
+      hAxis: {
+        format: 'dd/MM/yyyy HH:mm'
+    }
+  };
   //set data
   var $data = new Object();
   $data.item_id = $("#item_id").val();
@@ -24,27 +48,28 @@ function getAvailability() {
   .done(function($response) {
     //get results
     var $loans = $response.data;
-    //empty
-    $("#availability-table tbody").empty();
 
-    //loans
-    $($loans).each(function($index, $el) {
+    $("#availability p").remove();
 
-      $("#availability-table tbody")
-        .append($('<tr/>').addClass($el['class'])
-          .append($('<td />').append($el['uid']))
-          .append($('<td />').append($el['lastname'] + ' ' + $el['firstname']))
-          .append($('<td />').append($el['from_string']))
-          .append($('<td />').append($el['until_string']))
-          .append($('<td />').addClass('align-right').append(
-            (($el['class'] === 'info' && $el['user_id'] === $("#user_id").val()) ? '<a href="#" class="btn btn-danger btn-xs" data-id="' + $el['id'] + '">Delete</a>' : '') +
-            (($el['class'] === 'success' && $el['user_id'] === $("#user_id").val()) ? '<a href="#" class="btn btn-success btn-xs" data-id="' + $el['id'] + '">Return</a>' : '')
-          ))
-        );
-    });
-  })
-  .always(function() {
-    loadButtons();
+    //set chart
+    if ($loans.length > 0) {
+      /* CHART */
+      $dataTable.addRow(['', 'Now', 'Now', new Date(), new Date() ]);
+
+        $($response.data).each(function($i, $el) {
+          $dataTable.addRow([
+            $el['item_id'],
+            $el['lastname'] + ' ' + $el['firstname'],
+            '<strong>' + $el['lastname'] + ' ' + $el['firstname'] + '</strong><br /><strong>From: </strong>' + $el['from_string'] + '<br />' + '<strong>Until: </strong>' + $el['until_string'],
+            new Date($el['from']),
+            new Date($el['until'])
+          ]);
+        });
+
+      $chart.draw($dataTable, $options);
+    } else {
+      $("#availability").append($('<p>No loans active.</p>').css('text-align', 'center'));
+    }
   });
 }
 
@@ -133,36 +158,9 @@ function generateQR() {
   $qrCode.makeCode($("#item_id").val());
 }
 
-//load buttons (Delete & Return)
-function loadButtons() {
-  $("table tbody tr td a.btn").click(function($event) {
-    $event.preventDefault();
-    //set url
-    var $url = '';
-    var $id = $(this).attr('data-id');
-    //check function
-    if ($(this).text().match('Delete')) {
-      $url = '/index.php/loans/delete/'
-    }
-    if ($(this).text().match('Return')) {
-      $url = '/index.php/loans/close/'
-    }
-    $.ajax({
-      url: $url + $id,
-      type: 'GET',
-      dataType: 'json',
-      contentType: 'application/json',
-    })
-    .always(function() {
-      getAvailability();
-    });
-  });
-}
-
 //Load
 $(document).ready(function() {
-
-  getAvailability();
+  reDrawChart();
   getNotes();
   generateQR();
 

@@ -182,10 +182,14 @@ class Admin extends CI_Controller
     public function statistics()
     {
         //set title
-        $data['title'] = 'Statistics';
+        $data['title'] = 'Admin Panel';
 
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
+
+        //set scripts
+        $data['scripts'][] = 'https://www.gstatic.com/charts/loader.js';
+        $data['scripts'][] = base_url('js/admin/AdminStatistics.js');
 
         //active
         $data['active'] = 'statistics';

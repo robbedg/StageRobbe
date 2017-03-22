@@ -116,19 +116,10 @@
 <div id="availability" class="clearfix">
     <h3>Availability</h3>
     <a class="btn btn-primary" href="<?=site_url('loans/view/item/'.$item['data']['id']); ?>">View all</a>
-    <table class="table table-striped table-hover" id="availability-table">
-        <thead>
-            <tr>
-                <th>UID:</th>
-                <th>Name:</th>
-                <th>From:</th>
-                <th>Until:</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- AJAX data -->
-        </tbody>
-    </table>
+    <!-- timeline -->
+    <div id="timeline">
+        <!-- Chart -->
+    </div>
 </div>
 
 <!-- usernotes -->
