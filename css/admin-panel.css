@@ -10,7 +10,7 @@
 #tabs table {
  	border-bottom: 0rem;
  }
- 
+
 /**
  * LEFT
  **/
@@ -39,7 +39,7 @@
  #filter li {
  	margin: 0rem;
  }
- 
+
 /**
  * USERSELECT
  **/
@@ -126,3 +126,15 @@
  .align-right {
  	text-align: right;
  }
+
+ /**
+  * USERSELECT
+  **/
+  #statistics {
+  	border-style: solid;
+  	border-color: #dddddd;
+  	border-width: 1px;
+  	border-radius: 4px;
+  	height: 30rem;
+  	overflow-y: scroll;
+  }

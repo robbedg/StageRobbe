@@ -57,6 +57,7 @@ $route['admin'] = 'admin/index';
 $route['admin/deleted-items'] = 'admin/deleted_items';
 $route['admin/locations'] = 'admin/locations';
 $route['admin/categories'] = 'admin/categories';
+$route['admin/statistics'] = 'admin/statistics';
 
 //upload
 $route['upload/do_upload/(:num)'] = 'upload/do_upload/$1';

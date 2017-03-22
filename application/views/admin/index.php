@@ -15,6 +15,7 @@
     <li class="<?php if ($active === 'deleted-items') echo 'active'; ?>"><a href="<?=site_url('admin/deleted-items'); ?>">Deleted items</a></li>
     <li class="<?php if ($active === 'locations') echo 'active'; ?>"><a href="<?=site_url('admin/locations'); ?>">Locations</a></li>
     <li class="<?php if ($active === 'categories') echo 'active'; ?>"><a href="<?=site_url('admin/categories'); ?>">Categories</a></li>
+    <li class="<?php if ($active === 'statistics') echo 'active'; ?>"><a href="<?=site_url('admin/statistics'); ?>">Statistics</a></li>
 </ul>
 
 <div id="tabs" class="tab-content">
