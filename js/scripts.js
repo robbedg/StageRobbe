@@ -1,3 +1,4 @@
+"use strict";
 $(document).ready(function($) {
     function clickablerow() {
       $(".clickable-row").click(function() {

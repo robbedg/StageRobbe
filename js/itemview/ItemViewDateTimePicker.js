@@ -1,3 +1,4 @@
+"use strict";
 $(document).ready(function() {
   $('#datetimepicker_from').datetimepicker({
     'locale' : 'nl-be',
