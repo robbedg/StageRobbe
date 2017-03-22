@@ -184,6 +184,9 @@ class Admin extends CI_Controller
         //set title
         $data['title'] = 'Statistics';
 
+        //set styles
+        $data['styles'][] = base_url('css/admin-panel.css');
+
         //active
         $data['active'] = 'statistics';
 
