@@ -53,6 +53,8 @@ $(document).ready(function() {
     .done(function($response) {
       var $loans = $($response.data);
 
+      $("#active-loans table > tbody").empty();
+
       $loans.each(function($index, $el) {
         //add data to table
         $("#active-loans tbody")
@@ -70,7 +72,35 @@ $(document).ready(function() {
               ))
           );
       });
+    })
+    .always(function() {
+      loadButtons();
     });
   }
 
+  //load buttons (Delete & Return)
+  function loadButtons() {
+    $("table tbody tr td a.btn").click(function($event) {
+      $event.preventDefault();
+      //set url
+      var $url = '';
+      var $id = $(this).attr('data-id');
+      //check function
+      if ($(this).text().match('Delete')) {
+        $url = '/index.php/loans/delete/'
+      }
+      if ($(this).text().match('Return')) {
+        $url = '/index.php/loans/close/'
+      }
+      $.ajax({
+        url: $url + $id,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+      })
+      .always(function() {
+        getUserLoans();
+      });
+    });
+  }
 });

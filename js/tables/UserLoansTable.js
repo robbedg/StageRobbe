@@ -79,7 +79,7 @@ $(document).ready(function(){
 
     //load buttons (Delete & Return)
     function loadButtons() {
-      $("table tbody tr td a").click(function($event) {
+      $("table tbody tr td a.btn").click(function($event) {
         $event.preventDefault();
         //set url
         var $url = '';

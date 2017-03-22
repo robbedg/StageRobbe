@@ -216,6 +216,7 @@
 	float: right;
 	display: inline-block;
 	margin-top: -4.8rem;
+  margin-right: 1rem;
  }
 
  #availability-table {
@@ -317,6 +318,7 @@
 	float: right;
 	display: inline-block;
 	margin-top: -3.8rem;
+  margin-right: 1rem;
  }
 
 /**
