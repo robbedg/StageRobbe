@@ -245,6 +245,14 @@
  	float: right;
  }
 
+ #usernotes .links a {
+ 	color: red;
+ }
+
+ #usernotes .links a:hover {
+ 	color: darkred;
+ }
+
  #usernotes p {
  	background-color: #fff;
  	padding: 1rem;

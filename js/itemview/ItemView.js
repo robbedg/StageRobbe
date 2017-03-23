@@ -116,7 +116,7 @@ function getNotes() {
     $(".links").each(function($index, $el) {
       $el = $($el);
       if (($el.attr('data-user-id').match($user_id)) || ($role_id >= 3)) {
-        $el.append($('<a class="delete-note" href="#" />').append('Delete'))
+        $el.append($('<a class="delete-note" href="#" />').append('<span class="fa fa-close"></span>'))
       }
     });
   })

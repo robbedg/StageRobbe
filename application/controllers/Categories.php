@@ -91,10 +91,19 @@ class Categories extends CI_Controller
     //handle requests for locations
     public function get()
     {
-        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
-        $input = json_decode($stream_clean, true);
+        $categories = [];
+        try {
+            $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+            $input = json_decode($stream_clean, true);
 
-        $categories = $this->categories_model->get_category($input);
+            $categories = $this->categories_model->get_category($input);
+
+            if ($categories === FALSE) throw new Exception();
+
+            $categories['success'] = TRUE;
+        } catch (Exception $e) {
+            $categories['success'] = FALSE;
+        }
 
         //output
         $this->output
