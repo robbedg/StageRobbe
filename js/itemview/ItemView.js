@@ -152,8 +152,8 @@ function deleteNote() {
 function generateQR() {
   var $qrCode = new QRCode("qrcode", {
     correctLevel : QRCode.CorrectLevel.M,
-    width: 64,
-    height: 64
+    width: 75,
+    height: 75
   });
   $qrCode.makeCode($("#item_id").val() + ',' + $("#location").val() + ',' + $("#category").val());
   $("#qrcode").removeAttr('title');
@@ -175,4 +175,9 @@ $(document).ready(function() {
   getNotes();
   generateQR();
 
+});
+
+//on window resize
+$(window).resize(function() {
+  reDrawChart();
 });
