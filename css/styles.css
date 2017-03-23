@@ -329,6 +329,14 @@
   margin-right: 1rem;
  }
 
+ /**
+ * DELETED ITEMS
+ **/
+
+ .align-right {
+ 	text-align: right;
+ }
+
 /**
  *FOOTER
  **/

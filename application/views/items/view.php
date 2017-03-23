@@ -36,10 +36,6 @@
         <style> #data { width: 100%;  } </style>
     <?php endif; ?>
     <div id="data">
-        <!-- qr code -->
-        <div id="qrcode">
-            <!-- generated qr code -->
-        </div>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -48,6 +44,15 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>QR-code:</td>
+                    <td>
+                        <!-- qr code -->
+                        <div id="qrcode">
+                            <!-- generated qr code -->
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <td>ID:</td>
                     <td><?=$item['data']['id']; ?></td>
