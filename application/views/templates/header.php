@@ -8,6 +8,7 @@
     <?php endif; ?>
     <link rel="stylesheet" href="<?=base_url('css/styles.css'); ?>">
     <link rel="stylesheet" href="<?=base_url('css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?=base_url('font-awesome/css/font-awesome.min.css'); ?>">
     <title>Inventory</title>
 </head>
 <nav class="navbar-inverse">
@@ -49,7 +50,7 @@
             <!-- Right -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="<?=site_url('users/'.$_SESSION['id']); ?>"><?=$_SESSION['firstname'].' '.$_SESSION['lastname'];?></a>
+                    <a href="<?=site_url('users/'.$_SESSION['id']); ?>"><?=$_SESSION['firstname'].' '.$_SESSION['lastname'];?> <span class="fa fa-user"></span></a>
                 </li>
             </ul>
 

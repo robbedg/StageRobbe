@@ -11,14 +11,18 @@
 
 <!-- hidden fields -->
 <input type="hidden" id="user_id" value="<?=$_SESSION['id']; ?>">
-<input type="hidden" id="item_id" value="<?=$item['data']['id']; ?>">
 <input type="hidden" id="role_id" value="<?=$_SESSION['role_id']; ?>">
+
+<input type="hidden" id="item_id" value="<?=$item['data']['id']; ?>">
+<input type="hidden" id="location" value="<?=$item['data']['location']; ?>">
+<input type="hidden" id="category" value="<?=$item['data']['category']; ?>">
 
 <!-- buttons -->
 <?php if (authorization_check($this, 2)): ?>
 <div id="buttons">
-    <a href="<?=site_url('/items/create/'.$item['data']['id']); ?>" class="btn btn-primary">Edit</a>
-    <a id="buttonmodal" class="btn btn-danger">Delete</a>
+    <a href="#" class="btn btn-primary" id="print-label"><span class="fa fa-print"></span></a>
+    <a href="<?=site_url('/items/create/'.$item['data']['id']); ?>" class="btn btn-primary"><span class="fa fa-edit"></span></a>
+    <a id="buttonmodal" class="btn btn-danger"><span class="fa fa-trash"></span></a>
 </div>
 <?php endif; ?>
 

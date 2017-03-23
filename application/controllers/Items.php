@@ -75,7 +75,6 @@ class Items extends CI_Controller
         }
 
         //load styles
-        $data['styles'][] = base_url('font-awesome/css/font-awesome.min.css');
         $data['styles'][] = base_url('css/bootstrap-datetimepicker.min.css');
 
         //load scripts

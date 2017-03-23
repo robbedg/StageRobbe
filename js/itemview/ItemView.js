@@ -151,11 +151,22 @@ function deleteNote() {
 
 function generateQR() {
   var $qrCode = new QRCode("qrcode", {
-    correctLevel : QRCode.CorrectLevel.H,
+    correctLevel : QRCode.CorrectLevel.M,
     width: 64,
     height: 64
   });
-  $qrCode.makeCode($("#item_id").val());
+  $qrCode.makeCode($("#item_id").val() + ',' + $("#location").val() + ',' + $("#category").val());
+  $("#qrcode").removeAttr('title');
+
+  //print
+  $("#print-label").click(function($event) {
+    $event.preventDefault();
+    var $popup = window.open();
+    $popup.document.write($("#qrcode").html());
+    $popup.focus();
+    $popup.print();
+    $popup.close();
+  });
 }
 
 //Load
