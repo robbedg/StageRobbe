@@ -32,7 +32,7 @@ class Items extends CI_Controller
         $category = $this->categories_model->get_category(array('id' => $categoryid));
 
         //set title
-        $data['title'] = $category['data']['name'].' collection';
+        $data['title'] = $category['data'][0]['name'].' collection';
 
         //set scripts
         $data['scripts'][] = base_url('js/tables/MainTable.js');
@@ -47,7 +47,7 @@ class Items extends CI_Controller
         $bread_location['name'] = $location['data']['name'];
         $data['breadcrum']['items'][] = $bread_location;
 
-        $data['breadcrum']['active'] = $category['data']['name'].' collection';
+        $data['breadcrum']['active'] = $category['data'][0]['name'].' collection';
 
         //set header
         $data['head'][0]['name'] = 'Item ID';
@@ -75,12 +75,15 @@ class Items extends CI_Controller
         }
 
         //load styles
-        $data['styles'][] = base_url('font-awesome/css/font-awesome.min.css');
         $data['styles'][] = base_url('css/bootstrap-datetimepicker.min.css');
 
         //load scripts
         $data['scripts'][] = base_url('js/moment/moment-with-locales.min.js');
         $data['scripts'][] = base_url('js/bootstrap-datetimepicker.min.js');
+        $data['scripts'][] = 'https://www.gstatic.com/charts/loader.js';
+
+        $data['scripts'][] = base_url('js/qrcode.min.js');
+
         $data['scripts'][] = base_url('js/itemview/ItemViewDateTimePicker.js');
         $data['scripts'][] = base_url('js/itemview/ItemView.js');
         $data['scripts'][] = base_url('js/itemview/UserNote.js');

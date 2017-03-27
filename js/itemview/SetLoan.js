@@ -32,7 +32,7 @@ $(document).ready(function() {
       }
     })
     .always(function() {
-        getAvailability();
+        reDrawChart();
     });
   }
 

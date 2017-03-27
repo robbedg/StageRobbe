@@ -10,7 +10,7 @@
 #tabs table {
  	border-bottom: 0rem;
  }
- 
+
 /**
  * LEFT
  **/
@@ -39,7 +39,7 @@
  #filter li {
  	margin: 0rem;
  }
- 
+
 /**
  * USERSELECT
  **/
@@ -117,12 +117,4 @@
  #submit {
  	margin-top: 2rem;
  	float: right;
- }
-
-/**
- * DELETED ITEMS
- **/
-
- .align-right {
- 	text-align: right;
  }

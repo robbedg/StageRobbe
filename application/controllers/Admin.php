@@ -26,7 +26,8 @@ class Admin extends CI_Controller
     }
 
     //Page for managing users
-    public function index() {
+    public function index()
+    {
         //set title
         $data['title'] = 'Admin panel';
 
@@ -77,7 +78,8 @@ class Admin extends CI_Controller
     }
 
     //page for managing items
-    public function deleted_items() {
+    public function deleted_items()
+    {
         //set title
         $data['title'] = 'Admin panel';
 
@@ -111,7 +113,8 @@ class Admin extends CI_Controller
     }
 
     //page for managing locations
-    public function locations() {
+    public function locations()
+    {
         //set title
         $data['title'] = 'Admin panel';
 
@@ -143,7 +146,8 @@ class Admin extends CI_Controller
     }
 
     //page for managing categories
-    public function categories() {
+    public function categories()
+    {
         //set title
         $data['title'] = 'Admin panel';
 
@@ -170,6 +174,30 @@ class Admin extends CI_Controller
         $this->load->view('templates/header', $data);
         $this->load->view('admin/index', $data);
         $this->load->view('admin/categories', $data);
+        $this->load->view('admin/end', $data);
+        $this->load->view('templates/footer');
+    }
+
+    //show for displaying statistics
+    public function statistics()
+    {
+        //set title
+        $data['title'] = 'Admin Panel';
+
+        //set styles
+        $data['styles'][] = base_url('css/admin-panel.css');
+
+        //set scripts
+        $data['scripts'][] = 'https://www.gstatic.com/charts/loader.js';
+        $data['scripts'][] = base_url('js/admin/AdminStatistics.js');
+
+        //active
+        $data['active'] = 'statistics';
+
+        //load views
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/index', $data);
+        $this->load->view('admin/statistics', $data);
         $this->load->view('admin/end', $data);
         $this->load->view('templates/footer');
     }

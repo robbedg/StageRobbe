@@ -11,14 +11,18 @@
 
 <!-- hidden fields -->
 <input type="hidden" id="user_id" value="<?=$_SESSION['id']; ?>">
-<input type="hidden" id="item_id" value="<?=$item['data']['id']; ?>">
 <input type="hidden" id="role_id" value="<?=$_SESSION['role_id']; ?>">
+
+<input type="hidden" id="item_id" value="<?=$item['data']['id']; ?>">
+<input type="hidden" id="location" value="<?=$item['data']['location']; ?>">
+<input type="hidden" id="category" value="<?=$item['data']['category']; ?>">
 
 <!-- buttons -->
 <?php if (authorization_check($this, 2)): ?>
 <div id="buttons">
-    <a href="<?=site_url('/items/create/'.$item['data']['id']); ?>" class="btn btn-primary">Edit</a>
-    <a id="buttonmodal" class="btn btn-danger">Delete</a>
+    <a href="#" class="btn btn-primary" id="print-label"><span class="fa fa-print"></span></a>
+    <a href="<?=site_url('/items/create/'.$item['data']['id']); ?>" class="btn btn-primary"><span class="fa fa-edit"></span></a>
+    <a id="buttonmodal" class="btn btn-danger"><span class="fa fa-trash"></span></a>
 </div>
 <?php endif; ?>
 
@@ -40,6 +44,15 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td>QR-code:</td>
+                    <td>
+                        <!-- qr code -->
+                        <div id="qrcode">
+                            <!-- generated qr code -->
+                        </div>
+                    </td>
+                </tr>
                 <tr>
                     <td>ID:</td>
                     <td><?=$item['data']['id']; ?></td>
@@ -65,6 +78,7 @@
             </tbody>
         </table>
     </div>
+
 </div>
 
 <!-- Loan errors -->
@@ -111,19 +125,10 @@
 <div id="availability" class="clearfix">
     <h3>Availability</h3>
     <a class="btn btn-primary" href="<?=site_url('loans/view/item/'.$item['data']['id']); ?>">View all</a>
-    <table class="table table-striped table-hover" id="availability-table">
-        <thead>
-            <tr>
-                <th>UID:</th>
-                <th>Name:</th>
-                <th>From:</th>
-                <th>Until:</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- AJAX data -->
-        </tbody>
-    </table>
+    <!-- timeline -->
+    <div id="timeline">
+        <!-- Chart -->
+    </div>
 </div>
 
 <!-- usernotes -->

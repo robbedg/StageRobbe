@@ -55,14 +55,12 @@ class Categories_model extends CI_Model
             }
         }
 
-        //return result
-        if (!empty($data['id'])) {
-            $result['data'] = $this->db->get()->row_array();
-            $result['count'] = $count;
-            return $result;
-        }
 
-        $result['data'] = $this->db->get()->result_array();
+        $query = $this->db->get();
+
+        if ($query === FALSE) return FALSE;
+
+        $result['data'] = $query->result_array();
         $result['count'] = $count;
 
         return $result;

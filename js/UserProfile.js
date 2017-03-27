@@ -53,6 +53,8 @@ $(document).ready(function() {
     .done(function($response) {
       var $loans = $($response.data);
 
+      $("#active-loans table > tbody").empty();
+
       $loans.each(function($index, $el) {
         //add data to table
         $("#active-loans tbody")
@@ -65,12 +67,40 @@ $(document).ready(function() {
               .append($('<td />').append($el.from_string))
               .append($('<td />').append($el.until_string))
               .append($('<td />').addClass('align-right').append(
-                ($el['class'] === 'info' ? '<a href="#" class="btn btn-danger btn-xs" data-id="' + $el['id'] + '">Delete</a>' : '') +
-                ($el['class'] === 'success' ? '<a href="#" class="btn btn-success btn-xs" data-id="' + $el['id'] + '">Return</a>' : '')
+                ($el['class'] === 'info' ? '<a href="#" class="btn btn-danger btn-sm" data-id="' + $el['id'] + '"><span class="fa fa-trash"></span></a>' : '') +
+                ($el['class'] === 'success' ? '<a href="#" class="btn btn-success btn-sm" data-id="' + $el['id'] + '"><span class="fa fa-share"></span></a>' : '')
               ))
           );
       });
+    })
+    .always(function() {
+      loadButtons();
     });
   }
 
+  //load buttons (Delete & Return)
+  function loadButtons() {
+    $("table tbody tr td a.btn").click(function($event) {
+      $event.preventDefault();
+      //set url
+      var $url = '';
+      var $id = $(this).attr('data-id');
+      //check function
+      if ($(this).text().match('Delete')) {
+        $url = '/index.php/loans/delete/'
+      }
+      if ($(this).text().match('Return')) {
+        $url = '/index.php/loans/close/'
+      }
+      $.ajax({
+        url: $url + $id,
+        type: 'GET',
+        dataType: 'json',
+        contentType: 'application/json',
+      })
+      .always(function() {
+        getUserLoans();
+      });
+    });
+  }
 });
