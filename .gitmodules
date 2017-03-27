@@ -1,0 +1,3 @@
+[submodule "CordovaApp"]
+	path = CordovaApp
+	url = git@RobbeDev.local:robbedegeyndt/CordovaApp.git
