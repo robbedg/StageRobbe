@@ -52,6 +52,11 @@ class Item_model extends CI_Model
             $category = TRUE;
         }
 
+        //display attributes (string)
+        if (!empty($data['attributes']) && $data['attributes'] === TRUE) {
+            $this->db->select('items.attributes AS attributes');
+        }
+
         //return 1 if ID is set
         if (!empty($data['id'])) {
             $this->db->select('items.attributes AS attributes');

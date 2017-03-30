@@ -5,6 +5,7 @@
  * Date: 7/02/2017
  * Time: 10:19
  */
+
 class Items extends CI_Controller
 {
     public function __construct()
@@ -16,13 +17,14 @@ class Items extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->helper('authorizationcheck_helper');
 
-        authorization_check($this);
 
         //$this->output->enable_profiler(TRUE);
     }
 
     //show items in category & location
     public function index($locationid = NULL, $categoryid = NULL) {
+        //check auth
+        authorization_check($this);
         //show 404 without parameters
         if ((empty($locationid)) || (empty($categoryid))) {
             show_404();
@@ -172,6 +174,8 @@ class Items extends CI_Controller
 
         //output
         $this->output
+            ->set_header('Access-Control-Allow-Origin: *')
+            ->set_header('Access-Control-Allow-Headers: Origin, Content-Type')
             ->set_content_type('application/json')
             ->set_output(json_encode($result));
     }
