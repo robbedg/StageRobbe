@@ -74,7 +74,16 @@ class Locations extends CI_Controller
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
         $input = json_decode($stream_clean, true);
 
-        $locations = $this->location_model->get_location($input);
+        $locations = [];
+
+        $result = $this->location_model->get_location($input);
+
+        if ($locations === FALSE) {
+            $locations['success'] = FALSE;
+        } else {
+            $locations = $result;
+            $locations['success'] = TRUE;
+        }
 
         //output
         $this->output

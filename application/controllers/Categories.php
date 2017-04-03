@@ -28,7 +28,7 @@ class Categories extends CI_Controller
             show_404();
         }
 
-        $location = $this->location_model->get_location(array('id' => $id))['data']['name'];
+        $location = $this->location_model->get_location(array('id' => $id))['data'][0]['name'];
 
         //set title
         $data['title'] = $location;

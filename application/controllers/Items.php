@@ -47,7 +47,7 @@ class Items extends CI_Controller
         $data['breadcrum']['items'][] = $home;
 
         $bread_location['href'] = site_url('categories/'.$locationid);
-        $bread_location['name'] = $location['data']['name'];
+        $bread_location['name'] = $location['data'][0]['name'];
         $data['breadcrum']['items'][] = $bread_location;
 
         $data['breadcrum']['active'] = $category['data'][0]['name'].' collection';
