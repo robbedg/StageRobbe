@@ -25,6 +25,7 @@ class Items extends CI_Controller
     public function index($locationid = NULL, $categoryid = NULL) {
         //check auth
         authorization_check($this);
+
         //show 404 without parameters
         if ((empty($locationid)) || (empty($categoryid))) {
             show_404();
@@ -71,6 +72,9 @@ class Items extends CI_Controller
     //Detailed view of one item
     public function view($id = NULL)
     {
+        //check auth
+        authorization_check($this);
+
         //when no id specified
         if (empty($id)) {
             show_404();
