@@ -127,6 +127,12 @@ class Item_model extends CI_Model
         if ($result['data'] === FALSE) return FALSE;
         $result['data'] = $result['data']->result_array();
 
+        if (!empty($data['attributes']) && $data['attributes'] === TRUE) {
+            foreach ($result['data'] as $key => $value) {
+                $result['data'][$key]['attributes'] = json_decode($result['data'][$key]['attributes']);
+            }
+        }
+
         $result['count'] = $count;
 
         return $result;
