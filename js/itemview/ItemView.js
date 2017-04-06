@@ -155,7 +155,7 @@ function generateQR() {
     width: 75,
     height: 75
   });
-  $qrCode.makeCode($("#item_id").val() + ',' + $("#location").val() + ',' + $("#category").val());
+  $qrCode.makeCode($("#item_id").val());
   $("#qrcode").removeAttr('title');
 
   //print
