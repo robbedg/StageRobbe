@@ -8,6 +8,11 @@
  */
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * @param $object
+ * @param bool $role
+ * @return bool
+ */
 function authorization_check($object, $role = FALSE)
 {
     $object->load->library('session');

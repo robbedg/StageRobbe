@@ -30,6 +30,11 @@ class Categories_model extends CI_Model
             $this->db->where('categories.id', $data['id']);
         }
 
+        //if name is given
+        if (!empty($data['name'])) {
+            $this->db->where('categories.name', $data['name']);
+        }
+
         //if sort is included
         if (!empty($data['sort_on'])) {
             $this->db->order_by($data['sort_on']['column'], $data['sort_on']['order']);
@@ -66,14 +71,10 @@ class Categories_model extends CI_Model
         return $result;
     }
 
-    public function set_category($id = FALSE)
+    public function set_category($data = FALSE, $id = FALSE)
     {
-        $this->load->helper('url');
-
-        //get ifo from post
-        $data = array(
-            'name' => $this->input->post('name')
-        );
+        //filter out
+        $data = array('name' => $data['name']);
 
         if (empty($id)) {
             return $this->db->insert('categories', $data);

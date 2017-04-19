@@ -62,6 +62,10 @@ $route['admin/statistics'] = 'admin/statistics';
 //upload
 $route['upload/do_upload/(:num)'] = 'upload/do_upload/$1';
 
+//synchronize
+$route['synchronize/upload'] = 'synchronize/upload';
+$route['synchronize/download'] = 'synchronize/download';
+
 //search routes
 $route['search'] = 'search';
 

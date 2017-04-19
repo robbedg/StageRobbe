@@ -17,14 +17,14 @@ class Items extends CI_Controller
         $this->load->helper('url_helper');
         $this->load->helper('authorizationcheck_helper');
 
+        //check auth
+        authorization_check($this);
 
         //$this->output->enable_profiler(TRUE);
     }
 
     //show items in category & location
     public function index($locationid = NULL, $categoryid = NULL) {
-        //check auth
-        authorization_check($this);
 
         //show 404 without parameters
         if ((empty($locationid)) || (empty($categoryid))) {
@@ -72,9 +72,6 @@ class Items extends CI_Controller
     //Detailed view of one item
     public function view($id = NULL)
     {
-        //check auth
-        authorization_check($this);
-
         //when no id specified
         if (empty($id)) {
             show_404();
@@ -155,7 +152,20 @@ class Items extends CI_Controller
             $this->load->view('templates/footer');
         }
         else {
-            $id  = $this->item_model->set_item();
+            $data = $this->input->post();
+
+            //get attributes set by user
+            $attributes = Array();
+            if (!empty($data['label'])) {
+                foreach ($data['label'] as $index => $label) {
+                    $attributes[$label] = $data['value'][$index];
+                }
+            }
+
+            $input = array('category_id' => $data['category'], 'location_id' => $data['location'], 'attributes' => $attributes);
+
+            //to db
+            $id  = $this->item_model->set_item($input);
             redirect('items/create/'.$id);
         }
     }

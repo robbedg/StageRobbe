@@ -64,7 +64,12 @@ class Locations extends CI_Controller
             $this->load->view('templates/footer', $data);
         }
         else {
-            $this->location_model->set_location();
+            //get info from post
+            $data = array(
+                'name' => $this->input->post('name')
+            );
+
+            $this->location_model->set_location($data);
             redirect('home');
         }
     }
@@ -87,6 +92,8 @@ class Locations extends CI_Controller
 
         //output
         $this->output
+            ->set_header('Access-Control-Allow-Origin: *')
+            ->set_header('Access-Control-Allow-Headers: Origin, Content-Type')
             ->set_content_type('application/json')
             ->set_output(json_encode($locations));
     }
@@ -102,7 +109,11 @@ class Locations extends CI_Controller
         if (empty($id)) {
             show_404();
         } else {
-            return $this->location_model->set_location($id);
+            //get info from post
+            $data = array(
+                'name' => $this->input->post('name')
+            );
+            return $this->location_model->set_location($data, $id);
         }
     }
 

@@ -23,6 +23,11 @@ class Location_model extends CI_Model
             $this->db->where('locations.id', $data['id']);
         }
 
+        //search on name
+        if (!empty($data['name'])) {
+            $this->db->where('locations.name', $data['name']);
+        }
+
         //if sort is included
         if (!empty($data['sort_on'])) {
             $this->db->order_by($data['sort_on']['column'], $data['sort_on']['order']);
@@ -60,14 +65,10 @@ class Location_model extends CI_Model
     }
 
     //create or update a location
-    public function set_location($id = FALSE)
+    public function set_location($data = FALSE, $id = FALSE)
     {
-        $this->load->helper('url');
-
-        //get ifo from post
-        $data = array(
-            'name' => $this->input->post('name')
-        );
+        //filter out
+        $data = array('name' => $data['name']);
 
         if (empty($id)) {
             return $this->db->insert('locations', $data);

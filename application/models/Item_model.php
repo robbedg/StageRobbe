@@ -139,21 +139,12 @@ class Item_model extends CI_Model
     }
 
     //Update or create new item
-    public function set_item(){
+    public function set_item($data){
 
-        $data = $this->input->post();
-
-        //get attributes set by user
-        $attributes = Array();
-        if (!empty($data['label'])) {
-            foreach ($data['label'] as $index => $label) {
-                $attributes[$label] = $data['value'][$index];
-            }
-        }
-
-        $this->db->set('category_id', $data['category']);
-        $this->db->set('location_id', $data['location']);
-        $this->db->set('attributes', json_encode($attributes));
+        //set
+        $this->db->set('category_id', $data['category_id']);
+        $this->db->set('location_id', $data['location_id']);
+        $this->db->set('attributes', json_encode($data['attributes']));
 
         if (!empty($data['id'])) {
             $this->db->where('id', $data['id']);

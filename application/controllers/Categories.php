@@ -83,7 +83,12 @@ class Categories extends CI_Controller
             $this->load->view('templates/footer');
         }
         else {
-            $this->categories_model->set_category();
+            //get info from post
+            $data = array(
+                'name' => $this->input->post('name')
+            );
+
+            $this->categories_model->set_category($data);
             redirect('home');
         }
     }
@@ -122,7 +127,12 @@ class Categories extends CI_Controller
         if (empty($id)) {
             show_404();
         } else {
-            return $this->categories_model->set_category($id);
+            //get info from post
+            $data = array(
+                'name' => $this->input->post('name')
+            );
+
+            return $this->categories_model->set_category($data, $id);
         }
     }
 
