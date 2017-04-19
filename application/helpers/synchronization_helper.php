@@ -124,7 +124,7 @@ function do_upload($object, $data = FALSE) {
 
     //delete item
     foreach ($items_delete as $item) {
-        $object->item_model->delete_item($item);
+        $object->item_model->remove_item($item['id']);
     }
  }
 
