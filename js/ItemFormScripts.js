@@ -57,8 +57,8 @@ $(document).ready(function($) {
 
 		$("<button type='button' />")
 			.attr('id', 'extra-button-remove_' + $i)
-			.attr('class', 'extra-button-remove btn btn-danger btn-sm')
-			.append('Remove')
+			.attr('class', 'extra-button-remove btn btn-danger')
+			.append('<span class="fa fa-close"></span>')
 			.appendTo("#extra_" +$i);
 
 		//reload script

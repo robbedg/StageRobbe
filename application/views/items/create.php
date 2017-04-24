@@ -20,9 +20,9 @@
 <!-- Button picture -->
 <div id="buttons">
     <?php if (!empty($item)): ?>
-        <button type="button" id="buttonmodal" class="btn btn-primary">Picture</button>
+        <button type="button" id="buttonmodal" class="btn btn-primary btn-lg"><span class="fa fa-photo"></span></button>
     <?php else: ?>
-        <button type="button" id="buttonmodal" class="btn btn-primary disabled" data-toggle="tooltip" data-placement="bottom" title="Item must be created first." data-original-title="">Picture</button>
+        <button type="button" id="buttonmodal" class="btn btn-primary btn-lg disabled" data-toggle="tooltip" data-placement="bottom" title="Item must be created first." data-original-title=""><span class="fa fa-photo"></span></button>
     <?php endif; ?>
 </div>
 <!-- open form -->
@@ -81,7 +81,7 @@
         <label class="control-label">Attribute</label><br />
         <input type="text" id="focused-input" class="form-control" name="label[]" value="<?=$attribute; ?>" required unique="true" identifier="<?=$identifier; ?>" />
         <input type="text" id="focused-input" class="form-control" name="value[]" value="<?=$item['data']['attributes'][$attribute]; ?>" required />
-        <button type="button" class="extra-button-remove btn btn-danger btn-sm" id="extra-button-remove_<?=$identifier; ?>">Remove</button>
+        <button type="button" class="extra-button-remove btn btn-danger" id="extra-button-remove_<?=$identifier; ?>"><span class="fa fa-close"></span></button>
     </div>
     <?php endforeach; ?>
     <?php endif; ?>
@@ -89,7 +89,7 @@
 
 <!-- add field -->
 <div class="form-group" id="extra-button-append">
-<button type="button" class="btn btn-primary btn-sm">+</button>
+<button type="button" class="btn btn-success"><span class="fa fa-plus"></span></button>
 </div>
 
 <!-- hidden field for id-->

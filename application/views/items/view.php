@@ -117,14 +117,14 @@
 
     <!-- button -->
     <div id="loan_button">
-        <a href="#" class="btn btn-primary">Loan</a>
+        <a href="#" class="btn btn-primary"><span class="fa fa-check"></span></a>
     </div>
 </div>
 
 <!-- availability -->
 <div id="availability" class="clearfix">
     <h3>Availability</h3>
-    <a class="btn btn-primary" href="<?=site_url('loans/view/item/'.$item['data']['id']); ?>">View all</a>
+    <a class="btn btn-primary" href="<?=site_url('loans/view/item/'.$item['data']['id']); ?>"><span class="fa fa-list-alt"></span></a>
     <!-- timeline -->
     <div id="timeline">
         <!-- Chart -->
@@ -145,7 +145,7 @@
         </div>
         <div class="form-group">
             <div class="button clearfix">
-                <button type="button" class="btn btn-primary" id="submit-new-note">Submit</button>
+                <button type="button" class="btn btn-primary" id="submit-new-note"><span class="fa fa-send"></span></button>
             </div>
         </div>
     </div>
