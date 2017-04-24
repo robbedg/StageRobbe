@@ -162,10 +162,11 @@ class Items extends CI_Controller
                 }
             }
 
-            $input = array('category_id' => $data['category'], 'location_id' => $data['location'], 'attributes' => $attributes);
+            $input = array('id' => $data['id'], 'category_id' => $data['category'], 'location_id' => $data['location'], 'attributes' => $attributes);
 
             //to db
             $id  = $this->item_model->set_item($input);
+
             redirect('items/create/'.$id);
         }
     }
