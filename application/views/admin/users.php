@@ -64,7 +64,7 @@
 
             <!-- submit button -->
             <div id="submit">
-                <button type="submit" class="btn btn-primary" disabled="disabled">Save</button>
+                <button type="submit" class="btn btn-primary btn-lg" disabled="disabled"><span class="fa fa-save"></span></button>
             </div>
         <?=form_close(); ?>
     </div>

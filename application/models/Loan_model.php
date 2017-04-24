@@ -41,6 +41,11 @@ class loan_model extends CI_Model
             }
         }
 
+        //get all loans with from < nu
+        if (!empty($data['past']) && $data['past'] === TRUE) {
+            $this->db->where('loans.from <', date('y-m-d H:i:s'));
+        }
+
         //if start_date
         if (!empty($data['start_date'])) {
             $this->db->where('loans.until >', date_modify(new DateTime($data['start_date']), $data['start_date'])->format('y-m-d H:i:s'));

@@ -46,4 +46,9 @@ class Login extends CI_Controller
             show_error('You are not logged in.');
         }
     }
+
+    //login page (password)
+    public function login() {
+
+    }
 }
