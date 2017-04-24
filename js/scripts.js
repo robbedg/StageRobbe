@@ -1,4 +1,5 @@
 "use strict";
+
 $(document).ready(function($) {
     function clickablerow() {
       $(".clickable-row").click(function() {
@@ -11,8 +12,4 @@ $(document).ready(function($) {
     	$(".modal").modal('toggle');
     	$(".modal").modal('show');
     });
-
-	$(function () {
-		$('[data-toggle="tooltip"]').tooltip()
-	});
 });

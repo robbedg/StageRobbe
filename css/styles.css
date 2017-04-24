@@ -137,6 +137,10 @@
  	margin-top: 0rem;
  }
 
+ textarea {
+    resize: none;
+ }
+
 
  /** ITEM VIEW **/
  #datacontainer {
