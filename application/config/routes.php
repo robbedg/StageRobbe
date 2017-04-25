@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //login
 $route['login'] = 'login/index';
+$route['man-login'] = 'login/login';
 
 //admin
 $route['admin'] = 'admin/index';

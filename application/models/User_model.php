@@ -42,6 +42,11 @@ class User_model extends CI_Model
             $this->db->where('users.id', $data['id']);
         }
 
+        // if uid is given
+        if (!empty($data['uid'])) {
+            $this->db->where('users.uid', $data['uid']);
+        }
+
         //if role is given
         if (!empty($data['role_id'])) {
             $this->db->where('role_id', $data['role_id']);
@@ -102,5 +107,20 @@ class User_model extends CI_Model
         } else {
             show_error('No user specified');
         }
+    }
+
+    function login($username, $password)
+    {
+        $this->db->select('id, uid, password');
+        $this->db->from('users');
+        $this->db->where('uid', $username);
+
+        $query = $this->db->get();
+
+        if ($query === FALSE) return FALSE;
+
+        $user = $query->row_array();
+
+        return password_verify($password, $user['password']);
     }
 }
