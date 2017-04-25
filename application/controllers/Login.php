@@ -43,11 +43,11 @@ class Login extends CI_Controller
             $this->session->set_userdata($userdata);
             redirect('home');
         } else {
-            show_error('You are not logged in.');
+            redirect('man-login');
         }
     }
 
-    //login page (password)
+    //login api
 
     public function login()
     {
@@ -93,6 +93,7 @@ class Login extends CI_Controller
 
     }
 
+    //login page
     public function login_page() {
         //This method will have the credentials validation
         $this->load->library('form_validation');

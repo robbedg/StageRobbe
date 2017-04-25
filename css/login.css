@@ -1,0 +1,18 @@
+html body {
+  background: linear-gradient(45deg, #5b72c5 0%, #5982AE 51%, #5baac5 75%);
+}
+
+h2 {
+  color: #fff;
+}
+
+#login-wrapper {
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+form {
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 4px;
+}
