@@ -48,8 +48,52 @@ class Login extends CI_Controller
     }
 
     //login page (password)
+
     public function login()
     {
+
+        //result
+        $success = FALSE;
+
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        $input = json_decode($stream_clean, true);
+
+
+        //query the database
+        $result = $this->user_model->login($input['username'], $input['password']);
+
+
+        if ($result) {
+            $user = $this->user_model->get_user(array('uid' => $input['username']));
+
+            if ($user['count'] === 1) {
+
+                $user = $user['data'][0];
+
+                $sessioninfo = [];
+                $sessioninfo['id'] = $user['id'];
+                $sessioninfo['uid'] = $user['uid'];
+                $sessioninfo['firstname'] = $user['firstname'];
+                $sessioninfo['lastname'] = $user['lastname'];
+                $sessioninfo['role_id'] = $user['role_id'];
+                $sessioninfo['logged_in'] = TRUE;
+
+                $this->session->set_userdata($sessioninfo);
+
+                $success = TRUE;
+            }
+
+        }
+
+        $this->output
+            ->set_header('Access-Control-Allow-Origin: *')
+            ->set_header('Access-Control-Allow-Headers: Origin, Content-Type')
+            ->set_content_type('application/json')
+            ->set_output(json_encode(array('success' => $success)));
+
+    }
+
+    public function login_page() {
         //This method will have the credentials validation
         $this->load->library('form_validation');
 
@@ -63,15 +107,12 @@ class Login extends CI_Controller
         }
         else
         {
-            $this->check_database();
+            $this->check_database($this->input->post());
         }
-
     }
 
-    function check_database()
+    function check_database($userdata)
     {
-        //Field validation succeeded.  Validate against database
-        $userdata = $this->input->post();
 
         //query the database
         $result = $this->user_model->login($userdata['username'], $userdata['password']);
