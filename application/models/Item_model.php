@@ -57,6 +57,13 @@ class Item_model extends CI_Model
             $this->db->select('items.attributes AS attributes');
         }
 
+        //include last loans
+        if (!empty($data['last_loans']) && $data['last_loans'] === TRUE) {
+            $this->db->select('format_date(last_loans.from) AS last_loan_from, format_date(last_loans.until) AS last_loan_until');
+            $this->db->select('last_loans.firstname AS last_loan_firstname, last_loans.lastname AS last_loan_lastname');
+            $this->db->join('last_loans', 'last_loans.item_id = items.id', 'left');
+        }
+
         //return 1 if ID is set
         if (!empty($data['id'])) {
             $this->db->select('items.attributes AS attributes');

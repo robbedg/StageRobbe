@@ -141,17 +141,17 @@ function do_upload($object, $data = FALSE) {
 
      $result['locations'] = $object->location_model->get_location();
      $result['categories'] = $object->categories_model->get_category();
-     $result['items'] = $object->item_model->get_item(array('location' => true, 'category' => true, 'attributes' => true));
+     $result['items'] = $object->item_model->get_item(array('location' => true, 'category' => true, 'attributes' => true, 'last_loans' => true));
 
      //usernotes
-     foreach ($result['items']['data'] as $key => $item) {
-         $result['items']['data'][$key]['usernotes'] = $object->usernote_model->get_usernote(array('item_id' => $item['id'], 'user' => true))['data'];
-     }
-
-     //last user
+     $usernotes = $object->usernote_model->get_usernote(array('user' => true))['data'];
 
      foreach ($result['items']['data'] as $key => $item) {
-         $result['items']['data'][$key]['last_user'] = $object->loan_model->get_loan(array('item_id' => $item['id'], 'past' => true, 'user' => true, 'sort_on' => array('column' => 'from', 'order' => 'DESC'), 'limit' => '1'))['data'][0];
+         foreach ($usernotes as $usernote) {
+             if ($usernote['item_id'] === $item['id']) {
+                 $result['items']['data'][$key]['usernotes'][] = $usernote;
+             }
+         }
      }
 
      return $result;
