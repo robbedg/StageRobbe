@@ -119,15 +119,20 @@ class Usernote_model extends CI_Model
         return $results;
     }
 
-    public function set_usernote($data = []) {
+    public function set_usernote($input = []) {
+
+        $data = [];
 
         //return FALSE when no text provided.
-        if (empty($data['text']) || empty(trim($data['text']))) return FALSE;
+        if (empty($input['text']) || empty(trim($input['text']))) return FALSE;
 
         //protect against, trim, htmltags, php tags and convert \nl to <br />
-        $data['text'] = trim($data['text']);
-        $data['text'] = strip_tags($data['text']);
-        $data['text'] = nl2br($data['text']);
+        $input['text'] = trim($input['text']);
+        $input['text'] = strip_tags($input['text']);
+        $data['text'] = nl2br($input['text']);
+
+        $data['user_id'] = $input['user_id'];
+        $data['item_id'] = $input['item_id'];
 
         return $this->db->insert('usernotes', $data);
     }

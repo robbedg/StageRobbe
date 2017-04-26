@@ -13,6 +13,8 @@ function do_upload($object, $data = FALSE) {
     $object->load->model('location_model');
     $object->load->model('categories_model');
     $object->load->model('item_model');
+    $object->load->model('usernote_model');
+    $object->load->model('user_model');
 
     //check data
     if ($data === FALSE) {
@@ -25,6 +27,7 @@ function do_upload($object, $data = FALSE) {
     $items_create = [];
     $items_update = [];
     $items_delete = [];
+    $usernotes_create = [];
 
 
     //sorting
@@ -76,6 +79,18 @@ function do_upload($object, $data = FALSE) {
                 }
                 break;
 
+            //sort usernotes
+            case 'usernotes':
+                foreach ($value as $usernote) {
+                    switch ($usernote['action']) {
+                        case 'Create':
+                            $usernotes_create[] = $usernote;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
             //default
             default:
                 break;
@@ -125,6 +140,16 @@ function do_upload($object, $data = FALSE) {
     //delete item
     foreach ($items_delete as $item) {
         $object->item_model->remove_item($item['id']);
+    }
+
+    //create usernotes
+    foreach ($usernotes_create as $usernote) {
+        $user_id = $object->user_model->get_user(array('uid' => $usernote['user_uid']));
+        $user_id = $user_id['data'][0]['id'];
+
+        $usernote['user_id'] = $user_id;
+
+        $object->usernote_model->set_usernote($usernote);
     }
  }
 
