@@ -99,6 +99,9 @@ function do_upload($object, $data = FALSE) {
 
     //to database
 
+    //start transaction
+    $object->db->trans_start();
+
     //create locations
     foreach ($locations_create as $location) {
         $object->location_model->set_location($location);
@@ -112,10 +115,18 @@ function do_upload($object, $data = FALSE) {
     //create items
     foreach ($items_create as $item) {
         $location = $object->location_model->get_location(array('name' => $item['location']));
-        $location = $location['data'][0]['id'];
+        if ($location['count'] === 1) {
+            $location = $location['data'][0]['id'];
+        } else {
+            $location = null;
+        }
 
         $category = $object->categories_model->get_category(array('name' => $item['category']));
-        $category = $category['data'][0]['id'];
+        if ($category['count'] === 1) {
+            $category = $category['data'][0]['id'];
+        } else {
+            $category = null;
+        }
 
         $item['location_id'] = $location;
         $item['category_id'] = $category;
@@ -126,10 +137,18 @@ function do_upload($object, $data = FALSE) {
     //update items
     foreach ($items_update as $item) {
         $location = $object->location_model->get_location(array('name' => $item['location']));
-        $location = $location['data'][0]['id'];
+        if ($location['count'] === 1) {
+            $location = $location['data'][0]['id'];
+        } else {
+            $location = null;
+        }
 
         $category = $object->categories_model->get_category(array('name' => $item['category']));
-        $category = $category['data'][0]['id'];
+        if ($category['count'] === 1) {
+            $category = $category['data'][0]['id'];
+        } else {
+            $category = null;
+        }
 
         $item['location_id'] = $location;
         $item['category_id'] = $category;
@@ -145,12 +164,21 @@ function do_upload($object, $data = FALSE) {
     //create usernotes
     foreach ($usernotes_create as $usernote) {
         $user_id = $object->user_model->get_user(array('uid' => $usernote['user_uid']));
-        $user_id = $user_id['data'][0]['id'];
+        if ($user_id['count'] === 1) {
+            $user_id = $user_id['data'][0]['id'];
+        } else {
+            $user_id = null;
+        }
 
         $usernote['user_id'] = $user_id;
 
         $object->usernote_model->set_usernote($usernote);
     }
+
+    //end transaction
+    $valid = $object->db->trans_complete();
+
+    return $valid;
  }
 
  function do_download($object) {

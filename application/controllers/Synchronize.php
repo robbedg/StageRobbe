@@ -28,8 +28,7 @@ class Synchronize extends CI_Controller
             $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
             $input = json_decode($stream_clean, true);
 
-            do_upload($this, $input);
-            $result['success'] = TRUE;
+            $result['success'] = do_upload($this, $input);
         }
 
 
