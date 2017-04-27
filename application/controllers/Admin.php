@@ -201,4 +201,32 @@ class Admin extends CI_Controller
         $this->load->view('admin/end', $data);
         $this->load->view('templates/footer');
     }
+
+    //general settings
+    public function general()
+    {
+        //set title
+        $data['title'] = 'Admin Panel';
+
+        //set styles
+        $data['styles'][] = base_url('css/admin-panel.css');
+
+        //set scripts
+        $data['scripts'][] = base_url('js/admin/AdminStatistics.js');
+
+        //active
+        $data['active'] = 'general';
+
+        //db lock
+        $this->load->helper('lock_helper');
+        $data['database_lock'] = check_lock($this);
+        $this->load->model('setting_model');
+
+        //load views
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/index', $data);
+        $this->load->view('admin/general', $data);
+        $this->load->view('admin/end', $data);
+        $this->load->view('templates/footer');
+    }
 }
