@@ -1,31 +1,39 @@
 <?php
 
 /**
- * Created by PhpStorm.
+ * Controller for Admin panel.
  * User: Robbe
  * Date: 22/02/2017
  * Time: 15:18
  */
 class Admin extends CI_Controller
 {
+    /**
+     * Admin constructor.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->load->model('user_model');
         $this->load->model('role_model');
+        $this->load->model('setting_model');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('authorizationcheck_helper');
         $this->load->library('form_validation');
         $this->load->library('session');
 
+        //authorization
         $authorized = authorization_check($this, 3);
         if (!$authorized) show_error('You are not authorized to visit this page');
+
 
         $this->output->enable_profiler(TRUE);
     }
 
-    //Page for managing users
+    /**
+     * Managing users.
+     */
     public function index()
     {
         //set title
@@ -43,6 +51,9 @@ class Admin extends CI_Controller
 
         //set active
         $data['active'] = 'users';
+
+        //database lock
+        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
 
         //validation rules
         $this->form_validation->set_rules('userid', 'User ID', 'required|trim|htmlspecialchars|encode_php_tags');
@@ -77,7 +88,9 @@ class Admin extends CI_Controller
         }
     }
 
-    //page for managing items
+    /**
+     * Managing deleted items.
+     */
     public function deleted_items()
     {
         //set title
@@ -92,6 +105,9 @@ class Admin extends CI_Controller
 
         //active
         $data['active'] = 'deleted-items';
+
+        //database lock
+        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
 
         /** Deleted Items **/
         $data['deleted_items']['title'] = null;
@@ -112,7 +128,9 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    //page for managing locations
+    /**
+     * Managing locations.
+     */
     public function locations()
     {
         //set title
@@ -127,6 +145,9 @@ class Admin extends CI_Controller
 
         //active
         $data['active'] = 'locations';
+
+        //database lock
+        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
 
         /** Locations **/
         $data['locations']['title'] = null;
@@ -145,7 +166,9 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    //page for managing categories
+    /**
+     * Managing categories.
+     */
     public function categories()
     {
         //set title
@@ -160,6 +183,9 @@ class Admin extends CI_Controller
 
         //active
         $data['active'] = 'categories';
+
+        //database lock
+        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
 
         /** Categories **/
         $data['categories']['title'] = null;
@@ -178,7 +204,9 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    //show for displaying statistics
+    /**
+     * Displaying statistics.
+     */
     public function statistics()
     {
         //set title
@@ -194,6 +222,9 @@ class Admin extends CI_Controller
         //active
         $data['active'] = 'statistics';
 
+        //database lock
+        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
+
         //load views
         $this->load->view('templates/header', $data);
         $this->load->view('admin/index', $data);
@@ -202,7 +233,9 @@ class Admin extends CI_Controller
         $this->load->view('templates/footer');
     }
 
-    //general settings
+    /**
+     * General application settings.
+     */
     public function general()
     {
         //set title
@@ -217,8 +250,7 @@ class Admin extends CI_Controller
         //active
         $data['active'] = 'general';
 
-        //db lock
-        $this->load->model('setting_model');
+        //database lock
         $data['database_lock'] = $this->setting_model->get_setting('database_lock');
 
         //load views
