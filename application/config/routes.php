@@ -62,6 +62,9 @@ $route['admin/categories'] = 'admin/categories';
 $route['admin/statistics'] = 'admin/statistics';
 $route['admin/general'] = 'admin/general';
 
+//settings
+$route['settings/set'] = 'settings/set';
+
 //upload
 $route['upload/do_upload/(:num)'] = 'upload/do_upload/$1';
 

@@ -14,6 +14,7 @@ class Items extends CI_Controller
         $this->load->model('item_model');
         $this->load->model('location_model');
         $this->load->model('categories_model');
+        $this->load->model('setting_model');
         $this->load->helper('url_helper');
         $this->load->helper('authorizationcheck_helper');
 
@@ -97,6 +98,8 @@ class Items extends CI_Controller
 
         $data['title'] = $data['item']['data']['category'].': '.$data['item']['data']['id'];
 
+        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
+
         //load view
         $this->load->view('templates/header', $data);
         $this->load->view('items/view', $data);
@@ -105,10 +108,15 @@ class Items extends CI_Controller
 
     }
 
-    //creating/updating item
+    /**
+     * Create or update item.
+     * @param null $id id of item
+     */
     public function create($id = NULL) {
+        //database lock
+        $database_lock = $this->setting_model->get_setting('database_lock');
 
-        if (!authorization_check($this, 2)) {
+        if (!authorization_check($this, 2) || $database_lock) {
             show_error('You are not authorized to perform this action.');
         }
 

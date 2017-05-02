@@ -18,7 +18,7 @@
 <input type="hidden" id="category" value="<?=$item['data']['category']; ?>">
 
 <!-- buttons -->
-<?php if (authorization_check($this, 2)): ?>
+<?php if (authorization_check($this, 2) && !$database_lock): ?>
 <div id="buttons">
     <a href="#" class="btn btn-primary" id="print-label"><span class="fa fa-print"></span></a>
     <a href="<?=site_url('/items/create/'.$item['data']['id']); ?>" class="btn btn-primary"><span class="fa fa-edit"></span></a>

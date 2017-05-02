@@ -7,13 +7,20 @@
  */
 class Item_model extends CI_Model
 {
+    /**
+     * Item_model constructor.
+     */
     public function __construct()
     {
         $this->load->database();
         $this->load->helper('url');
     }
 
-    //get item(s)
+    /**
+     * Get items based on given data.
+     * @param array $data search parameters
+     * @return mixed result or FALSE
+     */
     public function get_item($data = [])
     {
         //base query
@@ -145,7 +152,11 @@ class Item_model extends CI_Model
         return $result;
     }
 
-    //Update or create new item
+    /**
+     * Update or create item with given data.
+     * @param $data user given data
+     * @return mixed id of item
+     */
     public function set_item($data){
 
         //set
@@ -163,7 +174,10 @@ class Item_model extends CI_Model
         return $this->db->insert_id();
     }
 
-    //remove item (visibility = 0)
+    /**
+     * Puts visibility of item to 0.
+     * @param bool $id id of item
+     */
     public function remove_item($id = FALSE) {
         //delete old image
         $files = glob('./uploads/'.$id.'*');
@@ -176,7 +190,11 @@ class Item_model extends CI_Model
         $this->db->update('items');
     }
 
-    //restore invisible item
+    /**
+     * Puts visibility of item to 1.
+     * @param bool $id id of item
+     * @return mixed id of item
+     */
     public function restore_item($id = FALSE)
     {
         $data = array(
@@ -187,7 +205,11 @@ class Item_model extends CI_Model
         return $this->db->update('items', $data);
     }
 
-    //permanently delete item
+    /**
+     * Permanently delete item from database.
+     * @param bool $id item id
+     * @return mixed id of item
+     */
     public function delete_item($id = FALSE)
     {
         $this->db->where('id', $id);

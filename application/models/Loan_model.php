@@ -1,13 +1,16 @@
 <?php
 
 /**
- * Created by PhpStorm.
+ * Model for loan objects
  * User: Robbe
  * Date: 9/03/2017
  * Time: 10:28
  */
 class loan_model extends CI_Model
 {
+    /**
+     * loan_model constructor.
+     */
     public function __construct()
     {
         $this->load->database();
@@ -17,7 +20,11 @@ class loan_model extends CI_Model
         date_default_timezone_set('CET');
     }
 
-    //get loans
+    /**
+     * Get loans based on data from user.
+     * @param array $data data from user
+     * @return mixed result or FALSE
+     */
     public function get_loan($data = []) {
         $this->db->select('loans.id AS id, loans.item_id AS item_id, loans.user_id AS user_id, format_date(loans.from) AS "from_string", loans.from, format_date(loans.until) AS "until_string", loans.until, loans.note AS note');
 
@@ -131,12 +138,20 @@ class loan_model extends CI_Model
         return $result;
     }
 
+    /**
+     * Set new loan.
+     * @param $data user data for loan
+     */
     //set loan
     public function set_loan($data){
         $this->db->insert('loans', $data);
     }
 
-    //check availability of item
+    /**
+     * Checks if loan proposal of user is available
+     * @param array $data data for loan
+     * @return array TRUE or FALSE
+     */
     public function check_availability($data = [])
     {
         //return object
@@ -176,33 +191,12 @@ class loan_model extends CI_Model
         return $valid;
     }
 
-    //return loaned item
-    public function return_item($id)
-    {
-        //set result
-        $result = [];
 
-        //set result
-        $result = [];
-
-        $this->db->select('id');
-        $this->db->where('id', $id);
-
-        $loanquery = $this->db->get();
-
-        if ($loanquery === FALSE) {
-            $result['success'] = FALSE;
-            $result['errors'][] = 'ID does not exist';
-            return $result;
-        }
-
-        $loan = $loanquery->row_array();
-
-        $this->db->delete('loans', array('id' => $id));
-        //query
-    }
-
-    //update loan
+    /**
+     * End loan when loan still active.
+     * @param $id id of loan
+     * @return array success
+     */
     public function close_loan($id)
     {
         //set result
@@ -241,7 +235,11 @@ class loan_model extends CI_Model
         $this->db->update('loans', array('until' => date_create()->format('Y-m-d H:i:s')));
     }
 
-    //delete loan
+    /**
+     * Delete loan before use.
+     * @param $id id of loan
+     * @return array success
+     */
     public function delete_loan($id)
     {
         //set result

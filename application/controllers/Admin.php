@@ -212,15 +212,14 @@ class Admin extends CI_Controller
         $data['styles'][] = base_url('css/admin-panel.css');
 
         //set scripts
-        $data['scripts'][] = base_url('js/admin/AdminStatistics.js');
+        $data['scripts'][] = base_url('js/admin/AdminGeneral.js');
 
         //active
         $data['active'] = 'general';
 
         //db lock
-        $this->load->helper('lock_helper');
-        $data['database_lock'] = check_lock($this);
         $this->load->model('setting_model');
+        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
 
         //load views
         $this->load->view('templates/header', $data);
