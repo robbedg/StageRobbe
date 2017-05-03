@@ -22,6 +22,16 @@ class Settings extends CI_Controller
          if (!$authorized) show_error('You are not authorized to access this function');
      }
 
+     public function get() {
+         //outcome
+         $result = $this->setting_model->get_setting();
+
+         //output
+         $this->output
+             ->set_content_type('application/json')
+             ->set_output(json_encode($result));
+     }
+
     /**
      * Set settings
      */
@@ -33,7 +43,7 @@ class Settings extends CI_Controller
              $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
              $input = json_decode($stream_clean, true);
 
-             $result['success'] = $this->setting_model->set_setting('database_lock', $input['database_lock']);
+             $result['success'] = $this->setting_model->set_setting($input);
 
          } catch (Exception $e) {
              $result['success'] = FALSE;

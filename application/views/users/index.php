@@ -43,7 +43,7 @@
 <!-- Active loans -->
 <div id="active-loans">
     <h3>Items in use</h3>
-    <a href="<?=site_url('loans/view/user/'.$user_id); ?>" class="btn btn-primary" id="view-all">View all</a>
+    <a href="<?=site_url('loans/view/user/'.$user_id); ?>" class="btn btn-primary" id="view-all"><span class="fa fa-list-alt"></span></a>
     <table class="table table-striped table-hover">
         <thead>
             <tr>

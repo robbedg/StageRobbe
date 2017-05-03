@@ -14,6 +14,7 @@ class Setting_model extends CI_Model
     public function __construct()
     {
         $this->load->helper('file');
+        $this->load->helper('authorizationcheck_helper');
         $this->load->driver('cache', array('adapter' => 'wincache', 'backup' => 'apc'));
     }
 
@@ -38,27 +39,36 @@ class Setting_model extends CI_Model
         if (!empty($key) && is_string($key) && array_key_exists($key, $settings)) {
             return $settings[$key];
         } else {
-            return NULL;
+            return $settings;
         }
     }
 
     /**
      * Set settings, store in cache and settings file.
-     * @param null $key store with key
-     * @param null $value store value
+     * @param array $data
      * @return bool success
+     * @internal param null $key store with key
+     * @internal param null $value store value
      */
-    public function set_setting($key = NULL, $value = NULL) {
+    public function set_setting($data = []) {
 
         $settings = json_decode(file_get_contents('./settings.json'), true);
 
-        if (!empty($key) && !is_null($value) && is_string($key)) {
-            //add or change
-            $settings[$key] = $value;
-            //write to cache
-            $this->cache->save('settings', $settings, 3600);
-            //write to file
-            return write_file('./settings.json', json_encode($settings, JSON_PRETTY_PRINT));
+        //nothing if no data is given
+        if (empty($data)) return false;
+
+        //go over each key
+        foreach ($data as $key => $value) {
+            if (!empty($key) && !is_null($value) && is_string($key)) {
+                //add or change
+                $settings[$key] = $value;
+                //write to cache
+                $this->cache->save('settings', $settings, 3600);
+                //write to file
+                write_file('./settings.json', json_encode($settings, JSON_PRETTY_PRINT));
+            }
         }
+
+        return true;
     }
 }

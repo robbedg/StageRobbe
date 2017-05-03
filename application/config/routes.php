@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['login'] = 'login/index';
 $route['authenticate'] = 'login/login';
 $route['man-login'] = 'login/login_page';
+$route['register'] = 'login/register';
 
 //admin
 $route['admin'] = 'admin/index';
@@ -64,6 +65,7 @@ $route['admin/general'] = 'admin/general';
 
 //settings
 $route['settings/set'] = 'settings/set';
+$route['settings/get'] = 'settings/get';
 
 //upload
 $route['upload/do_upload/(:num)'] = 'upload/do_upload/$1';

@@ -12,6 +12,8 @@ class Login extends CI_Controller
     {
         parent::__construct();
         $this->load->library('session');
+        $this->load->library('form_validation');
+        $this->load->model('setting_model');
         $this->load->model('user_model');
         $this->load->helper('url_helper');
     }
@@ -95,16 +97,16 @@ class Login extends CI_Controller
 
     //login page
     public function login_page() {
-        //This method will have the credentials validation
-        $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('username', 'Username', 'trim|required');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|htmlspecialchars');
+        $this->form_validation->set_rules('password', 'Password', 'required');
 
         if($this->form_validation->run() === FALSE)
         {
             //Field validation failed.  User redirected to login page
-            $this->load->view('login/login');
+            $data = [];
+            $data['registration'] = $this->setting_model->get_setting('registration');
+            $this->load->view('login/login', $data);
         }
         else
         {
@@ -112,7 +114,7 @@ class Login extends CI_Controller
         }
     }
 
-    function check_database($userdata)
+    public function check_database($userdata)
     {
 
         //query the database
@@ -142,5 +144,68 @@ class Login extends CI_Controller
 
         $data = [];
         $this->load->view('login/login', $data);
+    }
+
+    /**
+     * Register new user
+     */
+    public function register()
+    {
+        //check if allowed
+        if (!$this->setting_model->get_setting('registration')) {
+            show_error('Registration is not allowed.');
+        }
+
+        //set rules
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+        $this->form_validation->set_rules('username', 'Username', 'callback_username_check');
+        $this->form_validation->set_rules('firstname', 'First name', 'required', 'htmlspecialchars');
+        $this->form_validation->set_rules('lastname', 'Last name', 'required', 'htmlspecialchars');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+
+        if($this->form_validation->run() === FALSE)
+        {
+            //load view
+            $this->load->view('login/register');
+        }
+        else
+        {
+            //set data
+            $uid = htmlspecialchars(trim($this->input->post('username')));
+            $firstname = htmlspecialchars(trim($this->input->post('firstname')));
+            $lastname = htmlspecialchars(trim($this->input->post('lastname')));
+            $password = $this->input->post('password');
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            $user = array('uid' => $uid, 'firstname' => $firstname, 'lastname' => $lastname, 'password' => $password_hash);
+            $this->user_model->set_user($user);
+
+            //log in
+            $this->check_database(array('username' => $uid, 'password' => $password));
+        }
+
+    }
+
+    /**
+     * Checks if username is available
+     * @param $username uid of user
+     * @return bool TRUE if available, false if used
+     */
+    public function username_check($username) {
+        //get users
+        $users = $this->user_model->get_user(array('uid' => htmlspecialchars(trim($username))));
+
+        switch ($users['count']) {
+            case 1:
+                $this->form_validation->set_message('username_check', 'The username is already in use.');
+                return FALSE;
+                break;
+            case 0:
+                return TRUE;
+                break;
+            default:
+                $this->form_validation->set_message('username_check', 'The username is invalid.');
+                return FALSE;
+                break;
+        }
     }
 }

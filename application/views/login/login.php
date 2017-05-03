@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="<?=base_url('css/login.css'); ?>">
 </head>
 <body>
+<?=print_r($_SERVER); ?>
     <div id="login-wrapper">
         <h1>Inventory</h1>
         <h2>Log In</h2>
@@ -20,7 +21,9 @@
         <input type="password" id="password" class="form-control" name="password"/>
         <br/>
         <input type="submit" value="Login" class="btn btn-primary"/>
-        <a href="#" class="btn btn-link">Register</a>
+        <?php if ($registration): ?>
+        <a href="<?=site_url('register'); ?>" class="btn btn-link">Register</a>
+        <?php endif; ?>
     </div>
 </form>
 </body>
