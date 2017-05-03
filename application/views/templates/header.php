@@ -28,8 +28,14 @@
         <div class="collapse navbar-collapse" id="navbar-collapse-1">
             <!-- Left -->
             <ul class="nav navbar-nav navbar-left">
-            <!-- create object link -->
-            <?php if (authorization_check($this, 2)): ?>
+                <!-- admin panel link -->
+                <?php if (authorization_check($this, 3)): ?>
+                <li>
+                    <a href="<?=site_url('admin'); ?>">Admin panel</a>
+                </li>
+                <?php endif; ?>
+                <!-- create object link -->
+                <?php if (authorization_check($this, 2)): ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">New <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
@@ -39,12 +45,7 @@
                     </ul>
                 </li>
                 <?php endif; ?>
-                <!-- admin panel link -->
-                <?php if (authorization_check($this, 3)): ?>
-                <li>
-                    <a href="<?=site_url('admin'); ?>">Admin panel</a>
-                </li>
-                <?php endif; ?>
+
             </ul>
 
             <!-- Right -->
@@ -53,6 +54,14 @@
                     <a href="<?=site_url('users/'.$_SESSION['id']); ?>"><?=$_SESSION['firstname'].' '.$_SESSION['lastname'];?> <span class="fa fa-user"></span></a>
                 </li>
             </ul>
+
+            <!-- Search -->
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </div>
+                <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
+            </form>
 
         </div>
 </nav>

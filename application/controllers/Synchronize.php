@@ -6,6 +6,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 19/04/2017
  * @time 9:13
+ * @filesource
  */
 class Synchronize extends CI_Controller
 {

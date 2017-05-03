@@ -6,6 +6,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 9/03/2017
  * @time 10:28
+ * @filesource
  */
 class Loan_model extends CI_Model
 {

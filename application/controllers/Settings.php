@@ -6,6 +6,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 2/05/2017
  * @time 13:53
+ * @filesource
  */
 class Settings extends CI_Controller
 {

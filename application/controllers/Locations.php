@@ -5,6 +5,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/02/2017
  * @time 9:04
+ * @filesource
  */
 class Locations extends CI_Controller
 {

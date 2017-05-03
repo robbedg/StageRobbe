@@ -5,6 +5,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/02/2017
  * @time 15:16
+ * @filesource
  */
 
 class Categories extends CI_Controller

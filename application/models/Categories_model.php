@@ -5,6 +5,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/02/2017
  * @time 14:35
+ * @filesource
  */
 class Categories_model extends CI_Model
 {

@@ -5,6 +5,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 23/02/2017
  * @time 13:31
+ * @filesource
  */
 class Role_model extends CI_Model
 {

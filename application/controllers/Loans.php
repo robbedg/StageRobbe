@@ -6,6 +6,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 9/03/2017
  * @time 11:12
+ * @filesource
  */
 class Loans extends CI_Controller
 {

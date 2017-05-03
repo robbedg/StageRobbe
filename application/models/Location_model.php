@@ -5,6 +5,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/02/2017
  * @time 8:47
+ * @filesource
  */
 class Location_model extends CI_Model
 {

@@ -6,6 +6,7 @@
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 27/04/2017
  * @time 10:58
+ * @filesource
  */
 class Setting_model extends CI_Model
 {

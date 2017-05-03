@@ -5,6 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Home
  * @deprecated
  * @package application\controllers\Welcome
+ * @todo delete
+ * @filesource
  */
 class Welcome extends CI_Controller {
 
