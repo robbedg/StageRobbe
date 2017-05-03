@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 23/02/2017
- * Time: 13:31
+ * Model for Roles
+ * @package application\models\Role_model
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 23/02/2017
+ * @time 13:31
  */
 class Role_model extends CI_Model
 {

@@ -2,9 +2,10 @@
 
 /**
  * Controller for settings.
- * User: Robbe De Geyndt
- * Date: 2/05/2017
- * Time: 13:53
+ * @package application\controllers\Settings
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 2/05/2017
+ * @time 13:53
  */
 class Settings extends CI_Controller
 {

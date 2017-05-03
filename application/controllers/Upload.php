@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 15/02/2017
- * Time: 9:47
+ * Controller for Upload.
+ * @package applicationcontrollers\Upload
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 15/02/2017
+ * @time 9:47
  */
 class Upload extends CI_Controller
 {

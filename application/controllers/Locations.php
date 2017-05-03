@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 7/02/2017
- * Time: 9:04
+ * Controller for locations.
+ * @package application\controllers\Locations
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 7/02/2017
+ * @time 9:04
  */
 class Locations extends CI_Controller
 {

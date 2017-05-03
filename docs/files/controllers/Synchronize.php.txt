@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe De Geyndt
- * Date: 19/04/2017
- * Time: 9:13
+ * Controller for synchronization.
+ * @package application\controllers\Synchronize
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 19/04/2017
+ * @time 9:13
  */
 class Synchronize extends CI_Controller
 {

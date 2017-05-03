@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 7/02/2017
- * Time: 8:47
+ * Model for Locations.
+ * @package application\models\Location_model
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 7/02/2017
+ * @time 8:47
  */
 class Location_model extends CI_Model
 {

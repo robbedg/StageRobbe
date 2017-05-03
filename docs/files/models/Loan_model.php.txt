@@ -1,12 +1,13 @@
 <?php
 
 /**
- * Model for loan objects
- * User: Robbe
- * Date: 9/03/2017
- * Time: 10:28
+ * Model for loan objects.
+ * @package application\models\Loan_model
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 9/03/2017
+ * @time 10:28
  */
-class loan_model extends CI_Model
+class Loan_model extends CI_Model
 {
     /**
      * loan_model constructor.

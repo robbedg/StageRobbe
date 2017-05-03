@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 21/02/2017
- * Time: 15:50
+ * Controller for user notes.
+ * @package application\controllers\Usernotes
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 21/02/2017
+ * @time 15:50
  */
 class Usernotes extends CI_Controller
 {

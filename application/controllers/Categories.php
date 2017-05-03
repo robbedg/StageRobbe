@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 7/02/2017
- * Time: 15:16
+ * Controller for categories
+ * @package application\controllers\Categories
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 7/02/2017
+ * @time 15:16
  */
 
 class Categories extends CI_Controller

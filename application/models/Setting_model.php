@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe De Geyndt
- * Date: 27/04/2017
- * Time: 10:58
+ * Model for settings.
+ * @package application\models\setting_model
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 27/04/2017
+ * @time 10:58
  */
 class Setting_model extends CI_Model
 {
@@ -20,8 +21,8 @@ class Setting_model extends CI_Model
 
     /**
      * Get settings, stored in cache, if expired, read from settings file.
-     * @param null $key get setting with key
-     * @return null value of setting
+     * @param string $key get setting with key
+     * @return mixed value of setting
      */
     public function get_setting($key = NULL) {
         //settings
@@ -47,8 +48,6 @@ class Setting_model extends CI_Model
      * Set settings, store in cache and settings file.
      * @param array $data
      * @return bool success
-     * @internal param null $key store with key
-     * @internal param null $value store value
      */
     public function set_setting($data = []) {
 

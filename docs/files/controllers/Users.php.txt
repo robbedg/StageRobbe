@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 7/03/2017
- * Time: 13:07
+ * Controller for users.
+ * @package application\controllers\Users
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 7/03/2017
+ * @time 13:07
  */
 class Users extends CI_Controller
 {

@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Home
+ * @deprecated
+ * @package application\controllers\Welcome
+ */
 class Welcome extends CI_Controller {
 
 	/**

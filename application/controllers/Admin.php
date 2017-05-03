@@ -2,9 +2,10 @@
 
 /**
  * Controller for Admin panel.
- * User: Robbe
- * Date: 22/02/2017
- * Time: 15:18
+ * @package application\controllers\Admin
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 22/02/2017
+ * @time 15:18
  */
 class Admin extends CI_Controller
 {

@@ -1,13 +1,17 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 22/02/2017
- * Time: 10:28
+ * Controller for logging in/registering
+ * @package application\controllers\Login
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 22/02/2017
+ * @time 10:28
  */
 class Login extends CI_Controller
 {
+    /**
+     * Login constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -18,7 +22,9 @@ class Login extends CI_Controller
         $this->load->helper('url_helper');
     }
 
-    //login page
+    /**
+     * Try automatically logging in/registering and redirect.
+     */
     public function index()
     {
         //If userdata is available
@@ -49,8 +55,9 @@ class Login extends CI_Controller
         }
     }
 
-    //login api
-
+    /**
+     * Handle log in request (json)
+     */
     public function login()
     {
 
@@ -95,9 +102,14 @@ class Login extends CI_Controller
 
     }
 
-    //login page
-    public function login_page() {
+    /**
+     * Page for logging in
+     */
+    public function login_page()
+    {
 
+        //Set rules
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
         $this->form_validation->set_rules('username', 'Username', 'trim|required|htmlspecialchars');
         $this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -114,6 +126,10 @@ class Login extends CI_Controller
         }
     }
 
+    /**
+     * Get userdata from database and store in session.
+     * @param $userdata data to identify user
+     */
     public function check_database($userdata)
     {
 

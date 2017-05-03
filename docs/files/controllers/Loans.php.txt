@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 9/03/2017
- * Time: 11:12
+ * Controller for loans.
+ * @package application\controllers\Loans
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 9/03/2017
+ * @time 11:12
  */
 class Loans extends CI_Controller
 {

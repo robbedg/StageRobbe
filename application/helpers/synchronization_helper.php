@@ -1,13 +1,20 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe De Geyndt
- * Date: 19/04/2017
- * Time: 9:39
+ * Helper to sort and sort data for synchronisation.
+ * @package application\helpers\synchronization_helper
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 19/04/2017
+ * @time 9:39
  */
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Sort incoming data and store in main database.
+ * @param object $object Page that uses this function
+ * @param mixed $data Data that needs to be sorted & stored
+ * @return mixed FALSE or TRUE
+ */
 function do_upload($object, $data = FALSE) {
     $object->load->database();
     $object->load->model('location_model');
@@ -181,6 +188,11 @@ function do_upload($object, $data = FALSE) {
     return $valid;
  }
 
+/**
+ * Send out data for mobile application.
+ * @param object $object Page that uses this function
+ * @return array Data for mobile application
+ */
  function do_download($object) {
      $object->load->database();
      $object->load->model('location_model');

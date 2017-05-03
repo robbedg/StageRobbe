@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 7/03/2017
- * Time: 14:54
+ * Controller for Roles.
+ * @package application\controllers\Roles
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @Date 7/03/2017
+ * @Time 14:54
  */
 class Roles extends CI_Controller
 {

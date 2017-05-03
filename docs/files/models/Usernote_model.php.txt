@@ -1,10 +1,11 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 21/02/2017
- * Time: 9:47
+ * Model for Usernotes
+ * @package application\models\Usernote_model
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 21/02/2017
+ * @time 9:47
  */
 class Usernote_model extends CI_Model
 {

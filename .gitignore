@@ -38,3 +38,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /js/.idea
 /favicon.ico
 /web.config
+
+# cache files
+/docs/*/*.dat

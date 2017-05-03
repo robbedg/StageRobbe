@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="<?=base_url('css/login.css'); ?>">
 </head>
 <body>
-<?=print_r($_SERVER); ?>
     <div id="login-wrapper">
         <h1>Inventory</h1>
         <h2>Log In</h2>

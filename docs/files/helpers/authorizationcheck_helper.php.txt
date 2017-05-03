@@ -1,17 +1,19 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 22/02/2017
- * Time: 11:36
+ * Helper to check if user is authorised to perform a certain action.
+ * @package application\helpers\authorizationcheck_helper
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 22/02/2017
+ * @time 11:36
  */
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 /**
- * @param $object
- * @param bool $role
- * @return bool
+ * Check if user has a certain authorization level.
+ * @param object $object Page that needs the check.
+ * @param bool $role Minimum role of user.
+ * @return bool Yes or No
  */
 function authorization_check($object, $role = FALSE)
 {

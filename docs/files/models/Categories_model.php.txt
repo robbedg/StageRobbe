@@ -1,18 +1,26 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Robbe
- * Date: 7/02/2017
- * Time: 14:35
+ * Model for Categories.
+ * @package application\models\Categories_model
+ * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
+ * @date 7/02/2017
+ * @time 14:35
  */
-
 class Categories_model extends CI_Model
 {
+    /**
+     * Categories_model constructor.
+     */
     public function __construct()
     {
         $this->load->database();
     }
 
+    /**
+     * Get categories that meet conditions specified by the request data.
+     * @param array $data request data
+     * @return array resulting categories
+     */
     public function get_category($data = [])
     {
         $this->db->select('categories.id AS id, categories.name as name, COUNT(items.id) AS item_count');
@@ -71,6 +79,11 @@ class Categories_model extends CI_Model
         return $result;
     }
 
+    /**
+     * @param mixed $data Updating data
+     * @param mixed $id ID of category
+     * @return number ID of updated category
+     */
     public function set_category($data = FALSE, $id = FALSE)
     {
         //filter out
@@ -84,7 +97,11 @@ class Categories_model extends CI_Model
         }
     }
 
-    //delete a category
+    /**
+     * Delete category.
+     * @param mixed $id ID of category
+     * @return mixed Result
+     */
     public function delete_category($id = FALSE) {
         $this->db->where('id', $id);
         return $this->db->delete('categories');
