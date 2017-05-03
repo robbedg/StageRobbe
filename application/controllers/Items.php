@@ -1,7 +1,7 @@
 <?php
 /**
  * Controller for items.
- * @package application\controllers\Items
+ * @package controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/02/2017
  * @time 10:19

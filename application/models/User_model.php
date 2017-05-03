@@ -2,7 +2,7 @@
 
 /**
  * Model for user object.
- * @package application\models\User_model
+ * @package models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 22/02/2017
  * @time: 10:54

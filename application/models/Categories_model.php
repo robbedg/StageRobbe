@@ -1,7 +1,7 @@
 <?php
 /**
  * Model for Categories.
- * @package application\models\Categories_model
+ * @package models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/02/2017
  * @time 14:35

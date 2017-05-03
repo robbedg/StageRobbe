@@ -2,7 +2,7 @@
 
 /**
  * Controller for settings.
- * @package application\controllers\Settings
+ * @package controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 2/05/2017
  * @time 13:53

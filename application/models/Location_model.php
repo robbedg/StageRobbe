@@ -1,7 +1,7 @@
 <?php
 /**
  * Model for Locations.
- * @package application\models\Location_model
+ * @package models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/02/2017
  * @time 8:47

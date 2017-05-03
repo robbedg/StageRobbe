@@ -1,7 +1,7 @@
 <?php
 /**
  * Controller for locations.
- * @package application\controllers\Locations
+ * @package controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/02/2017
  * @time 9:04

@@ -2,7 +2,7 @@
 
 /**
  * Model for settings.
- * @package application\models\setting_model
+ * @package models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 27/04/2017
  * @time 10:58

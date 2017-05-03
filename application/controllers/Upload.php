@@ -2,7 +2,7 @@
 
 /**
  * Controller for Upload.
- * @package applicationcontrollers\Upload
+ * @package controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 15/02/2017
  * @time 9:47

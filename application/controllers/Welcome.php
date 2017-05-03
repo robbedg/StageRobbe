@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /**
  * Home
  * @deprecated
- * @package application\controllers\Welcome
+ * @package controllers
  * @todo delete
  * @filesource
  */

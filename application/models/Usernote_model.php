@@ -2,7 +2,7 @@
 
 /**
  * Model for Usernotes
- * @package application\models\Usernote_model
+ * @package models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 21/02/2017
  * @time 9:47

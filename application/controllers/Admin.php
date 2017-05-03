@@ -2,7 +2,7 @@
 
 /**
  * Controller for Admin panel.
- * @package application\controllers\Admin
+ * @package controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 22/02/2017
  * @time 15:18

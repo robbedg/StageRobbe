@@ -1,7 +1,7 @@
 <?php
 /**
  * Model for items.
- * @package application\models\Item_model
+ * @package models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @Date 7/02/2017
  * @time 9:36

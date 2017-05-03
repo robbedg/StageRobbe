@@ -2,7 +2,7 @@
 
 /**
  * Model for loan objects.
- * @package application\models\Loan_model
+ * @package models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 9/03/2017
  * @time 10:28

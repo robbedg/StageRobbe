@@ -2,7 +2,7 @@
 
 /**
  * Helper to sort and sort data for synchronisation.
- * @package application\helpers\synchronization_helper
+ * @package helpers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 19/04/2017
  * @time 9:39
