@@ -96,94 +96,135 @@ $(document).ready(function(){
         .append(
           $('<span class="label" />').text($el['role']).addClass(determineLabel($el['role_id']))
         )
-      )
-    );
+        )
+      );
+    });
+
+    //set total count
+    $("#all a span").text($response.count);
+    userclick();
+  })
+  .fail(function($error) {
+    console.log($error);
+  });
+  }
+
+  //search
+  $("#searchusers").keyup(function($event) {
+    if ($("#searchusers").val().length >= $minlength) {
+      $userdata.search = $(this).val();
+      $roledata.user_search = $(this).val();
+      callDB();
+    } else {
+      if (($userdata.search !== null) && ($roledata.user_search !== null)) {
+        $userdata.search = null;
+        $roledata.user_search = null;
+        callDB();
+      }
+    }
   });
 
-  //set total count
-  $("#all a span").text($response.count);
-  userclick();
-})
-.fail(function($error) {
-  console.log($error);
-});
-}
 
-//search
-$("#searchusers").keyup(function($event) {
-  if ($("#searchusers").val().length >= $minlength) {
-    $userdata.search = $(this).val();
-    $roledata.user_search = $(this).val();
-    callDB();
-  } else {
-    if (($userdata.search !== null) && ($roledata.user_search !== null)) {
-      $userdata.search = null;
-      $roledata.user_search = null;
+  //filter
+  $(".filterlist").click(function($event) {
+    /* Act on the event */
+    //prevent default
+    $event.preventDefault();
+    var $filter = $(this);
+
+    //set inactive
+    $(".filterlist").each(function($index, $el) {
+      $($el).parent().removeClass('active');
+    });
+    //set active
+    $filter.parent().addClass('active');
+
+    //if not all selected
+    if ($filter.parent().attr('id') !== 'all') {
+      $userdata.role_id = $filter.attr('data-id');
+      callDB();
+    } else {
+      $userdata.role_id = null;
       callDB();
     }
-  }
-});
-
-
-//filter
-$(".filterlist").click(function($event) {
-  /* Act on the event */
-  //prevent default
-  $event.preventDefault();
-  var $filter = $(this);
-
-  //set inactive
-  $(".filterlist").each(function($index, $el) {
-    $($el).parent().removeClass('active');
   });
-  //set active
-  $filter.parent().addClass('active');
 
-  //if not all selected
-  if ($filter.parent().attr('id') !== 'all') {
-    $userdata.role_id = $filter.attr('data-id');
-    callDB();
-  } else {
-    $userdata.role_id = null;
-    callDB();
+  function userclick() {
+    /** User clicked **/
+    $(".users input").click(function($event) {
+      //get clicked user
+      var $user = $(this);
+
+      //activate role selector
+      $("#roleselect select").removeAttr('disabled');
+
+      //set selected role.
+      try {
+        $("#roleselect select option").each(function() {
+          if ($(this).val() === $user.parent().attr('data-id')) {
+            $(this).attr('selected', 'selected');
+          } else {
+            $(this).removeAttr('selected');
+          }
+        });
+      } catch ($e) {
+        console.log($e);
+      }
+
+      //set hidden field id
+      $("#userid input").val($user.val());
+
+      //set firstname
+      $("#firstname input").removeAttr('disabled');
+      $("#firstname input").val($user.parent().attr('data-firstname'));
+
+      //set lastname
+      $("#lastname input").removeAttr('disabled');
+      $("#lastname input").val($user.parent().attr('data-lastname'));
+
+      //activate button
+      $("#submit button").removeAttr('disabled');
+    });
   }
-});
 
-function userclick() {
-  /** User clicked **/
-  $(".users input").click(function($event) {
-    //get clicked user
-    var $user = $(this);
+  /**
+   * Delete user
+   **/
 
-    //activate role selector
-    $("#roleselect select").removeAttr('disabled');
+   /* toggle */
+   $("#delete-user").click(function($event) {
+     //prevent default
+     $event.preventDefault();
 
-    //set selected role.
-    try {
-      $("#roleselect select option").each(function() {
-        if ($(this).val() === $user.parent().attr('data-id')) {
-          $(this).attr('selected', 'selected');
+     //show window
+     $("#delete-message").modal('show');
+   });
+
+   /* confirm */
+   $("#delete-user-btn").click(function($event) {
+     //prevent default
+     $event.preventDefault();
+
+     //data
+     var $dataDelete = new Object();
+     $dataDelete.id = $("#userid input").val();
+
+     //make call
+     $.ajax({
+       url: '/index.php/users/delete',
+       type: 'POST',
+       dataType: 'json',
+       contentType: 'application/json',
+       data: JSON.stringify($dataDelete)
+     }).done(function($result) {
+       //if user is not allowed
+        if ($result['success'] === false) {
+          $("#msg-error").removeClass('hidden');
+          setTimeout("$('#msg-error').addClass('hidden');", 3000);
+        //if user is allowed
         } else {
-          $(this).removeAttr('selected');
+          $("#delete-message").modal('hide');
         }
-      });
-    } catch ($e) {
-      console.log($e);
-    }
-
-    //set hidden field id
-    $("#userid input").val($user.val());
-
-    //set firstname
-    $("#firstname input").removeAttr('disabled');
-    $("#firstname input").val($user.parent().attr('data-firstname'));
-
-    //set lastname
-    $("#lastname input").removeAttr('disabled');
-    $("#lastname input").val($user.parent().attr('data-lastname'));
-
-    //activate button
-    $("#submit button").removeAttr('disabled');
-  });
-}
+     });
+   });
 });

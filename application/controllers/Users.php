@@ -113,4 +113,39 @@ class Users extends CI_Controller
             ->set_output(json_encode(array('success' => $result)));
 
     }
+
+    /**
+     * Delete user.
+     */
+    public function delete() {
+
+        //Get request data
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        $input = json_decode($stream_clean, true);
+
+        //check authorisation
+        if (!authorization_check($this, 3) && empty($input['id'])) {
+            show_error('Unauthorized.');
+        }
+
+        //set success
+        $success = FALSE;
+
+        //check users
+        $users = $this->user_model->get_user(array('id' => $input['id']));
+
+        if ($users['count'] === 1) {
+            $user = $users['data'][0];
+
+            if($user['role_id'] < 3 || $_SESSION['role_id'] === 4) {
+                $this->user_model->delete_user(array('id' => $user['id']));
+                $success = TRUE;
+            }
+        }
+
+        //output
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode(array('success' => $success)));
+    }
 }

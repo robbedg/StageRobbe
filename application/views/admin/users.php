@@ -64,9 +64,36 @@
 
             <!-- submit button -->
             <div id="submit">
+                <button id="delete-user" class="btn btn-danger btn-lg" disabled="disabled"><span class="fa fa-trash"></span></button>
                 <button type="submit" class="btn btn-primary btn-lg" disabled="disabled"><span class="fa fa-save"></span></button>
             </div>
         <?=form_close(); ?>
     </div>
+
+    <!-- delete message -->
+    <div class="modal" id="delete-message">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Delete User</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Error msg -->
+                    <div class="alert alert-danger hidden" id="msg-error">
+                        <p>You can't delete this user.</p>
+                    </div>
+                    <!-- msg text -->
+                    <p>Do you wish to delete this user?</p>
+                    <p>This action can't be reversed.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-undo"></span></button>
+                    <button type="button" class="btn btn-danger" id="delete-user-btn"><span class="fa fa-trash"></span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>

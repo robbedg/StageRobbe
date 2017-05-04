@@ -111,6 +111,7 @@ $route['usernotes/remove/(:num)'] = 'usernotes/remove/$1';
 $route['users/(:num)'] = 'users/index/$1';
 $route['users/get'] = 'users/get';
 $route['users/update'] = 'users/update';
+$route['users/delete'] = 'users/delete';
 
 //role routes
 $route['roles/get'] = 'roles/get';

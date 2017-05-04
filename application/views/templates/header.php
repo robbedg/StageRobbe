@@ -39,9 +39,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">New <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?=site_url('items/create'); ?>">New Item</a></li>
-                        <li><a href="<?=site_url('locations/create'); ?>">New Location</a></li>
-                        <li><a href="<?=site_url('categories/create'); ?>">New Category</a></li>
+                        <li><a href="<?=site_url('items/create'); ?>">Item</a></li>
+                        <li><a href="<?=site_url('locations/create'); ?>">Location</a></li>
+                        <li><a href="<?=site_url('categories/create'); ?>">Category</a></li>
                     </ul>
                 </li>
                 <?php endif; ?>

@@ -129,6 +129,19 @@ class User_model extends CI_Model
     }
 
     /**
+     * Delete user with given data.
+     * @param array $user user data
+     */
+    public function delete_user($user = [])
+    {
+        if (!empty($user['id'])) {
+            $this->db->where('id', $user['id']);
+            $this->db->delete('users');
+        }
+    }
+
+
+    /**
      * Verifies password.
      * @param $username uid of user object
      * @param $password password of attempt

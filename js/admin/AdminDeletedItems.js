@@ -56,7 +56,7 @@ $(document).ready(function(){
               .append($('<td />').append($el['category']))
               .append($('<td />').append($el['created_on']))
               .append($('<td />')
-                .append($('<a href="#" data-function="restore" />').addClass('btn btn-success btn-sm').append('<span class="fa fa-share"></span>').attr('data-id', $el['id']))
+                .append($('<a href="#" data-function="restore" />').addClass('btn btn-success btn-sm').append('<span class="fa fa-undo"></span>').attr('data-id', $el['id']))
                 .append(' ')
                 .append($('<a href="#" data-function="delete" />').addClass('btn btn-danger btn-sm').append('<span class="fa fa-trash"></span>').attr('data-id', $el['id']))
                 .addClass('align-right')
