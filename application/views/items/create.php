@@ -15,7 +15,7 @@
 </div>
 
 <!-- title -->
-<h2><?=$title; ?></h2>
+<h2><?=$title; ?><?=(!empty($item) ? ': '.$item['data']['id'] : ''); ?></h2>
 
 <!-- Button picture -->
 <div id="buttons">
@@ -104,10 +104,12 @@
 
 <!-- submit -->
 <div class="form-group" id="buttonsbottom">
-    <a href="<?=(empty($item) ? site_url('home') : site_url('items/view/'.$item['data']['id'])); ?>" class="btn btn-default">
-        <?=(empty($item) ? 'Cancel' : 'Back'); ?>
+    <a href="<?=(empty($item) ? site_url('home') : site_url('items/view/'.$item['data']['id'])); ?>" class="btn btn-default btn-lg">
+        <?=(empty($item) ? '<span class="fa fa-ban"></span>' : '<span class="fa fa-arrow-left"></span>'); ?>
     </a>
-    <input type="submit" class="btn btn-primary" id="submit" value="<?=(empty($item) ? 'Create' : 'Save'); ?>" />
+    <a href="#" class="btn btn-primary btn-lg" id="submit">
+        <?=(empty($item) ? '<span class="fa fa-arrow-right"></span>' : '<span class="fa fa-save"></span>'); ?>
+    </a>
 </div>
 
 </form>
@@ -124,9 +126,6 @@
             <div class="modal-body">
                 <?=form_open_multipart('upload/do_upload/'.$item['data']['id'], Array('id' => 'dropzone', 'class' => 'dropzone needsclick dz-clickable')); ?>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

@@ -54,7 +54,7 @@
  	display: inline-block;
  	position: relative;
  	margin-right: 0.2rem;
- 	width: calc((100% - 8.0rem) * 0.5);
+ 	width: calc((100% - 5.0rem) * 0.5);
  }
 
  #extra > div > input.new-form {

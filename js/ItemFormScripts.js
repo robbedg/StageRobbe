@@ -75,6 +75,10 @@ $(document).ready(function($) {
 	 * validate form
 	 */
 	 $("#submit").click(function ($event) {
+		 //prevent default
+		 $event.preventDefault();
+
+		 //validate
 		 $("#form").validate({
 			 rules: {
 		 		"label[]": "required",
@@ -96,6 +100,6 @@ $(document).ready(function($) {
 				});
 			 }
 		 });
-
+		 $("#form").submit();
 	 });
 });
