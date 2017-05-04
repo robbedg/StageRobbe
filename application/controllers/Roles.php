@@ -2,7 +2,7 @@
 
 /**
  * Controller for Roles.
- * @package controllers
+ * @package application\controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @Date 7/03/2017
  * @Time 14:54

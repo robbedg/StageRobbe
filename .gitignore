@@ -40,4 +40,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /web.config
 
 # cache files
-/docs/*/*.dat
+*.dat

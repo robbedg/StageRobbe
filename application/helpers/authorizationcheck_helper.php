@@ -2,7 +2,7 @@
 
 /**
  * Helper to check if user is authorised to perform a certain action.
- * @package helpers
+ * @package application\helpers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 22/02/2017
  * @time 11:36

@@ -2,7 +2,7 @@
 
 /**
  * Controller for logging in/registering
- * @package controllers
+ * @package application\controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 22/02/2017
  * @time 10:28

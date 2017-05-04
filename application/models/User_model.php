@@ -2,10 +2,10 @@
 
 /**
  * Model for user object.
- * @package models
+ * @package application\models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 22/02/2017
- * @time: 10:54
+ * @time 10:54
  * @filesource
  */
 class User_model extends CI_Model

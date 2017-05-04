@@ -2,7 +2,7 @@
 
 /**
  * Controller for Admin panel.
- * @package controllers
+ * @package application\controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 22/02/2017
  * @time 15:18
@@ -35,6 +35,7 @@ class Admin extends CI_Controller
 
     /**
      * Managing users.
+     * @link /index.php/admin
      */
     public function index()
     {

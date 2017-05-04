@@ -2,7 +2,7 @@
 
 /**
  * Controller for users.
- * @package controllers
+ * @package application\controllers
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 7/03/2017
  * @time 13:07

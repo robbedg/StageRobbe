@@ -1,7 +1,7 @@
 <?php
 /**
  * Model for Roles
- * @package models
+ * @package application\models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
  * @date 23/02/2017
  * @time 13:31
