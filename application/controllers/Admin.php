@@ -81,7 +81,20 @@ class Admin extends CI_Controller
                 'role_id' => $this->input->post('role')
             );
 
-            if ((intval($_SESSION['role_id']) > intval($user['role_id'])) || (intval($_SESSION['role_id']) === 4)) {
+            //check original user
+            $original_user = $this->user_model->get_user(array('id' => $user['id'], 'limit' => 1));
+
+            if ($original_user['count'] !== 1) {
+                show_error('Unknown user ID.');
+                die();
+            }
+
+            $original_user = $original_user['data'][0];
+
+            if (
+                ((intval($_SESSION['role_id']) > intval($user['role_id'])) || (intval($_SESSION['role_id']) === 4)) &&
+                (intval($original_user['role_id']) < intval($_SESSION['role_id']) || intval($_SESSION['role_id']) === 4)
+            ) {
                 $this->user_model->update_user($user);
             } else {
                 show_error("You are not authorized to do this action.");

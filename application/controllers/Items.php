@@ -7,9 +7,11 @@
  * @time 10:19
  * @filesource
  */
-
 class Items extends CI_Controller
 {
+    /**
+     * Items constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -26,7 +28,11 @@ class Items extends CI_Controller
         //$this->output->enable_profiler(TRUE);
     }
 
-    //show items in category & location
+    /**
+     * Show items in given category & location.
+     * @param mixed $locationid ID of location
+     * @param mixed $categoryid ID of category
+     */
     public function index($locationid = NULL, $categoryid = NULL) {
 
         //show 404 without parameters
@@ -34,8 +40,15 @@ class Items extends CI_Controller
             show_404();
         }
 
+        //get names from database
         $location = $this->location_model->get_location(array('id' => $locationid));
         $category = $this->categories_model->get_category(array('id' => $categoryid));
+
+        //check if exists
+        if ($location['count'] !== 1 || $category['count'] !== 1) {
+            show_404();
+            die();
+        }
 
         //set title
         $data['title'] = $category['data'][0]['name'].' collection';
@@ -72,7 +85,10 @@ class Items extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    //Detailed view of one item
+    /**
+     * Detailed view of an item.
+     * @param mixed $id ID of item
+     */
     public function view($id = NULL)
     {
         //when no id specified
@@ -97,6 +113,12 @@ class Items extends CI_Controller
 
         //collect data
         $data['item'] = $this->item_model->get_item(array('id' => $id, 'location' => TRUE, 'category' => TRUE));
+
+        //check
+        if ($data['item']['count'] !== 1) {
+            show_404();
+            die();
+        }
 
         $data['title'] = $data['item']['data']['category'].': '.$data['item']['data']['id'];
 
@@ -181,7 +203,9 @@ class Items extends CI_Controller
         }
     }
 
-    //handle requests for items
+    /**
+     * Handle requests to get list of items.
+     */
     public function get()
     {
         $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
@@ -205,7 +229,10 @@ class Items extends CI_Controller
             ->set_output(json_encode($result));
     }
 
-    //deleting item
+    /**
+     * Make item invisible, delete picture if exists.
+     * @param mixed $id ID of item
+     */
     public function remove($id = NULL) {
         //authorization check
         if (!authorization_check($this, 2)) {
@@ -221,7 +248,10 @@ class Items extends CI_Controller
         redirect('home');
     }
 
-    //restoring item
+    /**
+     * Make item visible again.
+     * @param mixed $id ID of item
+     */
     public function  restore($id = NULL)
     {
         //authorization check
@@ -237,7 +267,10 @@ class Items extends CI_Controller
         $this->item_model->restore_item($id);
     }
 
-    //permenantly deleting item
+    /**
+     * Permanently delete item (cascade)
+     * @param mixed $id ID of item
+     */
     public function delete($id = NULL)
     {
         //authorization check

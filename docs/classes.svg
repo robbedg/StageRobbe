@@ -13,225 +13,225 @@
 <path fill="none" stroke="gray" d="M203.389,-8C203.389,-8 320.389,-8 320.389,-8 326.389,-8 332.389,-14 332.389,-20 332.389,-20 332.389,-1148 332.389,-1148 332.389,-1154 326.389,-1160 320.389,-1160 320.389,-1160 203.389,-1160 203.389,-1160 197.389,-1160 191.389,-1154 191.389,-1148 191.389,-1148 191.389,-20 191.389,-20 191.389,-14 197.389,-8 203.389,-8"/>
 <text text-anchor="middle" x="261.889" y="-1147.2" font-family="Times New Roman,serif" font-size="11.00" fill="gray">Global</text>
 </g>
-<!-- \\Admin -->
-<g id="node1" class="node"><title>\\Admin</title>
-<polygon fill="none" stroke="black" points="288.889,-1132 234.889,-1132 234.889,-1096 288.889,-1096 288.889,-1132"/>
-<text text-anchor="middle" x="261.889" y="-1111.2" font-family="Courier,monospace" font-size="11.00">Admin</text>
+<!-- \\Usernotes -->
+<g id="node1" class="node"><title>\\Usernotes</title>
+<polygon fill="none" stroke="black" points="300.389,-700 223.389,-700 223.389,-664 300.389,-664 300.389,-700"/>
+<text text-anchor="middle" x="261.889" y="-679.2" font-family="Courier,monospace" font-size="11.00">Usernotes</text>
 </g>
 <!-- \\CI_Controller -->
 <g id="node22" class="node"><title>\\CI_Controller</title>
 <ellipse fill="none" stroke="black" cx="63.6943" cy="-790" rx="63.8893" ry="18"/>
 <text text-anchor="middle" x="63.6943" y="-786.3" font-family="Times New Roman,serif" font-size="14.00" fill="gray">\CI_Controller</text>
 </g>
-<!-- \\Admin&#45;&gt;\\CI_Controller -->
-<g id="edge1" class="edge"><title>\\Admin&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M234.73,-1109.05C220.398,-1105.17 203.201,-1098.43 191.389,-1087 112.134,-1010.29 79.8666,-876.058 69.1761,-818.034"/>
-<polygon fill="none" stroke="black" points="72.6107,-817.356 67.4246,-808.117 65.7174,-818.574 72.6107,-817.356"/>
-</g>
-<!-- \\Categories -->
-<g id="node2" class="node"><title>\\Categories</title>
-<polygon fill="none" stroke="black" points="303.889,-1078 219.889,-1078 219.889,-1042 303.889,-1042 303.889,-1078"/>
-<text text-anchor="middle" x="261.889" y="-1057.2" font-family="Courier,monospace" font-size="11.00">Categories</text>
-</g>
-<!-- \\Categories&#45;&gt;\\CI_Controller -->
-<g id="edge2" class="edge"><title>\\Categories&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M219.534,-1049.49C209.512,-1045.53 199.392,-1040.17 191.389,-1033 123.889,-972.549 86.7013,-867.55 72.0831,-817.745"/>
-<polygon fill="none" stroke="black" points="75.4101,-816.648 69.3035,-807.99 68.6781,-818.567 75.4101,-816.648"/>
-</g>
-<!-- \\Items -->
-<g id="node3" class="node"><title>\\Items</title>
-<polygon fill="none" stroke="black" points="288.889,-1024 234.889,-1024 234.889,-988 288.889,-988 288.889,-1024"/>
-<text text-anchor="middle" x="261.889" y="-1003.2" font-family="Courier,monospace" font-size="11.00">Items</text>
-</g>
-<!-- \\Items&#45;&gt;\\CI_Controller -->
-<g id="edge3" class="edge"><title>\\Items&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M234.838,-999.973C220.883,-995.791 204.017,-989.116 191.389,-979 135.422,-934.166 95.1218,-857.88 76.4116,-817.292"/>
-<polygon fill="none" stroke="black" points="79.5303,-815.694 72.2272,-808.019 73.1497,-818.573 79.5303,-815.694"/>
-</g>
-<!-- \\Loans -->
-<g id="node4" class="node"><title>\\Loans</title>
-<polygon fill="none" stroke="black" points="288.889,-970 234.889,-970 234.889,-934 288.889,-934 288.889,-970"/>
-<text text-anchor="middle" x="261.889" y="-949.2" font-family="Courier,monospace" font-size="11.00">Loans</text>
-</g>
-<!-- \\Loans&#45;&gt;\\CI_Controller -->
-<g id="edge4" class="edge"><title>\\Loans&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M234.789,-944.923C221.144,-940.49 204.585,-933.909 191.389,-925 146.533,-894.717 105.874,-845.868 83.2964,-815.976"/>
-<polygon fill="none" stroke="black" points="85.9282,-813.65 77.1521,-807.715 80.3113,-817.828 85.9282,-813.65"/>
-</g>
-<!-- \\Locations -->
-<g id="node5" class="node"><title>\\Locations</title>
-<polygon fill="none" stroke="black" points="300.389,-916 223.389,-916 223.389,-880 300.389,-880 300.389,-916"/>
-<text text-anchor="middle" x="261.889" y="-895.2" font-family="Courier,monospace" font-size="11.00">Locations</text>
-</g>
-<!-- \\Locations&#45;&gt;\\CI_Controller -->
-<g id="edge5" class="edge"><title>\\Locations&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M223.143,-884.9C212.674,-880.848 201.431,-876.097 191.389,-871 157.445,-853.771 121.068,-829.891 96.04,-812.526"/>
-<polygon fill="none" stroke="black" points="97.883,-809.544 87.6834,-806.677 93.869,-815.279 97.883,-809.544"/>
-</g>
-<!-- \\Login -->
-<g id="node6" class="node"><title>\\Login</title>
-<polygon fill="none" stroke="black" points="288.889,-862 234.889,-862 234.889,-826 288.889,-826 288.889,-862"/>
-<text text-anchor="middle" x="261.889" y="-841.2" font-family="Courier,monospace" font-size="11.00">Login</text>
-</g>
-<!-- \\Login&#45;&gt;\\CI_Controller -->
-<g id="edge6" class="edge"><title>\\Login&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M234.836,-836.829C205.652,-828.797 157.508,-815.546 119.867,-805.186"/>
-<polygon fill="none" stroke="black" points="120.619,-801.763 110.049,-802.483 118.762,-808.512 120.619,-801.763"/>
-</g>
-<!-- \\Roles -->
-<g id="node7" class="node"><title>\\Roles</title>
-<polygon fill="none" stroke="black" points="288.889,-808 234.889,-808 234.889,-772 288.889,-772 288.889,-808"/>
-<text text-anchor="middle" x="261.889" y="-787.2" font-family="Courier,monospace" font-size="11.00">Roles</text>
-</g>
-<!-- \\Roles&#45;&gt;\\CI_Controller -->
-<g id="edge7" class="edge"><title>\\Roles&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M234.836,-790C210.181,-790 171.994,-790 138.04,-790"/>
-<polygon fill="none" stroke="black" points="137.658,-786.5 127.658,-790 137.658,-793.5 137.658,-786.5"/>
-</g>
-<!-- \\Settings -->
-<g id="node8" class="node"><title>\\Settings</title>
-<polygon fill="none" stroke="black" points="297.389,-754 226.389,-754 226.389,-718 297.389,-718 297.389,-754"/>
-<text text-anchor="middle" x="261.889" y="-733.2" font-family="Courier,monospace" font-size="11.00">Settings</text>
-</g>
-<!-- \\Settings&#45;&gt;\\CI_Controller -->
-<g id="edge8" class="edge"><title>\\Settings&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M226.265,-745.53C196.828,-753.632 154.029,-765.412 119.875,-774.812"/>
-<polygon fill="none" stroke="black" points="118.747,-771.492 110.034,-777.521 120.605,-778.241 118.747,-771.492"/>
-</g>
-<!-- \\Synchronize -->
-<g id="node9" class="node"><title>\\Synchronize</title>
-<polygon fill="none" stroke="black" points="307.389,-700 216.389,-700 216.389,-664 307.389,-664 307.389,-700"/>
-<text text-anchor="middle" x="261.889" y="-679.2" font-family="Courier,monospace" font-size="11.00">Synchronize</text>
-</g>
-<!-- \\Synchronize&#45;&gt;\\CI_Controller -->
-<g id="edge9" class="edge"><title>\\Synchronize&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M216.194,-697.851C207.821,-701.243 199.238,-705.016 191.389,-709 157.445,-726.229 121.068,-750.109 96.04,-767.474"/>
+<!-- \\Usernotes&#45;&gt;\\CI_Controller -->
+<g id="edge1" class="edge"><title>\\Usernotes&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M223.143,-695.1C212.674,-699.152 201.431,-703.903 191.389,-709 157.445,-726.229 121.068,-750.109 96.04,-767.474"/>
 <polygon fill="none" stroke="black" points="93.869,-764.721 87.6834,-773.323 97.883,-770.456 93.869,-764.721"/>
 </g>
-<!-- \\Upload -->
-<g id="node10" class="node"><title>\\Upload</title>
-<polygon fill="none" stroke="black" points="290.389,-646 233.389,-646 233.389,-610 290.389,-610 290.389,-646"/>
-<text text-anchor="middle" x="261.889" y="-625.2" font-family="Courier,monospace" font-size="11.00">Upload</text>
-</g>
-<!-- \\Upload&#45;&gt;\\CI_Controller -->
-<g id="edge10" class="edge"><title>\\Upload&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M233.111,-635.628C219.803,-640.049 204.048,-646.453 191.389,-655 146.533,-685.283 105.874,-734.132 83.2964,-764.024"/>
-<polygon fill="none" stroke="black" points="80.3113,-762.172 77.1521,-772.285 85.9282,-766.35 80.3113,-762.172"/>
-</g>
-<!-- \\Usernotes -->
-<g id="node11" class="node"><title>\\Usernotes</title>
-<polygon fill="none" stroke="black" points="300.389,-592 223.389,-592 223.389,-556 300.389,-556 300.389,-592"/>
-<text text-anchor="middle" x="261.889" y="-571.2" font-family="Courier,monospace" font-size="11.00">Usernotes</text>
-</g>
-<!-- \\Usernotes&#45;&gt;\\CI_Controller -->
-<g id="edge11" class="edge"><title>\\Usernotes&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M223.308,-583.878C212.273,-587.973 200.683,-593.554 191.389,-601 135.422,-645.834 95.1218,-722.12 76.4116,-762.708"/>
-<polygon fill="none" stroke="black" points="73.1497,-761.427 72.2272,-771.981 79.5303,-764.306 73.1497,-761.427"/>
-</g>
 <!-- \\Users -->
-<g id="node12" class="node"><title>\\Users</title>
-<polygon fill="none" stroke="black" points="288.889,-538 234.889,-538 234.889,-502 288.889,-502 288.889,-538"/>
-<text text-anchor="middle" x="261.889" y="-517.2" font-family="Courier,monospace" font-size="11.00">Users</text>
+<g id="node2" class="node"><title>\\Users</title>
+<polygon fill="none" stroke="black" points="288.889,-646 234.889,-646 234.889,-610 288.889,-610 288.889,-646"/>
+<text text-anchor="middle" x="261.889" y="-625.2" font-family="Courier,monospace" font-size="11.00">Users</text>
 </g>
 <!-- \\Users&#45;&gt;\\CI_Controller -->
-<g id="edge12" class="edge"><title>\\Users&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M234.724,-525.398C220.565,-529.408 203.539,-536.119 191.389,-547 123.889,-607.451 86.7013,-712.45 72.0831,-762.255"/>
-<polygon fill="none" stroke="black" points="68.6781,-761.433 69.3035,-772.01 75.4101,-763.352 68.6781,-761.433"/>
+<g id="edge2" class="edge"><title>\\Users&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M234.789,-635.077C221.144,-639.51 204.585,-646.091 191.389,-655 146.533,-685.283 105.874,-734.132 83.2964,-764.024"/>
+<polygon fill="none" stroke="black" points="80.3113,-762.172 77.1521,-772.285 85.9282,-766.35 80.3113,-762.172"/>
 </g>
-<!-- \\Welcome -->
-<g id="node13" class="node"><title>\\Welcome</title>
-<polygon fill="none" stroke="black" points="293.889,-484 229.889,-484 229.889,-448 293.889,-448 293.889,-484"/>
-<text text-anchor="middle" x="261.889" y="-463.2" font-family="Courier,monospace" font-size="11.00">Welcome</text>
-</g>
-<!-- \\Welcome&#45;&gt;\\CI_Controller -->
-<g id="edge13" class="edge"><title>\\Welcome&#45;&gt;\\CI_Controller</title>
-<path fill="none" stroke="black" d="M229.546,-472.447C216.411,-476.489 201.806,-482.917 191.389,-493 112.134,-569.707 79.8666,-703.942 69.1761,-761.966"/>
-<polygon fill="none" stroke="black" points="65.7174,-761.426 67.4246,-771.883 72.6107,-762.644 65.7174,-761.426"/>
-</g>
-<!-- \\Categories_model -->
-<g id="node14" class="node"><title>\\Categories_model</title>
-<polygon fill="none" stroke="black" points="324.389,-430 199.389,-430 199.389,-394 324.389,-394 324.389,-430"/>
-<text text-anchor="middle" x="261.889" y="-409.2" font-family="Courier,monospace" font-size="11.00">Categories_model</text>
+<!-- \\Item_model -->
+<g id="node3" class="node"><title>\\Item_model</title>
+<polygon fill="none" stroke="black" points="303.889,-322 219.889,-322 219.889,-286 303.889,-286 303.889,-322"/>
+<text text-anchor="middle" x="261.889" y="-301.2" font-family="Courier,monospace" font-size="11.00">Item_model</text>
 </g>
 <!-- \\CI_Model -->
 <g id="node23" class="node"><title>\\CI_Model</title>
 <ellipse fill="none" stroke="black" cx="63.6943" cy="-223" rx="50.8918" ry="18"/>
 <text text-anchor="middle" x="63.6943" y="-219.3" font-family="Times New Roman,serif" font-size="14.00" fill="gray">\CI_Model</text>
 </g>
-<!-- \\Categories_model&#45;&gt;\\CI_Model -->
-<g id="edge14" class="edge"><title>\\Categories_model&#45;&gt;\\CI_Model</title>
-<path fill="none" stroke="black" d="M205.893,-393.922C200.785,-391.284 195.857,-388.319 191.389,-385 140.869,-347.479 99.8593,-284.834 79.2113,-249.445"/>
-<polygon fill="none" stroke="black" points="82.1795,-247.586 74.1714,-240.649 76.1056,-251.065 82.1795,-247.586"/>
-</g>
-<!-- \\Item_model -->
-<g id="node15" class="node"><title>\\Item_model</title>
-<polygon fill="none" stroke="black" points="303.889,-376 219.889,-376 219.889,-340 303.889,-340 303.889,-376"/>
-<text text-anchor="middle" x="261.889" y="-355.2" font-family="Courier,monospace" font-size="11.00">Item_model</text>
-</g>
 <!-- \\Item_model&#45;&gt;\\CI_Model -->
-<g id="edge15" class="edge"><title>\\Item_model&#45;&gt;\\CI_Model</title>
-<path fill="none" stroke="black" d="M219.751,-344.645C210.149,-340.82 200.169,-336.242 191.389,-331 151.753,-307.337 112.26,-271.163 88.1591,-247.299"/>
-<polygon fill="none" stroke="black" points="90.4342,-244.624 80.8943,-240.015 85.478,-249.567 90.4342,-244.624"/>
-</g>
-<!-- \\Loan_model -->
-<g id="node16" class="node"><title>\\Loan_model</title>
-<polygon fill="none" stroke="black" points="303.889,-322 219.889,-322 219.889,-286 303.889,-286 303.889,-322"/>
-<text text-anchor="middle" x="261.889" y="-301.2" font-family="Courier,monospace" font-size="11.00">Loan_model</text>
-</g>
-<!-- \\Loan_model&#45;&gt;\\CI_Model -->
-<g id="edge16" class="edge"><title>\\Loan_model&#45;&gt;\\CI_Model</title>
+<g id="edge3" class="edge"><title>\\Item_model&#45;&gt;\\CI_Model</title>
 <path fill="none" stroke="black" d="M219.641,-288.229C210.327,-284.597 200.5,-280.71 191.389,-277 162.651,-265.297 130.492,-251.583 105.765,-240.903"/>
 <polygon fill="none" stroke="black" points="106.904,-237.583 96.3363,-236.823 104.124,-244.007 106.904,-237.583"/>
 </g>
-<!-- \\Location_model -->
-<g id="node17" class="node"><title>\\Location_model</title>
-<polygon fill="none" stroke="black" points="317.389,-268 206.389,-268 206.389,-232 317.389,-232 317.389,-268"/>
-<text text-anchor="middle" x="261.889" y="-247.2" font-family="Courier,monospace" font-size="11.00">Location_model</text>
-</g>
-<!-- \\Location_model&#45;&gt;\\CI_Model -->
-<g id="edge17" class="edge"><title>\\Location_model&#45;&gt;\\CI_Model</title>
-<path fill="none" stroke="black" d="M206.238,-242.479C179.796,-238.84 148.076,-234.475 121.373,-230.8"/>
-<polygon fill="none" stroke="black" points="121.789,-227.324 111.405,-229.428 120.835,-234.259 121.789,-227.324"/>
-</g>
 <!-- \\Role_model -->
-<g id="node18" class="node"><title>\\Role_model</title>
-<polygon fill="none" stroke="black" points="303.889,-214 219.889,-214 219.889,-178 303.889,-178 303.889,-214"/>
-<text text-anchor="middle" x="261.889" y="-193.2" font-family="Courier,monospace" font-size="11.00">Role_model</text>
+<g id="node4" class="node"><title>\\Role_model</title>
+<polygon fill="none" stroke="black" points="303.889,-268 219.889,-268 219.889,-232 303.889,-232 303.889,-268"/>
+<text text-anchor="middle" x="261.889" y="-247.2" font-family="Courier,monospace" font-size="11.00">Role_model</text>
 </g>
 <!-- \\Role_model&#45;&gt;\\CI_Model -->
-<g id="edge18" class="edge"><title>\\Role_model&#45;&gt;\\CI_Model</title>
-<path fill="none" stroke="black" d="M219.76,-201.66C191.168,-205.595 152.694,-210.89 121.223,-215.221"/>
-<polygon fill="none" stroke="black" points="120.703,-211.759 111.273,-216.59 121.657,-218.694 120.703,-211.759"/>
+<g id="edge4" class="edge"><title>\\Role_model&#45;&gt;\\CI_Model</title>
+<path fill="none" stroke="black" d="M219.76,-244.34C191.168,-240.405 152.694,-235.11 121.223,-230.779"/>
+<polygon fill="none" stroke="black" points="121.657,-227.306 111.273,-229.41 120.703,-234.241 121.657,-227.306"/>
+</g>
+<!-- \\Categories_model -->
+<g id="node5" class="node"><title>\\Categories_model</title>
+<polygon fill="none" stroke="black" points="324.389,-214 199.389,-214 199.389,-178 324.389,-178 324.389,-214"/>
+<text text-anchor="middle" x="261.889" y="-193.2" font-family="Courier,monospace" font-size="11.00">Categories_model</text>
+</g>
+<!-- \\Categories_model&#45;&gt;\\CI_Model -->
+<g id="edge5" class="edge"><title>\\Categories_model&#45;&gt;\\CI_Model</title>
+<path fill="none" stroke="black" d="M199.35,-204.469C174.472,-207.893 145.934,-211.82 121.552,-215.175"/>
+<polygon fill="none" stroke="black" points="120.809,-211.745 111.379,-216.575 121.763,-218.679 120.809,-211.745"/>
+</g>
+<!-- \\Upload -->
+<g id="node6" class="node"><title>\\Upload</title>
+<polygon fill="none" stroke="black" points="290.389,-592 233.389,-592 233.389,-556 290.389,-556 290.389,-592"/>
+<text text-anchor="middle" x="261.889" y="-571.2" font-family="Courier,monospace" font-size="11.00">Upload</text>
+</g>
+<!-- \\Upload&#45;&gt;\\CI_Controller -->
+<g id="edge6" class="edge"><title>\\Upload&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M233.15,-580.541C219.541,-584.749 203.512,-591.288 191.389,-601 135.422,-645.834 95.1218,-722.12 76.4116,-762.708"/>
+<polygon fill="none" stroke="black" points="73.1497,-761.427 72.2272,-771.981 79.5303,-764.306 73.1497,-761.427"/>
+</g>
+<!-- \\Roles -->
+<g id="node7" class="node"><title>\\Roles</title>
+<polygon fill="none" stroke="black" points="288.889,-538 234.889,-538 234.889,-502 288.889,-502 288.889,-538"/>
+<text text-anchor="middle" x="261.889" y="-517.2" font-family="Courier,monospace" font-size="11.00">Roles</text>
+</g>
+<!-- \\Roles&#45;&gt;\\CI_Controller -->
+<g id="edge7" class="edge"><title>\\Roles&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M234.724,-525.398C220.565,-529.408 203.539,-536.119 191.389,-547 123.889,-607.451 86.7013,-712.45 72.0831,-762.255"/>
+<polygon fill="none" stroke="black" points="68.6781,-761.433 69.3035,-772.01 75.4101,-763.352 68.6781,-761.433"/>
+</g>
+<!-- \\Items -->
+<g id="node8" class="node"><title>\\Items</title>
+<polygon fill="none" stroke="black" points="288.889,-484 234.889,-484 234.889,-448 288.889,-448 288.889,-484"/>
+<text text-anchor="middle" x="261.889" y="-463.2" font-family="Courier,monospace" font-size="11.00">Items</text>
+</g>
+<!-- \\Items&#45;&gt;\\CI_Controller -->
+<g id="edge8" class="edge"><title>\\Items&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M234.73,-470.949C220.398,-474.833 203.201,-481.567 191.389,-493 112.134,-569.707 79.8666,-703.942 69.1761,-761.966"/>
+<polygon fill="none" stroke="black" points="65.7174,-761.426 67.4246,-771.883 72.6107,-762.644 65.7174,-761.426"/>
+</g>
+<!-- \\Categories -->
+<g id="node9" class="node"><title>\\Categories</title>
+<polygon fill="none" stroke="black" points="303.889,-1132 219.889,-1132 219.889,-1096 303.889,-1096 303.889,-1132"/>
+<text text-anchor="middle" x="261.889" y="-1111.2" font-family="Courier,monospace" font-size="11.00">Categories</text>
+</g>
+<!-- \\Categories&#45;&gt;\\CI_Controller -->
+<g id="edge9" class="edge"><title>\\Categories&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M219.869,-1104.2C209.613,-1100.2 199.295,-1094.65 191.389,-1087 112.134,-1010.29 79.8666,-876.058 69.1761,-818.034"/>
+<polygon fill="none" stroke="black" points="72.6107,-817.356 67.4246,-808.117 65.7174,-818.574 72.6107,-817.356"/>
+</g>
+<!-- \\Loan_model -->
+<g id="node10" class="node"><title>\\Loan_model</title>
+<polygon fill="none" stroke="black" points="303.889,-376 219.889,-376 219.889,-340 303.889,-340 303.889,-376"/>
+<text text-anchor="middle" x="261.889" y="-355.2" font-family="Courier,monospace" font-size="11.00">Loan_model</text>
+</g>
+<!-- \\Loan_model&#45;&gt;\\CI_Model -->
+<g id="edge10" class="edge"><title>\\Loan_model&#45;&gt;\\CI_Model</title>
+<path fill="none" stroke="black" d="M219.751,-344.645C210.149,-340.82 200.169,-336.242 191.389,-331 151.753,-307.337 112.26,-271.163 88.1591,-247.299"/>
+<polygon fill="none" stroke="black" points="90.4342,-244.624 80.8943,-240.015 85.478,-249.567 90.4342,-244.624"/>
+</g>
+<!-- \\Synchronize -->
+<g id="node11" class="node"><title>\\Synchronize</title>
+<polygon fill="none" stroke="black" points="307.389,-1078 216.389,-1078 216.389,-1042 307.389,-1042 307.389,-1078"/>
+<text text-anchor="middle" x="261.889" y="-1057.2" font-family="Courier,monospace" font-size="11.00">Synchronize</text>
+</g>
+<!-- \\Synchronize&#45;&gt;\\CI_Controller -->
+<g id="edge11" class="edge"><title>\\Synchronize&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M216.273,-1048.15C207.342,-1044.34 198.524,-1039.39 191.389,-1033 123.889,-972.549 86.7013,-867.55 72.0831,-817.745"/>
+<polygon fill="none" stroke="black" points="75.4101,-816.648 69.3035,-807.99 68.6781,-818.567 75.4101,-816.648"/>
 </g>
 <!-- \\Setting_model -->
-<g id="node19" class="node"><title>\\Setting_model</title>
-<polygon fill="none" stroke="black" points="313.889,-160 209.889,-160 209.889,-124 313.889,-124 313.889,-160"/>
-<text text-anchor="middle" x="261.889" y="-139.2" font-family="Courier,monospace" font-size="11.00">Setting_model</text>
+<g id="node12" class="node"><title>\\Setting_model</title>
+<polygon fill="none" stroke="black" points="313.889,-106 209.889,-106 209.889,-70 313.889,-70 313.889,-106"/>
+<text text-anchor="middle" x="261.889" y="-85.2" font-family="Courier,monospace" font-size="11.00">Setting_model</text>
 </g>
 <!-- \\Setting_model&#45;&gt;\\CI_Model -->
-<g id="edge19" class="edge"><title>\\Setting_model&#45;&gt;\\CI_Model</title>
+<g id="edge12" class="edge"><title>\\Setting_model&#45;&gt;\\CI_Model</title>
+<path fill="none" stroke="black" d="M209.837,-105.537C203.467,-108.387 197.168,-111.55 191.389,-115 151.753,-138.663 112.26,-174.837 88.1591,-198.701"/>
+<polygon fill="none" stroke="black" points="85.478,-196.433 80.8943,-205.985 90.4342,-201.376 85.478,-196.433"/>
+</g>
+<!-- \\Usernote_model -->
+<g id="node13" class="node"><title>\\Usernote_model</title>
+<polygon fill="none" stroke="black" points="317.389,-52 206.389,-52 206.389,-16 317.389,-16 317.389,-52"/>
+<text text-anchor="middle" x="261.889" y="-31.2" font-family="Courier,monospace" font-size="11.00">Usernote_model</text>
+</g>
+<!-- \\Usernote_model&#45;&gt;\\CI_Model -->
+<g id="edge13" class="edge"><title>\\Usernote_model&#45;&gt;\\CI_Model</title>
+<path fill="none" stroke="black" d="M206.249,-51.8946C201.015,-54.5778 195.961,-57.604 191.389,-61 140.869,-98.5214 99.8593,-161.166 79.2113,-196.555"/>
+<polygon fill="none" stroke="black" points="76.1056,-194.935 74.1714,-205.351 82.1795,-198.414 76.1056,-194.935"/>
+</g>
+<!-- \\Locations -->
+<g id="node14" class="node"><title>\\Locations</title>
+<polygon fill="none" stroke="black" points="300.389,-1024 223.389,-1024 223.389,-988 300.389,-988 300.389,-1024"/>
+<text text-anchor="middle" x="261.889" y="-1003.2" font-family="Courier,monospace" font-size="11.00">Locations</text>
+</g>
+<!-- \\Locations&#45;&gt;\\CI_Controller -->
+<g id="edge14" class="edge"><title>\\Locations&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M223.308,-996.122C212.273,-992.027 200.683,-986.446 191.389,-979 135.422,-934.166 95.1218,-857.88 76.4116,-817.292"/>
+<polygon fill="none" stroke="black" points="79.5303,-815.694 72.2272,-808.019 73.1497,-818.573 79.5303,-815.694"/>
+</g>
+<!-- \\Login -->
+<g id="node15" class="node"><title>\\Login</title>
+<polygon fill="none" stroke="black" points="288.889,-970 234.889,-970 234.889,-934 288.889,-934 288.889,-970"/>
+<text text-anchor="middle" x="261.889" y="-949.2" font-family="Courier,monospace" font-size="11.00">Login</text>
+</g>
+<!-- \\Login&#45;&gt;\\CI_Controller -->
+<g id="edge15" class="edge"><title>\\Login&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M234.789,-944.923C221.144,-940.49 204.585,-933.909 191.389,-925 146.533,-894.717 105.874,-845.868 83.2964,-815.976"/>
+<polygon fill="none" stroke="black" points="85.9282,-813.65 77.1521,-807.715 80.3113,-817.828 85.9282,-813.65"/>
+</g>
+<!-- \\User_model -->
+<g id="node16" class="node"><title>\\User_model</title>
+<polygon fill="none" stroke="black" points="303.889,-430 219.889,-430 219.889,-394 303.889,-394 303.889,-430"/>
+<text text-anchor="middle" x="261.889" y="-409.2" font-family="Courier,monospace" font-size="11.00">User_model</text>
+</g>
+<!-- \\User_model&#45;&gt;\\CI_Model -->
+<g id="edge16" class="edge"><title>\\User_model&#45;&gt;\\CI_Model</title>
+<path fill="none" stroke="black" d="M219.66,-400.163C209.855,-396.25 199.806,-391.252 191.389,-385 140.869,-347.479 99.8593,-284.834 79.2113,-249.445"/>
+<polygon fill="none" stroke="black" points="82.1795,-247.586 74.1714,-240.649 76.1056,-251.065 82.1795,-247.586"/>
+</g>
+<!-- \\Settings -->
+<g id="node17" class="node"><title>\\Settings</title>
+<polygon fill="none" stroke="black" points="297.389,-916 226.389,-916 226.389,-880 297.389,-880 297.389,-916"/>
+<text text-anchor="middle" x="261.889" y="-895.2" font-family="Courier,monospace" font-size="11.00">Settings</text>
+</g>
+<!-- \\Settings&#45;&gt;\\CI_Controller -->
+<g id="edge17" class="edge"><title>\\Settings&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M226.364,-886.134C215.013,-881.827 202.47,-876.624 191.389,-871 157.445,-853.771 121.068,-829.891 96.04,-812.526"/>
+<polygon fill="none" stroke="black" points="97.883,-809.544 87.6834,-806.677 93.869,-815.279 97.883,-809.544"/>
+</g>
+<!-- \\Location_model -->
+<g id="node18" class="node"><title>\\Location_model</title>
+<polygon fill="none" stroke="black" points="317.389,-160 206.389,-160 206.389,-124 317.389,-124 317.389,-160"/>
+<text text-anchor="middle" x="261.889" y="-139.2" font-family="Courier,monospace" font-size="11.00">Location_model</text>
+</g>
+<!-- \\Location_model&#45;&gt;\\CI_Model -->
+<g id="edge18" class="edge"><title>\\Location_model&#45;&gt;\\CI_Model</title>
 <path fill="none" stroke="black" d="M213.702,-160.095C206.221,-163.031 198.582,-166.071 191.389,-169 162.651,-180.703 130.492,-194.417 105.765,-205.097"/>
 <polygon fill="none" stroke="black" points="104.124,-201.993 96.3363,-209.177 106.904,-208.417 104.124,-201.993"/>
 </g>
-<!-- \\Usernote_model -->
-<g id="node20" class="node"><title>\\Usernote_model</title>
-<polygon fill="none" stroke="black" points="317.389,-106 206.389,-106 206.389,-70 317.389,-70 317.389,-106"/>
-<text text-anchor="middle" x="261.889" y="-85.2" font-family="Courier,monospace" font-size="11.00">Usernote_model</text>
+<!-- \\Admin -->
+<g id="node19" class="node"><title>\\Admin</title>
+<polygon fill="none" stroke="black" points="288.889,-862 234.889,-862 234.889,-826 288.889,-826 288.889,-862"/>
+<text text-anchor="middle" x="261.889" y="-841.2" font-family="Courier,monospace" font-size="11.00">Admin</text>
 </g>
-<!-- \\Usernote_model&#45;&gt;\\CI_Model -->
-<g id="edge20" class="edge"><title>\\Usernote_model&#45;&gt;\\CI_Model</title>
-<path fill="none" stroke="black" d="M208.735,-106.034C202.742,-108.753 196.835,-111.749 191.389,-115 151.753,-138.663 112.26,-174.837 88.1591,-198.701"/>
-<polygon fill="none" stroke="black" points="85.478,-196.433 80.8943,-205.985 90.4342,-201.376 85.478,-196.433"/>
+<!-- \\Admin&#45;&gt;\\CI_Controller -->
+<g id="edge19" class="edge"><title>\\Admin&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M234.836,-836.829C205.652,-828.797 157.508,-815.546 119.867,-805.186"/>
+<polygon fill="none" stroke="black" points="120.619,-801.763 110.049,-802.483 118.762,-808.512 120.619,-801.763"/>
 </g>
-<!-- \\User_model -->
-<g id="node21" class="node"><title>\\User_model</title>
-<polygon fill="none" stroke="black" points="303.889,-52 219.889,-52 219.889,-16 303.889,-16 303.889,-52"/>
-<text text-anchor="middle" x="261.889" y="-31.2" font-family="Courier,monospace" font-size="11.00">User_model</text>
+<!-- \\Loans -->
+<g id="node20" class="node"><title>\\Loans</title>
+<polygon fill="none" stroke="black" points="288.889,-808 234.889,-808 234.889,-772 288.889,-772 288.889,-808"/>
+<text text-anchor="middle" x="261.889" y="-787.2" font-family="Courier,monospace" font-size="11.00">Loans</text>
 </g>
-<!-- \\User_model&#45;&gt;\\CI_Model -->
-<g id="edge21" class="edge"><title>\\User_model&#45;&gt;\\CI_Model</title>
-<path fill="none" stroke="black" d="M219.66,-45.8372C209.855,-49.7498 199.806,-54.7483 191.389,-61 140.869,-98.5214 99.8593,-161.166 79.2113,-196.555"/>
-<polygon fill="none" stroke="black" points="76.1056,-194.935 74.1714,-205.351 82.1795,-198.414 76.1056,-194.935"/>
+<!-- \\Loans&#45;&gt;\\CI_Controller -->
+<g id="edge20" class="edge"><title>\\Loans&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M234.836,-790C210.181,-790 171.994,-790 138.04,-790"/>
+<polygon fill="none" stroke="black" points="137.658,-786.5 127.658,-790 137.658,-793.5 137.658,-786.5"/>
+</g>
+<!-- \\Welcome -->
+<g id="node21" class="node"><title>\\Welcome</title>
+<polygon fill="none" stroke="black" points="293.889,-754 229.889,-754 229.889,-718 293.889,-718 293.889,-754"/>
+<text text-anchor="middle" x="261.889" y="-733.2" font-family="Courier,monospace" font-size="11.00">Welcome</text>
+</g>
+<!-- \\Welcome&#45;&gt;\\CI_Controller -->
+<g id="edge21" class="edge"><title>\\Welcome&#45;&gt;\\CI_Controller</title>
+<path fill="none" stroke="black" d="M229.801,-744.556C200.271,-752.684 155.221,-765.084 119.635,-774.878"/>
+<polygon fill="none" stroke="black" points="118.582,-771.538 109.87,-777.566 120.44,-778.287 118.582,-771.538"/>
 </g>
 </g>
 </svg>

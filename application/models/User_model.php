@@ -86,7 +86,7 @@ class User_model extends CI_Model
         //set limit if set
         if (!empty($data['limit'])) {
             //if offset is included
-            if($data['offset'] !== FALSE) {
+            if(!empty($data['offset'])) {
                 $this->db->limit($data['limit'], $data['offset']);
             } else {
                 $this->db->limit($data['limit']);

@@ -7,9 +7,11 @@
  * @time 15:16
  * @filesource
  */
-
 class Categories extends CI_Controller
 {
+    /**
+     * Categories constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -23,14 +25,27 @@ class Categories extends CI_Controller
         //$this->output->enable_profiler(TRUE);
     }
 
-    //page with categories
+    /**
+     * Shows list of categories available in certain location.
+     * @param mixed $id Id of location
+     */
     public function index($id = NULL) {
 
         if (empty($id)) {
             show_404();
         }
 
-        $location = $this->location_model->get_location(array('id' => $id))['data'][0]['name'];
+        //location form DB.
+        $location = $this->location_model->get_location(array('id' => $id));
+
+        //check if exists
+        if ($location['count'] !== 1) {
+            show_404();
+            die();
+        }
+
+        //get name
+        $location = $location['data'][0]['name'];
 
         //set title
         $data['title'] = $location;
@@ -63,7 +78,9 @@ class Categories extends CI_Controller
         $this->load->view('templates/footer', $data);
     }
 
-    //Create new Category
+    /**
+     * Create a new category
+     */
     public function create() {
         //check permissions
         if (!authorization_check($this, 2)) {
@@ -95,7 +112,9 @@ class Categories extends CI_Controller
         }
     }
 
-    //handle requests for locations
+    /**
+     * Handle requests to get lists of categories.
+     */
     public function get()
     {
         $categories = [];
@@ -118,7 +137,11 @@ class Categories extends CI_Controller
             ->set_output(json_encode($categories));
     }
 
-    //update a category
+    /**
+     * Rename a category.
+     * @param mixed $id ID of category
+     * @return mixed success
+     */
     public function update($id = NULL)
     {
         //authorization check
@@ -138,7 +161,10 @@ class Categories extends CI_Controller
         }
     }
 
-    //remove a location
+    /**
+     * Delete a category
+     * @param mixed $id ID of category
+     */
     public function delete($id = NULL)
     {
         //authorization check
