@@ -14,7 +14,7 @@ $(document).ready(function($) {
     });
 });
 
-//search in navigation
+/* search form in navigation */
 $("nav form button").click(function($event) {
   //prevent default
   $event.preventDefault();

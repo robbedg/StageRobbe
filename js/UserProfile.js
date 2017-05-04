@@ -103,4 +103,69 @@ $(document).ready(function() {
       });
     });
   }
+
+  /**
+   * Password
+   **/
+
+  /* Change password */
+  $("#show-passwd-box").click(function($event) {
+    //prevent default
+    $event.preventDefault();
+
+    //show box
+    $("#new-password").modal('show');
+  });
+
+  /* Password checking */
+   $(".modal-body input").keyup(function() {
+     var $val1 = $("#password-1").val();
+     var $val2 = $("#password-2").val();
+
+     if ($val1 !== '' && $val2 !== '') {
+       if ($val1 === $val2) {
+         $(".modal-body .form-group").removeClass('has-error').addClass('has-success');
+         $("#pwd-submit").removeClass('disabled');
+         $("#valid").val("true");
+       } else {
+         $(".modal-body .form-group").removeClass('has-success').addClass('has-error');
+         $("#pwd-submit").addClass('disabled');
+         $("#valid").val("false");
+       }
+     } else {
+       $(".modal-body .form-group").removeClass('has-error').removeClass('has-success');
+       $("#pwd-submit").addClass('disabled');
+       $("#valid").val("false");
+     }
+   });
+
+  /* Click save */
+  $("#pwd-submit").click(function($event) {
+    //prevent default
+    $event.preventDefault();
+
+    //check if input valid
+    if ($("#valid").val() === "true") {
+      //set data
+      var $dataUpdate = new Object();
+      $dataUpdate.id = $("#user_id").val();
+      $dataUpdate.password = $("#password-1").val();
+
+      $.ajax({
+        url: '/index.php/users/update',
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify($dataUpdate)
+      }).done(function($response) {
+        if ($response['success'] === true) {
+          $(".modal-body .form-group").removeClass('has-error').removeClass('has-success').val('');
+          $("#pwd-submit").addClass('disabled');
+          $("#new-password").modal('hide');
+        }
+      });
+    }
+  });
+
+
 });

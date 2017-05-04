@@ -10,6 +10,9 @@
  */
 class Users extends CI_Controller
 {
+    /**
+     * Users constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -20,7 +23,10 @@ class Users extends CI_Controller
         authorization_check($this);
     }
 
-    //user profile page
+    /**
+     * Shows profile page of user.
+     * @param mixed $id ID of user
+     */
     public function index($id = NULL)
     {
         //no page when empty
@@ -46,7 +52,9 @@ class Users extends CI_Controller
         $this->load->view('/templates/footer');
     }
 
-    //handle requests for users
+    /**
+     * Get list of users
+     */
     public function get()
     {
         $return = [];
@@ -73,5 +81,36 @@ class Users extends CI_Controller
         $this->output
             ->set_content_type('application/json')
             ->set_output(json_encode($return));
+    }
+
+    /**
+     * Update a user
+     */
+    public function update()
+    {
+        //Get request data
+        $stream_clean = $this->security->xss_clean($this->input->raw_input_stream);
+        $input = json_decode($stream_clean, true);
+
+        //check necessary id
+        if (empty($input['id'])) {
+            show_error('No id provided');
+            die();
+        }
+
+        //check authorization
+        if (!authorization_check($this, 3) && !($_SESSION['id'].'' === $input['id'].'')) {
+            show_error('Unauthorized');
+            die();
+        }
+
+        //update
+        $result = $this->user_model->update_user($input);
+
+        //output
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode(array('success' => $result)));
+
     }
 }

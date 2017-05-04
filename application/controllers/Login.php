@@ -225,4 +225,12 @@ class Login extends CI_Controller
                 break;
         }
     }
+
+    /**
+     * Logs out user
+     */
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect(site_url('login'));
+    }
 }

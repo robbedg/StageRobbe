@@ -51,6 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 //login
 $route['login'] = 'login/index';
+$route['logout'] = 'login/logout';
 $route['authenticate'] = 'login/login';
 $route['man-login'] = 'login/login_page';
 $route['register'] = 'login/register';
@@ -109,6 +110,7 @@ $route['usernotes/remove/(:num)'] = 'usernotes/remove/$1';
 //user routes
 $route['users/(:num)'] = 'users/index/$1';
 $route['users/get'] = 'users/get';
+$route['users/update'] = 'users/update';
 
 //role routes
 $route['roles/get'] = 'roles/get';

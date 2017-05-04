@@ -30,7 +30,7 @@
             <ul class="nav navbar-nav navbar-left">
                 <!-- admin panel link -->
                 <?php if (authorization_check($this, 3)): ?>
-                <li>
+                <li class="<?=(!empty($active) ? 'active' : ''); ?>">
                     <a href="<?=site_url('admin'); ?>">Admin panel</a>
                 </li>
                 <?php endif; ?>
@@ -45,13 +45,17 @@
                     </ul>
                 </li>
                 <?php endif; ?>
-
             </ul>
 
             <!-- Right -->
             <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="<?=site_url('users/'.$_SESSION['id']); ?>"><?=$_SESSION['firstname'].' '.$_SESSION['lastname'];?> <span class="fa fa-user"></span></a>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?=$_SESSION['firstname'].' '.$_SESSION['lastname'];?> <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="<?=site_url('users/'.$_SESSION['id']); ?>"><span class="fa fa-user"></span> Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="<?=site_url('logout'); ?>"><span class="fa fa-sign-out"></span> Log out</a></li>
+                    </ul>
                 </li>
             </ul>
 

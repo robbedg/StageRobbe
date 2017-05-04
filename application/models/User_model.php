@@ -10,12 +10,19 @@
  */
 class User_model extends CI_Model
 {
+    /**
+     * User_model constructor.
+     */
     public function __construct()
     {
         $this->load->database();
     }
 
-    //Set user
+    /**
+     * returns userdata, creates new user if user doesn't exist yet.
+     * @param $data Data of user
+     * @return mixed data of user
+     */
     public function set_user($data)
     {
         $this->db->select('id, role_id');
@@ -33,7 +40,11 @@ class User_model extends CI_Model
         return $userinfo;
     }
 
-    //get_user(s)
+    /**
+     * Get data of user based upon filter options
+     * @param array $data Filter options
+     * @return array|bool users that fit criteria or FALSE in case of an error
+     */
     public function get_user($data = [])
     {
         $this->db->select('users.id AS id, uid, firstname, lastname, role_id, roles.name AS role');
@@ -97,20 +108,32 @@ class User_model extends CI_Model
         return $results;
     }
 
-    //update user
-    public function update_user($user)
+    /**
+     * Updates user with given user data.
+     * @param array $user user data
+     * @return bool success
+     */
+    public function update_user($user = [])
     {
-        if (!empty($user)) {
-            $this->db->set('firstname', $user['firstname']);
-            $this->db->set('lastname', $user['lastname']);
-            $this->db->set('role_id', $user['role_id']);
+        if (!empty($user) && !empty($user['id'])) {
+            if (!empty($user['firstname'])) $this->db->set('firstname', $user['firstname']);
+            if (!empty($user['lastname'])) $this->db->set('lastname', $user['lastname']);
+            if (!empty($user['role_id'])) $this->db->set('role_id', $user['role_id']);
+            if (!empty($user['password'])) $this->db->set('password', password_hash($user['password'], PASSWORD_DEFAULT));
             $this->db->where('id', $user['id']);
             $this->db->update('users');
+            return TRUE;
         } else {
-            show_error('No user specified');
+            return FALSE;
         }
     }
 
+    /**
+     * Verifies password.
+     * @param $username uid of user object
+     * @param $password password of attempt
+     * @return bool TRUE or FALSE (success)
+     */
     function login($username, $password)
     {
         $this->db->select('id, uid, password');

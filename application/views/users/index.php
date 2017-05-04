@@ -10,6 +10,10 @@
 <!-- hidden fields -->
 <input type="hidden" id="user_id" value="<?=$user_id; ?>">
 
+<div id="buttons">
+    <a href="#" class="btn btn-primary" id="show-passwd-box"><span class="fa fa-key"></span> Password</a>
+</div>
+
 <!-- info -->
 <div id="info">
     <h3>Info</h3>
@@ -59,4 +63,31 @@
             <!-- AJAX data -->
         </tbody>
     </table>
+</div>
+
+<!-- Box -->
+<div class="modal" id="new-password">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Change password</h4>
+            </div>
+            <div class="modal-body">
+                <input id="valid" type="hidden" value="false">
+                <div class="form-group">
+                    <label class="control-label" for="password-1">New password</label>
+                    <input class="form-control" id="password-1" type="password" placeholder="Password...">
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="password-2">Repeat password</label>
+                    <input class="form-control" id="password-2" type="password" placeholder="Password...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="fa fa-close"></span></button>
+                <button type="button" class="btn btn-success disabled" id="pwd-submit"><span class="fa fa-save"></span></button>
+            </div>
+        </div>
+    </div>
 </div>
