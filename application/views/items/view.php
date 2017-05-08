@@ -129,6 +129,12 @@
     <div id="timeline">
         <!-- Chart -->
     </div>
+    <!-- Selected -->
+    <div id="selected-timeline">
+        <p>
+            <!-- data -->
+        </p>
+    </div>
 </div>
 
 <!-- usernotes -->

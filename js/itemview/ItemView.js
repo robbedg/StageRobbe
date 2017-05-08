@@ -16,7 +16,8 @@ function drawChart() {
   var $chartOptions = {
     locale: 'nl_BE',
     stack: false,
-    showCurrentTime: true
+    showCurrentTime: true,
+    rollingMode: true
   };
 
   //set data
@@ -39,20 +40,35 @@ function drawChart() {
     //get results
     var $loans = $response.data;
 
-    $("#availability p").remove();
+    $("#error").remove();
 
     //set chart
     if ($loans.length > 0) {
       /* CHART */
       $($response.data).each(function($i, $el) {
-          $chartData.push({content: $el['lastname'] + ' ' + $el['firstname'], start: new Date($el['from']), end: new Date($el['until'])});
+          $chartData.push({id: $el['id'], content: $el['lastname'] + ' ' + $el['firstname'], start: new Date($el['from']), end: new Date($el['until'])});
       });
 
       //draw chart
       var $timeline = new vis.Timeline($container, $chartData, $chartOptions);
 
+      $timeline.on('select', function ($selected) {
+        //get result
+        var $loan = $.grep($loans, function ($e) { return $e.id === $selected.items[0]});
+        //show result
+        if ($loan.length !== 0) {
+          $("#selected-timeline p").html(
+            '<strong>' + $loan[0]['lastname'] +  ' ' + $loan[0]['firstname'] + '</strong>' + '<br />' +
+            $loan[0]['from_string'] + ' ' + '<span class="fa fa-arrow-right"></span>' + ' ' + $loan[0]['until_string']
+          );
+        } else {
+          $("#selected-timeline p").html('');
+        }
+      });
+
+
     } else {
-      $("#availability").append($('<p>No loans active.</p>').css('text-align', 'center'));
+      $("#availability").append($('<p id="error">No loans active.</p>').css('text-align', 'center'));
     }
   });
 }
@@ -159,9 +175,4 @@ $(document).ready(function() {
   getNotes();
   generateQR();
 
-});
-
-//on window resize
-$(window).resize(function() {
-  reDrawChart();
 });

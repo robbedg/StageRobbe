@@ -228,6 +228,11 @@
  	width: calc(100% - 2rem);
  }
 
+ #selected-timeline {
+   margin: 1rem;
+   text-align: center;
+ }
+
  /** USERNOTES **/
 
  #usernotes {
