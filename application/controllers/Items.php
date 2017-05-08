@@ -98,11 +98,12 @@ class Items extends CI_Controller
 
         //load styles
         $data['styles'][] = base_url('css/bootstrap-datetimepicker.min.css');
+        $data['styles'][] = base_url('vis/vis.min.css');
 
         //load scripts
         $data['scripts'][] = base_url('js/moment/moment-with-locales.min.js');
         $data['scripts'][] = base_url('js/bootstrap-datetimepicker.min.js');
-        $data['scripts'][] = 'https://www.gstatic.com/charts/loader.js';
+        $data['scripts'][] = base_url('vis/vis.min.js');
 
         $data['scripts'][] = base_url('js/qrcode.min.js');
 

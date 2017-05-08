@@ -2,33 +2,23 @@
  * BASIC FUNCTIONS FOR ITEMS/VIEW
  **/
 "use strict";
-//load libraries
-
-function reDrawChart() {
-  google.charts.load("current", {packages:["timeline"], 'language': 'nl'});
-  google.charts.setOnLoadCallback(drawChart);
-}
 
 //draw chart
 function drawChart() {
+  //where
   var $container = document.getElementById('timeline');
-  var $chart = new google.visualization.Timeline($container);
-  var $dataTable = new google.visualization.DataTable();
-  //get result
-  $dataTable.addColumn({ type: 'string', id: 'ID' });
-  $dataTable.addColumn({ type: 'string', id: 'Name' });
-  $dataTable.addColumn({ type: 'string', role: 'tooltip', 'p': {'html': true}});
-  $dataTable.addColumn({ type: 'date', id: 'Start' });
-  $dataTable.addColumn({ type: 'date', id: 'End' });
-  //options
-  var $options = {
-      tooltip: {isHtml: true},
-      timeline: { showRowLabels: false },
-      avoidOverlappingGridLines: false,
-      hAxis: {
-        format: 'dd/MM/yyyy HH:mm'
-    }
+  //empty
+  $container.innerHTML = '';
+  //set data
+  var $chartData = [];
+
+  //char options
+  var $chartOptions = {
+    locale: 'nl_BE',
+    stack: false,
+    showCurrentTime: true
   };
+
   //set data
   var $data = new Object();
   $data.item_id = $("#item_id").val();
@@ -54,19 +44,13 @@ function drawChart() {
     //set chart
     if ($loans.length > 0) {
       /* CHART */
-      $dataTable.addRow(['', 'Now', 'Now', new Date(), new Date() ]);
+      $($response.data).each(function($i, $el) {
+          $chartData.push({content: $el['lastname'] + ' ' + $el['firstname'], start: new Date($el['from']), end: new Date($el['until'])});
+      });
 
-        $($response.data).each(function($i, $el) {
-          $dataTable.addRow([
-            $el['item_id'],
-            $el['lastname'] + ' ' + $el['firstname'],
-            '<strong>' + $el['lastname'] + ' ' + $el['firstname'] + '</strong><br /><strong>From: </strong>' + $el['from_string'] + '<br />' + '<strong>Until: </strong>' + $el['until_string'],
-            new Date($el['from']),
-            new Date($el['until'])
-          ]);
-        });
+      //draw chart
+      var $timeline = new vis.Timeline($container, $chartData, $chartOptions);
 
-      $chart.draw($dataTable, $options);
     } else {
       $("#availability").append($('<p>No loans active.</p>').css('text-align', 'center'));
     }
@@ -171,7 +155,7 @@ function generateQR() {
 
 //Load
 $(document).ready(function() {
-  reDrawChart();
+  drawChart();
   getNotes();
   generateQR();
 
