@@ -54,6 +54,8 @@ class Items extends CI_Controller
         $data['title'] = $category['data'][0]['name'].' collection';
 
         //set scripts
+        //$data['scripts'][] = base_url('js/jquery-qrcode-0.14.0.min.js');
+        $data['scripts'][] = base_url('js/qrcode.min.js');
         $data['scripts'][] = base_url('js/tables/MainTable.js');
         $data['scripts'][] = base_url('js/tables/ItemsTable.js');
 

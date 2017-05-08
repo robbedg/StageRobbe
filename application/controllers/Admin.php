@@ -127,14 +127,11 @@ class Admin extends CI_Controller
 
         /** Deleted Items **/
         $data['deleted_items']['title'] = null;
-        $data['deleted_items']['head'][0]['name'] = 'Item ID';
-        $data['deleted_items']['head'][0]['db'] = 'id';
-        $data['deleted_items']['head'][1]['name'] = 'Location';
-        $data['deleted_items']['head'][1]['db'] = 'location';
-        $data['deleted_items']['head'][2]['name'] = 'Category';
-        $data['deleted_items']['head'][2]['db'] = 'category';
-        $data['deleted_items']['head'][3]['name'] = 'Created On';
-        $data['deleted_items']['head'][3]['db'] = 'created_on';
+        $data['deleted_items']['head'][] = array('name' => 'Item ID', 'db' => 'id');
+        $data['deleted_items']['head'][] = array('name' => 'Name', 'db' => 'name');
+        $data['deleted_items']['head'][] = array('name' => 'Location', 'db' => 'location');
+        $data['deleted_items']['head'][] = array('name' => 'Category', 'db' => 'category');
+        $data['deleted_items']['head'][] = array('name' => 'Created On', 'db' => 'created_on');
 
         //load views
         $this->load->view('templates/header', $data);

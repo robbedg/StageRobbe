@@ -52,6 +52,7 @@ $(document).ready(function(){
           $("#listingpage tbody").
             append($('<tr />')
               .append($('<td />').append($el['id']))
+              .append($('<td />').append($el['name']))
               .append($('<td />').append($el['location']))
               .append($('<td />').append($el['category']))
               .append($('<td />').append($el['created_on']))

@@ -3,9 +3,6 @@ $(document).ready(function(){
     //search length
     var $minlength = 1;
 
-    //add extra attribute
-    $("#listingpage thead tr").append($('<th />').append('Attributes'));
-
     //object for keeping page info
     var $pageInfo = new Object();
     $pageInfo.page = 1;
@@ -29,6 +26,19 @@ $(document).ready(function(){
     checkLocalStorage($data, 'items');
     //and set the values on the page
     setValues($data);
+
+    //add extra attribute
+    $("#listingpage thead tr").append($('<th />').append('Attributes'));
+
+    //add extra button
+    $('<a href="#" class="btn btn-primary" id="print-button" />')
+      .insertAfter("h2")
+      .append('<span class="fa fa-print" />')
+      .css('float', 'right')
+      .css('margin-top', '-4.2rem');
+
+    //add hidden div
+    $("#wrapper").append('<div id="qrcode" class="hidden" />'),
 
     //call db first
     callDB();
@@ -83,4 +93,70 @@ $(document).ready(function(){
 
     //load events
     loadEvents($data, 'items', $pageInfo, $minlength, callDB);
+
+    //print page
+    $("#print-button").click(function($event) {
+      //prevent default
+      $event.preventDefault();
+
+
+      //ajax call
+      $.ajax({
+        url: '/index.php/items/get',
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify($data)
+      })
+      .done(function($response) {
+
+        //get locations
+        var $items = $response.data;
+
+
+        var $codes = new Array();
+
+
+        //fill db
+        $($items).each(function($index, $el) {
+
+          $("#qrcode").append($('<div />').attr('class', 'codes').attr('id', 'code_' + $index).attr('data-name', $el['name']));
+          new QRCode('code_' + $index, {width: 75, height: 75, correctLevel: QRCode.CorrectLevel.H, useSVG: true, text: $el['id']});
+
+          $("#code_" + $index).removeAttr('title');
+
+          //if last go on
+          if ($index === $items.length - 1) {
+              printInPopUp($codes);
+          }
+        });
+
+
+      });
+
+      function printInPopUp($codes) {
+        //create string
+        var $string = '';
+        //wait 1 sec until al QR codes are drawn
+        setTimeout(function () {
+          $(".codes").each(function($index, $code) {
+            $string += $code.innerHTML + $($code).attr('data-name') + '<br />';
+          });
+
+          //open window
+          var $popup = window.open();
+          $popup.document.write($string);
+          $popup.focus();
+          $popup.print();
+          $popup.close();
+
+        }, 1000);
+      }
+    });
 });
+
+//set pause
+function pause(milliseconds) {
+	var dt = new Date();
+	while ((new Date()) - dt <= milliseconds) { /* Do nothing */ }
+}

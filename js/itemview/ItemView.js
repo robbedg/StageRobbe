@@ -160,7 +160,10 @@ function generateQR() {
 
   //print
   $("#print-label").click(function($event) {
+    //prevent default
     $event.preventDefault();
+
+    //open window
     var $popup = window.open();
     $popup.document.write(
       $("#qrcode").html() +
