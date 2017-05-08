@@ -38,6 +38,8 @@ CREATE TABLE `items` (
   `attributes` json DEFAULT NULL,
   `visible` bit(1) NOT NULL DEFAULT b'1',
   `created_on` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` varchar(45) NOT NULL,
+  `issue` bit(1) NOT NULL DEFAULT b'0',
   PRIMARY KEY (`id`),
   KEY `FK_items_categories` (`category_id`),
   KEY `FK_items_locations` (`location_id`)
@@ -279,4 +281,4 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-25 10:38:29
+-- Dump completed on 2017-05-08 17:12:01
