@@ -82,7 +82,11 @@ $(document).ready(function($) {
 		 $("#form").validate({
 			 rules: {
 		 		"label[]": "required",
-				"value[]": "required"
+				"value[]": "required",
+				"name": {
+					required: true,
+					maxlength: 45
+				}
 			 },
 			 showErrors: function($errorMap, $errorList) {
 			 	$("span.error").remove();

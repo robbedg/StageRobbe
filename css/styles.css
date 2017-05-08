@@ -50,6 +50,11 @@
  	position: relative;
  }
 
+ #name-group {
+   margin-top: 2rem;
+   position: relative;
+ }
+
  #extra > div > input {
  	display: inline-block;
  	position: relative;
@@ -61,7 +66,16 @@
  	margin-right: 0.56rem;
  }
 
- span.error {
+ #name-group span.error {
+   display: inline-block;
+   position: absolute;
+   top: -0.1rem;
+   right: 0rem;
+   color: #ff0000;
+ }
+
+ /* attribute error */
+ #extra span.error {
  	display: inline-block;
  	position: absolute;
  	top: -0.1rem;

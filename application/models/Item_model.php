@@ -26,7 +26,7 @@ class Item_model extends CI_Model
     public function get_item($data = [])
     {
         //base query
-        $this->db->select('items.id AS id, format_date(items.created_on) AS created_on');
+        $this->db->select('items.id AS id, items.name AS name, format_date(items.created_on) AS created_on');
 
         //deleted items?
         if (!empty($data['deleted']) && $data['deleted'] === TRUE) {
@@ -90,6 +90,7 @@ class Item_model extends CI_Model
             $this->db->like('items.id', $data['search']);
             $this->db->or_like('format_date(items.created_on)', $data['search']);
             $this->db->or_like('items.attributes', $data['search']);
+            $this->db->or_like('items.name', $data['search']);
             if ($location) {
                 $this->db->or_like('locations.id', $data['search']);
                 $this->db->or_like('locations.name', $data['search']);
@@ -163,6 +164,7 @@ class Item_model extends CI_Model
 
         //set
         $this->db->set('category_id', $data['category_id']);
+        $this->db->set('name', $data['name']);
         $this->db->set('location_id', $data['location_id']);
         $this->db->set('attributes', json_encode($data['attributes']));
 

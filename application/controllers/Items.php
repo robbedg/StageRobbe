@@ -71,8 +71,10 @@ class Items extends CI_Controller
         //set header
         $data['head'][0]['name'] = 'Item ID';
         $data['head'][0]['db'] = 'id';
-        $data['head'][1]['name'] = 'Created On';
-        $data['head'][1]['db'] = 'created_on';
+        $data['head'][1]['name'] = 'Name';
+        $data['head'][1]['db'] = 'name';
+        $data['head'][2]['name'] = 'Created On';
+        $data['head'][2]['db'] = 'created_on';
 
         //set hiddenfield
         $data['hiddenfields'][0]['id'] = 'location_id';
@@ -171,6 +173,7 @@ class Items extends CI_Controller
         $data['categories'] = $this->categories_model->get_category();
 
         $data['scripts'][] = base_url('jquery.validation/jquery.validate.min.js');
+        $data['scripts'][] = base_url('jquery.validation/localization/messages_nl.min.js');
         $data['scripts'][] = base_url('dropzone/dropzone.min.js');
         $data['scripts'][] = base_url('js/Upload.js');
         $data['scripts'][] = base_url('js/ItemFormScripts.js');
@@ -181,6 +184,7 @@ class Items extends CI_Controller
         $data['styles'][] = base_url('dropzone/dropzone.min.css');
 
         //rules for form
+        $this->form_validation->set_rules('name', 'Name', 'required|trim|htmlspecialchars|encode_php_tags|max_length[45]');
         $this->form_validation->set_rules('category', 'Category', 'required|trim|htmlspecialchars|encode_php_tags');
         $this->form_validation->set_rules('location', 'Location', 'required|trim|htmlspecialchars|encode_php_tags');
         $this->form_validation->set_rules('label[]', 'Label', 'trim|htmlspecialchars|encode_php_tags');
@@ -204,7 +208,7 @@ class Items extends CI_Controller
                 }
             }
 
-            $input = array('id' => $data['id'], 'category_id' => $data['category'], 'location_id' => $data['location'], 'attributes' => $attributes);
+            $input = array('id' => $data['id'], 'name' => $data['name'], 'category_id' => $data['category'], 'location_id' => $data['location'], 'attributes' => $attributes);
 
             //to db
             $id  = $this->item_model->set_item($input);

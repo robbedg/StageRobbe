@@ -58,6 +58,10 @@
                     <td><?=$item['data']['id']; ?></td>
                 </tr>
                 <tr>
+                    <td>Name:</td>
+                    <td id="item-name"><?=$item['data']['name']; ?></td>
+                </tr>
+                <tr>
                     <td>Location:</td>
                     <td><?=$item['data']['location']; ?></td>
                 </tr>

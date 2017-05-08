@@ -162,7 +162,10 @@ function generateQR() {
   $("#print-label").click(function($event) {
     $event.preventDefault();
     var $popup = window.open();
-    $popup.document.write($("#qrcode").html());
+    $popup.document.write(
+      $("#qrcode").html() +
+      $("#item-name").html()
+    );
     $popup.focus();
     $popup.print();
     $popup.close();

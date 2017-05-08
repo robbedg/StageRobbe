@@ -28,6 +28,14 @@
 <!-- open form -->
 <?=form_open('/items/create/', array('id' => 'form')); ?>
 
+<!-- choose name -->
+<div class="form-group" id="name-group">
+    <label for="name" class="control-label">Name</label>
+    <input type="text" id="name" name="name" class="form-control" placeholder="Naam..."
+        value="<?=(!empty($item) ? $item['data']['name'] : ''); ?>"
+    >
+</div>
+
 <!-- select itemtype -->
 <div class="form-group">
 <label for="category" class="control-label">Category</label>

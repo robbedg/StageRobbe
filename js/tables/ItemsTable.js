@@ -58,10 +58,12 @@ $(document).ready(function(){
           $("#listingpage tbody").
             append($('<tr class="clickable-row" href="/index.php/items/view/' + $el['id'] + '"/>')
               .append($('<td />').append($el['id']))
+              .append($('<td />').append($el['name']))
               .append($('<td />').append($el['created_on']))
               .append($('<td />').append($('<textarea readonly class="form-control" rows="3" id="textArea" />')))
             );
 
+           //add attributes
            var $i = 0;
            $.each($el['attributes'], function ($key, $val) {
               $("#listingpage tbody").find('textarea').last()
