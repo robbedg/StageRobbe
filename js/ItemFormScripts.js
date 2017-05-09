@@ -16,7 +16,7 @@ $(document).ready(function($) {
 			}
 		});
 		return $matches.length == 0;
-	}, "Value is not unique.");
+	}, "De waarde is niet uniek.");
 
 	jQuery.validator.classRuleSettings.unique = {
 		unique: true
@@ -81,8 +81,14 @@ $(document).ready(function($) {
 		 //validate
 		 $("#form").validate({
 			 rules: {
-		 		"label[]": "required",
-				"value[]": "required",
+		 		"label[]": {
+					required: true,
+					maxlength: 45
+				},
+				"value[]": {
+					required: true,
+					maxlength: 45
+				},
 				"name": {
 					required: true,
 					maxlength: 45

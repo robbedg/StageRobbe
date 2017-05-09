@@ -68,7 +68,7 @@ function drawChart() {
 
 
     } else {
-      $("#availability").append($('<p id="error">No loans active.</p>').css('text-align', 'center'));
+      $("#availability").append($('<p id="error">Geen reservaties in de nabije toekomst.</p>').css('text-align', 'center'));
     }
   });
 }
