@@ -26,13 +26,18 @@ class Item_model extends CI_Model
     public function get_item($data = [])
     {
         //base query
-        $this->db->select('items.id AS id, items.name AS name, format_date(items.created_on) AS created_on');
+        $this->db->select('items.id AS id, items.name AS name, items.issue, format_date(items.created_on) AS created_on');
 
         //deleted items?
         if (!empty($data['deleted']) && $data['deleted'] === TRUE) {
             $this->db->where('items.visible', 0);
         } else {
             $this->db->where('items.visible', 1);
+        }
+
+        //reported items?
+        if (!empty($data['reported']) && $data['reported'] === TRUE) {
+            $this->db->where('items.issue', 1);
         }
 
         //if location is given
@@ -161,12 +166,23 @@ class Item_model extends CI_Model
      * @return mixed id of item
      */
     public function set_item($data){
+        //check if at least one piece of data is provided.
+        if (
+            is_null($data['issue']) &&
+            empty($data['visible']) &&
+            empty($data['name']) &&
+            empty($data['category_id']) &&
+            empty($data['location_id']) &&
+            empty($data['attributes'])
+        ) show_error('No values provided');
 
         //set
-        $this->db->set('category_id', $data['category_id']);
-        $this->db->set('name', $data['name']);
-        $this->db->set('location_id', $data['location_id']);
-        $this->db->set('attributes', json_encode($data['attributes']));
+        if (!is_null($data['issue'])) $this->db->set('issue', $data['issue']);
+        if (!empty($data['visible'])) $this->db->set('visible', $data['visible']);
+        if (!empty($data['name'])) $this->db->set('name', $data['name']);
+        if (!empty($data['category_id'])) $this->db->set('category_id', $data['category_id']);
+        if (!empty($data['location_id'])) $this->db->set('location_id', $data['location_id']);
+        if (!empty($data['attributes'])) $this->db->set('attributes', json_encode($data['attributes']));
 
         if (!empty($data['id'])) {
             $this->db->where('id', $data['id']);

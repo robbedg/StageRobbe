@@ -9,9 +9,12 @@ $(document).ready(function($) {
 
 
     $("#buttonmodal").click(function() {
-    	$(".modal").modal('toggle');
-    	$(".modal").modal('show');
+    	$("#delete-modal").modal('toggle');
+    	$("#delete-modal").modal('show');
     });
+
+    //show tooltips
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 /* search form in navigation */

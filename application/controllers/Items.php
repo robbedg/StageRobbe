@@ -115,6 +115,7 @@ class Items extends CI_Controller
         $data['scripts'][] = base_url('js/itemview/ItemView.js');
         $data['scripts'][] = base_url('js/itemview/UserNote.js');
         $data['scripts'][] = base_url('js/itemview/SetLoan.js');
+        $data['scripts'][] = base_url('js/itemview/ReportIssue.js');
 
         //collect data
         $data['item'] = $this->item_model->get_item(array('id' => $id, 'location' => TRUE, 'category' => TRUE));
@@ -125,7 +126,7 @@ class Items extends CI_Controller
             die();
         }
 
-        $data['title'] = $data['item']['data']['category'].': '.$data['item']['data']['id'];
+        $data['title'] = $data['item']['data']['name'].': '.$data['item']['data']['id'];
 
         $data['database_lock'] = $this->setting_model->get_setting('database_lock');
 
@@ -239,8 +240,6 @@ class Items extends CI_Controller
 
         //output
         $this->output
-            ->set_header('Access-Control-Allow-Origin: *')
-            ->set_header('Access-Control-Allow-Headers: Origin, Content-Type')
             ->set_content_type('application/json')
             ->set_output(json_encode($result));
     }
@@ -300,4 +299,50 @@ class Items extends CI_Controller
 
         $this->item_model->delete_item($id);
     }
+
+    /**
+     * Report item if there is a problem.
+     * @param mixed $id ID of item
+     * @param int $set Normally 1, when 0 item gets unreported
+     */
+    public function report($id = NULL, $set = 1) {
+        //check if 0
+        if ($set === "0") $set = 0;
+
+        //check if valid
+        if (empty($id)) show_404();
+
+        //regular
+        if ($set === 1) {
+            //update
+            $this->item_model->set_item(array('id' => $id, 'issue' => 1));
+
+            //output
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array('success' => true)));
+        }
+
+        //reverse
+        else if ($set === 0) {
+            //auth
+            if (!authorization_check($this, 2)) show_error('You are not authorized to perform this action.');
+            //update
+            $this->item_model->set_item(array('id' => $id, 'issue' => 0));
+
+            //output
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array('success' => true)));
+        }
+
+        //none
+        else {
+            //output
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode(array('success' => false)));
+        }
+    }
+
 }

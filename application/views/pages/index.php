@@ -22,13 +22,13 @@
 
 <!-- searchbar -->
 <div id="searchform">
-    <label for="search" class="control-label">Search:</label>
-    <input class="form-control search" type="text" name="search" id="search" placeholder="Search..." />
+    <label for="search" class="control-label">Zoek</label>
+    <input class="form-control search" type="text" name="search" id="search" placeholder="Zoeken..." />
 </div>
 
 <!-- sort on -->
 <div id="sort">
-    <label for="sortinput" class="control-label">Sort:</label>
+    <label for="sortinput" class="control-label">Sorteren</label>
     <select class="form-control" id="sortinput">
         <?php foreach ($head as $label): ?>
         <option value="<?=$label['db']; ?>" order="asc"><?=$label['name']; ?> 0 &#10140; Z</option>
@@ -39,7 +39,7 @@
 
 <!-- amount -->
 <div id="amount">
-    <label for="amountselect" class="control-label">Results:</label>
+    <label for="amountselect" class="control-label">Aantal</label>
     <input class="form-control" type="number" id="amountselect" min="10" max="100" step="10" value="20">
 </div>
 

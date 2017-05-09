@@ -58,6 +58,7 @@ $route['register'] = 'login/register';
 
 //admin
 $route['admin'] = 'admin/index';
+$route['admin/reported-items'] = 'admin/reported_items';
 $route['admin/deleted-items'] = 'admin/deleted_items';
 $route['admin/locations'] = 'admin/locations';
 $route['admin/categories'] = 'admin/categories';
@@ -93,6 +94,7 @@ $route['items/create'] = 'items/create';
 $route['items/create/(:num)'] = 'items/create/$1';
 $route['items/remove/(:num)'] = 'items/remove/$1';
 $route['items/view(:num)'] = 'items/view/$1';
+$route['items/report/(:num)/(:num)'] = 'items/report/$1/$2';
 $route['items/(:num)/(:num)'] = 'items/index/$1/$2';
 
 //category routes

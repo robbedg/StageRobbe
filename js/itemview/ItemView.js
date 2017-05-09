@@ -116,9 +116,11 @@ function getNotes() {
     $(".links").each(function($index, $el) {
       $el = $($el);
       if (($el.attr('data-user-id').match($user_id)) || ($role_id >= 3)) {
-        $el.append($('<a class="delete-note" href="#" />').append('<span class="fa fa-close"></span>'))
+        $el.append($('<a class="delete-note" href="#" data-toggle="tooltip" data-original-title="Verwijderen" />').append('<span class="fa fa-close"></span>'))
       }
     });
+    //toggle tooltips
+    $('[data-toggle="tooltip"]').tooltip();
   })
   .always(function() {
     //load delete links

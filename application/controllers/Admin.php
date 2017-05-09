@@ -105,6 +105,43 @@ class Admin extends CI_Controller
     }
 
     /**
+     * Managing reported item.
+     */
+    public function reported_items()
+    {
+        //set title
+        $data['title'] = 'Administratie';
+
+        //set styles
+        $data['styles'][] = base_url('css/admin-panel.css');
+
+        //scripts
+        $data['scripts'][] = base_url('js/tables/MainTable.js');
+        $data['scripts'][] = base_url('js/admin/AdminReportedItems.js');
+
+        //active
+        $data['active'] = 'reported-items';
+
+        //database lock
+        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
+
+        /** Reported Items */
+        $data['reported_items']['title'] = null;
+        $data['reported_items']['head'][] = array('name' => 'Item ID', 'db' => 'id');
+        $data['reported_items']['head'][] = array('name' => 'Naam', 'db' => 'name');
+        $data['reported_items']['head'][] = array('name' => 'Locatie', 'db' => 'location');
+        $data['reported_items']['head'][] = array('name' => 'Categorie', 'db' => 'category');
+        $data['reported_items']['head'][] = array('name' => 'Aangemaakt Op', 'db' => 'created_on');
+
+        //load views
+        $this->load->view('templates/header', $data);
+        $this->load->view('admin/index', $data);
+        $this->load->view('admin/reported_items', $data);
+        $this->load->view('admin/end', $data);
+        $this->load->view('templates/footer');
+    }
+
+    /**
      * Managing deleted items.
      */
     public function deleted_items()
