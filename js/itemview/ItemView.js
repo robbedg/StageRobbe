@@ -153,7 +153,7 @@ function deleteNote() {
 
 function generateQR() {
   var $qrCode = new QRCode("qrcode", {
-    correctLevel : QRCode.CorrectLevel.M,
+    correctLevel : QRCode.CorrectLevel.H,
     width: 75,
     height: 75
   });
