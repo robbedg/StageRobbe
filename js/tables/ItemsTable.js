@@ -137,18 +137,52 @@ $(document).ready(function(){
       function printInPopUp($codes) {
         //create string
         var $string = '';
+        $string += '<style> body { margin: 0px; }</style>';
         //wait 1 sec until al QR codes are drawn
         setTimeout(function () {
           $(".codes").each(function($index, $code) {
-            $string += $code.innerHTML + $($code).attr('data-name') + '<br />';
+            $($code).find('img')
+              .css('display', 'inline-block');
+
+            var $label = $('<div />').append(
+              $('<div />')
+                .append($code.innerHTML)
+                .append($('<p />').append(
+                  $($code).attr('data-name').toUpperCase()
+                )
+                .css('font-family', 'arial, sans-serif')
+                .css('display', 'inline-block')
+                .css('float', 'right')
+                .css('word-break', 'break-all')
+                .css('overflow', 'hidden')
+                .css('text-overflow', 'clip')
+                .css('width', '105px')
+                .css('height', '55px')
+                .css('padding-left', '10px')
+                .css('margin-top', '10px')
+                .css('margin-bottom', '10px')
+              )
+              .css('position', 'relative')
+              .css('width', '190px')
+              .css('padding-top', '10px')
+              .css('padding-left', '10px')
+            ).html();
+
+            $string += $label;
           });
 
           //open window
           var $popup = window.open();
           $popup.document.write($string);
           $popup.focus();
-          $popup.print();
-          $popup.close();
+
+          //no automatic printing for IE
+          if (!(/*@cc_on!@*/false || !!document.documentMode)) {
+            $popup.print();
+            $popup.close();
+          }
+          //delete
+          $("#qrcode").empty();
 
         }, 1000);
       }

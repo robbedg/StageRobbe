@@ -165,15 +165,51 @@ function generateQR() {
     //prevent default
     $event.preventDefault();
 
+    //create label
+    var $string = '';
+    $string += '<style> body { margin: 0px; } img { display: inline-block; }</style>';
+
+    //style
+    $("#qrcode img").removeAttr('style');
+
+    //create div
+    var $label = $('<div />').append(
+      $('<div />')
+        .append($("#qrcode").html())
+        .append($('<p />').append(
+          $("#item-name").html().toUpperCase()
+        )
+        .css('font-family', 'arial, sans-serif')
+        .css('display', 'inline-block')
+        .css('float', 'right')
+        .css('word-break', 'break-all')
+        .css('overflow', 'hidden')
+        .css('text-overflow', 'clip')
+        .css('width', '105px')
+        .css('height', '55px')
+        .css('padding-left', '10px')
+        .css('margin-top', '10px')
+        .css('margin-bottom', '10px')
+      )
+      .css('position', 'relative')
+      .css('width', '190px')
+      .css('padding-top', '10px')
+      .css('padding-left', '10px')
+    ).html();
+
+    $string += $label;
+
+
     //open window
     var $popup = window.open();
-    $popup.document.write(
-      $("#qrcode").html() +
-      $("#item-name").html()
-    );
+    $popup.document.write($string);
     $popup.focus();
-    $popup.print();
-    $popup.close();
+
+    //no automatic printing for IE
+    if (!(/*@cc_on!@*/false || !!document.documentMode)) {
+      $popup.print();
+      $popup.close();
+    }
   });
 }
 
