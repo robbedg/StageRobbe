@@ -186,6 +186,7 @@ function do_upload($object, $data = FALSE) {
     //end transaction
     $valid = $object->db->trans_complete();
 
+    //give feedback
     return $valid;
  }
 
