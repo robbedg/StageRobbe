@@ -160,6 +160,8 @@ class Login extends CI_Controller
         }
 
         $data = [];
+        $data['errors'][] = 'Inloggen mislukt.';
+        $data['registration'] = $this->setting_model->get_setting('registration');
         $this->load->view('login/login', $data);
     }
 

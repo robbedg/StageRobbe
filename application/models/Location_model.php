@@ -69,16 +69,29 @@ class Location_model extends CI_Model
     //create or update a location
     public function set_location($data = FALSE, $id = FALSE)
     {
-        //filter out
-        $data = array('name' => $data['name']);
+        if (!empty($data)) {
+            //filter out
+            $data = array('name' => $data['name']);
 
-        if (empty($id)) {
-            return $this->db->insert('locations', $data);
+            //check if unique
+            $this->db->select('name');
+            $this->db->where('name', $data['name']);
+            $count = $this->db->count_all_results('locations');
+
+            if ($count === 0) {
+                if (empty($id)) {
+                    return $this->db->insert('locations', $data);
+                } else {
+                    $this->db->where('id', $id);
+                    $this->db->update('locations', $data);
+                    return array('success' => true);
+                }
+            } else {
+                return array('success' => false, 'errors' => array('Deze locatie bestaat al.'));
+            }
         } else {
-            $this->db->where('id', $id);
-            return $this->db->update('locations', $data);
+            return array('success' => false, 'errors' => array('Geen data gegeven.'));
         }
-
     }
 
     //delete a location

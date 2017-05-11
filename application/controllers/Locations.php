@@ -18,7 +18,6 @@ class Locations extends CI_Controller
 
         authorization_check($this);
 
-        //$this->output->enable_profiler(TRUE);
     }
 
     //List of locations.
@@ -45,14 +44,14 @@ class Locations extends CI_Controller
     public function create() {
         //check permissions
         if (!authorization_check($this, 2)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitrvoeren.');
         }
 
         //helper & library for form
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['title'] = 'New Location';
+        $data['title'] = 'Nieuwe Locatie';
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim|htmlspecialchars|encode_php_tags|max_length[45]');
 
@@ -91,8 +90,6 @@ class Locations extends CI_Controller
 
         //output
         $this->output
-            ->set_header('Access-Control-Allow-Origin: *')
-            ->set_header('Access-Control-Allow-Headers: Origin, Content-Type')
             ->set_content_type('application/json')
             ->set_output(json_encode($locations));
     }
@@ -100,9 +97,12 @@ class Locations extends CI_Controller
     //update a location
     public function update($id = NULL)
     {
+        //output
+        $output = [];
+
         //check permissions
         if (!authorization_check($this, 3)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         if (empty($id)) {
@@ -112,8 +112,12 @@ class Locations extends CI_Controller
             $data = array(
                 'name' => $this->input->post('name')
             );
-            return $this->location_model->set_location($data, $id);
+            $output = $this->location_model->set_location($data, $id);
         }
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($output));
     }
 
     //remove a location
@@ -121,7 +125,7 @@ class Locations extends CI_Controller
     {
         //check permissions
         if (!authorization_check($this, 3)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         //if empty show 404

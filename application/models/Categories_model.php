@@ -83,18 +83,33 @@ class Categories_model extends CI_Model
     /**
      * @param mixed $data Updating data
      * @param mixed $id ID of category
-     * @return number ID of updated category
+     * @return array ID of updated category
      */
     public function set_category($data = FALSE, $id = FALSE)
     {
-        //filter out
-        $data = array('name' => $data['name']);
 
-        if (empty($id)) {
-            return $this->db->insert('categories', $data);
+        if (!empty($data)) {
+            //filter out
+            $data = array('name' => $data['name']);
+
+            //check if unique
+            $this->db->select('name');
+            $this->db->where('name', $data['name']);
+            $count = $this->db->count_all_results('categories');
+
+            if ($count === 0) {
+                if (empty($id)) {
+                    return $this->db->insert('categories', $data);
+                } else {
+                    $this->db->where('id', $id);
+                    $this->db->update('categories', $data);
+                    return array('success' => true);
+                }
+            } else {
+                return array('success' => false, 'errors' => array('Deze categorie bestaat al.'));
+            }
         } else {
-            $this->db->where('id', $id);
-            return $this->db->update('categories', $data);
+            return array('success' => false, 'errors' => array('Geen data gegeven.'));
         }
     }
 

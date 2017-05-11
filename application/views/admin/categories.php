@@ -1,4 +1,10 @@
 <div id="categories">
+
+    <!-- errors -->
+    <div class="alert alert-danger hidden" id="errors">
+        <!-- print errors -->
+    </div>
+
     <?php $this->load->view('pages/index', $categories); ?>
 
     <!-- modal -->

@@ -81,14 +81,14 @@ class Categories extends CI_Controller
     public function create() {
         //check permissions
         if (!authorization_check($this, 2)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         //helper & library for form
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $data['title'] = 'New Category';
+        $data['title'] = 'Nieuwe Categorie';
 
         $this->form_validation->set_rules('name', 'Name', 'required|trim|htmlspecialchars|encode_php_tags|max_length[45]');
 
@@ -141,9 +141,12 @@ class Categories extends CI_Controller
      */
     public function update($id = NULL)
     {
+        //output
+        $output = [];
+
         //authorization check
         if (!authorization_check($this, 3)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         if (empty($id)) {
@@ -154,8 +157,13 @@ class Categories extends CI_Controller
                 'name' => $this->input->post('name')
             );
 
-            return $this->categories_model->set_category($data, $id);
+            $output = $this->categories_model->set_category($data, $id);
         }
+
+        //output
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output(json_encode($output));
     }
 
     /**
@@ -166,7 +174,7 @@ class Categories extends CI_Controller
     {
         //authorization check
         if (!authorization_check($this, 3)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         //if empty show 404

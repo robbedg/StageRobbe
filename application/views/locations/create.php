@@ -13,10 +13,10 @@
 <?php echo form_open('locations/create'); ?>
 
 <div class="form-group">
-    <label class="control-label" for="name">Name</label>
-    <input type="input" name="name" class="form-control" id="focusedInput" placeholder="Name..." />
+    <label class="control-label" for="name">Naam</label>
+    <input type="input" name="name" class="form-control" id="focusedInput" placeholder="Naam..." />
 </div>
 <div class=form-group">
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Aanmaken</button>
 </div>
 </form>

@@ -28,9 +28,6 @@ class Admin extends CI_Controller
         //authorization
         $authorized = authorization_check($this, 3);
         if (!$authorized) show_error('You are not authorized to visit this page');
-
-
-        $this->output->enable_profiler(TRUE);
     }
 
     /**
@@ -283,7 +280,7 @@ class Admin extends CI_Controller
     public function general()
     {
         //set title
-        $data['title'] = 'Admin Panel';
+        $data['title'] = 'Administratie';
 
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');

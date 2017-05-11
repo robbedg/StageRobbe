@@ -93,8 +93,23 @@ $(document).ready(function(){
             type: 'POST',
             data: {'name' : $("#" + $item.attr('identifier')).val()}
           })
-          .done(function() {
-              callDB();
+          .done(function($response) {
+            if ($response['success'] === false) {
+              //show errors
+              $("#errors").empty();
+              $($response['errors']).each(function ($index, $el) {
+                $("#errors").append($('<p />').append($el));
+              });
+
+              //show for 3 seconds
+              $("#errors").removeClass('hidden');
+              setTimeout(function () {
+                $("#errors").addClass('hidden');
+                $("#errors").empty();
+              }, 3000);
+            }
+            //db
+            callDB();
           });
          //remove
        } else if ($item.attr('data-function').match('delete')) {
