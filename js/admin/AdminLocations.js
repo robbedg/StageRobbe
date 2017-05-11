@@ -84,6 +84,7 @@ $(document).ready(function(){
         //prevent default
         $event.preventDefault();
 
+        //button pushed
         var $item = $(this);
 
         //Save
@@ -96,15 +97,32 @@ $(document).ready(function(){
           .done(function() {
               callDB();
           });
-         //remove
+
+       //remove
        } else if ($item.attr('data-function').match('delete')) {
-          $.ajax({
-            url: '/index.php/locations/delete/' + $item.attr('data-id'),
-            type: 'GET'
-          })
-          .done(function() {
-            callDB();
-          });
+         //dialog
+         $("#modal-submit").unbind();
+         $("#modal-delete-location").modal('show');
+
+         //submit
+         $("#modal-submit").click(function($event) {
+           //prevent default
+           $event.preventDefault();
+
+           //ajax call
+           $.ajax({
+             url: '/index.php/locations/delete/' + $item.attr('data-id'),
+             type: 'GET'
+           })
+           .done(function() {
+             //hide
+             $("#modal-delete-location").modal('hide');
+             //unbind
+             $("#modal-submit").unbind();
+             //DB
+             callDB();
+           });
+         });
         }
        });
      }

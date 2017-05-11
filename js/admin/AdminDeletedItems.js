@@ -84,26 +84,59 @@ $(document).ready(function(){
      **/
      function restore_delete() {
        $("#deleted-items table tbody tr td a").click(function($event) {
+         //prevent default
          $event.preventDefault();
 
          var $item = $(this);
          //restore
          if ($item.attr('data-function').match('restore')) {
-           $.ajax({
-             url: '/index.php/items/restore/' + $item.attr('data-id'),
-             type: 'GET'
-           })
-           .done(function() {
-             callDB();
-           });
+           //dialog
+           $("#modal-submit-restore").unbind();
+           $("#modal-restore-item").modal('show');
+
+           //submit
+           $("#modal-submit-restore").click(function($event) {
+              //prevent default
+              $event.preventDefault();
+
+              //ajax call
+              $.ajax({
+                url: '/index.php/items/restore/' + $item.attr('data-id'),
+                type: 'GET'
+              })
+              .done(function() {
+                //hide
+                $("#modal-retore-item").modal('hide');
+                //unbind
+                $("#modal-submit-restore").unbind();
+                //DB
+                callDB();
+              });
+            });
          //Delete
          } else if ($item.attr('data-function').match('delete')) {
-           $.ajax({
-             url: '/index.php/items/delete/' + $item.attr('data-id'),
-             type: 'GET'
-           })
-           .done(function() {
-             callDB();
+           //dialog
+           $("#modal-submit-delete").unbind();
+           $("#modal-delete-item").modal('show');
+
+           //submit
+           $("#modal-submit-delete").click(function($event) {
+              //prevent default
+              $event.preventDefault();
+
+             //ajax call
+             $.ajax({
+               url: '/index.php/items/delete/' + $item.attr('data-id'),
+               type: 'GET'
+             })
+             .done(function() {
+               //hide
+               $("#modal-delete-item").modal('hide');
+               //unbind
+               $("#modal-submit-delete").unbind();
+               //db
+               callDB();
+             });
            });
          }
        });

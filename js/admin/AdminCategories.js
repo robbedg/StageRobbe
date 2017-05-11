@@ -65,7 +65,7 @@ $(document).ready(function(){
       .always(function() {
         //tooltips
         $('[data-toggle="tooltip"]').tooltip();
-        
+
         //events
         save_delete();
         loadpager($pageInfo);
@@ -98,12 +98,28 @@ $(document).ready(function(){
           });
          //remove
        } else if ($item.attr('data-function').match('delete')) {
-          $.ajax({
-            url: '/index.php/categories/delete/' + $item.attr('data-id'),
-            type: 'GET'
-          })
-          .done(function() {
-            callDB();
+         //dialog
+         $("#modal-submit").unbind();
+         $("#modal-delete-category").modal('show');
+
+         //submit
+         $("#modal-submit").click(function($event) {
+            //prevent default
+            $event.preventDefault();
+
+            //ajax call
+            $.ajax({
+              url: '/index.php/categories/delete/' + $item.attr('data-id'),
+              type: 'GET'
+            })
+            .done(function() {
+              //hide
+              $("#modal-delete-category").modal('hide');
+              //unbind
+              $("#modal-submit").unbind();
+              //DB
+              callDB();
+            });
           });
         }
        });
