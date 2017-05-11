@@ -64,6 +64,7 @@
 
             <!-- submit button -->
             <div id="submit">
+                <button id="to-profile" class="btn btn-primary btn-lg" disabled="disabled" data-toggle="tooltip" data-original-title="Bekijk Profiel"><span class="fa fa-user"></span></button>
                 <button id="delete-user" class="btn btn-danger btn-lg" disabled="disabled" data-toggle="tooltip" data-original-title="Verwijderen"><span class="fa fa-trash"></span></button>
                 <button type="submit" class="btn btn-primary btn-lg" disabled="disabled" data-toggle="tooltip" data-original-title="Opslaan"><span class="fa fa-save"></span></button>
             </div>
@@ -76,19 +77,18 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Delete User</h4>
+                    <h4 class="modal-title">Verwijder Gebruiker</h4>
                 </div>
                 <div class="modal-body">
                     <!-- Error msg -->
                     <div class="alert alert-danger hidden" id="msg-error">
-                        <p>You can't delete this user.</p>
+                        <p>U kan deze gebruiker niet verwijderen.</p>
                     </div>
                     <!-- msg text -->
-                    <p>Do you wish to delete this user?</p>
-                    <p>This action can't be reversed.</p>
+                    <p>Wilt u deze gebruiker verwijderen?</p>
+                    <p>Dit kan niet ongedaan gemaakt worden.</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="fa fa-undo"></span></button>
                     <button type="button" class="btn btn-danger" id="delete-user-btn"><span class="fa fa-trash"></span></button>
                 </div>
             </div>

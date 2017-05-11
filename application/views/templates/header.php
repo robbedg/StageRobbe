@@ -62,7 +62,7 @@
             <!-- Search -->
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Zoeken...">
+                    <input type="text" class="form-control" placeholder="ID...">
                 </div>
                 <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
             </form>

@@ -17,8 +17,6 @@
     <li class="<?php if ($active === 'locations') echo 'active'; ?> <?php if ($database_lock) echo 'disabled'; ?>"><a href="<?= $database_lock ? '#' : site_url('admin/locations'); ?>">Locaties</a></li>
     <li class="<?php if ($active === 'categories') echo 'active'; ?> <?php if ($database_lock) echo 'disabled'; ?>"><a href="<?= $database_lock ? '#' : site_url('admin/categories'); ?>">Categorieën</a></li>
     <li class="<?php if ($active === 'general') echo 'active'; ?>"><a href="<?=site_url('admin/general'); ?>">Extra</a></li>
-    <li class="<?php if ($active === 'statistics') echo 'active'; ?>"><a href="<?=site_url('admin/statistics'); ?>">Statistics</a></li>
-
 </ul>
 
 <div id="tabs" class="tab-content">

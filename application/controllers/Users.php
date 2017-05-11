@@ -34,6 +34,12 @@ class Users extends CI_Controller
             show_404();
         }
 
+        //if doesn't exist
+        $count = $this->user_model->get_user(array('id' => $id))['count'];
+        if ($count !== 1) {
+            show_404();
+        }
+
         //Only administrator can view other peoples profiles.
         if (!(($id === $_SESSION['id']) || (authorization_check($this, 4)))) {
             show_error("U kan deze actie niet uitvoeren.");

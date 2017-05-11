@@ -227,4 +227,14 @@ $(document).ready(function(){
         }
      });
    });
+
+   /**
+    * Go to userprofile
+    **/
+    $("#to-profile").click(function($event) {
+      //prevent default
+      $event.preventDefault();
+
+      window.location = '/index.php/users/' + $("#userid input").val();
+    });
 });

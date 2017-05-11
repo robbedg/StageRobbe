@@ -71,17 +71,17 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Change Password</h4>
+                <h4 class="modal-title">Verander Wachtwoord</h4>
             </div>
             <div class="modal-body">
                 <input id="valid" type="hidden" value="false">
                 <div class="form-group">
-                    <label class="control-label" for="password-1">New password</label>
-                    <input class="form-control" id="password-1" type="password" placeholder="Password...">
+                    <label class="control-label" for="password-1">Nieuw Wachtwoord</label>
+                    <input class="form-control" id="password-1" type="password" placeholder="Wachtwoord...">
                 </div>
                 <div class="form-group">
-                    <label class="control-label" for="password-2">Repeat password</label>
-                    <input class="form-control" id="password-2" type="password" placeholder="Password...">
+                    <label class="control-label" for="password-2">Herhaal Wachtwoord</label>
+                    <input class="form-control" id="password-2" type="password" placeholder="Wachtwoord...">
                 </div>
             </div>
             <div class="modal-footer">

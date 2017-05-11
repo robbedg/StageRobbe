@@ -62,7 +62,6 @@ $route['admin/reported-items'] = 'admin/reported_items';
 $route['admin/deleted-items'] = 'admin/deleted_items';
 $route['admin/locations'] = 'admin/locations';
 $route['admin/categories'] = 'admin/categories';
-$route['admin/statistics'] = 'admin/statistics';
 $route['admin/general'] = 'admin/general';
 
 //settings

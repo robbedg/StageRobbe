@@ -246,35 +246,6 @@ class Admin extends CI_Controller
     }
 
     /**
-     * Displaying statistics.
-     */
-    public function statistics()
-    {
-        //set title
-        $data['title'] = 'Admin Panel';
-
-        //set styles
-        $data['styles'][] = base_url('css/admin-panel.css');
-
-        //set scripts
-        $data['scripts'][] = 'https://www.gstatic.com/charts/loader.js';
-        $data['scripts'][] = base_url('js/admin/AdminStatistics.js');
-
-        //active
-        $data['active'] = 'statistics';
-
-        //database lock
-        $data['database_lock'] = $this->setting_model->get_setting('database_lock');
-
-        //load views
-        $this->load->view('templates/header', $data);
-        $this->load->view('admin/index', $data);
-        $this->load->view('admin/statistics', $data);
-        $this->load->view('admin/end', $data);
-        $this->load->view('templates/footer');
-    }
-
-    /**
      * General application settings.
      */
     public function general()
