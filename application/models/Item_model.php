@@ -168,7 +168,7 @@ class Item_model extends CI_Model
     public function set_item($data){
         //check if at least one piece of data is provided.
         if (
-            empty($data['issue']) &&
+            !array_key_exists('issue', $data) &&
             empty($data['visible']) &&
             empty($data['name']) &&
             empty($data['category_id']) &&
@@ -177,7 +177,7 @@ class Item_model extends CI_Model
         ) show_error('No values provided');
 
         //set
-        if (!empty($data['issue'])) $this->db->set('issue', $data['issue']);
+        if (array_key_exists('issue', $data)) $this->db->set('issue', $data['issue']);
         if (!empty($data['visible'])) $this->db->set('visible', $data['visible']);
         if (!empty($data['name'])) $this->db->set('name', $data['name']);
         if (!empty($data['category_id'])) $this->db->set('category_id', $data['category_id']);

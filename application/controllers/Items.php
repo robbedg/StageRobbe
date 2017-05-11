@@ -326,7 +326,7 @@ class Items extends CI_Controller
         //reverse
         else if ($set === 0) {
             //auth
-            if (!authorization_check($this, 2)) show_error('You are not authorized to perform this action.');
+            if (!authorization_check($this, 2)) show_error('U kan deze actie niet uitvoeren.');
             //update
             $this->item_model->set_item(array('id' => $id, 'issue' => 0));
 
