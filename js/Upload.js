@@ -11,7 +11,7 @@ $(document).ready(function(){
 		maxFiles: 1,
 		addRemoveLinks: true,
 		acceptedFiles: 'image/*',
-		dictDefaultMessage: 'Drop image here to upload.<br/>Or click to browse.',
+		dictDefaultMessage: 'Sleep hier een afbeelding.<br/>Of klik om te navigeren.',
 		success: function($file, $response) {
 			this.removeAllFiles();
 			$(".modal").modal('toggle');

@@ -37,9 +37,9 @@ class Loans extends CI_Controller
 
         //set data
         $data = [];
-        $data['title'] = 'Reservations';
+        $data['title'] = 'Reservaties';
         //breadcrumb
-        $data['breadcrum']['items'][] = array('name' => 'Home', 'href' => site_url('home'));
+        $data['breadcrum']['items'][] = array('name' => '<span class="fa fa-home"></span>', 'href' => site_url('home'));
         //header
         $data['head'][] = array('name' => 'ID', 'db' =>'id');
         //scripts
@@ -51,18 +51,18 @@ class Loans extends CI_Controller
             case 'user':
 
                 //Only administrator can view other peoples profiles.
-                if (!(($id === $_SESSION['id']) || (authorization_check($this, 4)))) {
-                    show_error("You are not authorized to perform this action.");
+                if (!(($id === $_SESSION['id']) || (authorization_check($this, 3)))) {
+                    show_error("U kan deze actie niet uitvoeren.");
                 }
 
                 //breadcrumb
-                $data['breadcrum']['items'][] = array('name' => 'Profile', 'href' => site_url('users/'.$id));
-                $data['breadcrum']['active'] = 'Reservations';
+                $data['breadcrum']['items'][] = array('name' => 'Profiel', 'href' => site_url('users/'.$id));
+                $data['breadcrum']['active'] = 'Reservaties';
 
                 //header
                 $data['head'][] = array('name' => 'Item ID', 'db' => 'item_id');
-                $data['head'][] = array('name' => 'Location', 'db' => 'location');
-                $data['head'][] = array('name' => 'Category', 'db' => 'category');
+                $data['head'][] = array('name' => 'Locatie', 'db' => 'location');
+                $data['head'][] = array('name' => 'Categorie', 'db' => 'category');
 
                 //set hiddenfield
                 $data['hiddenfields'][] = array('id' => 'user_id', 'value' => $id);
@@ -78,21 +78,21 @@ class Loans extends CI_Controller
                 $item = $this->item_model->get_item(array('id' => $id, 'location' => true, 'category' => true));
 
                 //if id false show 404
-                if (empty($item) || ($item === FALSE)) {
+                if (empty($item) || ($item['count'] === 0)) {
                     show_404();
                 }
 
                 $item = $item['data'];
 
                 //breadcrumb
-                $data['breadcrum']['items'][] = array('name' => $item['location'], 'href' => site_url('categories/'.$item['location_id']));
-                $data['breadcrum']['items'][] = array('name' => $item['category'].' collection', 'href' => site_url('items/'.$item['location_id'].'/'.$item['category_id']));
-                $data['breadcrum']['items'][] = array('name' => $item['category'].': '.$item['id'], 'href' => site_url('items/view/'.$item['id']));
-                $data['breadcrum']['active'] = 'Reservations';
+                $data['breadcrum']['items'][] = array('name' => 'Locatie: '.$item['location'], 'href' => site_url('categories/'.$item['location_id']));
+                $data['breadcrum']['items'][] = array('name' => 'Categorie: '.$item['category'], 'href' => site_url('items/'.$item['location_id'].'/'.$item['category_id']));
+                $data['breadcrum']['items'][] = array('name' => $item['name'].': '.$item['id'], 'href' => site_url('items/view/'.$item['id']));
+                $data['breadcrum']['active'] = 'Reservaties';
 
                 //header
                 $data['head'][] = array('name' => 'UID', 'db' => 'uid');
-                $data['head'][] = array('name' => 'Name', 'db' => 'lastname, firstname');
+                $data['head'][] = array('name' => 'Naam', 'db' => 'lastname, firstname');
 
                 //set hiddenfield
                 $data['hiddenfields'][] = array('id' => 'item_id', 'value' => $id);
@@ -107,8 +107,8 @@ class Loans extends CI_Controller
         }
 
         //header
-        $data['head'][] = array('name' => 'From', 'db' => 'from');
-        $data['head'][] = array('name' => 'Until', 'db' => 'until');
+        $data['head'][] = array('name' => 'Van', 'db' => 'from');
+        $data['head'][] = array('name' => 'Tot', 'db' => 'until');
 
         //show
         $this->load->view('templates/header', $data);

@@ -48,7 +48,7 @@ class Categories extends CI_Controller
         $location = $location['data'][0]['name'];
 
         //set title
-        $data['title'] = $location;
+        $data['title'] = 'Locatie: '.$location;
 
         //scripts
         $data['scripts'][] = base_url('js/tables/MainTable.js');
@@ -56,18 +56,15 @@ class Categories extends CI_Controller
 
         //set breadcrum
         $home['href'] = site_url('home');
-        $home['name'] = 'Home';
+        $home['name'] = '<span class="fa fa-home"></span>';
 
         $data['breadcrum']['items'][] = $home;
         $data['breadcrum']['active'] = $data['title'];
 
         //set header
-        $data['head'][0]['name'] = 'Category ID';
-        $data['head'][0]['db'] = 'id';
-        $data['head'][1]['name'] = 'Category';
-        $data['head'][1]['db'] = 'name';
-        $data['head'][2]['name'] = 'Amount Of Items';
-        $data['head'][2]['db'] = 'item_count';
+        $data['head'][] = array('name' => 'Categorie ID', 'db' => 'id');
+        $data['head'][] = array('name' => 'Naam', 'db' => 'name');
+        $data['head'][] = array('name' => 'Aantal Items', 'db' => 'item_count');
 
         //set hiddenfield
         $data['hiddenfields'][0]['id'] = 'location_id';

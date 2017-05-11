@@ -57,9 +57,9 @@ $(document).ready(function(){
               .append($('<td />').append($el['category']))
               .append($('<td />').append($el['created_on']))
               .append($('<td />')
-                .append($('<a href="#" data-function="restore" />').addClass('btn btn-success btn-sm').append('<span class="fa fa-undo"></span>').attr('data-id', $el['id']))
+                .append($('<a href="#" data-function="restore" data-toggle="tooltip" data-original-title="Terugzetten" />').addClass('btn btn-success btn-sm').append('<span class="fa fa-undo"></span>').attr('data-id', $el['id']))
                 .append(' ')
-                .append($('<a href="#" data-function="delete" />').addClass('btn btn-danger btn-sm').append('<span class="fa fa-trash"></span>').attr('data-id', $el['id']))
+                .append($('<a href="#" data-function="delete" data-toggle="tooltip" data-original-title="Verwijderen" />').addClass('btn btn-danger btn-sm').append('<span class="fa fa-trash"></span>').attr('data-id', $el['id']))
                 .addClass('align-right')
               )
             );
@@ -67,6 +67,9 @@ $(document).ready(function(){
         calculatepages($data, $pageInfo, $response.count);
       })
       .always(function() {
+        //tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+        //events laden
         restore_delete();
         loadpager($pageInfo);
         pagingbuttons($data, $pageInfo, callDB);

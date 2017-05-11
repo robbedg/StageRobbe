@@ -26,9 +26,11 @@ $(document).ready(function($) {
 	 * add fields
 	 * @type {number}
 	 */
+	//counter
 	var $i=0;
 
 	$("#extra-button-append button").click(function ($event) {
+		//prevent default
 		$event.preventDefault();
 
 		$i++;
@@ -37,7 +39,7 @@ $(document).ready(function($) {
 
 		$("<label />")
 			.attr('class', 'control-label')
-			.append('Attribute')
+			.append('Attribuut')
 			.appendTo("#extra_" + $i);
 
 		$("<br />").appendTo("#extra_" + $i);
@@ -49,7 +51,7 @@ $(document).ready(function($) {
 			.attr('identifier', $i)
 			.appendTo("#extra_" + $i);
 
-		$("<input type='text' placeholder='Value...' />")
+		$("<input type='text' placeholder='Waarde...' />")
 			.attr('id', 'focused-input')
 			.attr('class', 'form-control new-form')
 			.attr('name', 'value[]')
@@ -112,4 +114,23 @@ $(document).ready(function($) {
 		 });
 		 $("#form").submit();
 	 });
+
+	 /**
+	  * Back button
+		*/
+		$("#back-button").click(function() {
+			var $id = $("#item_id").val();
+			window.location = "/index.php/items/view/" + $id;
+		});
+
+		/**
+		 * Add picture
+		 **/
+		 $("#button-picture-modal").click(function($event) {
+			 //prevent default
+			 $event.preventDefault();
+
+			 $("#picture-modal").modal('show');
+
+		 });
 });

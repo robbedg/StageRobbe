@@ -247,7 +247,7 @@ class Loan_model extends CI_Model
         //set result
         $result = [];
 
-        $this->db->select('id', 'until');
+        $this->db->select('id, until, from');
         $this->db->where('id', $id);
 
         $loanquery = $this->db->get('loans');

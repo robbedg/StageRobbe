@@ -28,14 +28,15 @@ $(document).ready(function(){
     setValues($data);
 
     //add extra attribute
-    $("#listingpage thead tr").append($('<th />').append('Attributes'));
+    $("#listingpage thead tr").append($('<th />').append('Attributen'));
 
-    //add extra button
-    $('<a href="#" class="btn btn-primary" id="print-button" />')
+    //add extra button for printing
+    $('<a href="#" class="btn btn-primary" id="print-button" data-toggle="tooltip" data-original-title="Printen" />')
       .insertAfter("h2")
       .append('<span class="fa fa-print" />')
       .css('float', 'right')
       .css('margin-top', '-4.2rem');
+    $('[data-toggle="tooltip"]').tooltip();
 
     //add hidden div
     $("#wrapper").append('<div id="qrcode" class="hidden" />'),

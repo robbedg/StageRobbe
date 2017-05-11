@@ -40,7 +40,7 @@ class Admin extends CI_Controller
     public function index()
     {
         //set title
-        $data['title'] = 'Admin panel';
+        $data['title'] = 'Administratie';
 
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
@@ -85,7 +85,7 @@ class Admin extends CI_Controller
             $original_user = $this->user_model->get_user(array('id' => $user['id'], 'limit' => 1));
 
             if ($original_user['count'] !== 1) {
-                show_error('Unknown user ID.');
+                show_error('Onbekende gebruiker.');
                 die();
             }
 
@@ -97,7 +97,7 @@ class Admin extends CI_Controller
             ) {
                 $this->user_model->update_user($user);
             } else {
-                show_error("You are not authorized to do this action.");
+                show_error("U kan deze actie niet uitvoeren.");
             }
 
             redirect('admin');
@@ -147,7 +147,7 @@ class Admin extends CI_Controller
     public function deleted_items()
     {
         //set title
-        $data['title'] = 'Admin panel';
+        $data['title'] = 'Administratie';
 
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
@@ -165,10 +165,10 @@ class Admin extends CI_Controller
         /** Deleted Items **/
         $data['deleted_items']['title'] = null;
         $data['deleted_items']['head'][] = array('name' => 'Item ID', 'db' => 'id');
-        $data['deleted_items']['head'][] = array('name' => 'Name', 'db' => 'name');
-        $data['deleted_items']['head'][] = array('name' => 'Location', 'db' => 'location');
-        $data['deleted_items']['head'][] = array('name' => 'Category', 'db' => 'category');
-        $data['deleted_items']['head'][] = array('name' => 'Created On', 'db' => 'created_on');
+        $data['deleted_items']['head'][] = array('name' => 'Naam', 'db' => 'name');
+        $data['deleted_items']['head'][] = array('name' => 'Locatie', 'db' => 'location');
+        $data['deleted_items']['head'][] = array('name' => 'Categorie', 'db' => 'category');
+        $data['deleted_items']['head'][] = array('name' => 'Aangemaakt Op', 'db' => 'created_on');
 
         //load views
         $this->load->view('templates/header', $data);
@@ -184,7 +184,7 @@ class Admin extends CI_Controller
     public function locations()
     {
         //set title
-        $data['title'] = 'Admin panel';
+        $data['title'] = 'Administratie';
 
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
@@ -201,12 +201,9 @@ class Admin extends CI_Controller
 
         /** Locations **/
         $data['locations']['title'] = null;
-        $data['locations']['head'][0]['name'] = 'Location ID';
-        $data['locations']['head'][0]['db'] = 'id';
-        $data['locations']['head'][1]['name'] = 'Name';
-        $data['locations']['head'][1]['db'] = 'name';
-        $data['locations']['head'][2]['name'] = 'Amount Of Items';
-        $data['locations']['head'][2]['db'] = 'item_count';
+        $data['locations']['head'][] = array('name' => 'Locatie ID', 'db' => 'id');
+        $data['locations']['head'][] = array('name' => 'Naam', 'db' => 'name');
+        $data['locations']['head'][] = array('name' => 'Aantal Items', 'db' => 'item_count');
 
         //load views
         $this->load->view('templates/header', $data);
@@ -222,7 +219,7 @@ class Admin extends CI_Controller
     public function categories()
     {
         //set title
-        $data['title'] = 'Admin panel';
+        $data['title'] = 'Administratie';
 
         //set styles
         $data['styles'][] = base_url('css/admin-panel.css');
@@ -239,12 +236,9 @@ class Admin extends CI_Controller
 
         /** Categories **/
         $data['categories']['title'] = null;
-        $data['categories']['head'][0]['name'] = 'Location ID';
-        $data['categories']['head'][0]['db'] = 'id';
-        $data['categories']['head'][1]['name'] = 'Name';
-        $data['categories']['head'][1]['db'] = 'name';
-        $data['categories']['head'][2]['name'] = 'Amount Of Items';
-        $data['categories']['head'][2]['db'] = 'item_count';
+        $data['categories']['head'][] = array('name' => 'Locatie ID', 'db' => 'id');
+        $data['categories']['head'][] = array('name' => 'Naam', 'db' => 'name');
+        $data['categories']['head'][] = array('name' => 'Aantal Items', 'db' => 'item_count');
 
         //load views
         $this->load->view('templates/header', $data);

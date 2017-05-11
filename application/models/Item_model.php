@@ -3,7 +3,7 @@
  * Model for items.
  * @package application\models
  * @author Robbe De Geyndt <robbe.degeyndt@student.odisee.be>
- * @Date 7/02/2017
+ * @date 7/02/2017
  * @time 9:36
  * @filesource
  */
@@ -169,20 +169,20 @@ class Item_model extends CI_Model
         //check if at least one piece of data is provided.
         if (
             !array_key_exists('issue', $data) &&
-            empty($data['visible']) &&
-            empty($data['name']) &&
-            empty($data['category_id']) &&
-            empty($data['location_id']) &&
-            empty($data['attributes'])
+            !array_key_exists('visible', $data) &&
+            !array_key_exists('name', $data) &&
+            !array_key_exists('category_id', $data) &&
+            !array_key_exists('location_id', $data) &&
+            !array_key_exists('attributes', $data)
         ) show_error('No values provided');
 
         //set
         if (array_key_exists('issue', $data)) $this->db->set('issue', $data['issue']);
-        if (!empty($data['visible'])) $this->db->set('visible', $data['visible']);
-        if (!empty($data['name'])) $this->db->set('name', $data['name']);
-        if (!empty($data['category_id'])) $this->db->set('category_id', $data['category_id']);
-        if (!empty($data['location_id'])) $this->db->set('location_id', $data['location_id']);
-        if (!empty($data['attributes'])) $this->db->set('attributes', json_encode($data['attributes']));
+        if (array_key_exists('visible', $data)) $this->db->set('visible', $data['visible']);
+        if (array_key_exists('name', $data)) $this->db->set('name', $data['name']);
+        if (array_key_exists('category_id', $data)) $this->db->set('category_id', $data['category_id']);
+        if (array_key_exists('location_id', $data)) $this->db->set('location_id', $data['location_id']);
+        if (array_key_exists('attributes', $data)) $this->db->set('attributes', json_encode($data['attributes']));
 
         if (!empty($data['id'])) {
             $this->db->where('id', $data['id']);

@@ -3,13 +3,13 @@
     <div id="top">
         <!-- search -->
         <div id="searchusersbox">
-            <input class="form-control" id="searchusers" type="text" placeholder="Search...">
+            <input class="form-control" id="searchusers" type="text" placeholder="Zoeken...">
         </div>
 
         <!-- filter options -->
         <div id="filter">
             <ul class="nav nav-pills">
-                <li id="all" class="active"><a class="filterlist" href="#">All <span class="badge"></span></a></li>
+                <li id="all" class="active"><a class="filterlist" href="#">Alle <span class="badge"></span></a></li>
                 <?php foreach ($roles as $role): ?>
                     <li><a class="filterlist" href="#" data-id="<?=$role['id']; ?>"><?=$role['name']; ?> <span class="badge"></span></a></li>
                 <?php endforeach; ?>
@@ -40,19 +40,19 @@
 
             <!-- edit first name -->
             <div id="firstname">
-                <label for="editFirstname" class="control-label">First name:</label>
+                <label for="editFirstname" class="control-label">Voornaam</label>
                 <input id="editFirstname" type="text" class="form-control" name="firstname" disabled="disabled">
             </div>
 
             <!-- edit last name -->
             <div id="lastname">
-                <label for="editLastname" class="control-label">Last name:</label>
+                <label for="editLastname" class="control-label">Familienaam</label>
                 <input id="editLastname" type="text" class="form-control" name="lastname" disabled="disabled">
             </div>
 
             <!-- role selection -->
             <div id="roleselect">
-                <label for="selectRole" class="control-label">Assign New Role</label>
+                <label for="selectRole" class="control-label">Rol</label>
                 <select class="form-control" id="selectRole" disabled="disabled" name="role">
                     <?php foreach ($roles as $role): ?>
                         <?php if ((intval($role['id']) < intval($_SESSION['role_id'])) || (intval($_SESSION['role_id']) === 4)): ?>
@@ -64,8 +64,8 @@
 
             <!-- submit button -->
             <div id="submit">
-                <button id="delete-user" class="btn btn-danger btn-lg" disabled="disabled"><span class="fa fa-trash"></span></button>
-                <button type="submit" class="btn btn-primary btn-lg" disabled="disabled"><span class="fa fa-save"></span></button>
+                <button id="delete-user" class="btn btn-danger btn-lg" disabled="disabled" data-toggle="tooltip" data-original-title="Verwijderen"><span class="fa fa-trash"></span></button>
+                <button type="submit" class="btn btn-primary btn-lg" disabled="disabled" data-toggle="tooltip" data-original-title="Opslaan"><span class="fa fa-save"></span></button>
             </div>
         <?=form_close(); ?>
     </div>

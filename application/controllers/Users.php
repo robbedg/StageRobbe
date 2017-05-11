@@ -36,7 +36,7 @@ class Users extends CI_Controller
 
         //Only administrator can view other peoples profiles.
         if (!(($id === $_SESSION['id']) || (authorization_check($this, 4)))) {
-            show_error("You are not authorized to perform this action.");
+            show_error("U kan deze actie niet uitvoeren.");
         }
 
         //set scripts
@@ -44,7 +44,7 @@ class Users extends CI_Controller
         $data['scripts'][] = base_url('js/UserProfile.js');
 
         //set data
-        $data['title'] = 'Profile';
+        $data['title'] = 'Profiel';
         $data['user_id'] = $id;
 
         $this->load->view('/templates/header', $data);

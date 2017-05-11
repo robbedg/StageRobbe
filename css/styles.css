@@ -89,6 +89,10 @@
  	text-align: right;
  }
 
+ #back-button:hover {
+   cursor: pointer;
+ }
+
 /**
  * DROPZONE
  **/

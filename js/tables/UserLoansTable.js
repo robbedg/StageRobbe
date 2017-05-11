@@ -58,14 +58,17 @@ $(document).ready(function(){
               .append($('<td />').append($el['from_string']))
               .append($('<td />').append($el['until_string']))
               .append($('<td />').addClass('align-right').append(
-                ($el['class'] === 'info' ? '<a href="#" class="btn btn-danger btn-sm" data-id="' + $el['id'] + '"><span class="fa fa-trash"></span></a>' : '') +
-                ($el['class'] === 'success' ? '<a href="#" class="btn btn-success btn-sm" data-id="' + $el['id'] + '"><span class="fa fa-share"></span></a>' : '')
+                ($el['class'] === 'info' ? '<a href="#" data-toggle="tooltip" data-original-title="Verwijderen" class="btn btn-danger btn-sm" data-id="' + $el['id'] + '" data-function="delete"><span class="fa fa-trash" ></span></a>' : '') +
+                ($el['class'] === 'success' ? '<a href="#" data-toggle="tooltip" data-original-title="Terugbrengen" class="btn btn-success btn-sm" data-id="' + $el['id'] + '" data-function="return"><span class="fa fa-undo" ></span></a>' : '')
               ))
             );
         });
         calculatepages($data, $pageInfo, $response.count);
       })
       .always(function() {
+        //tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+        //pagination buttons
         loadpager($pageInfo);
         pagingbuttons($data, $pageInfo, callDB);
 
@@ -85,10 +88,10 @@ $(document).ready(function(){
         var $url = '';
         var $id = $(this).attr('data-id');
         //check function
-        if ($(this).text().match('Delete')) {
+        if ($(this).attr('data-function').match('delete')) {
           $url = '/index.php/loans/delete/'
         }
-        if ($(this).text().match('Return')) {
+        if ($(this).attr('data-function').match('return')) {
           $url = '/index.php/loans/close/'
         }
         $.ajax({

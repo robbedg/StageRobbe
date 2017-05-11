@@ -1,7 +1,7 @@
 <!-- breadcrum -->
 <ul class="breadcrumb">
-    <li><a href="<?=site_url('home'); ?>">Home</a></li>
-    <li><a href="<?=site_url('/categories/'.$item['data']['location_id']); ?>"><?=$item['data']['location']; ?></a></li>
+    <li><a href="<?=site_url('home'); ?>"><span class="fa fa-home"></span></a></li>
+    <li><a href="<?=site_url('/categories/'.$item['data']['location_id']); ?>">Locatie: <?=$item['data']['location']; ?></a></li>
     <li><a href="<?=site_url('/items/'.$item['data']['location_id'].'/'.$item['data']['category_id']); ?>"><?='Categorie: '.$item['data']['category']; ?></a></li>
     <li class="active"><?=$title; ?></li>
 </ul>
@@ -153,7 +153,7 @@
     <div id="newnote">
         <div class="form-group">
             <div>
-                <textarea class="form-control" id="textArea" name="comment" placeholder="Write comment..."></textarea>
+                <textarea class="form-control" id="textArea" name="comment" placeholder="Schrijf reactie..."></textarea>
                 <span class="help-block" id="count">1024</span>
             </div>
         </div>

@@ -51,7 +51,7 @@ class Items extends CI_Controller
         }
 
         //set title
-        $data['title'] = $category['data'][0]['name'].' collection';
+        $data['title'] = 'Categorie: '.$category['data'][0]['name'];
 
         //set scripts
         //$data['scripts'][] = base_url('js/jquery-qrcode-0.14.0.min.js');
@@ -61,28 +61,23 @@ class Items extends CI_Controller
 
         //set breadcrum
         $home['href'] = site_url('home');
-        $home['name'] = 'Home';
+        $home['name'] = '<span class="fa fa-home"></span>';
         $data['breadcrum']['items'][] = $home;
 
         $bread_location['href'] = site_url('categories/'.$locationid);
-        $bread_location['name'] = $location['data'][0]['name'];
+        $bread_location['name'] = 'Locatie: '.$location['data'][0]['name'];
         $data['breadcrum']['items'][] = $bread_location;
 
-        $data['breadcrum']['active'] = $category['data'][0]['name'].' collection';
+        $data['breadcrum']['active'] = 'Categorie: '.$category['data'][0]['name'];
 
         //set header
-        $data['head'][0]['name'] = 'Item ID';
-        $data['head'][0]['db'] = 'id';
-        $data['head'][1]['name'] = 'Name';
-        $data['head'][1]['db'] = 'name';
-        $data['head'][2]['name'] = 'Created On';
-        $data['head'][2]['db'] = 'created_on';
+        $data['head'][] = array('name' => 'Item ID', 'db' => 'id');
+        $data['head'][] = array('name' => 'Naam', 'db' => 'name');
+        $data['head'][] = array('name' => 'Aangemaakt Op', 'db' => 'created_on');
 
         //set hiddenfield
-        $data['hiddenfields'][0]['id'] = 'location_id';
-        $data['hiddenfields'][0]['value'] = $locationid;
-        $data['hiddenfields'][1]['id'] = 'category_id';
-        $data['hiddenfields'][1]['value'] = $categoryid;
+        $data['hiddenfields'][] = array('id' => 'location_id', 'value' => $locationid);
+        $data['hiddenfields'][] = array('id' => 'category_id', 'value' => $categoryid);
 
         $this->load->view('templates/header', $data);
         $this->load->view('pages/index', $data);
@@ -147,7 +142,7 @@ class Items extends CI_Controller
         $database_lock = $this->setting_model->get_setting('database_lock');
 
         if (!authorization_check($this, 2) || $database_lock) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         //helper & library for form
@@ -155,7 +150,7 @@ class Items extends CI_Controller
         $this->load->library('form_validation');
 
         if (!empty($id)) {
-            $data['title'] = 'Edit Item';
+            $data['title'] = 'Item Bewerken';
 
             //get item
             $data['item'] = $this->item_model->get_item(array('id' => $id, 'category' => TRUE, 'location' => TRUE));
@@ -167,7 +162,7 @@ class Items extends CI_Controller
             }
 
         } else {
-            $data['title'] = 'New Item';
+            $data['title'] = 'Nieuw Item';
             $data['item'] = array();
         }
 
@@ -251,7 +246,7 @@ class Items extends CI_Controller
     public function remove($id = NULL) {
         //authorization check
         if (!authorization_check($this, 2)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         //when no id provided give 404
@@ -271,7 +266,7 @@ class Items extends CI_Controller
     {
         //authorization check
         if (!authorization_check($this, 3)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         //check if not empty
@@ -290,7 +285,7 @@ class Items extends CI_Controller
     {
         //authorization check
         if (!authorization_check($this, 3)) {
-            show_error('You are not authorized to perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
 
         if (empty($id)) {

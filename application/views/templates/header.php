@@ -21,7 +21,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?=site_url('home'); ?>">Inventory</a>
+            <a class="navbar-brand" href="<?=site_url('home'); ?>">Inventaris</a>
         </div>
 
         <!-- menu items -->
@@ -31,17 +31,17 @@
                 <!-- admin panel link -->
                 <?php if (authorization_check($this, 3)): ?>
                 <li class="<?=(!empty($active) ? 'active' : ''); ?>">
-                    <a href="<?=site_url('admin'); ?>">Admin panel</a>
+                    <a href="<?=site_url('admin'); ?>">Administratie</a>
                 </li>
                 <?php endif; ?>
                 <!-- create object link -->
                 <?php if (authorization_check($this, 2)): ?>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">New <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Nieuw <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         <li><a href="<?=site_url('items/create'); ?>">Item</a></li>
-                        <li><a href="<?=site_url('locations/create'); ?>">Location</a></li>
-                        <li><a href="<?=site_url('categories/create'); ?>">Category</a></li>
+                        <li><a href="<?=site_url('locations/create'); ?>">Locatie</a></li>
+                        <li><a href="<?=site_url('categories/create'); ?>">Categorie</a></li>
                     </ul>
                 </li>
                 <?php endif; ?>
@@ -52,9 +52,9 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><?=$_SESSION['firstname'].' '.$_SESSION['lastname'];?> <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="<?=site_url('users/'.$_SESSION['id']); ?>"><span class="fa fa-user"></span> Profile</a></li>
+                        <li><a href="<?=site_url('users/'.$_SESSION['id']); ?>"><span class="fa fa-user"></span> Profiel</a></li>
                         <li class="divider"></li>
-                        <li><a href="<?=site_url('logout'); ?>"><span class="fa fa-sign-out"></span> Log out</a></li>
+                        <li><a href="<?=site_url('logout'); ?>"><span class="fa fa-sign-out"></span> Log Uit</a></li>
                     </ul>
                 </li>
             </ul>
@@ -62,7 +62,7 @@
             <!-- Search -->
             <form class="navbar-form navbar-right" role="search">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search...">
+                    <input type="text" class="form-control" placeholder="Zoeken...">
                 </div>
                 <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span></button>
             </form>

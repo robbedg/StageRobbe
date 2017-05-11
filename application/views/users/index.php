@@ -1,6 +1,6 @@
 <!-- breadcrum -->
 <ul class="breadcrumb">
-    <li><a href="<?=site_url('home'); ?>">Home</a></li>
+    <li><a href="<?=site_url('home'); ?>"><span class="fa fa-home"></span></a></li>
     <li class="active"><?=$title; ?></li>
 </ul>
 
@@ -11,7 +11,7 @@
 <input type="hidden" id="user_id" value="<?=$user_id; ?>">
 
 <div id="buttons">
-    <a href="#" class="btn btn-primary" id="show-passwd-box"><span class="fa fa-key"></span> Password</a>
+    <a href="#" class="btn btn-primary" id="show-passwd-box" data-toggle="tooltip" data-original-title="Wachtwoord Veranderen"><span class="fa fa-key"></span></a>
 </div>
 
 <!-- info -->
@@ -20,23 +20,23 @@
     <table class="table table-striped table-hover">
         <tbody>
             <tr>
-                <td>Database ID:</td>
+                <td>Databank ID:</td>
                 <td id="db_id"></td>
             </tr>
             <tr>
-                <td>User ID:</td>
+                <td>Gebruiker ID:</td>
                 <td id="uid"></td>
             </tr>
             <tr>
-                <td>Firstname:</td>
+                <td>Voornaam:</td>
                 <td id="firstname"></td>
             </tr>
             <tr>
-                <td>Lastname:</td>
+                <td>Achternaam:</td>
                 <td id="lastname"></td>
             </tr>
             <tr>
-                <td>Role:</td>
+                <td>Rol:</td>
                 <td id="role"></td>
             </tr>
         </tbody>
@@ -46,17 +46,17 @@
 
 <!-- Active loans -->
 <div id="active-loans">
-    <h3>Items in use</h3>
-    <a href="<?=site_url('loans/view/user/'.$user_id); ?>" class="btn btn-primary" id="view-all"><span class="fa fa-list-alt"></span></a>
+    <h3>Reservaties</h3>
+    <a href="<?=site_url('loans/view/user/'.$user_id); ?>" class="btn btn-primary" id="view-all" data-toggle="tooltip" data-original-title="Volledige Geschiedenis"><span class="fa fa-list-alt"></span></a>
     <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Item ID</th>
-                <th>Location</th>
-                <th>Category</th>
-                <th>From</th>
-                <th>Until</th>
+                <th>Locatie</th>
+                <th>Categorie</th>
+                <th>Van</th>
+                <th>Tot</th>
             </tr>
         </thead>
         <tbody>

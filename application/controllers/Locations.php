@@ -25,15 +25,12 @@ class Locations extends CI_Controller
     public function index()
     {
         //set title
-        $data['title'] = 'Locations';
+        $data['title'] = 'Locaties';
 
         //set table head
-        $data['head'][0]['name'] = 'ID';
-        $data['head'][0]['db'] = 'id';
-        $data['head'][1]['name'] = 'Name';
-        $data['head'][1]['db'] = 'name';
-        $data['head'][2]['name'] = 'Amount Of Items';
-        $data['head'][2]['db'] = 'item_count';
+        $data['head'][] =  array('name' => 'Locatie ID', 'db' => 'id');
+        $data['head'][] = array('name' => 'Naam', 'db' => 'name');
+        $data['head'][] = array('name' => 'Aantal Items', 'db' => 'item_count');
 
         //set scripts
         $data['scripts'][] = base_url('js/tables/MainTable.js');

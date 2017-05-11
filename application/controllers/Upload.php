@@ -16,8 +16,9 @@ class Upload extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->helper('authorizationcheck_helper');
 
+        //athentication level
         if(!authorization_check($this, 2)) {
-            show_error('You are not authorize t perform this action.');
+            show_error('U kan deze actie niet uitvoeren.');
         }
     }
 
